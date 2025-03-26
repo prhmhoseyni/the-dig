@@ -1,0 +1,14 @@
+{
+  "name": "the-dig-monorepo",
+  "description": "Design Interface Guide Monorepo",
+  "private": true,
+  "author": {
+    "name": "Parham Hoseyni",
+    "email": "prhmhoseyni@gmail.com",
+    "url": "https://github.com/prhmhoseyni"
+  },
+  "workspaces": [
+    "projects/*",
+    "packages/*"
+  ]
+}
