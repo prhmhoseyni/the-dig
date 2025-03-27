@@ -9,6 +9,14 @@ export default function Home() {
         Hello world!
       </h1>
 
+      <div className="type">
+        Hello world !!!!!
+      </div>
+
+      <div className="text-brand">
+        Hello world ????
+      </div>
+
       <main className={styles.main}>
         <Image
           className={styles.logo}
