@@ -1,0 +1,535 @@
+.btn {
+  all: unset;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
+  border-radius: 0.5rem;
+  min-width: fit-content;
+  border: 1px solid;
+  transition: all ease-in-out 0.3s;
+}
+
+/**
+ * ---------------------------------------------------------------------------------------------------------------------
+ * :::: size ::::
+ */
+.btn:not(.btn-xs, .btn-sm, .btn-lg, .btn-xl) {
+  font-size: 0.75rem;
+  font-weight: 500;
+  line-height: 1.125rem;
+  padding-inline: 0.75rem;
+  height: 2.5rem;
+}
+
+.btn.btn-xs {
+  font-size: 0.75rem;
+  font-weight: 500;
+  line-height: 1.125rem;
+  padding-inline: 0.75rem;
+  height: 2rem;
+}
+
+.btn.btn-sm {
+  font-size: 0.8125rem;
+  font-weight: 500;
+  line-height: 1.21875rem;
+  padding-inline: 0.75rem;
+  height: 2.25rem;
+}
+
+.btn.btn-lg {
+  font-size: 0.8125rem;
+  font-weight: 500;
+  line-height: 1.21875rem;
+  padding-inline: 1rem;
+  height: 2.75rem;
+}
+
+.btn.btn-xl {
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1.3125rem;
+  padding-inline: 1rem;
+  height: 3rem;
+}
+
+/**
+ * ---------------------------------------------------------------------------------------------------------------------
+ * :::: disabled ::::
+ */
+.btn:disabled,
+.btn:hover:disabled,
+.btn:active:disabled {
+  cursor: not-allowed;
+  opacity: 0.4;
+}
+
+/**
+ * ---------------------------------------------------------------------------------------------------------------------
+ * :::: variants ::::
+ */
+.btn.btn-brand {
+  color: rgb(var(--dig-text-inverse));
+  background-color: rgb(var(--dig-brand));
+  border-color: transparent;
+}
+.btn.btn-brand:hover {
+  background-color: color-mix(in srgb, rgb(var(--dig-brand)), var(--dig-color-mix-hover));
+}
+.btn.btn-brand:active {
+  background-color: color-mix(in srgb, rgb(var(--dig-brand)), var(--dig-color-mix-active));
+  box-shadow: 0px 0px 0px 1px rgb(var(--dig-bg-primary)), 0px 0px 0px 4px rgba(var(--dig-brand), 0.14);
+}
+
+.btn.btn-brand.btn-tinted {
+  color: rgb(var(--dig-brand));
+  background-color: color-mix(in srgb, rgb(var(--dig-brand)), var(--dig-color-mix-light));
+  border-color: transparent;
+}
+.btn.btn-brand.btn-tinted:hover {
+  background-color: color-mix(in srgb, rgb(var(--dig-brand)), var(--dig-color-mix-light-hover));
+}
+.btn.btn-brand.btn-tinted:active {
+  background-color: color-mix(in srgb, rgb(var(--dig-brand)), var(--dig-color-mix-light-active));
+  box-shadow: 0px 0px 0px 1px rgb(var(--dig-bg-primary)), 0px 0px 0px 4px rgba(var(--dig-brand), 0.14);
+}
+
+.btn.btn-brand.btn-outlined {
+  color: rgb(var(--dig-brand));
+  background: transparent;
+  border-color: rgb(var(--dig-brand));
+}
+.btn.btn-brand.btn-outlined:hover {
+  background-color: color-mix(in srgb, rgb(var(--dig-brand)), var(--dig-color-mix-light-hover));
+}
+.btn.btn-brand.btn-outlined:active {
+  background-color: color-mix(in srgb, rgb(var(--dig-brand)), var(--dig-color-mix-light-active));
+  box-shadow: 0px 0px 0px 1px rgb(var(--dig-bg-primary)), 0px 0px 0px 4px rgba(var(--dig-brand), 0.14);
+}
+
+.btn.btn-info {
+  color: rgb(var(--dig-text-inverse));
+  background-color: rgb(var(--dig-info));
+  border-color: transparent;
+}
+.btn.btn-info:hover {
+  background-color: color-mix(in srgb, rgb(var(--dig-info)), var(--dig-color-mix-hover));
+}
+.btn.btn-info:active {
+  background-color: color-mix(in srgb, rgb(var(--dig-info)), var(--dig-color-mix-active));
+  box-shadow: 0px 0px 0px 1px rgb(var(--dig-bg-primary)), 0px 0px 0px 4px rgba(var(--dig-info), 0.14);
+}
+
+.btn.btn-info.btn-tinted {
+  color: rgb(var(--dig-info));
+  background-color: color-mix(in srgb, rgb(var(--dig-info)), var(--dig-color-mix-light));
+  border-color: transparent;
+}
+.btn.btn-info.btn-tinted:hover {
+  background-color: color-mix(in srgb, rgb(var(--dig-info)), var(--dig-color-mix-light-hover));
+}
+.btn.btn-info.btn-tinted:active {
+  background-color: color-mix(in srgb, rgb(var(--dig-info)), var(--dig-color-mix-light-active));
+  box-shadow: 0px 0px 0px 1px rgb(var(--dig-bg-primary)), 0px 0px 0px 4px rgba(var(--dig-info), 0.14);
+}
+
+.btn.btn-info.btn-outlined {
+  color: rgb(var(--dig-info));
+  background: transparent;
+  border-color: rgb(var(--dig-info));
+}
+.btn.btn-info.btn-outlined:hover {
+  background-color: color-mix(in srgb, rgb(var(--dig-info)), var(--dig-color-mix-light-hover));
+}
+.btn.btn-info.btn-outlined:active {
+  background-color: color-mix(in srgb, rgb(var(--dig-info)), var(--dig-color-mix-light-active));
+  box-shadow: 0px 0px 0px 1px rgb(var(--dig-bg-primary)), 0px 0px 0px 4px rgba(var(--dig-info), 0.14);
+}
+
+.btn.btn-success {
+  color: rgb(var(--dig-text-inverse));
+  background-color: rgb(var(--dig-success));
+  border-color: transparent;
+}
+.btn.btn-success:hover {
+  background-color: color-mix(in srgb, rgb(var(--dig-success)), var(--dig-color-mix-hover));
+}
+.btn.btn-success:active {
+  background-color: color-mix(in srgb, rgb(var(--dig-success)), var(--dig-color-mix-active));
+  box-shadow: 0px 0px 0px 1px rgb(var(--dig-bg-primary)), 0px 0px 0px 4px rgba(var(--dig-success), 0.14);
+}
+
+.btn.btn-success.btn-tinted {
+  color: rgb(var(--dig-success));
+  background-color: color-mix(in srgb, rgb(var(--dig-success)), var(--dig-color-mix-light));
+  border-color: transparent;
+}
+.btn.btn-success.btn-tinted:hover {
+  background-color: color-mix(in srgb, rgb(var(--dig-success)), var(--dig-color-mix-light-hover));
+}
+.btn.btn-success.btn-tinted:active {
+  background-color: color-mix(in srgb, rgb(var(--dig-success)), var(--dig-color-mix-light-active));
+  box-shadow: 0px 0px 0px 1px rgb(var(--dig-bg-primary)), 0px 0px 0px 4px rgba(var(--dig-success), 0.14);
+}
+
+.btn.btn-success.btn-outlined {
+  color: rgb(var(--dig-success));
+  background: transparent;
+  border-color: rgb(var(--dig-success));
+}
+.btn.btn-success.btn-outlined:hover {
+  background-color: color-mix(in srgb, rgb(var(--dig-success)), var(--dig-color-mix-light-hover));
+}
+.btn.btn-success.btn-outlined:active {
+  background-color: color-mix(in srgb, rgb(var(--dig-success)), var(--dig-color-mix-light-active));
+  box-shadow: 0px 0px 0px 1px rgb(var(--dig-bg-primary)), 0px 0px 0px 4px rgba(var(--dig-success), 0.14);
+}
+
+.btn.btn-warning {
+  color: rgb(var(--dig-text-inverse));
+  background-color: rgb(var(--dig-warning));
+  border-color: transparent;
+}
+.btn.btn-warning:hover {
+  background-color: color-mix(in srgb, rgb(var(--dig-warning)), var(--dig-color-mix-hover));
+}
+.btn.btn-warning:active {
+  background-color: color-mix(in srgb, rgb(var(--dig-warning)), var(--dig-color-mix-active));
+  box-shadow: 0px 0px 0px 1px rgb(var(--dig-bg-primary)), 0px 0px 0px 4px rgba(var(--dig-warning), 0.14);
+}
+
+.btn.btn-warning.btn-tinted {
+  color: rgb(var(--dig-warning));
+  background-color: color-mix(in srgb, rgb(var(--dig-warning)), var(--dig-color-mix-light));
+  border-color: transparent;
+}
+.btn.btn-warning.btn-tinted:hover {
+  background-color: color-mix(in srgb, rgb(var(--dig-warning)), var(--dig-color-mix-light-hover));
+}
+.btn.btn-warning.btn-tinted:active {
+  background-color: color-mix(in srgb, rgb(var(--dig-warning)), var(--dig-color-mix-light-active));
+  box-shadow: 0px 0px 0px 1px rgb(var(--dig-bg-primary)), 0px 0px 0px 4px rgba(var(--dig-warning), 0.14);
+}
+
+.btn.btn-warning.btn-outlined {
+  color: rgb(var(--dig-warning));
+  background: transparent;
+  border-color: rgb(var(--dig-warning));
+}
+.btn.btn-warning.btn-outlined:hover {
+  background-color: color-mix(in srgb, rgb(var(--dig-warning)), var(--dig-color-mix-light-hover));
+}
+.btn.btn-warning.btn-outlined:active {
+  background-color: color-mix(in srgb, rgb(var(--dig-warning)), var(--dig-color-mix-light-active));
+  box-shadow: 0px 0px 0px 1px rgb(var(--dig-bg-primary)), 0px 0px 0px 4px rgba(var(--dig-warning), 0.14);
+}
+
+.btn.btn-danger {
+  color: rgb(var(--dig-text-inverse));
+  background-color: rgb(var(--dig-danger));
+  border-color: transparent;
+}
+.btn.btn-danger:hover {
+  background-color: color-mix(in srgb, rgb(var(--dig-danger)), var(--dig-color-mix-hover));
+}
+.btn.btn-danger:active {
+  background-color: color-mix(in srgb, rgb(var(--dig-danger)), var(--dig-color-mix-active));
+  box-shadow: 0px 0px 0px 1px rgb(var(--dig-bg-primary)), 0px 0px 0px 4px rgba(var(--dig-danger), 0.14);
+}
+
+.btn.btn-danger.btn-tinted {
+  color: rgb(var(--dig-danger));
+  background-color: color-mix(in srgb, rgb(var(--dig-danger)), var(--dig-color-mix-light));
+  border-color: transparent;
+}
+.btn.btn-danger.btn-tinted:hover {
+  background-color: color-mix(in srgb, rgb(var(--dig-danger)), var(--dig-color-mix-light-hover));
+}
+.btn.btn-danger.btn-tinted:active {
+  background-color: color-mix(in srgb, rgb(var(--dig-danger)), var(--dig-color-mix-light-active));
+  box-shadow: 0px 0px 0px 1px rgb(var(--dig-bg-primary)), 0px 0px 0px 4px rgba(var(--dig-danger), 0.14);
+}
+
+.btn.btn-danger.btn-outlined {
+  color: rgb(var(--dig-danger));
+  background: transparent;
+  border-color: rgb(var(--dig-danger));
+}
+.btn.btn-danger.btn-outlined:hover {
+  background-color: color-mix(in srgb, rgb(var(--dig-danger)), var(--dig-color-mix-light-hover));
+}
+.btn.btn-danger.btn-outlined:active {
+  background-color: color-mix(in srgb, rgb(var(--dig-danger)), var(--dig-color-mix-light-active));
+  box-shadow: 0px 0px 0px 1px rgb(var(--dig-bg-primary)), 0px 0px 0px 4px rgba(var(--dig-danger), 0.14);
+}
+
+.btn.btn-gray {
+  color: rgb(var(--dig-text-inverse));
+  background-color: rgb(var(--dig-gray));
+  border-color: transparent;
+}
+.btn.btn-gray:hover {
+  background-color: color-mix(in srgb, rgb(var(--dig-gray)), var(--dig-color-mix-hover));
+}
+.btn.btn-gray:active {
+  background-color: color-mix(in srgb, rgb(var(--dig-gray)), var(--dig-color-mix-active));
+  box-shadow: 0px 0px 0px 1px rgb(var(--dig-bg-primary)), 0px 0px 0px 4px rgba(var(--dig-gray), 0.14);
+}
+
+.btn.btn-gray.btn-tinted {
+  color: rgb(var(--dig-gray));
+  background-color: color-mix(in srgb, rgb(var(--dig-gray)), var(--dig-color-mix-light));
+  border-color: transparent;
+}
+.btn.btn-gray.btn-tinted:hover {
+  background-color: color-mix(in srgb, rgb(var(--dig-gray)), var(--dig-color-mix-light-hover));
+}
+.btn.btn-gray.btn-tinted:active {
+  background-color: color-mix(in srgb, rgb(var(--dig-gray)), var(--dig-color-mix-light-active));
+  box-shadow: 0px 0px 0px 1px rgb(var(--dig-bg-primary)), 0px 0px 0px 4px rgba(var(--dig-gray), 0.14);
+}
+
+.btn.btn-gray.btn-outlined {
+  color: rgb(var(--dig-gray));
+  background: transparent;
+  border-color: rgb(var(--dig-gray));
+}
+.btn.btn-gray.btn-outlined:hover {
+  background-color: color-mix(in srgb, rgb(var(--dig-gray)), var(--dig-color-mix-light-hover));
+}
+.btn.btn-gray.btn-outlined:active {
+  background-color: color-mix(in srgb, rgb(var(--dig-gray)), var(--dig-color-mix-light-active));
+  box-shadow: 0px 0px 0px 1px rgb(var(--dig-bg-primary)), 0px 0px 0px 4px rgba(var(--dig-gray), 0.14);
+}
+
+/**
+ * ---------------------------------------------------------------------------------------------------------------------
+ * :::: form control ::::
+ */
+.input {
+  font-size: 0.875rem;
+  font-weight: 400;
+  line-height: 1.225rem;
+  width: 100%;
+  min-height: 3rem;
+  color: rgb(var(--dig-text-primary));
+  border-radius: 0.5rem;
+  padding-inline: 0.75rem;
+  outline: none;
+  transition: all ease-in-out 0.3s;
+}
+
+/**
+ * ---------------------------------------------------------------------------------------------------------------------
+ * :::: variants ::::
+ */
+.input {
+  background: rgb(var(--dig-bg-primary));
+  border: 1.5px solid #EDEDED;
+}
+
+.input.input-secondary {
+  background: rgb(var(--dig-bg-secondary));
+  border: 1.5px solid #E6E6E6;
+}
+
+/**
+ * ---------------------------------------------------------------------------------------------------------------------
+ * :::: firefox ::::
+ */
+.input:focus-visible,
+.input:focus-within {
+  outline: none !important;
+}
+
+/**
+ * ---------------------------------------------------------------------------------------------------------------------
+ * :::: placeholder & focus & disabled ::::
+ */
+.input::placeholder {
+  color: rgb(var(--dig-text-hint));
+}
+
+.input:focus {
+  border-color: rgb(var(--dig-brand));
+  box-shadow: 0 0 0 4px rgba(var(--dig-brand), 0.24), 0 0 0 4px rgb(var(--dig-bg-primary));
+}
+
+.input:disabled {
+  cursor: not-allowed;
+  color: rgba(var(--dig-text-hint));
+}
+
+/**
+ * ---------------------------------------------------------------------------------------------------------------------
+ * :::: has error ::::
+ */
+.input--has-error {
+  background-color: color-mix(in srgb, rgb(var(--dig-danger)), var(--dig-color-mix-light));
+  border-color: rgb(var(--dig-danger)) !important;
+}
+
+.input--has-error:focus {
+  border-color: rgb(var(--dig-danger)) !important;
+  box-shadow: 0 0 0 4px rgba(var(--dig-danger), 0.24), 0 0 0 4px rgb(var(--dig-bg-primary)) !important;
+}
+
+/**
+ * ---------------------------------------------------------------------------------------------------------------------
+ * :::: form control ::::
+ */
+.select {
+  font-size: 0.875rem;
+  font-weight: 400;
+  line-height: 1.225rem;
+  width: 100%;
+  min-height: 3rem;
+  color: rgb(var(--dig-text-primary));
+  border-radius: 0.5rem;
+  padding-inline: 0.75rem;
+  outline: none;
+  transition: all ease-in-out 0.3s;
+  /* :::: customize arrow left :::: */
+  -moz-appearance: none; /* :::: Firefox :::: */
+  -webkit-appearance: none; /* :::: Safari and Chrome :::: */
+  appearance: none;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' height='18' viewBox='0 -960 960 960' width='18'><path d='M480-345 240-585l43-43 197 198 197-197 43 43-240 239Z'/></svg>");
+  background-repeat: no-repeat;
+  background-position-x: 0.5rem;
+  background-position-y: 0.9rem;
+  padding-left: 2.5rem;
+  padding-block: 0.64rem;
+}
+
+/**
+ * ---------------------------------------------------------------------------------------------------------------------
+ * :::: variants ::::
+ */
+.select {
+  background-color: rgb(var(--dig-bg-primary));
+  border: 1.5px solid #EDEDED;
+}
+
+.select.select-secondary {
+  background-color: rgb(var(--dig-bg-secondary));
+  border: 1.5px solid #E6E6E6;
+}
+
+/**
+ * ---------------------------------------------------------------------------------------------------------------------
+ * :::: firefox ::::
+ */
+.select:focus-visible,
+.select:focus-within {
+  outline: none !important;
+}
+
+/**
+ * ---------------------------------------------------------------------------------------------------------------------
+ * :::: placeholder & focus & disabled ::::
+ */
+.select::placeholder {
+  color: rgb(var(--dig-text-hint));
+}
+
+.select:focus {
+  border-color: rgb(var(--dig-brand));
+  box-shadow: 0 0 0 4px rgba(var(--dig-brand), 0.24), 0 0 0 4px rgb(var(--dig-bg-primary));
+}
+
+.select:disabled {
+  cursor: not-allowed;
+  color: rgba(var(--dig-text-hint));
+}
+
+/**
+ * ---------------------------------------------------------------------------------------------------------------------
+ * :::: has error ::::
+ */
+.select--has-error {
+  background-color: color-mix(in srgb, rgb(var(--dig-danger)), var(--dig-color-mix-light));
+  border-color: rgb(var(--dig-danger)) !important;
+}
+
+.select--has-error:focus {
+  border-color: rgb(var(--dig-danger)) !important;
+  box-shadow: 0 0 0 4px rgba(var(--dig-danger), 0.24), 0 0 0 4px rgb(var(--dig-bg-primary)) !important;
+}
+
+/**
+ * ---------------------------------------------------------------------------------------------------------------------
+ * :::: form control ::::
+ */
+.textarea {
+  font-size: 0.875rem;
+  font-weight: 400;
+  line-height: 1.225rem;
+  width: 100%;
+  height: fit-content;
+  min-height: 3rem;
+  color: rgb(var(--dig-text-primary));
+  border-radius: 0.5rem;
+  padding: 0.75rem;
+  outline: none;
+  resize: none;
+  transition: all ease-in-out 0.3s;
+}
+
+/**
+ * ---------------------------------------------------------------------------------------------------------------------
+ * :::: variants ::::
+ */
+.textarea {
+  background: rgb(var(--dig-bg-primary));
+  border: 1.5px solid #EDEDED;
+}
+
+.textarea.textarea-secondary {
+  background: rgb(var(--dig-bg-secondary));
+  border: 1.5px solid #E6E6E6;
+}
+
+/**
+ * ---------------------------------------------------------------------------------------------------------------------
+ * :::: firefox ::::
+ */
+.textarea:focus-visible,
+.textarea:focus-within {
+  outline: none !important;
+}
+
+/**
+ * ---------------------------------------------------------------------------------------------------------------------
+ * :::: placeholder & focus & disabled ::::
+ */
+.textarea::placeholder {
+  color: rgb(var(--dig-text-hint));
+}
+
+.textarea:focus {
+  border-color: rgb(var(--dig-brand));
+  box-shadow: 0 0 0 4px rgba(var(--dig-brand), 0.24), 0 0 0 4px rgb(var(--dig-bg-primary));
+}
+
+.textarea:disabled {
+  cursor: not-allowed;
+  color: rgba(var(--dig-text-hint));
+}
+
+/**
+ * ---------------------------------------------------------------------------------------------------------------------
+ * :::: has error ::::
+ */
+.textarea--has-error {
+  background-color: color-mix(in srgb, rgb(var(--dig-danger)), var(--dig-color-mix-light));
+  border-color: rgb(var(--dig-danger)) !important;
+}
+
+.textarea--has-error:focus {
+  border-color: rgb(var(--dig-danger)) !important;
+  box-shadow: 0 0 0 4px rgba(var(--dig-danger), 0.24), 0 0 0 4px rgb(var(--dig-bg-primary)) !important;
+}
+
+/*# sourceMappingURL=index.css.map */

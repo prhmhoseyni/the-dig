@@ -1,8 +1,13 @@
 const plugin = require("tailwindcss/plugin");
+const { colors, backgroundColor, borderColor } = require("./helpers/config");
+const generateTheme = require("./helpers/generate-theme");
+const themes = require("./helpers/themes");
 
 function DIG({ theme, config, addBase, addComponents, addUtilities }) {
 
-    // console.log(">>>>>>>>>>>>>>>>", config()?.dig, config()?.dig?.something);
+    const options = config().dig || {};
+
+    generateTheme({ options, themes, addBase });
 
     addBase({
         "h1": {
@@ -21,7 +26,7 @@ function DIG({ theme, config, addBase, addComponents, addUtilities }) {
             boxShadow: theme("boxShadow.xl"),
         },
         ".type": {
-            backgroundColor: "#00ffff",
+            backgroundColor: "#ff0000",
         },
     });
 
@@ -35,11 +40,9 @@ function DIG({ theme, config, addBase, addComponents, addUtilities }) {
 module.exports = plugin(DIG, {
     theme: {
         extend: {
-            colors: {
-                brand: '#fff000'
-            },
-            backgroundColor: {},
-            borderColor: {},
+            colors,
+            backgroundColor,
+            borderColor,
         },
     },
 });

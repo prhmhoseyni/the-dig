@@ -9,8 +9,8 @@
     "preview": "vite preview",
     "storybook": "storybook dev -p 6006",
     "storybook:build": "storybook build",
-    "storybook:tailwind:watch": "npx tailwindcss -i .\\src\\storybook.css -o .\\.storybook\\tailwind.css --watch",
-    "storybook:tailwind:build": "npx tailwindcss -i .\\src\\storybook.css -o .\\.storybook\\tailwind.css"
+    "storybook:tailwind:watch": "npx tailwindcss -i .\\src\\storybook.css -o .\\.storybook\\storybook.css --watch",
+    "storybook:tailwind:build": "npx tailwindcss -i .\\src\\storybook.css -o .\\.storybook\\storybook.css"
   },
   "dependencies": {
     "lit": "^3.2.1"
