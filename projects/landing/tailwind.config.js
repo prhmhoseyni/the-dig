@@ -12,7 +12,7 @@ module.exports = {
         require("the-dig"),
     ],
     dig: {
-        something: {}
-    }
+        // darkMode: "auto",
+    },
 };
 
