@@ -8,7 +8,7 @@ const base = require("./dist/base") ?? {};
 const components = require("./dist/components") ?? {};
 const utilities = require("./dist/utilities") ?? {};
 
-function DIG({ theme, config, addBase, addComponents, addUtilities }) {
+function DIG({ config, addBase, addComponents, addUtilities }) {
 
     const options = config().dig || {};
 

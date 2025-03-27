@@ -1,5 +1,3 @@
-const plugin = require("tailwindcss/plugin");
-
 /** @type {import("tailwindcss").Config} */
 module.exports = {
     content: [
@@ -12,7 +10,7 @@ module.exports = {
         require("the-dig"),
     ],
     dig: {
-        // darkMode: "auto",
+        darkMode: "auto",
     },
 };
 
