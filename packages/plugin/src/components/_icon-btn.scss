@@ -1,0 +1,109 @@
+@use "../colors.mixin" as colors;
+@use "../typography.mixin" as typography;
+
+.icon-btn {
+    all: unset;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0.5rem;
+    border: 1px solid;
+    transition: all ease-in-out 0.3s;
+}
+
+/**
+ * ---------------------------------------------------------------------------------------------------------------------
+ * :::: size ::::
+ */
+.icon-btn:not(.icon-btn-xs, .icon-btn-sm, .icon-btn-lg, .icon-btn-xl) {
+    @include typography.subtitle5;
+    height: 2.5rem;
+    width: 2.5rem;
+}
+
+.icon-btn.icon-btn-xs {
+    @include typography.subtitle5;
+    height: 2rem;
+    width: 2rem;
+}
+
+.icon-btn.icon-btn-sm {
+    @include typography.subtitle4;
+    height: 2.25rem;
+    width: 2.25rem;
+}
+
+.icon-btn.icon-btn-lg {
+    @include typography.subtitle4;
+    height: 2.75rem;
+    width: 2.75rem;
+}
+
+.icon-btn.icon-btn-xl {
+    @include typography.subtitle3;
+    height: 3rem;
+    width: 3rem;
+}
+
+/**
+ * ---------------------------------------------------------------------------------------------------------------------
+ * :::: disabled ::::
+ */
+.icon-btn:disabled,
+.icon-btn:hover:disabled,
+.icon-btn:active:disabled {
+    cursor: not-allowed;
+    opacity: 0.4;
+}
+
+/**
+ * ---------------------------------------------------------------------------------------------------------------------
+ * :::: variants ::::
+ */
+@each $variant in colors.$variants {
+    .icon-btn.icon-btn-#{$variant} {
+        @include colors.color("text-inverse");
+        @include colors.bg($variant);
+        border-color: transparent;
+
+        &:hover {
+            @include colors.bg-hover($variant);
+        }
+
+        &:active {
+            @include colors.bg-active($variant);
+            @include colors.box-shadow($variant);
+        }
+    }
+
+    .icon-btn.icon-btn-#{$variant}.icon-btn-tinted {
+        @include colors.color($variant);
+        @include colors.bg-light($variant);
+        border-color: transparent;
+
+        &:hover {
+            @include colors.bg-light-hover($variant);
+        }
+
+        &:active {
+            @include colors.bg-light-active($variant);
+            @include colors.box-shadow($variant);
+        }
+    }
+
+    .icon-btn.icon-btn-#{$variant}.icon-btn-outlined {
+        @include colors.color($variant);
+        background: transparent;
+        border-color: rgb(var(--dig-#{$variant}));
+
+        &:hover {
+            @include colors.bg-light-hover($variant);
+        }
+
+        &:active {
+            @include colors.bg-light-active($variant);
+            @include colors.box-shadow($variant);
+        }
+    }
+}

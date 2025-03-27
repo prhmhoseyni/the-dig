@@ -304,6 +304,310 @@
   box-shadow: 0px 0px 0px 1px rgb(var(--dig-bg-primary)), 0px 0px 0px 4px rgba(var(--dig-gray), 0.14);
 }
 
+.icon-btn {
+  all: unset;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.5rem;
+  border: 1px solid;
+  transition: all ease-in-out 0.3s;
+}
+
+/**
+ * ---------------------------------------------------------------------------------------------------------------------
+ * :::: size ::::
+ */
+.icon-btn:not(.icon-btn-xs, .icon-btn-sm, .icon-btn-lg, .icon-btn-xl) {
+  font-size: 0.75rem;
+  font-weight: 500;
+  line-height: 1.125rem;
+  height: 2.5rem;
+  width: 2.5rem;
+}
+
+.icon-btn.icon-btn-xs {
+  font-size: 0.75rem;
+  font-weight: 500;
+  line-height: 1.125rem;
+  height: 2rem;
+  width: 2rem;
+}
+
+.icon-btn.icon-btn-sm {
+  font-size: 0.8125rem;
+  font-weight: 500;
+  line-height: 1.21875rem;
+  height: 2.25rem;
+  width: 2.25rem;
+}
+
+.icon-btn.icon-btn-lg {
+  font-size: 0.8125rem;
+  font-weight: 500;
+  line-height: 1.21875rem;
+  height: 2.75rem;
+  width: 2.75rem;
+}
+
+.icon-btn.icon-btn-xl {
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1.3125rem;
+  height: 3rem;
+  width: 3rem;
+}
+
+/**
+ * ---------------------------------------------------------------------------------------------------------------------
+ * :::: disabled ::::
+ */
+.icon-btn:disabled,
+.icon-btn:hover:disabled,
+.icon-btn:active:disabled {
+  cursor: not-allowed;
+  opacity: 0.4;
+}
+
+/**
+ * ---------------------------------------------------------------------------------------------------------------------
+ * :::: variants ::::
+ */
+.icon-btn.icon-btn-brand {
+  color: rgb(var(--dig-text-inverse));
+  background-color: rgb(var(--dig-brand));
+  border-color: transparent;
+}
+.icon-btn.icon-btn-brand:hover {
+  background-color: color-mix(in srgb, rgb(var(--dig-brand)), var(--dig-color-mix-hover));
+}
+.icon-btn.icon-btn-brand:active {
+  background-color: color-mix(in srgb, rgb(var(--dig-brand)), var(--dig-color-mix-active));
+  box-shadow: 0px 0px 0px 1px rgb(var(--dig-bg-primary)), 0px 0px 0px 4px rgba(var(--dig-brand), 0.14);
+}
+
+.icon-btn.icon-btn-brand.icon-btn-tinted {
+  color: rgb(var(--dig-brand));
+  background-color: color-mix(in srgb, rgb(var(--dig-brand)), var(--dig-color-mix-light));
+  border-color: transparent;
+}
+.icon-btn.icon-btn-brand.icon-btn-tinted:hover {
+  background-color: color-mix(in srgb, rgb(var(--dig-brand)), var(--dig-color-mix-light-hover));
+}
+.icon-btn.icon-btn-brand.icon-btn-tinted:active {
+  background-color: color-mix(in srgb, rgb(var(--dig-brand)), var(--dig-color-mix-light-active));
+  box-shadow: 0px 0px 0px 1px rgb(var(--dig-bg-primary)), 0px 0px 0px 4px rgba(var(--dig-brand), 0.14);
+}
+
+.icon-btn.icon-btn-brand.icon-btn-outlined {
+  color: rgb(var(--dig-brand));
+  background: transparent;
+  border-color: rgb(var(--dig-brand));
+}
+.icon-btn.icon-btn-brand.icon-btn-outlined:hover {
+  background-color: color-mix(in srgb, rgb(var(--dig-brand)), var(--dig-color-mix-light-hover));
+}
+.icon-btn.icon-btn-brand.icon-btn-outlined:active {
+  background-color: color-mix(in srgb, rgb(var(--dig-brand)), var(--dig-color-mix-light-active));
+  box-shadow: 0px 0px 0px 1px rgb(var(--dig-bg-primary)), 0px 0px 0px 4px rgba(var(--dig-brand), 0.14);
+}
+
+.icon-btn.icon-btn-info {
+  color: rgb(var(--dig-text-inverse));
+  background-color: rgb(var(--dig-info));
+  border-color: transparent;
+}
+.icon-btn.icon-btn-info:hover {
+  background-color: color-mix(in srgb, rgb(var(--dig-info)), var(--dig-color-mix-hover));
+}
+.icon-btn.icon-btn-info:active {
+  background-color: color-mix(in srgb, rgb(var(--dig-info)), var(--dig-color-mix-active));
+  box-shadow: 0px 0px 0px 1px rgb(var(--dig-bg-primary)), 0px 0px 0px 4px rgba(var(--dig-info), 0.14);
+}
+
+.icon-btn.icon-btn-info.icon-btn-tinted {
+  color: rgb(var(--dig-info));
+  background-color: color-mix(in srgb, rgb(var(--dig-info)), var(--dig-color-mix-light));
+  border-color: transparent;
+}
+.icon-btn.icon-btn-info.icon-btn-tinted:hover {
+  background-color: color-mix(in srgb, rgb(var(--dig-info)), var(--dig-color-mix-light-hover));
+}
+.icon-btn.icon-btn-info.icon-btn-tinted:active {
+  background-color: color-mix(in srgb, rgb(var(--dig-info)), var(--dig-color-mix-light-active));
+  box-shadow: 0px 0px 0px 1px rgb(var(--dig-bg-primary)), 0px 0px 0px 4px rgba(var(--dig-info), 0.14);
+}
+
+.icon-btn.icon-btn-info.icon-btn-outlined {
+  color: rgb(var(--dig-info));
+  background: transparent;
+  border-color: rgb(var(--dig-info));
+}
+.icon-btn.icon-btn-info.icon-btn-outlined:hover {
+  background-color: color-mix(in srgb, rgb(var(--dig-info)), var(--dig-color-mix-light-hover));
+}
+.icon-btn.icon-btn-info.icon-btn-outlined:active {
+  background-color: color-mix(in srgb, rgb(var(--dig-info)), var(--dig-color-mix-light-active));
+  box-shadow: 0px 0px 0px 1px rgb(var(--dig-bg-primary)), 0px 0px 0px 4px rgba(var(--dig-info), 0.14);
+}
+
+.icon-btn.icon-btn-success {
+  color: rgb(var(--dig-text-inverse));
+  background-color: rgb(var(--dig-success));
+  border-color: transparent;
+}
+.icon-btn.icon-btn-success:hover {
+  background-color: color-mix(in srgb, rgb(var(--dig-success)), var(--dig-color-mix-hover));
+}
+.icon-btn.icon-btn-success:active {
+  background-color: color-mix(in srgb, rgb(var(--dig-success)), var(--dig-color-mix-active));
+  box-shadow: 0px 0px 0px 1px rgb(var(--dig-bg-primary)), 0px 0px 0px 4px rgba(var(--dig-success), 0.14);
+}
+
+.icon-btn.icon-btn-success.icon-btn-tinted {
+  color: rgb(var(--dig-success));
+  background-color: color-mix(in srgb, rgb(var(--dig-success)), var(--dig-color-mix-light));
+  border-color: transparent;
+}
+.icon-btn.icon-btn-success.icon-btn-tinted:hover {
+  background-color: color-mix(in srgb, rgb(var(--dig-success)), var(--dig-color-mix-light-hover));
+}
+.icon-btn.icon-btn-success.icon-btn-tinted:active {
+  background-color: color-mix(in srgb, rgb(var(--dig-success)), var(--dig-color-mix-light-active));
+  box-shadow: 0px 0px 0px 1px rgb(var(--dig-bg-primary)), 0px 0px 0px 4px rgba(var(--dig-success), 0.14);
+}
+
+.icon-btn.icon-btn-success.icon-btn-outlined {
+  color: rgb(var(--dig-success));
+  background: transparent;
+  border-color: rgb(var(--dig-success));
+}
+.icon-btn.icon-btn-success.icon-btn-outlined:hover {
+  background-color: color-mix(in srgb, rgb(var(--dig-success)), var(--dig-color-mix-light-hover));
+}
+.icon-btn.icon-btn-success.icon-btn-outlined:active {
+  background-color: color-mix(in srgb, rgb(var(--dig-success)), var(--dig-color-mix-light-active));
+  box-shadow: 0px 0px 0px 1px rgb(var(--dig-bg-primary)), 0px 0px 0px 4px rgba(var(--dig-success), 0.14);
+}
+
+.icon-btn.icon-btn-warning {
+  color: rgb(var(--dig-text-inverse));
+  background-color: rgb(var(--dig-warning));
+  border-color: transparent;
+}
+.icon-btn.icon-btn-warning:hover {
+  background-color: color-mix(in srgb, rgb(var(--dig-warning)), var(--dig-color-mix-hover));
+}
+.icon-btn.icon-btn-warning:active {
+  background-color: color-mix(in srgb, rgb(var(--dig-warning)), var(--dig-color-mix-active));
+  box-shadow: 0px 0px 0px 1px rgb(var(--dig-bg-primary)), 0px 0px 0px 4px rgba(var(--dig-warning), 0.14);
+}
+
+.icon-btn.icon-btn-warning.icon-btn-tinted {
+  color: rgb(var(--dig-warning));
+  background-color: color-mix(in srgb, rgb(var(--dig-warning)), var(--dig-color-mix-light));
+  border-color: transparent;
+}
+.icon-btn.icon-btn-warning.icon-btn-tinted:hover {
+  background-color: color-mix(in srgb, rgb(var(--dig-warning)), var(--dig-color-mix-light-hover));
+}
+.icon-btn.icon-btn-warning.icon-btn-tinted:active {
+  background-color: color-mix(in srgb, rgb(var(--dig-warning)), var(--dig-color-mix-light-active));
+  box-shadow: 0px 0px 0px 1px rgb(var(--dig-bg-primary)), 0px 0px 0px 4px rgba(var(--dig-warning), 0.14);
+}
+
+.icon-btn.icon-btn-warning.icon-btn-outlined {
+  color: rgb(var(--dig-warning));
+  background: transparent;
+  border-color: rgb(var(--dig-warning));
+}
+.icon-btn.icon-btn-warning.icon-btn-outlined:hover {
+  background-color: color-mix(in srgb, rgb(var(--dig-warning)), var(--dig-color-mix-light-hover));
+}
+.icon-btn.icon-btn-warning.icon-btn-outlined:active {
+  background-color: color-mix(in srgb, rgb(var(--dig-warning)), var(--dig-color-mix-light-active));
+  box-shadow: 0px 0px 0px 1px rgb(var(--dig-bg-primary)), 0px 0px 0px 4px rgba(var(--dig-warning), 0.14);
+}
+
+.icon-btn.icon-btn-danger {
+  color: rgb(var(--dig-text-inverse));
+  background-color: rgb(var(--dig-danger));
+  border-color: transparent;
+}
+.icon-btn.icon-btn-danger:hover {
+  background-color: color-mix(in srgb, rgb(var(--dig-danger)), var(--dig-color-mix-hover));
+}
+.icon-btn.icon-btn-danger:active {
+  background-color: color-mix(in srgb, rgb(var(--dig-danger)), var(--dig-color-mix-active));
+  box-shadow: 0px 0px 0px 1px rgb(var(--dig-bg-primary)), 0px 0px 0px 4px rgba(var(--dig-danger), 0.14);
+}
+
+.icon-btn.icon-btn-danger.icon-btn-tinted {
+  color: rgb(var(--dig-danger));
+  background-color: color-mix(in srgb, rgb(var(--dig-danger)), var(--dig-color-mix-light));
+  border-color: transparent;
+}
+.icon-btn.icon-btn-danger.icon-btn-tinted:hover {
+  background-color: color-mix(in srgb, rgb(var(--dig-danger)), var(--dig-color-mix-light-hover));
+}
+.icon-btn.icon-btn-danger.icon-btn-tinted:active {
+  background-color: color-mix(in srgb, rgb(var(--dig-danger)), var(--dig-color-mix-light-active));
+  box-shadow: 0px 0px 0px 1px rgb(var(--dig-bg-primary)), 0px 0px 0px 4px rgba(var(--dig-danger), 0.14);
+}
+
+.icon-btn.icon-btn-danger.icon-btn-outlined {
+  color: rgb(var(--dig-danger));
+  background: transparent;
+  border-color: rgb(var(--dig-danger));
+}
+.icon-btn.icon-btn-danger.icon-btn-outlined:hover {
+  background-color: color-mix(in srgb, rgb(var(--dig-danger)), var(--dig-color-mix-light-hover));
+}
+.icon-btn.icon-btn-danger.icon-btn-outlined:active {
+  background-color: color-mix(in srgb, rgb(var(--dig-danger)), var(--dig-color-mix-light-active));
+  box-shadow: 0px 0px 0px 1px rgb(var(--dig-bg-primary)), 0px 0px 0px 4px rgba(var(--dig-danger), 0.14);
+}
+
+.icon-btn.icon-btn-gray {
+  color: rgb(var(--dig-text-inverse));
+  background-color: rgb(var(--dig-gray));
+  border-color: transparent;
+}
+.icon-btn.icon-btn-gray:hover {
+  background-color: color-mix(in srgb, rgb(var(--dig-gray)), var(--dig-color-mix-hover));
+}
+.icon-btn.icon-btn-gray:active {
+  background-color: color-mix(in srgb, rgb(var(--dig-gray)), var(--dig-color-mix-active));
+  box-shadow: 0px 0px 0px 1px rgb(var(--dig-bg-primary)), 0px 0px 0px 4px rgba(var(--dig-gray), 0.14);
+}
+
+.icon-btn.icon-btn-gray.icon-btn-tinted {
+  color: rgb(var(--dig-gray));
+  background-color: color-mix(in srgb, rgb(var(--dig-gray)), var(--dig-color-mix-light));
+  border-color: transparent;
+}
+.icon-btn.icon-btn-gray.icon-btn-tinted:hover {
+  background-color: color-mix(in srgb, rgb(var(--dig-gray)), var(--dig-color-mix-light-hover));
+}
+.icon-btn.icon-btn-gray.icon-btn-tinted:active {
+  background-color: color-mix(in srgb, rgb(var(--dig-gray)), var(--dig-color-mix-light-active));
+  box-shadow: 0px 0px 0px 1px rgb(var(--dig-bg-primary)), 0px 0px 0px 4px rgba(var(--dig-gray), 0.14);
+}
+
+.icon-btn.icon-btn-gray.icon-btn-outlined {
+  color: rgb(var(--dig-gray));
+  background: transparent;
+  border-color: rgb(var(--dig-gray));
+}
+.icon-btn.icon-btn-gray.icon-btn-outlined:hover {
+  background-color: color-mix(in srgb, rgb(var(--dig-gray)), var(--dig-color-mix-light-hover));
+}
+.icon-btn.icon-btn-gray.icon-btn-outlined:active {
+  background-color: color-mix(in srgb, rgb(var(--dig-gray)), var(--dig-color-mix-light-active));
+  box-shadow: 0px 0px 0px 1px rgb(var(--dig-bg-primary)), 0px 0px 0px 4px rgba(var(--dig-gray), 0.14);
+}
+
 /**
  * ---------------------------------------------------------------------------------------------------------------------
  * :::: form control ::::
