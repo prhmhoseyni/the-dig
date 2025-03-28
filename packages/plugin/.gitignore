@@ -1,2 +1,8 @@
-/dist/*.css
-/dist/*.css.map
+/dist
+
+/src/base/index.css
+/src/base/index.css.map
+/src/components/index.css
+/src/components/index.css.map
+/src/utilities/index.css
+/src/utilities/index.css.map
