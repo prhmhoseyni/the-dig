@@ -16,9 +16,11 @@
   "main": "main.js",
   "module": "main.js",
   "files": [
-    "main.js",
-    "dist",
-    "helpers"
+    "dist/base.js",
+    "dist/components.js",
+    "dist/utilities.js",
+    "helpers",
+    "main.js"
   ],
   "devDependencies": {
     "tailwindcss": "^3.4.17"
