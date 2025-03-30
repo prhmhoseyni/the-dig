@@ -76,4 +76,6 @@ const dark = {
     "--dig-color-mix-gray": "#000000",
 };
 
-module.exports = { light, dark };
+const themes = { light, dark };
+
+export default themes;

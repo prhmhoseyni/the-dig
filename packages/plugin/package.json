@@ -22,9 +22,6 @@
     "helpers",
     "main.js"
   ],
-  "devDependencies": {
-    "tailwindcss": "^3.4.17"
-  },
   "dependencies": {
     "color": "^5.0.0"
   },

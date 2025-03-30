@@ -2,80 +2,30 @@
     font-weight: 700;
     font-size: 2.25rem;
     line-height: 3.375rem;
-
-    @media (min-width: 768px) {
-        font-size: 2.5rem;
-        line-height: 3.75rem;
-    }
-
-    @media (min-width: 1024px) {
-        font-size: 2.625rem;
-        line-height: 3.9375rem;
-    }
 }
 
 @mixin heading2 {
     font-weight: 700;
     font-size: 2rem;
     line-height: 3rem;
-
-    @media (min-width: 768px) {
-        font-size: 2.25rem;
-        line-height: 3.375rem;
-    }
-
-    @media (min-width: 1024px) {
-        font-size: 2.25rem;
-        line-height: 3.375rem;
-    }
 }
 
 @mixin heading3 {
     font-weight: 700;
     font-size: 1.5rem;
     line-height: 2.25rem;
-
-    @media (min-width: 768px) {
-        font-size: 1.75rem;
-        line-height: 2.625rem;
-    }
-
-    @media (min-width: 1024px) {
-        font-size: 2rem;
-        line-height: 3rem;
-    }
 }
 
 @mixin heading4 {
     font-weight: 700;
     font-size: 1.125rem;
     line-height: 1.75rem;
-
-    @media (min-width: 768px) {
-        font-size: 1.5rem;
-        line-height: 2.25rem;
-    }
-
-    @media (min-width: 1024px) {
-        font-size: 1.5rem;
-        line-height: 2.25rem;
-    }
 }
 
 @mixin heading5 {
     font-weight: 700;
     font-size: 1rem;
     line-height: 1.5rem;
-
-    @media (min-width: 768px) {
-        font-size: 1.125rem;
-        line-height: 27px;
-    }
-
-    @media (min-width: 1024px) {
-        font-size: 1.125rem;
-        line-height: 1.75rem;
-    }
 }
 
 @mixin subtitle1 {

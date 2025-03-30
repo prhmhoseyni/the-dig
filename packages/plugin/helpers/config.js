@@ -66,4 +66,4 @@ const backgroundColor = {
 
 const borderColor = {};
 
-module.exports = { colors, backgroundColor, borderColor };
+export { colors, backgroundColor, borderColor };

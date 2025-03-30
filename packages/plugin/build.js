@@ -29,11 +29,11 @@ function runCommand(command) {
 
 (async () => {
     try {
-        await runCommand(`npx tailwindcss -i ${__dirname}\\src\\base\\index.css -o ${__dirname}\\dist\\base.css`);
-        await runCommand(`npx tailwindcss -i ${__dirname}\\src\\components\\index.css -o ${__dirname}\\dist\\components.css`);
-        await runCommand(`npx tailwindcss -i ${__dirname}\\src\\utilities\\index.css -o ${__dirname}\\dist\\utilities.css`);
+        await runCommand(`npx @tailwindcss/cli -i ${__dirname}\\src\\base\\index.css -o ${__dirname}\\dist\\base.css`);
+        await runCommand(`npx @tailwindcss/cli -i ${__dirname}\\src\\components\\index.css -o ${__dirname}\\dist\\components.css`);
+        await runCommand(`npx @tailwindcss/cli -i ${__dirname}\\src\\utilities\\index.css -o ${__dirname}\\dist\\utilities.css`);
 
-        await runCommand("npx prejss-cli dist/*.css --format commonjs");
+        await runCommand("npx prejss-cli dist/*.css --format es6");
     } catch (error) {
         console.error(`❌ ${error.message}`);
     }
