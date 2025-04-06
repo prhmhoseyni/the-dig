@@ -30,7 +30,7 @@
     "color": "^5.0.0"
   },
   "scripts": {
-    "dev": "sass --watch src/base:src/base src/components:src/components src/utilities:src/utilities --style compressed --no-source-map",
+    "storybook": "sass --watch src/base:src/base src/components:src/components src/utilities:src/utilities --style compressed --no-source-map",
     "build": "node build.js"
   }
 }

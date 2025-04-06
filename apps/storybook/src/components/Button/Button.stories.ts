@@ -6,17 +6,17 @@ const meta = {
     tags: ["autodocs"],
     render: (args) => Button(args),
     argTypes: {
-        size: {
+        color: {
             control: { type: "select" },
-            options: Object.keys(ButtonSize),
+            options: Object.keys(ButtonColor),
         },
         variant: {
             control: { type: "select" },
             options: Object.keys(ButtonVariant),
         },
-        color: {
+        size: {
             control: { type: "select" },
-            options: Object.keys(ButtonColor),
+            options: Object.keys(ButtonSize),
         },
         disabled: {
             control: { type: "boolean" },

@@ -15,6 +15,7 @@ export enum ButtonVariant {
 }
 
 export enum ButtonColor {
+    default = "",
     brand = "btn-brand",
     gray = "btn-gray",
     success = "btn-success",
@@ -32,7 +33,7 @@ export interface Props {
 }
 
 export function Button(props: Props) {
-    const { label, size = "md", variant = "filled", color = "brand", disabled = false } = props;
+    const { label, size = "md", variant = "filled", color = "default", disabled = false } = props;
 
     if (disabled) {
         return html`
