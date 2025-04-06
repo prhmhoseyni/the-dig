@@ -1,5 +1,10 @@
 @use "../typography.mixin" as typography;
 
+body {
+    background: rgb(var(--dig-bg-primary));
+    color: rgb(var(--dig-text-primary));
+}
+
 h1 {
     @include typography.heading1;
 }
