@@ -38,8 +38,8 @@ export const metadata: Metadata = {
  */
 export default function RootLayout({ children }: Readonly<{ children: ReactNode }>) {
     return (
-        <html lang="fa" dir="rtl">
-            <body className={`${pinar.variable} ${vazirmatn.variable} ${geist.variable} antialiased`}>
+        <html lang="en" dir="ltr" className="dark">
+            <body className={`${pinar.variable} ${vazirmatn.variable} ${geist.variable}`}>
                 <div className="text-3xl font-pinar font-bold bg-red-500">فونت پینار</div>
                 <div className="text-3xl font-vazirmatn font-bold bg-red-500">فونت وزیر</div>
                 <div className="text-3xl font-geist font-bold bg-red-500">geist font</div>
