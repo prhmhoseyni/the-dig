@@ -1,0 +1,73 @@
+@use "../colors.mixin" as colors;
+@use "../typography.mixin.scss" as typography;
+
+/**
+ * ---------------------------------------------------------------------------------------------------------------------
+ * :::: form control ::::
+ */
+.input {
+    @include typography.label2;
+    width: 100%;
+    min-height: 3rem;
+    color: rgb(var(--dig-text-primary));
+    border-radius: 0.5rem;
+    padding-inline: 0.75rem;
+    outline: none;
+    transition: all ease-in-out 0.3s;
+}
+
+/**
+ * ---------------------------------------------------------------------------------------------------------------------
+ * :::: variants ::::
+ */
+.input {
+    background: rgb(var(--dig-bg-primary));
+    border: 1.5px solid #EDEDED;
+}
+
+.input.input-secondary {
+    background: rgb(var(--dig-bg-secondary));
+    border: 1.5px solid #E6E6E6;
+}
+
+/**
+ * ---------------------------------------------------------------------------------------------------------------------
+ * :::: firefox ::::
+ */
+.input:focus-visible,
+.input:focus-within {
+    outline: none !important;
+}
+
+/**
+ * ---------------------------------------------------------------------------------------------------------------------
+ * :::: placeholder & focus & disabled ::::
+ */
+.input::placeholder {
+    color: rgb(var(--dig-text-hint));
+}
+
+.input:focus {
+    border-color: rgb(var(--dig-brand));
+    box-shadow: 0 0 0 4px rgba(var(--dig-brand), 0.24), 0 0 0 4px rgb(var(--dig-bg-primary));
+}
+
+.input:disabled {
+    cursor: not-allowed;
+    color: rgba(var(--dig-text-hint));
+}
+
+/**
+ * ---------------------------------------------------------------------------------------------------------------------
+ * :::: has error ::::
+ */
+.input--has-error {
+    @include colors.bg-light(danger);
+    border-color: rgb(var(--dig-danger)) !important;
+}
+
+.input--has-error:focus {
+    border-color: rgb(var(--dig-danger)) !important;
+    box-shadow: 0 0 0 4px rgba(var(--dig-danger), 0.24), 0 0 0 4px rgb(var(--dig-bg-primary)) !important;
+}
+

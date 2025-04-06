@@ -1,0 +1,59 @@
+@use "../colors.mixin" as colors;
+@use "../typography.mixin" as typography;
+
+.alert {
+    @include typography.paragraph4;
+    @include colors.color("text-primary");
+    padding: 0.75rem 1rem;
+    border-radius: 0.5rem;
+    display: flex;
+    flex-direction: column;
+}
+
+/**
+ * ---------------------------------------------------------------------------------------------------------------------
+ * :::: colors ::::
+ */
+.alert:not(.alert-info, .alert-success, .alert-warning, .alert-danger) {
+    @include colors.bg-light("gray");
+    border: 1px solid rgba(var(--dig-gray), 0.14);
+}
+
+.alert.alert-info {
+    @include colors.bg-light("info");
+    border: 1px solid rgba(var(--dig-info), 0.14);
+}
+
+.alert.alert-success {
+    @include colors.bg-light("success");
+    border: 1px solid rgba(var(--dig-success), 0.14);
+}
+
+.alert.alert-warning {
+    @include colors.bg-light("warning");
+    border: 1px solid rgba(var(--dig-warning), 0.14);
+}
+
+.alert.alert-danger {
+    @include colors.bg-light("danger");
+    border: 1px solid rgba(var(--dig-danger), 0.14);
+}
+
+
+/**
+ * ---------------------------------------------------------------------------------------------------------------------
+ * :::: alert title ::::
+ */
+.alert .alert-title {
+    @include typography.subtitle3;
+    @include colors.color("text-primary");
+}
+
+/**
+ * ---------------------------------------------------------------------------------------------------------------------
+ * :::: alert description ::::
+ */
+.alert .alert-description {
+    @include typography.paragraph4;
+    @include colors.color("text-secondary");
+}

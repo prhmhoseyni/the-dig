@@ -1,0 +1,45 @@
+@use "../typography.mixin" as typography;
+@use "../colors.mixin" as colors;
+
+.form {
+    &-field {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    &-label {
+        @include typography.label3;
+        padding-inline: 0.25rem;
+    }
+
+    &-wrapper {
+        position: relative;
+    }
+
+    &-start-adornment {
+        position: absolute;
+        right: 0.5rem;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+
+    &-end-adornment {
+        position: absolute;
+        left: 0.5rem;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+
+    &-helper {
+        @include typography.caption2;
+        @include colors.color("text-hint");
+        padding-inline: 0.25rem;
+    }
+
+    &-error {
+        @include typography.caption2;
+        @include colors.color("danger");
+        padding-inline: 0.25rem;
+    }
+}

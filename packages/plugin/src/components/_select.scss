@@ -1,0 +1,82 @@
+@use "../colors.mixin" as colors;
+@use "../typography.mixin.scss" as typography;
+
+/**
+ * ---------------------------------------------------------------------------------------------------------------------
+ * :::: form control ::::
+ */
+.select {
+    @include typography.label2;
+    width: 100%;
+    min-height: 3rem;
+    color: rgb(var(--dig-text-primary));
+    border-radius: 0.5rem;
+    padding-inline: 0.75rem;
+    outline: none;
+    transition: all ease-in-out 0.3s;
+    /* :::: customize arrow left :::: */
+    -moz-appearance: none; /* :::: Firefox :::: */
+    -webkit-appearance: none; /* :::: Safari and Chrome :::: */
+    appearance: none;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' height='18' viewBox='0 -960 960 960' width='18'><path d='M480-345 240-585l43-43 197 198 197-197 43 43-240 239Z'/></svg>");
+    background-repeat: no-repeat;
+    background-position-x: 0.5rem;
+    background-position-y: 0.9rem;
+    padding-left: 2.5rem;
+    padding-block: 0.64rem;
+}
+
+/**
+ * ---------------------------------------------------------------------------------------------------------------------
+ * :::: variants ::::
+ */
+.select {
+    background-color: rgb(var(--dig-bg-primary));
+    border: 1.5px solid #EDEDED;
+}
+
+.select.select-secondary {
+    background-color: rgb(var(--dig-bg-secondary));
+    border: 1.5px solid #E6E6E6;
+}
+
+/**
+ * ---------------------------------------------------------------------------------------------------------------------
+ * :::: firefox ::::
+ */
+.select:focus-visible,
+.select:focus-within {
+    outline: none !important;
+}
+
+/**
+ * ---------------------------------------------------------------------------------------------------------------------
+ * :::: placeholder & focus & disabled ::::
+ */
+.select::placeholder {
+    color: rgb(var(--dig-text-hint));
+}
+
+.select:focus {
+    border-color: rgb(var(--dig-brand));
+    box-shadow: 0 0 0 4px rgba(var(--dig-brand), 0.24), 0 0 0 4px rgb(var(--dig-bg-primary));
+}
+
+.select:disabled {
+    cursor: not-allowed;
+    color: rgba(var(--dig-text-hint));
+}
+
+/**
+ * ---------------------------------------------------------------------------------------------------------------------
+ * :::: has error ::::
+ */
+.select--has-error {
+    @include colors.bg-light(danger);
+    border-color: rgb(var(--dig-danger)) !important;
+}
+
+.select--has-error:focus {
+    border-color: rgb(var(--dig-danger)) !important;
+    box-shadow: 0 0 0 4px rgba(var(--dig-danger), 0.24), 0 0 0 4px rgb(var(--dig-bg-primary)) !important;
+}

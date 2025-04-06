@@ -1,0 +1,36 @@
+{
+  "name": "the-dig",
+  "version": "0.2.0",
+  "type": "module",
+  "description": "DIG (Design Interface Guide) - Tailwind CSS Components",
+  "author": {
+    "name": "Parham Hoseyni",
+    "email": "prhmhoseyni@gmail.com",
+    "url": "https://github.com/prhmhoseyni"
+  },
+  "license": "MIT",
+  "homepage": "",
+  "bugs": {
+    "url": "https://github.com/prhmhoseyni/the-dig/issues",
+    "email": "prhmhoseyni@gmail.com"
+  },
+  "main": "main.js",
+  "module": "main.js",
+  "files": [
+    "dist/base.js",
+    "dist/components.js",
+    "dist/utilities.js",
+    "helpers",
+    "main.js"
+  ],
+  "devDependencies": {
+    "tailwindcss": "^3.4.17"
+  },
+  "dependencies": {
+    "color": "^5.0.0"
+  },
+  "scripts": {
+    "dev": "sass --watch src/base:src/base src/components:src/components src/utilities:src/utilities --style compressed --no-source-map",
+    "build": "node build.js"
+  }
+}

@@ -1,0 +1,33 @@
+$variants: "brand", "info", "success", "warning", "danger", "gray";
+
+@mixin color($variant) {
+    color: rgb(var(--dig-#{$variant}));
+}
+
+@mixin bg($variant) {
+    background-color: rgb(var(--dig-#{$variant}));
+}
+
+@mixin bg-hover($variant) {
+    background-color: color-mix(in srgb, rgb(var(--dig-#{$variant})), var(--dig-color-mix-hover));
+}
+
+@mixin bg-active($variant) {
+    background-color: color-mix(in srgb, rgb(var(--dig-#{$variant})), var(--dig-color-mix-active));
+}
+
+@mixin bg-light($variant) {
+    background-color: color-mix(in srgb, rgb(var(--dig-#{$variant})), var(--dig-color-mix-light));
+}
+
+@mixin bg-light-hover($variant) {
+    background-color: color-mix(in srgb, rgb(var(--dig-#{$variant})), var(--dig-color-mix-light-hover));
+}
+
+@mixin bg-light-active($variant) {
+    background-color: color-mix(in srgb, rgb(var(--dig-#{$variant})), var(--dig-color-mix-light-active));
+}
+
+@mixin box-shadow($variant) {
+    box-shadow: 0px 0px 0px 1px rgb(var(--dig-bg-primary)), 0px 0px 0px 4px rgba(var(--dig-#{$variant}), 0.14);
+}
