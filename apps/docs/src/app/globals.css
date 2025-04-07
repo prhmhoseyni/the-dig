@@ -1,0 +1,16 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+th,
+td {
+    @apply text-center px-4 py-2 border;
+}
+
+th.sample {
+    @apply text-center;
+}
+
+td.sample {
+    @apply font-vazirmatn text-center;
+}

@@ -1,0 +1,30 @@
+@use "../typography.mixin" as typography;
+
+body {
+    background: rgb(var(--dig-bg-primary));
+    color: rgb(var(--dig-text-primary));
+}
+
+h1 {
+    @include typography.heading1;
+}
+
+h2 {
+    @include typography.heading2;
+}
+
+h3 {
+    @include typography.heading3;
+}
+
+h4 {
+    @include typography.heading4;
+}
+
+h5 {
+    @include typography.heading5;
+}
+
+p {
+    @include typography.paragraph1;
+}

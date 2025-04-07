@@ -1,0 +1,74 @@
+@use "../colors.mixin" as colors;
+@use "../typography.mixin.scss" as typography;
+
+/**
+ * ---------------------------------------------------------------------------------------------------------------------
+ * :::: form control ::::
+ */
+.textarea {
+    @include typography.label2;
+    width: 100%;
+    height: fit-content;
+    min-height: 3rem;
+    color: rgb(var(--dig-text-primary));
+    border-radius: 0.5rem;
+    padding: 0.75rem;
+    outline: none;
+    resize: none;
+    transition: all ease-in-out 0.3s;
+}
+
+/**
+ * ---------------------------------------------------------------------------------------------------------------------
+ * :::: variants ::::
+ */
+.textarea {
+    background: rgb(var(--dig-bg-primary));
+    border: 1.5px solid #EDEDED;
+}
+
+.textarea.textarea-secondary {
+    background: rgb(var(--dig-bg-secondary));
+    border: 1.5px solid #E6E6E6;
+}
+
+/**
+ * ---------------------------------------------------------------------------------------------------------------------
+ * :::: firefox ::::
+ */
+.textarea:focus-visible,
+.textarea:focus-within {
+    outline: none !important;
+}
+
+/**
+ * ---------------------------------------------------------------------------------------------------------------------
+ * :::: placeholder & focus & disabled ::::
+ */
+.textarea::placeholder {
+    color: rgb(var(--dig-text-hint));
+}
+
+.textarea:focus {
+    border-color: rgb(var(--dig-brand));
+    box-shadow: 0 0 0 4px rgba(var(--dig-brand), 0.24), 0 0 0 4px rgb(var(--dig-bg-primary));
+}
+
+.textarea:disabled {
+    cursor: not-allowed;
+    color: rgba(var(--dig-text-hint));
+}
+
+/**
+ * ---------------------------------------------------------------------------------------------------------------------
+ * :::: has error ::::
+ */
+.textarea--has-error {
+    @include colors.bg-light(danger);
+    border-color: rgb(var(--dig-danger)) !important;
+}
+
+.textarea--has-error:focus {
+    border-color: rgb(var(--dig-danger)) !important;
+    box-shadow: 0 0 0 4px rgba(var(--dig-danger), 0.24), 0 0 0 4px rgb(var(--dig-bg-primary)) !important;
+}
