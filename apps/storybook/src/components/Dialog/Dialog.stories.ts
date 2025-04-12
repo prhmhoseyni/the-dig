@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from "@storybook/web-components";
-import { html } from "lit";
 import { Dialog, type Props } from "./Dialog.ts";
 
 const meta = {
@@ -7,16 +6,27 @@ const meta = {
     tags: ["autodocs"],
     render: (args) => Dialog(args),
     argTypes: {
+        id: {
+            control: { type: "text" },
+        },
         title: {
             control: { type: "text" },
         },
         body: {
             control: { type: "text" },
         },
-        footer: {
-            control: false,
+        withFooter: {
+            control: { type: "boolean" },
         },
     },
+    parameters: {
+        docs: {
+            story: {
+                inline: true,
+                height: '500px',
+            }
+        }
+    }
 } satisfies Meta<Props>;
 
 export default meta;
@@ -24,22 +34,17 @@ type Story = StoryObj<Props>;
 
 export const Primary: Story = {
     args: {
+        id:"dialog1",
         title: "عنوان دیالوگ",
         body: "محتوی داخل دیالوگ.",
     },
 };
 
-export const WithoutFooter: Story = {
+export const WithFooter: Story = {
     args: {
+        id:"dialog2",
         title: "عنوان دیالوگ",
         body: "محتوی داخل دیالوگ.",
+        withFooter:true
     },
-    render: (args) =>
-    Dialog({
-      ...args,
-      footer: html`<div class="flex" style="width:100%;flex: 1 1 0%;justify-content: flex-end; gap: 0.75rem">
-      <label class="btn btn-gray btn-tinted" style="min-width: 3rem" for="my_modal_1">انصراف</label>
-      <label class="btn btn-brand" style="min-width: 3rem" for="my_modal_1">تایید</label>
-      </div>`,
-    }),
 };
