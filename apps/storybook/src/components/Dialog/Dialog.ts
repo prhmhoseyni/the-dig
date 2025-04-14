@@ -1,66 +1,66 @@
 import { html } from "lit";
 
-
 export interface Props {
-  id?:string;
-    title?: string;
-    body?: any;
-    withFooter?: boolean;
+  id?: string;
+  title?: string;
+  body?: any;
+  withFooter?: boolean;
 }
 
 export function Dialog(props: Props) {
-    const {id="",title = "", body = "",withFooter=false } = props;
+  const { id = "", title = "", body = "", withFooter = false } = props;
 
-if(!withFooter){
-
+  if (!withFooter) {
     return html`
-<label for=${id} class="btn btn-brand">باز کردن</label>
+      <button class="btn" onclick="document.getElementById('${id}').showModal();">open modal</button>
 
-<input type="checkbox" id=${id} class="dialog-toggle" />
+      <dialog id="${id}" class="dialog" open>
+        <div class="dialog-box">
+          <div class="dialog-header">
+            <p class="text-lg font-bold">${title}</p>
 
-<div class="dialog" role="dialog">
-  <div class="dialog-box">
-    <div class="dialog-header">
-      <p class="dialog-title">${title}</p>
+            <form method="dialog" class="dialog-close">
+              <button>✕</button>
+            </form>
+          </div>
 
-      <label class="dialog-close" for=${id}>✕</label>
-    </div>
-
-    <div class="dialog-content">
-      ${body}
-    </div>
-  </div>
-
-  <label class="dialog-backdrop" for=${id} />
-</div>
-`;}
-
-return html`
-<label for=${id} class="btn btn-brand">باز کردن</label>
-
-<input type="checkbox" id=${id} class="dialog-toggle" />
-
-<div class="dialog" role="dialog">
-  <div class="dialog-box">
-    <div class="dialog-header">
-      <p class="dialog-title">${title}</p>
-
-      <label class="dialog-close" for=${id}>✕</label>
-    </div>
-
-    <div class="dialog-content">
-      ${body}
-    </div>
-
-    <div class="dialog-footer">
-      <div class="flex" style="width:100%;flex: 1 1 0%;justify-content: flex-end; gap: 0.75rem">
-        <label class="btn btn-gray btn-tinted" style="min-width: 3rem" for=${id}>انصراف</label>
-        <label class="btn btn-brand" style="min-width: 3rem" for=${id}>تایید</label>
+          <div class="dialog-content">
+            ${body}
+          </div>
         </div>
-      </div>
-  </div>
 
-  <label class="dialog-backdrop" for=${id} />
-</div>
-`;
+        <form method="dialog" class="dialog-backdrop">
+          <button></button>
+        </form>
+      </dialog>
+    `;
+  }
+
+  return html`
+    <button class="btn" onclick="document.getElementById('${id}').showModal();">open modal</button>
+
+    <dialog id="${id}" class="dialog" open>
+      <div class="dialog-box">
+        <div class="dialog-header">
+          <p class="text-lg font-bold">${title}</p>
+
+          <form method="dialog" class="dialog-close">
+            <button>✕</button>
+          </form>
+        </div>
+
+        <div class="dialog-content">
+          ${body}
+        </div>
+
+        <form method="dialog" class="dialog-footer" dir="ltr">
+          <button class="btn btn-brand">بستن</button>
+        </form>
+      </div>
+
+      <form method="dialog" class="dialog-backdrop">
+        <button></button>
+      </form>
+    </dialog>
+  `;
 }

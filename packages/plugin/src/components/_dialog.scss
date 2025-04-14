@@ -4,38 +4,32 @@
   pointer-events: none;
   visibility: hidden;
   position: fixed;
-  inset: 0px;
-  margin: 0px;
+  inset: 0;
   display: grid;
   height: 100%;
-  max-height: none;
   width: 100%;
-  max-width: none;
   align-items: center;
   justify-items: center;
   background-color: transparent;
-  padding: 0px;
-  color: inherit;
-  overflow-x: hidden;
+  overflow: hidden;
   transition:
     transform 0.3s ease-out,
     visibility 0.3s allow-discrete,
     background-color 0.3s ease-out,
     opacity 0.1s ease-out;
-  overflow-y: hidden;
   overscroll-behavior: contain;
   z-index: 999;
+
   &::backdrop {
     display: none;
   }
 
   .dialog-backdrop {
-    grid-column-start: 1;
-    grid-row-start: 1;
+    grid-column: 1;
+    grid-row: 1;
     display: grid;
     align-self: stretch;
     justify-self: stretch;
-    color: transparent;
     z-index: -1;
 
     button {
@@ -46,15 +40,7 @@
   &.dialog-open,
   &[open],
   &:target {
-    background-color: oklch(0% 0 0/ 0.4);
-    transition:
-      transform 0.3s ease-out,
-      background-color 0.3s ease-out,
-      opacity 0.1s ease-out;
-  }
-  &.dialog-open,
-  &[open],
-  &:target {
+    background-color: oklch(0% 0 0 / 0.4);
     pointer-events: auto;
     visibility: visible;
     opacity: 1;
@@ -65,6 +51,7 @@
       opacity: 1;
     }
   }
+
   @starting-style {
     &.dialog-open,
     &[open],
@@ -77,8 +64,8 @@
 
 .dialog-toggle {
   position: fixed;
-  height: 0px;
-  width: 0px;
+  height: 0;
+  width: 0;
   appearance: none;
   opacity: 0;
 
@@ -86,13 +73,15 @@
     pointer-events: auto;
     visibility: visible;
     opacity: 1;
-    background-color: oklch(0% 0 0/ 0.4);
+    background-color: oklch(0% 0 0 / 0.4);
+
     .dialog-box {
       translate: 0 0;
       scale: 1;
       opacity: 1;
     }
   }
+
   @starting-style {
     &:checked + .dialog {
       visibility: hidden;
@@ -102,10 +91,9 @@
 }
 
 .dialog-box {
-  --tw-bg-opacity: 1;
   background-color: rgb(var(--dig-bg-primary));
-  grid-column-start: 1;
-  grid-row-start: 1;
+  grid-column: 1;
+  grid-row: 1;
   display: flex;
   flex-direction: column;
   max-height: 100vh;
@@ -119,12 +107,13 @@
   border-radius: 8px;
   scale: 95%;
   opacity: 0;
-  box-shadow: oklch(0% 0 0/ 0.25) 0px 25px 50px -12px;
+  box-shadow: oklch(0% 0 0 / 0.25) 0px 25px 50px -12px;
   overflow-y: auto;
   overscroll-behavior: contain;
 }
 
-.dialog-header {
+.dialog-header,
+.dialog-footer {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -141,16 +130,6 @@
   align-items: center;
   border-bottom: 1px solid #EDEDED;
   padding: 1.25rem;
-}
-
-.dialog-footer {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  border-bottom: 1px solid #EDEDED;
-  padding: 1.25rem;
-  padding-bottom: 1rem;
 }
 
 .dialog-title {
