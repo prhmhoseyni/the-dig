@@ -1,0 +1,123 @@
+@use "../colors.mixin" as colors;
+
+.switch {
+  @include colors.bg("brand");
+  @include colors.color("text-inverse");
+  position: relative;
+  display: inline-grid;
+  flex-shrink: 0;
+  cursor: pointer;
+  appearance: none;
+  place-content: center;
+  vertical-align: middle;
+  user-select: none;
+  grid-template-columns: 0fr 1fr 1fr;
+  border-radius: 12px;
+  padding: 0.1875rem;
+  transition:
+    color 0.3s,
+    background-color 0.3s,
+    grid-template-columns 0.2s;
+  width: 44px;
+  height: 24px;
+
+  > * {
+    z-index: 1;
+    grid-column: span 1 / span 1;
+    grid-column-start: 2;
+    grid-row-start: 1;
+    height: 100%;
+    cursor: pointer;
+    appearance: none;
+    background-color: transparent;
+    padding: 0.125rem;
+    transition:
+      opacity 0.2s,
+      rotate 0.4s;
+    border: none;
+    &:focus {
+    //  background-color: red !important;
+    }
+    &:nth-child(2) {
+      rotate: 0deg;
+    }
+    &:nth-child(3) {
+      opacity: 0;
+      rotate: -15deg;
+    }
+  }
+  &:has(:checked) {
+    > :nth-child(2) {
+      opacity: 0;
+      rotate: 15deg;
+    }
+    > :nth-child(3) {
+      opacity: 1;
+      rotate: 0deg;
+    }
+  }
+  &:before {
+    border-radius: 100%;
+    position: relative;
+    inset-inline-start: 0px;
+    grid-column-start: 2;
+    grid-row-start: 1;
+    aspect-ratio: 1 / 1;
+    height: 100%;
+    background-color: currentColor;
+    translate: 0;
+    content: "";
+    transition:
+      background-color 0.1s,
+      translate 0.2s,
+      inset-inline-start 0.2s;
+  }
+  @media (forced-colors: active) {
+    &:before {
+      outline-style: solid;
+      outline-offset: -1px;
+    }
+  }
+  @media print {
+    &:before {
+      outline: 0.25rem solid;
+      outline-offset: -1rem;
+    }
+  }
+
+  &:focus-visible,
+  &:has(:focus-visible) {
+    outline: 2px solid currentColor;
+    outline-offset: 2px;
+  }
+
+  &:checked,
+  &[aria-checked="true"],
+  &:has(> input:checked) {
+    background-color: rgb(209 213 219 / var(--tw-bg-opacity, 1)) /* #d1d5db */;
+    @include colors.color("text-inverse");
+    grid-template-columns: 1fr 1fr 0fr;
+
+    &:before {
+      background-color: currentColor;
+    }
+    @starting-style {
+      &:before {
+        opacity: 0;
+      }
+    }
+  }
+
+  &:indeterminate {
+    grid-template-columns: 0.5fr 1fr 0.5fr;
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.4;
+
+    &:before {
+      background-color: currentColor;
+    }
+  }
+}
