@@ -9,6 +9,10 @@ const meta = {
         disabled: {
             control: { type: "boolean" },
         },
+        size: {
+            control:{type:"select"},
+            options:["sm","md"]
+        }
     },
 } satisfies Meta<Props>;
 
@@ -16,5 +20,7 @@ export default meta;
 type Story = StoryObj<Props>;
 
 export const Primary: Story = {};
+
+export const Small: Story = {args:{size:"sm"}};
 
 export const Disabled: Story = { args: { disabled: true } };
