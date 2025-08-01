@@ -29,14 +29,14 @@ const colors = {
 
 interface Props extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
     color?: "brand" | "info" | "success" | "warning" | "danger" | "gray";
-    icon?: ReactNode;
+    startAdornment?: ReactNode;
 }
 
 export default function Chip(props: Props) {
     const {
         color = "brand",
         className = "",
-        icon,
+        startAdornment: icon,
         children,
         ...rest
     } = props;

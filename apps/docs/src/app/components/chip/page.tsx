@@ -6,12 +6,12 @@ export default function ChipPage() {
         <>
 
             <div className="flex items-center gap-4 p-4">
-                <Chip color="brand" icon={<Activity size={15} />}>Chip Label</Chip>
-                <Chip color="info" icon={<Activity size={15} />}>Chip Label</Chip>
-                <Chip color="success" icon={<Activity size={15} />}>Chip Label</Chip>
-                <Chip color="danger" icon={<Activity size={15} />}>Chip Label</Chip>
-                <Chip color="warning" icon={<Activity size={15} />}>Chip Label</Chip>
-                <Chip color="gray" icon={<Activity size={15} />}>Chip Label</Chip>
+                <Chip color="brand" startAdornment={<Activity size={15} />}>Chip Label</Chip>
+                <Chip color="info" startAdornment={<Activity size={15} />}>Chip Label</Chip>
+                <Chip color="success" startAdornment={<Activity size={15} />}>Chip Label</Chip>
+                <Chip color="danger" startAdornment={<Activity size={15} />}>Chip Label</Chip>
+                <Chip color="warning" startAdornment={<Activity size={15} />}>Chip Label</Chip>
+                <Chip color="gray" startAdornment={<Activity size={15} />}>Chip Label</Chip>
             </div>
 
             <div className="flex items-center gap-4 p-4">
