@@ -54,7 +54,7 @@ export default function Chip(props: Props) {
 
             {children}
 
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none" className="relative inset-x-0.5">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none" className="relative inset-x-1">
                 <path
                     fillRule="evenodd"
                     clipRule="evenodd"
