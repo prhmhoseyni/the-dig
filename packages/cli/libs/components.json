@@ -1,0 +1,42 @@
+{
+    "Badge": {
+        "dependencies": null,
+        "src": "https://github.com/prhmhoseyni/the-dig/tree/main/packages/ui/src/Badge"
+    },
+    "BottomSheet": {
+        "dependencies": ["motion"],
+        "src": "https://github.com/prhmhoseyni/the-dig/tree/main/packages/ui/src/BottomSheet"
+    },
+    "Button": {
+        "dependencies": null,
+        "src": "https://github.com/prhmhoseyni/the-dig/tree/main/packages/ui/src/Button"
+    },
+    "Checkbox": {
+        "dependencies": null,
+        "src": "https://github.com/prhmhoseyni/the-dig/tree/main/packages/ui/src/Checkbox"
+    },
+    "Chip": {
+        "dependencies": null,
+        "src": "https://github.com/prhmhoseyni/the-dig/tree/main/packages/ui/src/Chip"
+    },
+    "IconButton": {
+        "dependencies": null,
+        "src": "https://github.com/prhmhoseyni/the-dig/tree/main/packages/ui/src/IconButton"
+    },
+    "Input": {
+        "dependencies": null,
+        "src": "https://github.com/prhmhoseyni/the-dig/tree/main/packages/ui/src/Input"
+    },
+    "RadioGroup": {
+        "dependencies": null,
+        "src": "https://github.com/prhmhoseyni/the-dig/tree/main/packages/ui/src/RadioGroup"
+    },
+    "Select": {
+        "dependencies": null,
+        "src": "https://github.com/prhmhoseyni/the-dig/tree/main/packages/ui/src/Select"
+    },
+    "Textarea": {
+        "dependencies": null,
+        "src": "https://github.com/prhmhoseyni/the-dig/tree/main/packages/ui/src/Textarea"
+    }
+}
