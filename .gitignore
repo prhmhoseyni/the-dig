@@ -38,3 +38,8 @@ yarn-error.log*
 # Misc
 .DS_Store
 *.pem
+
+# editor directories and files
+.vscode/*
+!.vscode/settings.json
+.idea
