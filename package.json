@@ -1,5 +1,5 @@
 {
-  "name": "the-dig",
+  "name": "the-dig-monorepo",
   "private": true,
   "scripts": {
     "build": "turbo run build",
