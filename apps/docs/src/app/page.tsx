@@ -1,4 +1,3 @@
-import Alert from "@repo/ui/Alert";
 import Button from "@repo/ui/Button";
 import Image, { type ImageProps } from "next/image";
 import styles from "./page.module.css";
@@ -21,7 +20,7 @@ const ThemeImage = (props: Props) => {
 
 export default function Home() {
   return (
-    <div dir="rtl" className={styles.page}>
+    <div className={styles.page}>
       <main className={styles.main}>
         <ThemeImage
           className={styles.logo}
@@ -59,12 +58,6 @@ export default function Home() {
           </a>
         </div>
         <Button className={styles.secondary}>Open alert</Button>
-
-        <Alert color="info" title="عنوان پیام" description="توضیحات مختصر درمورد پیام هشدار." />
-        <Alert color="success" title="عنوان پیام" description="توضیحات مختصر درمورد پیام هشدار." />
-        <Alert color="danger" title="عنوان پیام" description="توضیحات مختصر درمورد پیام هشدار." />
-        <Alert color="warning" title="عنوان پیام" description="توضیحات مختصر درمورد پیام هشدار." />
-        <Alert color="gray" title="عنوان پیام" description="توضیحات مختصر درمورد پیام هشدار." />
       </main>
       <footer className={styles.footer}>
         <a
