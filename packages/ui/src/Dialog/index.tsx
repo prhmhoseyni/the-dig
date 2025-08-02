@@ -7,7 +7,7 @@ interface Props {
   onClose: () => void;
 }
 
-export default function Modal(props: PropsWithChildren<Props>) {
+export default function Dialog(props: PropsWithChildren<Props>) {
   return (
     <AnimatePresence>
       {props.isOpen && (

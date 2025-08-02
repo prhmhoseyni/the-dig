@@ -1,10 +1,10 @@
 "use client";
 
 import Button from "@repo/ui/Button";
-import Modal from "@repo/ui/Modal";
+import Dialog from "@repo/ui/Dialog";
 import { useState } from "react";
 
-export default function ModalPage() {
+export default function DialogPage() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -13,9 +13,9 @@ export default function ModalPage() {
         <Button onClick={() => setIsOpen(true)}>بازکردن</Button>
       </div>
 
-      <Modal isOpen={isOpen} onClose={() => setIsOpen(false)}>
+      <Dialog isOpen={isOpen} onClose={() => setIsOpen(false)}>
         محتوی مودال
-      </Modal>
+      </Dialog>
     </>
   );
 }
