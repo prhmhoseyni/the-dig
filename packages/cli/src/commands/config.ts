@@ -43,7 +43,8 @@ export async function config() {
     /**
      * 4. Prepend the new content
      */
-    const newContent = GLOBALS_CSS_CONTENT + "\n" + existingContent;
+    const newContent = GLOBALS_CSS_CONTENT;
+    // const newContent = GLOBALS_CSS_CONTENT + "\n" + existingContent;
 
     /**
      * 5. Write the combined content back to the file
