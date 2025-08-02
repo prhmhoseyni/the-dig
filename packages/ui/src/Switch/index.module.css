@@ -89,8 +89,6 @@
 .switch:checked,
 .switch[aria-checked="true"],
 .switch:has(> input:checked) {
-  background-color: rgb(209 213 219 / var(--tw-bg-opacity, 1));
-  color: #ffffff;
   grid-template-columns: 1fr 1fr 0fr;
 }
 
