@@ -6,57 +6,57 @@ export const GLOBALS_CSS_CONTENT = `
 :root {
   color-scheme: light;
 
-  /** :::: generic variables: You can customize theme :::: */
-  --dig-background-primary: #f5f5f5;
-  --dig-background-secondary: #ffffff;
-  --dig-background-dialog: #ffffff;
-  --dig-background-inverse: #000000;
+  /** :::: generic variables: Each color is stored as an RGB triplet (e.g., 62, 136, 193) :::: */
+  --dig-background-primary: 245, 245, 245;
+  --dig-background-secondary: 255, 255, 255;
+  --dig-background-dialog: 255, 255, 255;
+  --dig-background-inverse: 0, 0, 0;
 
-  --dig-prose-primary: #0c0e10;
-  --dig-prose-secondary: #667585;
-  --dig-prose-hint: #9aa6b1;
-  --dig-prose-inverse: #f6f7f8;
-  --dig-prose-link: #209cd7;
+  --dig-prose-primary: 12, 14, 16;
+  --dig-prose-secondary: 102, 117, 133;
+  --dig-prose-hint: 154, 166, 177;
+  --dig-prose-inverse: 246, 247, 248;
+  --dig-prose-link: 32, 156, 215;
 
-  --dig-brand: #3e88c1;
-  --dig-info: #2d90d2;
-  --dig-success: #159754;
-  --dig-warning: #d07c06;
-  --dig-danger: #c53211;
-  --dig-gray: #272937;
+  --dig-brand: 62, 136, 193;
+  --dig-info: 45, 144, 210;
+  --dig-success: 21, 151, 84;
+  --dig-warning: 208, 124, 6;
+  --dig-danger: 197, 50, 17;
+  --dig-gray: 39, 41, 55;
 
   /** :::: design tokens: Please don't change design tokens :::: */
   --dig-color-mix-hover: #000000 10%;
   --dig-color-mix-active: #000000 15%;
 
-  --dig-color-mix-light: #FFFFFF 90%;
-  --dig-color-mix-light-hover: #FFFFFF 85%;
-  --dig-color-mix-light-active: #FFFFFF 80%;
+  --dig-color-mix-light: #ffffff 90%;
+  --dig-color-mix-light-hover: #ffffff 85%;
+  --dig-color-mix-light-active: #ffffff 80%;
 
-  --dig-color-mix-gray: #FFFFFF;
+  --dig-color-mix-gray: #ffffff;
 }
 
 html.dark {
   color-scheme: dark;
 
-  /** :::: generic variables: You can customize theme :::: */
-  --dig-background-primary: #121212;
-  --dig-background-secondary: #1f1f1f;
-  --dig-background-dialog: #2d2d2d;
-  --dig-background-inverse: #ffffff;
+  /** :::: generic variables: Each color is stored as an RGB triplet (e.g., 62, 136, 193) :::: */
+  --dig-background-primary: 18, 18, 18;
+  --dig-background-secondary: 31, 31, 31;
+  --dig-background-dialog: 45, 45, 45;
+  --dig-background-inverse: 255, 255, 255;
 
-  --dig-prose-primary: #f5f5f5;
-  --dig-prose-secondary: #b3b3b3;
-  --dig-prose-hint: #6d6d6d;
-  --dig-prose-inverse: #282828;
-  --dig-prose-link: #2d90d2;
+  --dig-prose-primary: 245, 245, 245;
+  --dig-prose-secondary: 179, 179, 179;
+  --dig-prose-hint: 109, 109, 109;
+  --dig-prose-inverse: 40, 40, 40;
+  --dig-prose-link: 45, 144, 210;
 
-  --dig-brand: #3e88c1;
-  --dig-info: #2d90d2;
-  --dig-success: #159754;
-  --dig-warning: #d07c06;
-  --dig-danger: #c53211;
-  --dig-gray: #f4f4f4;
+  --dig-brand: 62, 136, 193;
+  --dig-info: 45, 144, 210;
+  --dig-success: 21, 151, 84;
+  --dig-warning: 208, 124, 6;
+  --dig-danger: 197, 50, 17;
+  --dig-gray: 244, 244, 244;
 
   /** :::: design tokens: Please don't change design tokens :::: */
   --dig-color-mix-hover: #ffffff 10%;
@@ -71,58 +71,58 @@ html.dark {
 
 @theme {
   /** :::: colors :::: */
-  --color-background-primary: var(--dig-background-primary);
-  --color-background-secondary: var(--dig-background-secondary);
-  --color-background-dialog: var(--dig-background-dialog);
-  --color-background-inverse: var(--dig-background-inverse);
+  --color-background-primary: rgb(var(--dig-background-primary));
+  --color-background-secondary: rgb(var(--dig-background-secondary));
+  --color-background-dialog: rgb(var(--dig-background-dialog));
+  --color-background-inverse: rgb(var(--dig-background-inverse));
 
-  --color-prose-primary: var(--dig-prose-primary);
-  --color-prose-secondary: var(--dig-prose-secondary);
-  --color-prose-hint: var(--dig-prose-hint);
-  --color-prose-inverse: var(--dig-prose-inverse);
-  --color-prose-link: var(--dig-prose-link);
+  --color-prose-primary: rgb(var(--dig-prose-primary));
+  --color-prose-secondary: rgb(var(--dig-prose-secondary));
+  --color-prose-hint: rgb(var(--dig-prose-hint));
+  --color-prose-inverse: rgb(var(--dig-prose-inverse));
+  --color-prose-link: rgb(var(--dig-prose-link));
 
-  --color-brand: var(--dig-brand);
-  --color-brand-hover: color-mix(in srgb, var(--dig-brand), var(--dig-color-mix-hover));
-  --color-brand-active: color-mix(in srgb, var(--dig-brand), var(--dig-color-mix-active));
-  --color-brand-light: color-mix(in srgb, var(--dig-brand), var(--dig-color-mix-light));
-  --color-brand-light-hover: color-mix(in srgb, var(--dig-brand), var(--dig-color-mix-light-hover));
-  --color-brand-light-active: color-mix(in srgb, var(--dig-brand), var(--dig-color-mix-light-active));
+  --color-brand: rgb(var(--dig-brand));
+  --color-brand-hover: color-mix(in srgb, rgb(var(--dig-brand)), var(--dig-color-mix-hover));
+  --color-brand-active: color-mix(in srgb, rgb(var(--dig-brand)), var(--dig-color-mix-active));
+  --color-brand-light: color-mix(in srgb, rgb(var(--dig-brand)), var(--dig-color-mix-light));
+  --color-brand-light-hover: color-mix(in srgb, rgb(var(--dig-brand)), var(--dig-color-mix-light-hover));
+  --color-brand-light-active: color-mix(in srgb, rgb(var(--dig-brand)), var(--dig-color-mix-light-active));
 
-  --color-info: var(--dig-info);
-  --color-info-hover: color-mix(in srgb, var(--dig-info), var(--dig-color-mix-hover));
-  --color-info-active: color-mix(in srgb, var(--dig-info), var(--dig-color-mix-active));
-  --color-info-light: color-mix(in srgb, var(--dig-info), var(--dig-color-mix-light));
-  --color-info-light-light: color-mix(in srgb, var(--dig-info), var(--dig-color-mix-light-hover));
-  --color-info-light-active: color-mix(in srgb, var(--dig-info), var(--dig-color-mix-light-active));
+  --color-info: rgb(var(--dig-info));
+  --color-info-hover: color-mix(in srgb, rgb(var(--dig-info)), var(--dig-color-mix-hover));
+  --color-info-active: color-mix(in srgb, rgb(var(--dig-info)), var(--dig-color-mix-active));
+  --color-info-light: color-mix(in srgb, rgb(var(--dig-info)), var(--dig-color-mix-light));
+  --color-info-light-light: color-mix(in srgb, rgb(var(--dig-info)), var(--dig-color-mix-light-hover));
+  --color-info-light-active: color-mix(in srgb, rgb(var(--dig-info)), var(--dig-color-mix-light-active));
 
-  --color-success: var(--dig-success);
-  --color-success-hover: color-mix(in srgb, var(--dig-success), var(--dig-color-mix-hover));
-  --color-success-active: color-mix(in srgb, var(--dig-success), var(--dig-color-mix-active));
-  --color-success-light: color-mix(in srgb, var(--dig-success), var(--dig-color-mix-light));
-  --color-success-light-hover: color-mix(in srgb, var(--dig-success), var(--dig-color-mix-light-hover));
-  --color-success-light-active: color-mix(in srgb, var(--dig-success), var(--dig-color-mix-light-active));
+  --color-success: rgb(var(--dig-success));
+  --color-success-hover: color-mix(in srgb, rgb(var(--dig-success)), var(--dig-color-mix-hover));
+  --color-success-active: color-mix(in srgb, rgb(var(--dig-success)), var(--dig-color-mix-active));
+  --color-success-light: color-mix(in srgb, rgb(var(--dig-success)), var(--dig-color-mix-light));
+  --color-success-light-hover: color-mix(in srgb, rgb(var(--dig-success)), var(--dig-color-mix-light-hover));
+  --color-success-light-active: color-mix(in srgb, rgb(var(--dig-success)), var(--dig-color-mix-light-active));
 
-  --color-warning: var(--dig-warning);
-  --color-warning-hover: color-mix(in srgb, var(--dig-warning), var(--dig-color-mix-hover));
-  --color-warning-active: color-mix(in srgb, var(--dig-warning), var(--dig-color-mix-active));
-  --color-warning-light: color-mix(in srgb, var(--dig-warning), var(--dig-color-mix-light));
-  --color-warning-light-hover: color-mix(in srgb, var(--dig-warning), var(--dig-color-mix-light-hover));
-  --color-warning-light-active: color-mix(in srgb, var(--dig-warning), var(--dig-color-mix-light-active));
+  --color-warning: rgb(var(--dig-warning));
+  --color-warning-hover: color-mix(in srgb, rgb(var(--dig-warning)), var(--dig-color-mix-hover));
+  --color-warning-active: color-mix(in srgb, rgb(var(--dig-warning)), var(--dig-color-mix-active));
+  --color-warning-light: color-mix(in srgb, rgb(var(--dig-warning)), var(--dig-color-mix-light));
+  --color-warning-light-hover: color-mix(in srgb, rgb(var(--dig-warning)), var(--dig-color-mix-light-hover));
+  --color-warning-light-active: color-mix(in srgb, rgb(var(--dig-warning)), var(--dig-color-mix-light-active));
 
-  --color-danger: var(--dig-danger);
-  --color-danger-hover: color-mix(in srgb, var(--dig-danger), var(--dig-color-mix-hover));
-  --color-danger-active: color-mix(in srgb, var(--dig-danger), var(--dig-color-mix-active));
-  --color-danger-light: color-mix(in srgb, var(--dig-danger), var(--dig-color-mix-light));
-  --color-danger-light-hover: color-mix(in srgb, var(--dig-danger), var(--dig-color-mix-light-hover));
-  --color-danger-light-active: color-mix(in srgb, var(--dig-danger), var(--dig-color-mix-light-active));
+  --color-danger: rgb(var(--dig-danger));
+  --color-danger-hover: color-mix(in srgb, rgb(var(--dig-danger)), var(--dig-color-mix-hover));
+  --color-danger-active: color-mix(in srgb, rgb(var(--dig-danger)), var(--dig-color-mix-active));
+  --color-danger-light: color-mix(in srgb, rgb(var(--dig-danger)), var(--dig-color-mix-light));
+  --color-danger-light-hover: color-mix(in srgb, rgb(var(--dig-danger)), var(--dig-color-mix-light-hover));
+  --color-danger-light-active: color-mix(in srgb, rgb(var(--dig-danger)), var(--dig-color-mix-light-active));
 
-  --color-gray: var(--dig-gray);
-  --color-gray-hover: color-mix(in srgb, var(--dig-gray), var(--dig-color-mix-hover));
-  --color-gray-active: color-mix(in srgb, var(--dig-gray), var(--dig-color-mix-active));
-  --color-gray-light: color-mix(in srgb, var(--dig-gray), var(--dig-color-mix-light));
-  --color-gray-light-hover: color-mix(in srgb, var(--dig-gray), var(--dig-color-mix-light-hover));
-  --color-gray-light-active: color-mix(in srgb, var(--dig-gray), var(--dig-color-mix-light-active));
+  --color-gray: rgb(var(--dig-gray));
+  --color-gray-hover: color-mix(in srgb, rgb(var(--dig-gray)), var(--dig-color-mix-hover));
+  --color-gray-active: color-mix(in srgb, rgb(var(--dig-gray)), var(--dig-color-mix-active));
+  --color-gray-light: color-mix(in srgb, rgb(var(--dig-gray)), var(--dig-color-mix-light));
+  --color-gray-light-hover: color-mix(in srgb, rgb(var(--dig-gray)), var(--dig-color-mix-light-hover));
+  --color-gray-light-active: color-mix(in srgb, rgb(var(--dig-gray)), var(--dig-color-mix-light-active));
 
   --color-white: rgba(255, 255, 255, 1);
   --color-white-80: rgba(255, 255, 255, 80%);
@@ -233,8 +233,8 @@ html.dark {
 
   /** :::: shadows :::: */
   --shadow-xs: 0px 1px 2px 0px rgba(16, 24, 40, 0.05);
-  --shadow-sm: 0px 1px 2px 0px rgba(16, 24, 40, 0.06), 0px 1px 3px 0px rgba(16, 24, 40, 0.10);
-  --shadow-md: 0px 2px 4px 0px rgba(16, 24, 40, 0.06), 0px 4px 8px -2px rgba(16, 24, 40, 0.10);
+  --shadow-sm: 0px 1px 2px 0px rgba(16, 24, 40, 0.06), 0px 1px 3px 0px rgba(16, 24, 40, 0.1);
+  --shadow-md: 0px 2px 4px 0px rgba(16, 24, 40, 0.06), 0px 4px 8px -2px rgba(16, 24, 40, 0.1);
   --shadow-lg: 0px 4px 6px -2px rgba(16, 24, 40, 0.03), 0px 12px 16px -4px rgba(16, 24, 40, 0.08);
   --shadow-xl: 0px 8px 8px -4px rgba(16, 24, 40, 0.03), 0px 20px 24px -4px rgba(16, 24, 40, 0.08);
   --shadow-2xl: 0px 24px 48px -12px rgba(16, 24, 40, 0.18);
@@ -243,23 +243,49 @@ html.dark {
   --shadow-card-sm: 0px 1px 2px 0px rgba(145, 158, 171, 0.16);
   --shadow-card-md: 0px 2px 5px 0px rgba(145, 158, 171, 0.16);
   --shadow-card-lg: 0px 4px 8px 0px rgba(145, 158, 171, 0.16);
-  
-  --shadow-btn-brand: 0px 10px 20px 0px rgba(72, 164, 234, 0.14);
-  --shadow-btn-info: 0px 10px 20px 0px rgba(25, 145, 255, 0.14);
-  --shadow-btn-success: 0px 10px 20px 0px rgba(67, 168, 36, 0.14);
-  --shadow-btn-warning: 0px 10px 20px 0px rgba(255, 149, 0, 0.14);
-  --shadow-btn-danger: 0px 10px 20px 0px rgba(241, 56, 14, 0.14);
-  
-  --shadow-focus-brand: 0px 0px 0px 1px #FFF, 0px 0px 0px 4px rgba(72, 164, 234, 0.14);
-  --shadow-focus-info: 0px 0px 0px 1px #FFF, 0px 0px 0px 4px rgba(25, 145, 255, 0.14);
-  --shadow-focus-success: 0px 0px 0px 1px #FFF, 0px 0px 0px 4px rgba(67, 168, 36, 0.14);
-  --shadow-focus-warning: 0px 0px 0px 1px #FFF, 0px 0px 0px 4px rgba(255, 149, 0, 0.14);
-  --shadow-focus-danger: 0px 0px 0px 1px #FFF, 0px 0px 0px 4px rgba(241, 56, 14, 0.14);
-  --shadow-focus-gray: 0px 0px 0px 1px #FFF, 0px 0px 0px 4px rgba(39, 41, 55, 0.06);
-  
-  --shadow-dialog: 0px 20px 24px -4px rgba(16, 24, 40, 0.10), 0px 8px 8px -4px rgba(16, 24, 40, 0.04);
+
+  --shadow-btn-brand: 0px 10px 20px 0px rgba(var(--dig-brand), 0.14);
+  --shadow-btn-info: 0px 10px 20px 0px rgba(var(--dig-info), 0.14);
+  --shadow-btn-success: 0px 10px 20px 0px rgba(var(--dig-success), 0.14);
+  --shadow-btn-warning: 0px 10px 20px 0px rgba(var(--dig-warning), 0.14);
+  --shadow-btn-danger: 0px 10px 20px 0px rgba(var(--dig-danger), 0.14);
+
+  --shadow-focus-brand: 0px 0px 0px 1px rgb(var(--dig-background-primary)), 0px 0px 0px 4px rgba(var(--dig-brand), 0.14);
+  --shadow-focus-info: 0px 0px 0px 1px rgb(var(--dig-background-primary)), 0px 0px 0px 4px rgba(var(--dig-info), 0.14);
+  --shadow-focus-success: 0px 0px 0px 1px rgb(var(--dig-background-primary)), 0px 0px 0px 4px rgba(var(--dig-success), 0.14);
+  --shadow-focus-warning: 0px 0px 0px 1px rgb(var(--dig-background-primary)), 0px 0px 0px 4px rgba(var(--dig-warning), 0.14);
+  --shadow-focus-danger: 0px 0px 0px 1px rgb(var(--dig-background-primary)), 0px 0px 0px 4px rgba(var(--dig-danger), 0.14);
+  --shadow-focus-gray: 0px 0px 0px 1px rgb(var(--dig-background-primary)), 0px 0px 0px 4px rgba(var(--dig-danger), 0.06);
+
+  --shadow-dialog: 0px 20px 24px -4px rgba(16, 24, 40, 0.1), 0px 8px 8px -4px rgba(16, 24, 40, 0.04);
   --shadow-menu: 0px 4px 8px 0px rgba(39, 41, 55, 0.08);
   --shadow-control: 0px 1px 0.5px 0.05px rgba(24, 24, 27, 0.05), 0px -4px 8px 0px rgba(0, 0, 0, 0.02);
-  --shadow-alert: 0px 2px 7px 0px rgba(0, 0, 0, 0.15), 0px 5px 17px 0px rgba(0, 0, 0, 0.20);
+  --shadow-alert: 0px 2px 7px 0px rgba(0, 0, 0, 0.15), 0px 5px 17px 0px rgba(0, 0, 0, 0.2);
+}
+
+@layer base {
+  h1 {
+    @apply text-heading1;
+  }
+
+  h2 {
+    @apply text-heading2;
+  }
+
+  h3 {
+    @apply text-heading3;
+  }
+
+  h4 {
+    @apply text-heading4;
+  }
+
+  h5 {
+    @apply text-heading5;
+  }
+
+  p {
+    @apply text-paragraph1;
+  }
 }
 `;
