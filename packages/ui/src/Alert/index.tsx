@@ -2,7 +2,7 @@
 
 import clsx from "clsx";
 import { CircleCheck, CircleX, Info, TriangleAlert, X } from "lucide-react";
-import { memo, ReactNode } from "react";
+import { memo, type ReactNode } from "react";
 
 const colors = {
   info: "text-info bg-info-light border-info-light-active",
