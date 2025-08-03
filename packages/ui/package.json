@@ -10,7 +10,7 @@
     "lint": "eslint . --max-warnings 0",
     "generate:component": "turbo gen react-component",
     "check-types": "tsc --noEmit",
-    "tailwind": "npx @tailwindcss/cli -i ./src/tailwind.css -o ./src/output.css --watch"
+    "dev": "npx @tailwindcss/cli -i ./src/tailwind.css -o ./src/output.css --watch"
   },
   "devDependencies": {
     "@repo/eslint-config": "*",
