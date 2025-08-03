@@ -3,12 +3,12 @@ import { memo, type DetailedHTMLProps, type InputHTMLAttributes } from "react";
 import styles from "./index.module.css";
 
 const colors = {
-  brand: "text-prose-inverse bg-background-secondary checked:bg-brand",
-  info: "text-prose-inverse bg-background-secondary checked:bg-info",
-  success: "text-prose-inverse bg-background-secondary checked:bg-success",
-  warning: "text-prose-inverse bg-background-secondary checked:bg-warning",
-  danger: "text-prose-inverse bg-background-secondary checked:bg-danger",
-  gray: "text-prose-inverse bg-background-secondary checked:bg-gray",
+  brand: "text-background-primary bg-gray-light-active checked:bg-brand",
+  info: "text-background-primary bg-gray-light-active checked:bg-info",
+  success: "text-background-primary bg-gray-light-active checked:bg-success",
+  warning: "text-background-primary bg-gray-light-active checked:bg-warning",
+  danger: "text-background-primary bg-gray-light-active checked:bg-danger",
+  gray: "text-background-primary bg-gray-light-active checked:bg-gray",
 };
 
 const sizes = {
