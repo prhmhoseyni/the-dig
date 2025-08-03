@@ -22,7 +22,7 @@ const icons = {
 
 interface Props {
   color?: "info" | "success" | "warning" | "danger" | "gray";
-  title?: string;
+  title?: ReactNode;
   description: ReactNode;
   onClose?: VoidFunction;
   className?: string;
@@ -36,8 +36,9 @@ const Alert = (props: Props) => {
       {icons[color]}
 
       <div className="flex flex-col gap-1 flex-1">
-        {title && <p className="text-label2 text-prose-primary">{title}</p>}
-        <p className="text-paragraph4 text-prose-secondary">{description}</p>
+        {title && <p className="text-subtitle3 text-prose-primary">{title}</p>}
+
+        <p className={clsx("text-paragraph4", title ? "text-prose-secondary" : "text-prose-primary")}>{description}</p>
       </div>
 
       {onClose && <X className="cursor-pointer" onClick={onClose} />}
