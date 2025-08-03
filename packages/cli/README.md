@@ -21,7 +21,7 @@ The DIG CLI is a Node.js-based command-line tool that helps you initialize, conf
 Set up your project with The DIG configuration:
 
 ```bash
-npx @repo/cli init
+npx the-dig@latest init
 ```
 
 This command will:
@@ -35,7 +35,7 @@ This command will:
 Configure your project's CSS with The DIG styles:
 
 ```bash
-npx @repo/cli config
+npx the-dig@latest config
 ```
 
 This will update your global CSS file with The DIG styles and Tailwind CSS configuration.
@@ -45,15 +45,15 @@ This will update your global CSS file with The DIG styles and Tailwind CSS confi
 Add components from The DIG library to your project:
 
 ```bash
-npx @repo/cli add <component-name>
+npx the-dig@latest add <component-name>
 ```
 
 Example:
 
 ```bash
-npx @repo/cli add Button
-npx @repo/cli add Input
-npx @repo/cli add Badge
+npx the-dig@latest add Button
+npx the-dig@latest add Input
+npx the-dig@latest add Badge
 ```
 
 ## Configuration
