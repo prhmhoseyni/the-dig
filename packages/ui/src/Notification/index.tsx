@@ -22,7 +22,7 @@ const Notification = (props: Props) => {
     >
       <Info stroke="var(--color-background-primary)" fill="var(--color-brand)" width={24} height={24} />
 
-      <div className="flex flex-row flex-wrap flex-1 items-start md:items-center gap-3">
+      <div className="flex flex-row flex-wrap flex-1 items-center gap-3">
         <p className="text-subtitle3 text-prose-primary">{title}</p>
 
         <div className="flex-1 min-w-fit flex flex-row flex-wrap gap-3 justify-between items-center">
