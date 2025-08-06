@@ -299,6 +299,10 @@
 }
 
 @layer base {
+  body {
+    @apply bg-background-primary text-prose-primary;
+  }
+
   h1 {
     @apply text-heading1;
   }

@@ -46,49 +46,47 @@ export const GLOBALS_CSS_CONTENT = `
   --dig-color-mix-gray: #ffffff;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    color-scheme: dark;
+html.dark {
+  color-scheme: dark;
 
-    /** :::: generic variables: Each color is stored as an RGB triplet (e.g., 62, 136, 193) :::: */
-    --dig-background-primary: 18, 18, 18;
-    --dig-background-secondary: 31, 31, 31;
-    --dig-background-dialog: 45, 45, 45;
-    --dig-background-inverse: 255, 255, 255;
+  /** :::: generic variables: Each color is stored as an RGB triplet (e.g., 62, 136, 193) :::: */
+  --dig-background-primary: 18, 18, 18;
+  --dig-background-secondary: 31, 31, 31;
+  --dig-background-dialog: 45, 45, 45;
+  --dig-background-inverse: 255, 255, 255;
 
-    --dig-prose-primary: 245, 245, 245;
-    --dig-prose-secondary: 179, 179, 179;
-    --dig-prose-hint: 109, 109, 109;
-    --dig-prose-inverse: 40, 40, 40;
-    --dig-prose-link: 45, 144, 210;
+  --dig-prose-primary: 245, 245, 245;
+  --dig-prose-secondary: 179, 179, 179;
+  --dig-prose-hint: 109, 109, 109;
+  --dig-prose-inverse: 40, 40, 40;
+  --dig-prose-link: 45, 144, 210;
 
-    --dig-brand: 62, 136, 193;
-    --dig-info: 45, 144, 210;
-    --dig-success: 21, 151, 84;
-    --dig-warning: 208, 124, 6;
-    --dig-danger: 197, 50, 17;
-    --dig-gray: 244, 244, 244;
+  --dig-brand: 62, 136, 193;
+  --dig-info: 45, 144, 210;
+  --dig-success: 21, 151, 84;
+  --dig-warning: 208, 124, 6;
+  --dig-danger: 197, 50, 17;
+  --dig-gray: 244, 244, 244;
 
-    /** :::: design tokens: Please don't change design tokens :::: */
-    --dig-gray-100: #333333;
-    --dig-gray-200: #373737;
-    --dig-gray-300: #3D3D3D;
-    --dig-gray-400: #464646;
-    --dig-gray-500: #767676;
-    --dig-gray-600: #CACACA;
-    --dig-gray-700: #FFFFFF;
+  /** :::: design tokens: Please don't change design tokens :::: */
+  --dig-gray-100: #333333;
+  --dig-gray-200: #373737;
+  --dig-gray-300: #3D3D3D;
+  --dig-gray-400: #464646;
+  --dig-gray-500: #767676;
+  --dig-gray-600: #CACACA;
+  --dig-gray-700: #FFFFFF;
 
-    --dig-color-mix-prose: #ffffff 35%;
+  --dig-color-mix-prose: #ffffff 35%;
 
-    --dig-color-mix-hover: #ffffff 10%;
-    --dig-color-mix-active: #ffffff 15%;
+  --dig-color-mix-hover: #ffffff 10%;
+  --dig-color-mix-active: #ffffff 15%;
 
-    --dig-color-mix-light: #000000 90%;
-    --dig-color-mix-light-hover: #000000 85%;
-    --dig-color-mix-light-active: #000000 80%;
+  --dig-color-mix-light: #000000 90%;
+  --dig-color-mix-light-hover: #000000 85%;
+  --dig-color-mix-light-active: #000000 80%;
 
-    --dig-color-mix-gray: #000000;
-  }
+  --dig-color-mix-gray: #000000;
 }
 
 @theme {
@@ -300,6 +298,10 @@ export const GLOBALS_CSS_CONTENT = `
 }
 
 @layer base {
+  body {
+    @apply bg-background-primary text-prose-primary;
+  }
+
   h1 {
     @apply text-heading1;
   }
