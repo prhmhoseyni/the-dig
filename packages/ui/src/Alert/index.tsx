@@ -5,11 +5,11 @@ import { CircleCheck, CircleX, Info, TriangleAlert, X } from "lucide-react";
 import { memo, type ReactNode } from "react";
 
 const colors = {
-  info: "text-info bg-info-light border-info-light-active",
-  success: "text-success bg-success-light border-success-light-active",
-  warning: "text-warning bg-warning-light border-warning-light-active",
-  danger: "text-danger bg-danger-light border-danger-light-active",
-  gray: "text-gray bg-gray-light border-gray-light-active",
+  info: "text-prose-info bg-info-light border-info-light-active",
+  success: "text-prose-success bg-success-light border-success-light-active",
+  warning: "text-prose-warning bg-warning-light border-warning-light-active",
+  danger: "text-prose-danger bg-danger-light border-danger-light-active",
+  gray: "text-prose-gray bg-gray-light border-gray-light-active",
 };
 
 const icons = {
