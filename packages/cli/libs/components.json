@@ -1,4 +1,8 @@
 {
+    "Alert": {
+        "dependencies": null,
+        "src": "https://github.com/prhmhoseyni/the-dig/tree/main/packages/ui/src/Alert"
+    },
     "Badge": {
         "dependencies": null,
         "src": "https://github.com/prhmhoseyni/the-dig/tree/main/packages/ui/src/Badge"
@@ -30,6 +34,10 @@
     "RadioGroup": {
         "dependencies": null,
         "src": "https://github.com/prhmhoseyni/the-dig/tree/main/packages/ui/src/RadioGroup"
+    },
+    "SegmentControl": {
+        "dependencies": null,
+        "src": "https://github.com/prhmhoseyni/the-dig/tree/main/packages/ui/src/SegmentControl"
     },
     "Select": {
         "dependencies": null,
