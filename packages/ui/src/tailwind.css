@@ -25,12 +25,12 @@
   --dig-gray: 39, 41, 55;
 
   /** :::: design tokens: Please don't change design tokens :::: */
-  --dig-gray-100: #F8F8F9;
-  --dig-gray-200: #F4F4F5;
-  --dig-gray-300: #EEEEEF;
-  --dig-gray-400: #E5E5E7;
-  --dig-gray-500: #B4B4B9;
-  --dig-gray-600: #5D5F69;
+  --dig-gray-100: #f8f8f9;
+  --dig-gray-200: #f4f4f5;
+  --dig-gray-300: #eeeeef;
+  --dig-gray-400: #e5e5e7;
+  --dig-gray-500: #b4b4b9;
+  --dig-gray-600: #5d5f69;
   --dig-gray-700: #272937;
 
   --dig-color-mix-prose: #000000 35%;
@@ -45,7 +45,7 @@
   --dig-color-mix-gray: #ffffff;
 }
 
-@media (prefers-color-scheme: dark) {
+@media (prefers-color-scheme: light) {
   :root {
     color-scheme: dark;
 
@@ -71,11 +71,11 @@
     /** :::: design tokens: Please don't change design tokens :::: */
     --dig-gray-100: #333333;
     --dig-gray-200: #373737;
-    --dig-gray-300: #3D3D3D;
+    --dig-gray-300: #3d3d3d;
     --dig-gray-400: #464646;
     --dig-gray-500: #767676;
-    --dig-gray-600: #CACACA;
-    --dig-gray-700: #FFFFFF;
+    --dig-gray-600: #cacaca;
+    --dig-gray-700: #ffffff;
 
     --dig-color-mix-prose: #ffffff 35%;
 
