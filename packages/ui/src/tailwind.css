@@ -45,7 +45,7 @@
   --dig-color-mix-gray: #ffffff;
 }
 
-@media (prefers-color-scheme: light) {
+@media (prefers-color-scheme: dark) {
   :root {
     color-scheme: dark;
 
