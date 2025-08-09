@@ -1,52 +1,9 @@
 .switch {
-  position: relative;
-  display: inline-grid;
-  flex-shrink: 0;
-  cursor: pointer;
-  appearance: none;
-  place-content: center;
-  vertical-align: middle;
-  user-select: none;
   grid-template-columns: 0fr 1fr 1fr;
   transition:
     color 0.3s,
     background-color 0.3s,
     grid-template-columns 0.2s;
-}
-
-.switch > * {
-  z-index: 1;
-  grid-column: span 1 / span 1;
-  grid-column-start: 2;
-  grid-row-start: 1;
-  height: 100%;
-  cursor: pointer;
-  appearance: none;
-  background-color: transparent;
-  padding: 0.125rem;
-  transition:
-    opacity 0.2s,
-    rotate 0.4s;
-  border: none;
-}
-
-.switch > :nth-child(2) {
-  rotate: 0deg;
-}
-
-.switch > :nth-child(3) {
-  opacity: 0;
-  rotate: -15deg;
-}
-
-.switch:has(:checked) > :nth-child(2) {
-  opacity: 0;
-  rotate: 15deg;
-}
-
-.switch:has(:checked) > :nth-child(3) {
-  opacity: 1;
-  rotate: 0deg;
 }
 
 .switch::before {
@@ -66,53 +23,8 @@
     inset-inline-start 0.2s;
 }
 
-@media (forced-colors: active) {
-  .switch::before {
-    outline-style: solid;
-    outline-offset: -1px;
-  }
-}
-
-@media print {
-  .switch::before {
-    outline: 0.25rem solid;
-    outline-offset: -1rem;
-  }
-}
-
-.switch:focus-visible,
-.switch:has(:focus-visible) {
-  outline: 2px solid currentColor;
-  outline-offset: 2px;
-}
-
 .switch:checked,
 .switch[aria-checked="true"],
 .switch:has(> input:checked) {
   grid-template-columns: 1fr 1fr 0fr;
-}
-
-.switch:checked::before,
-.switch[aria-checked="true"]::before,
-.switch:has(> input:checked)::before {
-  background-color: currentColor;
-}
-
-@starting-style {
-  .switch:checked::before {
-    opacity: 0;
-  }
-}
-
-.switch:indeterminate {
-  grid-template-columns: 0.5fr 1fr 0.5fr;
-}
-
-.switch:disabled {
-  cursor: not-allowed;
-  opacity: 0.4;
-}
-
-.switch:disabled::before {
-  background-color: currentColor;
 }

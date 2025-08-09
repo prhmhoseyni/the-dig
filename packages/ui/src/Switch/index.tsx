@@ -43,6 +43,7 @@ const Switch = (props: Props) => {
     <input
       type="checkbox"
       className={clsx(
+        "relative inline-grid shrink-0 cursor-pointer appearance-none place-content-center align-middle select-none",
         "disabled:cursor-not-allowed disabled:opacity-40",
         styles["switch"],
         colors[color],
