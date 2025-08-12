@@ -26,6 +26,16 @@ export const GLOBALS_CSS_CONTENT = `
   --dig-gray: 39, 41, 55;
 
   /** :::: design tokens: Please don't change design tokens :::: */
+  --dig-gray-100: #F8F8F9;
+  --dig-gray-200: #F4F4F5;
+  --dig-gray-300: #EEEEEF;
+  --dig-gray-400: #E5E5E7;
+  --dig-gray-500: #B4B4B9;
+  --dig-gray-600: #5D5F69;
+  --dig-gray-700: #272937;
+
+  --dig-color-mix-prose: #000000 35%;
+
   --dig-color-mix-hover: #000000 10%;
   --dig-color-mix-active: #000000 15%;
 
@@ -59,6 +69,16 @@ html.dark {
   --dig-gray: 244, 244, 244;
 
   /** :::: design tokens: Please don't change design tokens :::: */
+  --dig-gray-100: #333333;
+  --dig-gray-200: #373737;
+  --dig-gray-300: #3D3D3D;
+  --dig-gray-400: #464646;
+  --dig-gray-500: #767676;
+  --dig-gray-600: #CACACA;
+  --dig-gray-700: #FFFFFF;
+
+  --dig-color-mix-prose: #ffffff 35%;
+
   --dig-color-mix-hover: #ffffff 10%;
   --dig-color-mix-active: #ffffff 15%;
 
@@ -81,6 +101,12 @@ html.dark {
   --color-prose-hint: rgb(var(--dig-prose-hint));
   --color-prose-inverse: rgb(var(--dig-prose-inverse));
   --color-prose-link: rgb(var(--dig-prose-link));
+  --color-prose-brand: color-mix(in srgb, rgb(var(--dig-brand)), var(--dig-color-mix-prose));
+  --color-prose-info: color-mix(in srgb, rgb(var(--dig-info)), var(--dig-color-mix-prose));
+  --color-prose-success: color-mix(in srgb, rgb(var(--dig-success)), var(--dig-color-mix-prose));
+  --color-prose-warning: color-mix(in srgb, rgb(var(--dig-warning)), var(--dig-color-mix-prose));
+  --color-prose-danger: color-mix(in srgb, rgb(var(--dig-danger)), var(--dig-color-mix-prose));
+  --color-prose-gray: color-mix(in srgb, rgb(var(--dig-gray)), var(--dig-color-mix-prose));
 
   --color-brand: rgb(var(--dig-brand));
   --color-brand-hover: color-mix(in srgb, rgb(var(--dig-brand)), var(--dig-color-mix-hover));
@@ -123,6 +149,14 @@ html.dark {
   --color-gray-light: color-mix(in srgb, rgb(var(--dig-gray)), var(--dig-color-mix-light));
   --color-gray-light-hover: color-mix(in srgb, rgb(var(--dig-gray)), var(--dig-color-mix-light-hover));
   --color-gray-light-active: color-mix(in srgb, rgb(var(--dig-gray)), var(--dig-color-mix-light-active));
+
+  --color-gray-100: var(--dig-gray-100);
+  --color-gray-200: var(--dig-gray-200);
+  --color-gray-300: var(--dig-gray-300);
+  --color-gray-400: var(--dig-gray-400);
+  --color-gray-500: var(--dig-gray-500);
+  --color-gray-600: var(--dig-gray-600);
+  --color-gray-700: var(--dig-gray-700);
 
   --color-white: rgba(255, 255, 255, 1);
   --color-white-80: rgba(255, 255, 255, 80%);
@@ -264,6 +298,10 @@ html.dark {
 }
 
 @layer base {
+  body {
+    @apply bg-background-primary text-prose-primary;
+  }
+
   h1 {
     @apply text-heading1;
   }

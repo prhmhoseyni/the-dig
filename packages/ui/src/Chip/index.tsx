@@ -3,29 +3,29 @@ import clsx from "clsx";
 
 const colors = {
   brand: {
-    tinted: "text-brand bg-brand-light hover:bg-brand-light-hover active:bg-brand-light-active active:shadow-focus-brand",
+    tinted: "text-prose-brand bg-brand-light hover:bg-brand-light-hover active:bg-brand-light-active active:shadow-focus-brand",
   },
 
   info: {
-    tinted: "text-info bg-info-light hover:bg-info-light-hover active:bg-info-light-active active:shadow-focus-info",
+    tinted: "text-prose-info bg-info-light hover:bg-info-light-hover active:bg-info-light-active active:shadow-focus-info",
   },
 
   success: {
     tinted:
-      "text-success bg-success-light hover:bg-success-light-hover active:bg-success-light-active active:shadow-focus-success",
+      "text-prose-success bg-success-light hover:bg-success-light-hover active:bg-success-light-active active:shadow-focus-success",
   },
 
   warning: {
     tinted:
-      "text-warning bg-warning-light hover:bg-warning-light-hover active:bg-warning-light-active active:shadow-focus-warning",
+      "text-prose-warning bg-warning-light hover:bg-warning-light-hover active:bg-warning-light-active active:shadow-focus-warning",
   },
 
   danger: {
-    tinted: "text-danger bg-danger-light hover:bg-danger-light-hover active:bg-danger-light-active active:shadow-focus-danger",
+    tinted: "text-prose-danger bg-danger-light hover:bg-danger-light-hover active:bg-danger-light-active active:shadow-focus-danger",
   },
 
   gray: {
-    tinted: "text-gray bg-gray-light hover:bg-gray-light-hover active:bg-gray-light-active active:shadow-focus-gray",
+    tinted: "text-prose-gray bg-gray-light hover:bg-gray-light-hover active:bg-gray-light-active active:shadow-focus-gray",
   },
 };
 

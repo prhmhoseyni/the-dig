@@ -4,32 +4,32 @@ import clsx from "clsx";
 const colors = {
   brand: {
     contained: "text-prose-inverse bg-brand",
-    tinted: "text-brand bg-brand-light",
+    tinted: "text-prose-brand bg-brand-light",
   },
 
   info: {
     contained: "text-prose-inverse bg-info",
-    tinted: "text-info bg-info-light",
+    tinted: "text-prose-info bg-info-light",
   },
 
   success: {
     contained: "text-prose-inverse bg-success",
-    tinted: "text-success bg-success-light",
+    tinted: "text-prose-success bg-success-light",
   },
 
   warning: {
     contained: "text-prose-inverse bg-warning",
-    tinted: "text-warning bg-warning-light",
+    tinted: "text-prose-warning bg-warning-light",
   },
 
   danger: {
     contained: "text-prose-inverse bg-danger",
-    tinted: "text-danger bg-danger-light",
+    tinted: "text-prose-danger bg-danger-light",
   },
 
   gray: {
     contained: "text-prose-inverse bg-gray",
-    tinted: "text-gray bg-gray-light",
+    tinted: "text-prose-gray bg-gray-light",
   },
 };
 

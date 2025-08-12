@@ -4,46 +4,38 @@ import clsx from "clsx";
 const colors = {
   brand: {
     contained: "text-prose-inverse bg-brand hover:bg-brand-hover active:bg-brand-active active:shadow-focus-brand",
-    tinted: "text-brand bg-brand-light hover:bg-brand-light-hover active:bg-brand-light-active active:shadow-focus-brand",
-    outlined:
-      "text-brand hover:text-brand-hover active:text-brand-active border border-brand hover:border-brand-hover active:border-brand-active active:shadow-focus-brand",
+    tinted: "text-prose-brand bg-brand-light hover:bg-brand-light-hover active:bg-brand-light-active active:shadow-focus-brand",
+    outlined: "text-prose-brand border border-brand hover:border-brand-hover active:border-brand-active active:shadow-focus-brand",
   },
 
   info: {
     contained: "text-prose-inverse bg-info hover:bg-info-hover active:bg-info-active active:shadow-focus-info",
-    tinted: "text-info bg-info-light hover:bg-info-light-hover active:bg-info-light-active active:shadow-focus-info",
-    outlined:
-      "text-info hover:text-info-hover active:text-info-active border border-info hover:border-info-hover active:border-info-active active:shadow-focus-info",
+    tinted: "text-prose-info bg-info-light hover:bg-info-light-hover active:bg-info-light-active active:shadow-focus-info",
+    outlined: "text-prose-info border border-info hover:border-info-hover active:border-info-active active:shadow-focus-info",
   },
 
   success: {
     contained: "text-prose-inverse bg-success hover:bg-success-hover active:bg-success-active active:shadow-focus-success",
-    tinted:
-      "text-success bg-success-light hover:bg-success-light-hover active:bg-success-light-active active:shadow-focus-success",
-    outlined:
-      "text-success hover:text-success-hover active:text-success-active border border-success hover:border-success-hover active:border-success-active active:shadow-focus-success",
+    tinted: "text-prose-success bg-success-light hover:bg-success-light-hover active:bg-success-light-active active:shadow-focus-success",
+    outlined: "text-prose-success border border-success hover:border-success-hover active:border-success-active active:shadow-focus-success",
   },
 
   warning: {
     contained: "text-prose-inverse bg-warning hover:bg-warning-hover active:bg-warning-active active:shadow-focus-warning",
-    tinted:
-      "text-warning bg-warning-light hover:bg-warning-light-hover active:bg-warning-light-active active:shadow-focus-warning",
-    outlined:
-      "text-warning hover:text-warning-hover active:text-warning-active border border-warning hover:border-warning-hover active:border-warning-active active:shadow-focus-warning",
+    tinted: "text-prose-warning bg-warning-light hover:bg-warning-light-hover active:bg-warning-light-active active:shadow-focus-warning",
+    outlined: "text-prose-warning border border-warning hover:border-warning-hover active:border-warning-active active:shadow-focus-warning",
   },
 
   danger: {
     contained: "text-prose-inverse bg-danger hover:bg-danger-hover active:bg-danger-active active:shadow-focus-danger",
-    tinted: "text-danger bg-danger-light hover:bg-danger-light-hover active:bg-danger-light-active active:shadow-focus-danger",
-    outlined:
-      "text-danger hover:text-danger-hover active:text-danger-active border border-danger hover:border-danger-hover active:border-danger-active active:shadow-focus-danger",
+    tinted: "text-prose-danger bg-danger-light hover:bg-danger-light-hover active:bg-danger-light-active active:shadow-focus-danger",
+    outlined: "text-prose-danger border border-danger hover:border-danger-hover active:border-danger-active active:shadow-focus-danger",
   },
 
   gray: {
     contained: "text-prose-inverse bg-gray hover:bg-gray-hover active:bg-gray-active active:shadow-focus-gray",
-    tinted: "text-gray bg-gray-light hover:bg-gray-light-hover active:bg-gray-light-active active:shadow-focus-gray",
-    outlined:
-      "text-gray hover:text-gray-hover active:text-gray-active border border-gray hover:border-gray-hover active:border-gray-active active:shadow-focus-gray",
+    tinted: "text-prose-gray bg-gray-light hover:bg-gray-light-hover active:bg-gray-light-active active:shadow-focus-gray",
+    outlined: "text-prose-gray border border-gray hover:border-gray-hover active:border-gray-active active:shadow-focus-gray",
   },
 };
 
