@@ -3,12 +3,12 @@ import { memo, type DetailedHTMLProps, type InputHTMLAttributes } from "react";
 import styles from "./index.module.css";
 
 const colors = {
-  brand: "text-background-primary bg-gray-light-active checked:bg-brand",
-  info: "text-background-primary bg-gray-light-active checked:bg-info",
-  success: "text-background-primary bg-gray-light-active checked:bg-success",
-  warning: "text-background-primary bg-gray-light-active checked:bg-warning",
-  danger: "text-background-primary bg-gray-light-active checked:bg-danger",
-  gray: "text-background-primary bg-gray-light-active checked:bg-gray",
+  brand: "text-background-primary bg-gray-400 checked:bg-brand",
+  info: "text-background-primary bg-gray-400 checked:bg-info",
+  success: "text-background-primary bg-gray-400 checked:bg-success",
+  warning: "text-background-primary bg-gray-400 checked:bg-warning",
+  danger: "text-background-primary bg-gray-400 checked:bg-danger",
+  gray: "text-background-primary bg-gray-400 checked:bg-gray",
 };
 
 const sizes = {
@@ -20,24 +20,10 @@ const sizes = {
 interface Props extends Omit<DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>, "size"> {
   color?: "brand" | "info" | "success" | "warning" | "danger" | "gray";
   size?: "sm" | "md" | "lg";
-  isLoading?: boolean;
 }
 
 const Switch = (props: Props) => {
-  const { color = "brand", size = "md", className = "", isLoading = false, disabled = false, ...rest } = props;
-
-  if (isLoading) {
-    return (
-      <svg className="size-5 animate-spin text-brand" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-        <path
-          className="opacity-75"
-          fill="currentColor"
-          d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-        ></path>
-      </svg>
-    );
-  }
+  const { color = "brand", size = "md", className = "", ...rest } = props;
 
   return (
     <input
@@ -50,7 +36,6 @@ const Switch = (props: Props) => {
         sizes[size],
         className,
       )}
-      disabled={isLoading || disabled}
       {...rest}
     />
   );
