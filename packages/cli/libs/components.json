@@ -3,6 +3,14 @@
         "dependencies": null,
         "src": "https://github.com/prhmhoseyni/the-dig/tree/main/packages/ui/src/Alert"
     },
+    "Avatar": {
+        "dependencies": null,
+        "src": "https://github.com/prhmhoseyni/the-dig/tree/main/packages/ui/src/Avatar"
+    },
+    "AvatarGroup": {
+        "dependencies": null,
+        "src": "https://github.com/prhmhoseyni/the-dig/tree/main/packages/ui/src/AvatarGroup"
+    },
     "Badge": {
         "dependencies": null,
         "src": "https://github.com/prhmhoseyni/the-dig/tree/main/packages/ui/src/Badge"
@@ -10,6 +18,10 @@
     "BottomSheet": {
         "dependencies": ["motion"],
         "src": "https://github.com/prhmhoseyni/the-dig/tree/main/packages/ui/src/BottomSheet"
+    },
+    "Breadcrumbs": {
+        "dependencies": null,
+        "src": "https://github.com/prhmhoseyni/the-dig/tree/main/packages/ui/src/Breadcrumbs"
     },
     "Button": {
         "dependencies": null,
@@ -23,6 +35,10 @@
         "dependencies": null,
         "src": "https://github.com/prhmhoseyni/the-dig/tree/main/packages/ui/src/Chip"
     },
+    "CircularProgress": {
+        "dependencies": null,
+        "src": "https://github.com/prhmhoseyni/the-dig/tree/main/packages/ui/src/CircularProgress"
+    },
     "IconButton": {
         "dependencies": null,
         "src": "https://github.com/prhmhoseyni/the-dig/tree/main/packages/ui/src/IconButton"
@@ -30,6 +46,10 @@
     "Input": {
         "dependencies": null,
         "src": "https://github.com/prhmhoseyni/the-dig/tree/main/packages/ui/src/Input"
+    },
+    "LinearProgress": {
+        "dependencies": null,
+        "src": "https://github.com/prhmhoseyni/the-dig/tree/main/packages/ui/src/LinearProgress"
     },
     "RadioGroup": {
         "dependencies": null,
@@ -43,8 +63,20 @@
         "dependencies": null,
         "src": "https://github.com/prhmhoseyni/the-dig/tree/main/packages/ui/src/Select"
     },
+    "Snackbar": {
+        "dependencies": null,
+        "src": "https://github.com/prhmhoseyni/the-dig/tree/main/packages/ui/src/Snackbar"
+    },
+    "Tabs": {
+        "dependencies": null,
+        "src": "https://github.com/prhmhoseyni/the-dig/tree/main/packages/ui/src/Tabs"
+    },
     "Textarea": {
         "dependencies": null,
         "src": "https://github.com/prhmhoseyni/the-dig/tree/main/packages/ui/src/Textarea"
+    },
+    "Tooltip": {
+        "dependencies": ["react-tooltip"],
+        "src": "https://github.com/prhmhoseyni/the-dig/tree/main/packages/ui/src/Tooltip"
     }
 }
