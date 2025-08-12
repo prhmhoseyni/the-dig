@@ -71,7 +71,7 @@ export default function Avatar(props: Props) {
   const sizeClasses = sizes[props.size ?? "md"];
   const status = props.status ? online[props.size ?? "md"] : null;
 
-  const commonClasses = "relative rounded-full inline-flex items-center justify-center bg-gray-400";
+  const commonClasses = "relative rounded-full inline-flex items-center justify-center bg-gray-400 border-2 border-background-primary";
   const avatarClasses = clsx(commonClasses, sizeClasses, props.className);
 
   if (props.src && props.alt) {
