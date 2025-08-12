@@ -5,7 +5,7 @@ import Stepper from "@repo/ui/Stepper";
 import { useState } from "react";
 
 export default function StepperPage() {
-  const [currentStep, setCurrentStep] = useState(0);
+  const [currentStep, setCurrentStep] = useState(2);
 
   return (
     <div dir="rtl" className="flex h-screen flex-col justify-center items-center gap-10 p-4">
@@ -16,16 +16,16 @@ export default function StepperPage() {
           { title: "مرحله سوم", description: "راهنمای مرحله سوم" },
           { title: "مرحله چهارم", description: "راهنمای مرحله چهارم" },
         ]}
-        currentStep={currentStep}
-        onStepChange={(step) => {
+        step={currentStep}
+        onChange={(step) => {
           setCurrentStep(step);
         }}
       />
 
       <Stepper
         steps={[{ title: "مرحله اول" }, { title: "مرحله دوم" }, { title: "مرحله سوم" }, { title: "مرحله چهارم" }]}
-        currentStep={currentStep}
-        onStepChange={(step) => {
+        step={currentStep}
+        onChange={(step) => {
           setCurrentStep(step);
         }}
       />
@@ -37,9 +37,9 @@ export default function StepperPage() {
           { title: "مرحله سوم", description: "راهنمای مرحله سوم" },
           { title: "مرحله چهارم", description: "راهنمای مرحله چهارم" },
         ]}
-        currentStep={currentStep}
+        step={currentStep}
         vertical
-        onStepChange={(step) => {
+        onChange={(step) => {
           setCurrentStep(step);
         }}
       />
