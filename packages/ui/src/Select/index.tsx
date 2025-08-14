@@ -7,7 +7,7 @@ interface Props extends DetailedHTMLProps<SelectHTMLAttributes<HTMLSelectElement
   startAdornment?: ReactNode;
 }
 
-export default function Input(props: Props) {
+export default function Select(props: Props) {
   const { variant = "primary", hasError = false, startAdornment, children, className = "", ...rest } = props;
 
   return (
