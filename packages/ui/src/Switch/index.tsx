@@ -1,5 +1,5 @@
+import { type DetailedHTMLProps, type InputHTMLAttributes } from "react";
 import clsx from "clsx";
-import { memo, type DetailedHTMLProps, type InputHTMLAttributes } from "react";
 import styles from "./index.module.css";
 
 const colors = {
@@ -17,12 +17,21 @@ const sizes = {
   lg: "w-14 h-8 p-1 rounded-3xl",
 };
 
-interface Props extends Omit<DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>, "size"> {
+/**
+ * :::: types ::::
+ */
+export type SwitchColor = "brand" | "info" | "success" | "warning" | "danger" | "gray";
+export type SwitchSize = "sm" | "md" | "lg";
+
+/**
+ * @name Switch component
+ */
+export interface SwitchProps extends Omit<DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>, "size"> {
   color?: "brand" | "info" | "success" | "warning" | "danger" | "gray";
   size?: "sm" | "md" | "lg";
 }
 
-const Switch = (props: Props) => {
+export default function Switch(props: SwitchProps) {
   const { color = "brand", size = "md", className = "", ...rest } = props;
 
   return (
@@ -39,6 +48,4 @@ const Switch = (props: Props) => {
       {...rest}
     />
   );
-};
-
-export default memo(Switch);
+}

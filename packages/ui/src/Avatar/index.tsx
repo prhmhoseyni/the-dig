@@ -1,4 +1,4 @@
-import { type PropsWithChildren } from "react";
+import { Children, cloneElement, isValidElement, type ReactNode, useId, type PropsWithChildren } from "react";
 import clsx from "clsx";
 
 const online = {
@@ -59,34 +59,77 @@ const sizes = {
   xs: "min-w-6 w-6 min-h-6 h-6 text-subtitle5",
 };
 
-interface Props extends PropsWithChildren {
+/**
+ * :::: types ::::
+ */
+export type AvatarSize = "xs" | "sm" | "md" | "lg";
+export type AvatarStatus = "online" | "offline";
+
+/**
+ * @name Avatar component
+ */
+export interface AvatarProps extends PropsWithChildren {
   src?: string;
   alt?: string;
-  size?: "xs" | "sm" | "md" | "lg";
+  size?: AvatarSize;
   className?: string;
-  status?: "online";
+  status?: AvatarStatus;
 }
 
-export default function Avatar(props: Props) {
-  const sizeClasses = sizes[props.size ?? "md"];
-  const status = props.status ? online[props.size ?? "md"] : null;
+export function Avatar(props: AvatarProps) {
+  const { src, alt, size = "md", className = "", status = "offline", children } = props;
 
-  const commonClasses = "relative rounded-full inline-flex items-center justify-center bg-gray-400 border-2 border-background-primary";
-  const avatarClasses = clsx(commonClasses, sizeClasses, props.className);
+  const commonClasses = clsx(
+    "relative rounded-full inline-flex items-center justify-center bg-gray-400 border-2 border-background-primary",
+    sizes[size],
+    className,
+  );
 
-  if (props.src && props.alt) {
+  if (src && alt) {
     return (
-      <div className={avatarClasses}>
-        <img src={props.src} alt={props.alt} className="w-full h-full rounded-full object-cover" />
-        {status}
+      <div className={commonClasses}>
+        <img src={src} alt={alt} className="w-full h-full rounded-full object-cover" />
+        {status ? online[size] : null}
       </div>
     );
   }
 
   return (
-    <div className={avatarClasses}>
-      {props.children}
-      {status}
+    <div className={commonClasses}>
+      {children}
+      {status ? online[size] : null}
+    </div>
+  );
+}
+
+/**
+ * @name AvatarGroup component
+ */
+export interface AvatarGroupProps {
+  children: ReactNode;
+  max: number;
+  size?: AvatarSize;
+}
+
+export function AvatarGroup(props: AvatarGroupProps) {
+  const { children, max, size = "md" } = props;
+
+  const uuid = useId();
+  const avatars = Children.toArray(children);
+  const numAvatars = avatars.length;
+  const showCount = numAvatars > max;
+  const visibleAvatars = showCount ? avatars.slice(0, max - 1) : avatars;
+  const remainingCount = numAvatars - (max - 1);
+
+  return (
+    <div className="flex items-center -space-x-4">
+      {visibleAvatars.map((child, index) => {
+        if (isValidElement(child)) {
+          return cloneElement(child, { key: `avatar-group-${uuid}-${index}`, size } as Record<string, unknown>);
+        }
+        return child;
+      })}
+      {showCount && <Avatar size={size}>{`+${remainingCount}`}</Avatar>}
     </div>
   );
 }

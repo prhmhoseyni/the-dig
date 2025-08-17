@@ -1,17 +1,20 @@
 "use client";
 
-import clsx from "clsx";
+import { type ReactNode } from "react";
 import { Check } from "lucide-react";
-import { memo, type ReactNode } from "react";
+import clsx from "clsx";
 
-interface Props {
+/**
+ * @name Stepper component
+ */
+export interface StepperProps {
   steps: Array<{ title: string; description?: ReactNode }>;
   vertical?: boolean;
   step: number;
   onChange?: (step: number) => void;
 }
 
-const Stepper = (props: Props) => {
+export default function Stepper(props: StepperProps) {
   const { steps, step, vertical, onChange } = props;
 
   return (
@@ -42,17 +45,11 @@ const Stepper = (props: Props) => {
           {index < steps.length - 1 &&
             (vertical ? (
               <div
-                className={clsx(
-                  "h-full border absolute top-0 right-[11px]",
-                  index < step ? "border-brand" : "border-gray-400",
-                )}
+                className={clsx("h-full border absolute top-0 right-[11px]", index < step ? "border-brand" : "border-gray-400")}
               />
             ) : (
               <div
-                className={clsx(
-                  "w-full border absolute top-3 right-1/2",
-                  index < step ? "border-brand" : "border-gray-400",
-                )}
+                className={clsx("w-full border absolute top-3 right-1/2", index < step ? "border-brand" : "border-gray-400")}
               />
             ))}
 
@@ -64,6 +61,4 @@ const Stepper = (props: Props) => {
       ))}
     </div>
   );
-};
-
-export default memo(Stepper);
+}

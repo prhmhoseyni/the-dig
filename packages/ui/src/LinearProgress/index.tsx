@@ -8,21 +8,27 @@ const colors = {
   danger: "bg-danger",
 };
 
-interface Props {
+/**
+ * :::: types :::
+ */
+export type LinearProgressColor = "brand" | "success" | "warning" | "danger";
+
+/**
+ * @name LinearProgress component
+ */
+export interface LinearProgressProps {
   value: number;
-  color?: "brand" | "success" | "warning" | "danger";
+  color?: LinearProgressColor;
 }
 
-export default function LinearProgress(props: Props) {
+export default function LinearProgress(props: LinearProgressProps) {
+  const { value, color = "brand" } = props;
+
   return (
     <div className="h-2 w-full rounded-full bg-gray-200 overflow-hidden">
       <div
-        className={clsx(
-          "h-full rounded-full transition-all duration-500 ease-out",
-          styles["progress-stripes"],
-          colors[props.color ?? "brand"],
-        )}
-        style={{ width: `${props.value}%` }}
+        className={clsx("h-full rounded-full transition-all duration-500 ease-out", styles["progress-stripes"], colors[color])}
+        style={{ width: `${value}%` }}
       />
     </div>
   );

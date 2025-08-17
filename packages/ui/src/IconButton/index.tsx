@@ -5,7 +5,8 @@ const colors = {
   brand: {
     contained: "text-prose-inverse bg-brand hover:bg-brand-hover active:bg-brand-active active:shadow-focus-brand",
     tinted: "text-prose-brand bg-brand-light hover:bg-brand-light-hover active:bg-brand-light-active active:shadow-focus-brand",
-    outlined: "text-prose-brand border border-brand hover:border-brand-hover active:border-brand-active active:shadow-focus-brand",
+    outlined:
+      "text-prose-brand border border-brand hover:border-brand-hover active:border-brand-active active:shadow-focus-brand",
   },
 
   info: {
@@ -16,20 +17,26 @@ const colors = {
 
   success: {
     contained: "text-prose-inverse bg-success hover:bg-success-hover active:bg-success-active active:shadow-focus-success",
-    tinted: "text-prose-success bg-success-light hover:bg-success-light-hover active:bg-success-light-active active:shadow-focus-success",
-    outlined: "text-prose-success border border-success hover:border-success-hover active:border-success-active active:shadow-focus-success",
+    tinted:
+      "text-prose-success bg-success-light hover:bg-success-light-hover active:bg-success-light-active active:shadow-focus-success",
+    outlined:
+      "text-prose-success border border-success hover:border-success-hover active:border-success-active active:shadow-focus-success",
   },
 
   warning: {
     contained: "text-prose-inverse bg-warning hover:bg-warning-hover active:bg-warning-active active:shadow-focus-warning",
-    tinted: "text-prose-warning bg-warning-light hover:bg-warning-light-hover active:bg-warning-light-active active:shadow-focus-warning",
-    outlined: "text-prose-warning border border-warning hover:border-warning-hover active:border-warning-active active:shadow-focus-warning",
+    tinted:
+      "text-prose-warning bg-warning-light hover:bg-warning-light-hover active:bg-warning-light-active active:shadow-focus-warning",
+    outlined:
+      "text-prose-warning border border-warning hover:border-warning-hover active:border-warning-active active:shadow-focus-warning",
   },
 
   danger: {
     contained: "text-prose-inverse bg-danger hover:bg-danger-hover active:bg-danger-active active:shadow-focus-danger",
-    tinted: "text-prose-danger bg-danger-light hover:bg-danger-light-hover active:bg-danger-light-active active:shadow-focus-danger",
-    outlined: "text-prose-danger border border-danger hover:border-danger-hover active:border-danger-active active:shadow-focus-danger",
+    tinted:
+      "text-prose-danger bg-danger-light hover:bg-danger-light-hover active:bg-danger-light-active active:shadow-focus-danger",
+    outlined:
+      "text-prose-danger border border-danger hover:border-danger-hover active:border-danger-active active:shadow-focus-danger",
   },
 
   gray: {
@@ -47,14 +54,24 @@ const sizes = {
   xl: "h-[3rem] min-w-[3rem] w-[3rem] text-subtitle3",
 };
 
-interface Props extends DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement> {
-  variant?: "contained" | "tinted" | "outlined";
-  color?: "brand" | "info" | "success" | "warning" | "danger" | "gray";
-  size?: "xs" | "sm" | "md" | "lg" | "xl";
+/**
+ * :::: types :::
+ */
+export type IconButtonVariant = "contained" | "tinted" | "outlined";
+export type IconButtonColor = "brand" | "info" | "success" | "warning" | "danger" | "gray";
+export type IconButtonSize = "xs" | "sm" | "md" | "lg" | "xl";
+
+/**
+ * @name IconButton component
+ */
+export interface IconButtonProps extends DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement> {
+  variant?: IconButtonVariant;
+  color?: IconButtonColor;
+  size?: IconButtonSize;
   isLoading?: boolean;
 }
 
-export default function IconButton(props: Props) {
+export default function IconButton(props: IconButtonProps) {
   const {
     variant = "contained",
     color = "brand",

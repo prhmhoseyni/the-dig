@@ -21,7 +21,8 @@ const colors = {
   },
 
   danger: {
-    tinted: "text-prose-danger bg-danger-light hover:bg-danger-light-hover active:bg-danger-light-active active:shadow-focus-danger",
+    tinted:
+      "text-prose-danger bg-danger-light hover:bg-danger-light-hover active:bg-danger-light-active active:shadow-focus-danger",
   },
 
   gray: {
@@ -29,12 +30,20 @@ const colors = {
   },
 };
 
-interface Props extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
-  color?: "brand" | "info" | "success" | "warning" | "danger" | "gray";
+/**
+ * :::: types :::
+ */
+export type ChipColor = "brand" | "info" | "success" | "warning" | "danger" | "gray";
+
+/**
+ * @name Chip component
+ */
+export interface ChipProps extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
+  color?: ChipColor;
   startAdornment?: ReactNode;
 }
 
-export default function Chip(props: Props) {
+export default function Chip(props: ChipProps) {
   const { color = "brand", className = "", startAdornment: icon, children, ...rest } = props;
 
   return (

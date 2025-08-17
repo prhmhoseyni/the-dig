@@ -1,13 +1,21 @@
 import { type DetailedHTMLProps, type ReactNode, type TextareaHTMLAttributes } from "react";
 import clsx from "clsx";
 
-interface Props extends DetailedHTMLProps<TextareaHTMLAttributes<HTMLTextAreaElement>, HTMLTextAreaElement> {
-  variant?: "primary" | "secondary";
+/**
+ * :::: types ::::
+ */
+export type TextareaVariant = "primary" | "secondary";
+
+/**
+ * @name Textarea component
+ */
+export interface TextareaProps extends DetailedHTMLProps<TextareaHTMLAttributes<HTMLTextAreaElement>, HTMLTextAreaElement> {
+  variant?: TextareaVariant;
   hasError?: boolean;
   startAdornment?: ReactNode;
 }
 
-export default function Textarea(props: Props) {
+export default function Textarea(props: TextareaProps) {
   const { variant = "primary", hasError = false, startAdornment, className = "", ...rest } = props;
 
   return (

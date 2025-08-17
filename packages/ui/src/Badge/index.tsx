@@ -33,12 +33,21 @@ const colors = {
   },
 };
 
-interface Props extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
-  variant?: "contained" | "tinted";
-  color?: "brand" | "info" | "success" | "warning" | "danger" | "gray";
+/**
+ * :::: types ::::
+ */
+export type BadgeColor = "brand" | "info" | "success" | "warning" | "danger" | "gray";
+export type BadgeVariant = "contained" | "tinted";
+
+/**
+ * @name Badge component
+ */
+export interface BadgeProps extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
+  variant?: BadgeVariant;
+  color?: BadgeColor;
 }
 
-export default function Badge(props: Props) {
+export default function Badge(props: BadgeProps) {
   const { variant = "contained", color = "brand", className = "", children, ...rest } = props;
 
   return (

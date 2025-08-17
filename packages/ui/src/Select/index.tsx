@@ -1,13 +1,21 @@
 import { type DetailedHTMLProps, type ReactNode, type SelectHTMLAttributes } from "react";
 import clsx from "clsx";
 
-interface Props extends DetailedHTMLProps<SelectHTMLAttributes<HTMLSelectElement>, HTMLSelectElement> {
-  variant?: "primary" | "secondary";
+/**
+ * :::: types :::
+ */
+export type SelectVariant = "primary" | "secondary";
+
+/**
+ * @name Select component
+ */
+export interface SelectProps extends DetailedHTMLProps<SelectHTMLAttributes<HTMLSelectElement>, HTMLSelectElement> {
+  variant?: SelectVariant;
   hasError?: boolean;
   startAdornment?: ReactNode;
 }
 
-export default function Select(props: Props) {
+export default function Select(props: SelectProps) {
   const { variant = "primary", hasError = false, startAdornment, children, className = "", ...rest } = props;
 
   return (

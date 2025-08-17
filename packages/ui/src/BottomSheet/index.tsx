@@ -6,10 +6,9 @@ import { type PanInfo } from "motion";
 import clsx from "clsx";
 
 /**
- * -----------------------------------------------------------------------------------------------------------------
- * :::: bottom sheet body ::::
+ * @name BottomSheetBody component
  */
-interface BottomSheetBodyProps extends PropsWithChildren {
+export interface BottomSheetBodyProps extends PropsWithChildren {
   className?: string;
 }
 
@@ -27,10 +26,9 @@ function BottomSheetBody(props: BottomSheetBodyProps) {
 }
 
 /**
- * -----------------------------------------------------------------------------------------------------------------
- * :::: bottom sheet base ::::
+ * @name BaseBottomSheet component
  */
-interface BaseBottomSheetProps extends PropsWithChildren {
+export interface BaseBottomSheetProps extends PropsWithChildren {
   title: string;
   isOpen: boolean;
   onClose: () => void;
@@ -137,8 +135,7 @@ function BaseBottomSheet(props: BaseBottomSheetProps) {
 }
 
 /**
- * -----------------------------------------------------------------------------------------------------------------
- * :::: bottom sheet ::::
+ * @name BottomSheet component
  */
 interface ComposeProps {
   Body: typeof BottomSheetBody;

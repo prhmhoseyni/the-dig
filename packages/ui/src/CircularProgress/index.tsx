@@ -1,14 +1,5 @@
-import React from "react";
+import clsx from "clsx";
 import styles from "./index.module.css";
-
-// Define the available sizes
-type CircularProgressSize = "xs" | "sm" | "md" | "lg";
-
-// Define the props interface
-interface CircularProgressProps {
-  size?: CircularProgressSize;
-  color?: "brand" | "info" | "success" | "warning" | "danger" | "gray";
-}
 
 const colors = {
   brand: "border-brand-light border-t-brand",
@@ -19,22 +10,29 @@ const colors = {
   gray: "border-gray-light border-t-gray",
 };
 
-// Map sizes to Tailwind CSS utility classes
 const sizes = {
-  xs: { sizeClass: "w-5 h-5", borderClass: "border-3" },
-  sm: { sizeClass: "w-6 h-6", borderClass: "border-3" },
-  md: { sizeClass: "w-10 h-10", borderClass: "border-3" },
-  lg: { sizeClass: "w-12 h-12", borderClass: "border-3" },
+  xs: "w-5 h-5",
+  sm: "w-6 h-6",
+  md: "w-10 h-10",
+  lg: "w-12 h-12",
 };
 
-const CircularProgress: React.FC<CircularProgressProps> = ({ size = "sm", color = "brand" }) => {
-  const { sizeClass, borderClass } = sizes[size];
+/**
+ * :::: types :::
+ */
+export type CircularProgressSize = "xs" | "sm" | "md" | "lg";
+export type CircularProgressColor = "brand" | "info" | "success" | "warning" | "danger" | "gray";
 
-  return (
-    <div
-      className={`rounded-full border-solid ${styles["animate-spin"]} ${sizeClass} ${borderClass} ${colors[color]}`}
-    ></div>
-  );
-};
+/**
+ * @name CircularProgress component
+ */
+export interface CircularProgressProps {
+  size?: CircularProgressSize;
+  color?: CircularProgressColor;
+}
 
-export default CircularProgress;
+export default function CircularProgress(props: CircularProgressProps) {
+  const { size = "md", color = "brand" } = props;
+
+  return <div className={clsx("rounded-full border-3 border-solid", colors[color], sizes[size], styles["animate-spin"])}></div>;
+}

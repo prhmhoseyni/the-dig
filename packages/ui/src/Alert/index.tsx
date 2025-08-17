@@ -1,8 +1,8 @@
 "use client";
 
-import clsx from "clsx";
+import { type ReactNode } from "react";
 import { CircleCheck, CircleX, Info, TriangleAlert, X } from "lucide-react";
-import { memo, type ReactNode } from "react";
+import clsx from "clsx";
 
 const colors = {
   info: "text-prose-info bg-info-light border-info-light-active",
@@ -20,15 +20,23 @@ const icons = {
   gray: <Info width={20} height={20} />,
 };
 
-interface Props {
-  color?: "info" | "success" | "warning" | "danger" | "gray";
+/**
+ * :::: types ::::
+ */
+export type AlertColor = "info" | "success" | "warning" | "danger" | "gray";
+
+/**
+ * @name Alert component
+ */
+export interface AlertProps {
+  color?: AlertColor;
   title?: ReactNode;
   description: ReactNode;
   onClose?: VoidFunction;
   className?: string;
 }
 
-const Alert = (props: Props) => {
+export default function Alert(props: AlertProps) {
   const { color = "gray", title, description, onClose, className = "" } = props;
 
   return (
@@ -44,6 +52,4 @@ const Alert = (props: Props) => {
       {onClose && <X className="cursor-pointer" onClick={onClose} />}
     </div>
   );
-};
-
-export default memo(Alert);
+}

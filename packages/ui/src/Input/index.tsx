@@ -1,14 +1,22 @@
 import { type InputHTMLAttributes, type DetailedHTMLProps, type ReactNode } from "react";
 import clsx from "clsx";
 
-interface Props extends DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement> {
-  variant?: "primary" | "secondary";
+/**
+ * :::: types :::
+ */
+export type InputVariant = "primary" | "secondary";
+
+/**
+ * @name Input component
+ */
+export interface InputProps extends DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement> {
+  variant?: InputVariant;
   hasError?: boolean;
   startAdornment?: ReactNode;
   endAdornment?: ReactNode;
 }
 
-export default function Input(props: Props) {
+export default function Input(props: InputProps) {
   const { variant = "primary", hasError = false, startAdornment, endAdornment, className = "", ...rest } = props;
 
   return (

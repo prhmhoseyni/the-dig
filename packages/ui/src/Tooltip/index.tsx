@@ -4,27 +4,35 @@ import { cloneElement, isValidElement, ReactElement } from "react";
 import { Tooltip as ReactTooltip } from "react-tooltip";
 import "react-tooltip/dist/react-tooltip.css";
 
-interface TooltipProps {
+/**
+ * :::: types ::::
+ */
+export type TooltipPlace =
+  | "top"
+  | "bottom"
+  | "left"
+  | "right"
+  | "left-start"
+  | "left-end"
+  | "right-start"
+  | "right-end"
+  | "top-start"
+  | "top-end"
+  | "bottom-start"
+  | "bottom-end";
+
+/**
+ * @name Tooltip component
+ */
+export interface TooltipProps {
   id: string;
   content: string;
+  place?: TooltipPlace;
   children: ReactElement;
-  place?:
-    | "top"
-    | "bottom"
-    | "left"
-    | "right"
-    | "left-start"
-    | "left-end"
-    | "right-start"
-    | "right-end"
-    | "top-start"
-    | "top-end"
-    | "bottom-start"
-    | "bottom-end";
 }
 
 export default function Tooltip(props: TooltipProps) {
-  const { children, id, content, place = "top" }= props;
+  const { children, id, content, place = "top" } = props;
 
   if (!isValidElement(children)) {
     return children;
