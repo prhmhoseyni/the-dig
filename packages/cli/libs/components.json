@@ -7,10 +7,6 @@
         "dependencies": null,
         "src": "https://github.com/prhmhoseyni/the-dig/tree/main/packages/ui/src/Avatar"
     },
-    "AvatarGroup": {
-        "dependencies": null,
-        "src": "https://github.com/prhmhoseyni/the-dig/tree/main/packages/ui/src/AvatarGroup"
-    },
     "Badge": {
         "dependencies": null,
         "src": "https://github.com/prhmhoseyni/the-dig/tree/main/packages/ui/src/Badge"
