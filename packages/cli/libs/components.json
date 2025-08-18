@@ -63,6 +63,14 @@
         "dependencies": null,
         "src": "https://github.com/prhmhoseyni/the-dig/tree/main/packages/ui/src/Snackbar"
     },
+    "Stepper": {
+      "dependencies": null,
+      "src": "https://github.com/prhmhoseyni/the-dig/tree/main/packages/ui/src/Stepper"
+    },
+    "Switch": {
+      "dependencies": null,
+      "src": "https://github.com/prhmhoseyni/the-dig/tree/main/packages/ui/src/Switch"
+    },
     "Tabs": {
         "dependencies": null,
         "src": "https://github.com/prhmhoseyni/the-dig/tree/main/packages/ui/src/Tabs"
