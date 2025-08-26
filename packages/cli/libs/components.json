@@ -59,6 +59,10 @@
     "dependencies": null,
     "src": "https://github.com/prhmhoseyni/the-dig/tree/main/packages/ui/src/LinearProgress"
   },
+  "Modal": {
+    "dependencies": ["motion"],
+    "src": "https://github.com/prhmhoseyni/the-dig/tree/main/packages/ui/src/Modal"
+  },
   "Pagination": {
     "dependencies": ["msk-utils"],
     "src": "https://github.com/prhmhoseyni/the-dig/tree/main/packages/ui/src/Pagination"
