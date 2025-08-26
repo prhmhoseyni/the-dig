@@ -13,10 +13,10 @@ export interface FileProps {
   onRemove?: () => void;
 }
 
-export default function File({ file, status, percent, onUpload, onCancel, onPause, onRemove }: FileProps) {
-  const isUploading = status === "uploading";
-  const isPaused = status === "paused";
-  const isCompleted = status === "completed";
+export default function File(props: FileProps) {
+  const isUploading = props.status === "uploading";
+  const isPaused = props.status === "paused";
+  const isCompleted = props.status === "completed";
 
   const formatBytes = (bytes: number, decimals: number = 1): string => {
     if (bytes === 0) return "0 Bytes";
@@ -30,25 +30,25 @@ export default function File({ file, status, percent, onUpload, onCancel, onPaus
   const ActionButtons = () => (
     <div className="flex items-center gap-2">
       {isPaused && (
-        <IconButton color="gray" variant="tinted" size="xs" onClick={onUpload} className="!rounded-full">
+        <IconButton color="gray" variant="tinted" size="xs" onClick={props.onUpload} className="!rounded-full">
           <Play size={16} />
         </IconButton>
       )}
 
       {isUploading && (
-        <IconButton color="gray" variant="tinted" size="xs" onClick={onPause} className="!rounded-full">
+        <IconButton color="gray" variant="tinted" size="xs" onClick={props.onPause} className="!rounded-full">
           <Pause size={16} />
         </IconButton>
       )}
 
       {status !== "completed" && (
-        <IconButton color="gray" variant="tinted" size="xs" onClick={onCancel} className="!rounded-full">
+        <IconButton color="gray" variant="tinted" size="xs" onClick={props.onCancel} className="!rounded-full">
           <X size={16} />
         </IconButton>
       )}
 
       {isCompleted && (
-        <IconButton color="gray" variant="tinted" size="xs" onClick={onRemove} className="!rounded-full">
+        <IconButton color="gray" variant="tinted" size="xs" onClick={props.onRemove} className="!rounded-full">
           <X size={16} />
         </IconButton>
       )}
@@ -61,7 +61,7 @@ export default function File({ file, status, percent, onUpload, onCancel, onPaus
         <div
           className="absolute top-0 right-0 h-full bg-blue-200 transition-all duration-300 ease-linear rounded-lg"
           style={{
-            width: `${percent}%`,
+            width: `${props.percent}%`,
             backgroundImage:
               "linear-gradient(45deg, rgba(255,255,255,.15) 25%, transparent 25%, transparent 50%, rgba(255,255,255,.15) 50%, rgba(255,255,255,.15) 75%, transparent 75%, transparent)",
             backgroundSize: "1rem 1rem",
@@ -72,10 +72,10 @@ export default function File({ file, status, percent, onUpload, onCancel, onPaus
       <div className="relative w-full min-h-10 flex items-center gap-4">
         <FileIcon size={18} />
 
-        <div className="flex-1 text-prose-primary text-label2 truncate">{file.name}</div>
+        <div className="flex-1 text-prose-primary text-label2 truncate">{props.file.name}</div>
 
         <div dir="ltr" className="text-prose-hint text-label3 whitespace-nowrap">
-          {formatBytes(file.size)}
+          {formatBytes(props.file.size)}
         </div>
 
         <ActionButtons />
