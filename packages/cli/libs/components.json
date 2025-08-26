@@ -60,7 +60,7 @@
     "src": "https://github.com/prhmhoseyni/the-dig/tree/main/packages/ui/src/LinearProgress"
   },
   "Pagination": {
-    "dependencies": null,
+    "dependencies": ["msk-utils"],
     "src": "https://github.com/prhmhoseyni/the-dig/tree/main/packages/ui/src/Pagination"
   },
   "RadioGroup": {
