@@ -4,14 +4,14 @@ import { type ChangeEvent, type DragEvent, type InputHTMLAttributes, useState } 
 import { CloudUpload } from "lucide-react";
 import clsx from "clsx";
 
-interface Props extends InputHTMLAttributes<HTMLInputElement> {
+export interface FileUploaderProps extends InputHTMLAttributes<HTMLInputElement> {
   id: string;
-  onFileDrop?: (files: FileList) => void;
+  onDropFiles?: (files: FileList) => void;
   hasError?: boolean;
 }
 
-export default function FileUploader(props: Props) {
-  const { id, onFileDrop, hasError, ...rest } = props;
+export default function FileUploader(props: FileUploaderProps) {
+  const { id, onDropFiles: onFileDrop, hasError, ...rest } = props;
 
   const [isDragging, setIsDragging] = useState(false);
 
