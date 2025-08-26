@@ -39,6 +39,10 @@
     "dependencies": ["@hassanmojab/react-modern-calendar-datepicker", "jalali-moment", "msk-utils"],
     "src": "https://github.com/prhmhoseyni/the-dig/tree/main/packages/ui/src/DatePicker"
   },
+  "File": {
+    "dependencies": null,
+    "src": "https://github.com/prhmhoseyni/the-dig/tree/main/packages/ui/src/File"
+  },
   "FileUploader": {
     "dependencies": null,
     "src": "https://github.com/prhmhoseyni/the-dig/tree/main/packages/ui/src/FileUploader"
