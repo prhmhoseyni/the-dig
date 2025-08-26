@@ -59,6 +59,10 @@
     "dependencies": null,
     "src": "https://github.com/prhmhoseyni/the-dig/tree/main/packages/ui/src/LinearProgress"
   },
+  "Pagination": {
+    "dependencies": null,
+    "src": "https://github.com/prhmhoseyni/the-dig/tree/main/packages/ui/src/Pagination"
+  },
   "RadioGroup": {
     "dependencies": null,
     "src": "https://github.com/prhmhoseyni/the-dig/tree/main/packages/ui/src/RadioGroup"
