@@ -1,5 +1,5 @@
 import { type InputHTMLAttributes, type RefObject } from "react";
-import ReactModernDatePicker, { DayValue } from "@hassanmojab/react-modern-calendar-datepicker";
+import ReactModernDatePicker, { type DayValue } from "@hassanmojab/react-modern-calendar-datepicker";
 import { toEnglishDigits } from "msk-utils";
 import moment from "jalali-moment";
 import Input from "../Input";
@@ -59,10 +59,8 @@ export default function DatePicker(props: DatePickerProps) {
       maximumDate={props.maxDate ? convertTimestamp2DayValue(props.maxDate) : undefined}
       minimumDate={props.minDate ? convertTimestamp2DayValue(props.minDate) : undefined}
       colorPrimary="rgb(var(--dig-brand))"
-      onChange={(_day) => {
-        if (_day) {
-          props.onChange(convertDayValue2Timestamp(_day));
-        }
+      onChange={(_val) => {
+        if (_val) props.onChange(convertDayValue2Timestamp(_val));
       }}
     />
   );
