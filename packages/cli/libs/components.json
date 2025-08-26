@@ -1,86 +1,90 @@
 {
-    "Alert": {
-        "dependencies": null,
-        "src": "https://github.com/prhmhoseyni/the-dig/tree/main/packages/ui/src/Alert"
-    },
-    "Avatar": {
-        "dependencies": null,
-        "src": "https://github.com/prhmhoseyni/the-dig/tree/main/packages/ui/src/Avatar"
-    },
-    "Badge": {
-        "dependencies": null,
-        "src": "https://github.com/prhmhoseyni/the-dig/tree/main/packages/ui/src/Badge"
-    },
-    "BottomSheet": {
-        "dependencies": ["motion"],
-        "src": "https://github.com/prhmhoseyni/the-dig/tree/main/packages/ui/src/BottomSheet"
-    },
-    "Breadcrumbs": {
-        "dependencies": null,
-        "src": "https://github.com/prhmhoseyni/the-dig/tree/main/packages/ui/src/Breadcrumbs"
-    },
-    "Button": {
-        "dependencies": null,
-        "src": "https://github.com/prhmhoseyni/the-dig/tree/main/packages/ui/src/Button"
-    },
-    "Checkbox": {
-        "dependencies": null,
-        "src": "https://github.com/prhmhoseyni/the-dig/tree/main/packages/ui/src/Checkbox"
-    },
-    "Chip": {
-        "dependencies": null,
-        "src": "https://github.com/prhmhoseyni/the-dig/tree/main/packages/ui/src/Chip"
-    },
-    "CircularProgress": {
-        "dependencies": null,
-        "src": "https://github.com/prhmhoseyni/the-dig/tree/main/packages/ui/src/CircularProgress"
-    },
-    "IconButton": {
-        "dependencies": null,
-        "src": "https://github.com/prhmhoseyni/the-dig/tree/main/packages/ui/src/IconButton"
-    },
-    "Input": {
-        "dependencies": null,
-        "src": "https://github.com/prhmhoseyni/the-dig/tree/main/packages/ui/src/Input"
-    },
-    "LinearProgress": {
-        "dependencies": null,
-        "src": "https://github.com/prhmhoseyni/the-dig/tree/main/packages/ui/src/LinearProgress"
-    },
-    "RadioGroup": {
-        "dependencies": null,
-        "src": "https://github.com/prhmhoseyni/the-dig/tree/main/packages/ui/src/RadioGroup"
-    },
-    "SegmentControl": {
-        "dependencies": null,
-        "src": "https://github.com/prhmhoseyni/the-dig/tree/main/packages/ui/src/SegmentControl"
-    },
-    "Select": {
-        "dependencies": null,
-        "src": "https://github.com/prhmhoseyni/the-dig/tree/main/packages/ui/src/Select"
-    },
-    "Snackbar": {
-        "dependencies": null,
-        "src": "https://github.com/prhmhoseyni/the-dig/tree/main/packages/ui/src/Snackbar"
-    },
-    "Stepper": {
-      "dependencies": null,
-      "src": "https://github.com/prhmhoseyni/the-dig/tree/main/packages/ui/src/Stepper"
-    },
-    "Switch": {
-      "dependencies": null,
-      "src": "https://github.com/prhmhoseyni/the-dig/tree/main/packages/ui/src/Switch"
-    },
-    "Tabs": {
-        "dependencies": null,
-        "src": "https://github.com/prhmhoseyni/the-dig/tree/main/packages/ui/src/Tabs"
-    },
-    "Textarea": {
-        "dependencies": null,
-        "src": "https://github.com/prhmhoseyni/the-dig/tree/main/packages/ui/src/Textarea"
-    },
-    "Tooltip": {
-        "dependencies": ["react-tooltip"],
-        "src": "https://github.com/prhmhoseyni/the-dig/tree/main/packages/ui/src/Tooltip"
-    }
+  "Alert": {
+    "dependencies": null,
+    "src": "https://github.com/prhmhoseyni/the-dig/tree/main/packages/ui/src/Alert"
+  },
+  "Avatar": {
+    "dependencies": null,
+    "src": "https://github.com/prhmhoseyni/the-dig/tree/main/packages/ui/src/Avatar"
+  },
+  "Badge": {
+    "dependencies": null,
+    "src": "https://github.com/prhmhoseyni/the-dig/tree/main/packages/ui/src/Badge"
+  },
+  "BottomSheet": {
+    "dependencies": ["motion"],
+    "src": "https://github.com/prhmhoseyni/the-dig/tree/main/packages/ui/src/BottomSheet"
+  },
+  "Breadcrumbs": {
+    "dependencies": null,
+    "src": "https://github.com/prhmhoseyni/the-dig/tree/main/packages/ui/src/Breadcrumbs"
+  },
+  "Button": {
+    "dependencies": null,
+    "src": "https://github.com/prhmhoseyni/the-dig/tree/main/packages/ui/src/Button"
+  },
+  "Checkbox": {
+    "dependencies": null,
+    "src": "https://github.com/prhmhoseyni/the-dig/tree/main/packages/ui/src/Checkbox"
+  },
+  "Chip": {
+    "dependencies": null,
+    "src": "https://github.com/prhmhoseyni/the-dig/tree/main/packages/ui/src/Chip"
+  },
+  "CircularProgress": {
+    "dependencies": null,
+    "src": "https://github.com/prhmhoseyni/the-dig/tree/main/packages/ui/src/CircularProgress"
+  },
+  "DatePicker": {
+    "dependencies": ["@hassanmojab/react-modern-calendar-datepicker", "jalali-moment", "msk-utils"],
+    "src": "https://github.com/prhmhoseyni/the-dig/tree/main/packages/ui/src/DatePicker"
+  },
+  "IconButton": {
+    "dependencies": null,
+    "src": "https://github.com/prhmhoseyni/the-dig/tree/main/packages/ui/src/IconButton"
+  },
+  "Input": {
+    "dependencies": null,
+    "src": "https://github.com/prhmhoseyni/the-dig/tree/main/packages/ui/src/Input"
+  },
+  "LinearProgress": {
+    "dependencies": null,
+    "src": "https://github.com/prhmhoseyni/the-dig/tree/main/packages/ui/src/LinearProgress"
+  },
+  "RadioGroup": {
+    "dependencies": null,
+    "src": "https://github.com/prhmhoseyni/the-dig/tree/main/packages/ui/src/RadioGroup"
+  },
+  "SegmentControl": {
+    "dependencies": null,
+    "src": "https://github.com/prhmhoseyni/the-dig/tree/main/packages/ui/src/SegmentControl"
+  },
+  "Select": {
+    "dependencies": null,
+    "src": "https://github.com/prhmhoseyni/the-dig/tree/main/packages/ui/src/Select"
+  },
+  "Snackbar": {
+    "dependencies": null,
+    "src": "https://github.com/prhmhoseyni/the-dig/tree/main/packages/ui/src/Snackbar"
+  },
+  "Stepper": {
+    "dependencies": null,
+    "src": "https://github.com/prhmhoseyni/the-dig/tree/main/packages/ui/src/Stepper"
+  },
+  "Switch": {
+    "dependencies": null,
+    "src": "https://github.com/prhmhoseyni/the-dig/tree/main/packages/ui/src/Switch"
+  },
+  "Tabs": {
+    "dependencies": null,
+    "src": "https://github.com/prhmhoseyni/the-dig/tree/main/packages/ui/src/Tabs"
+  },
+  "Textarea": {
+    "dependencies": null,
+    "src": "https://github.com/prhmhoseyni/the-dig/tree/main/packages/ui/src/Textarea"
+  },
+  "Tooltip": {
+    "dependencies": ["react-tooltip"],
+    "src": "https://github.com/prhmhoseyni/the-dig/tree/main/packages/ui/src/Tooltip"
+  }
 }

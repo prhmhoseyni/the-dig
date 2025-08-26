@@ -22,10 +22,13 @@
     "typescript": "5.8.2"
   },
   "dependencies": {
+    "@hassanmojab/react-modern-calendar-datepicker": "^3.1.7",
     "@tailwindcss/cli": "^4.1.11",
     "clsx": "^2.1.1",
+    "jalali-moment": "^3.3.11",
     "lucide-react": "^0.539.0",
     "motion": "^12.23.12",
+    "msk-utils": "^0.2.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "react-tooltip": "^5.29.1",
