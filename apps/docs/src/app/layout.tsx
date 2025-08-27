@@ -24,7 +24,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="fa" dir="rtl">
-      <body className={`${geistSans.variable} ${geistMono.variable} bg-[#FFFFFF]`}>{children}</body>
+      <body className={`${geistSans.variable} ${geistMono.variable} bg-[#FFFFFF]`}>
+        {children}
+        <div id="the-dig-portal" />
+      </body>
     </html>
   );
 }
