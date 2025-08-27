@@ -87,6 +87,10 @@
     "dependencies": null,
     "src": "https://github.com/prhmhoseyni/the-dig/tree/main/packages/ui/src/Select"
   },
+  "Slider": {
+    "dependencies": null,
+    "src": "https://github.com/prhmhoseyni/the-dig/tree/main/packages/ui/src/Slider"
+  },
   "Snackbar": {
     "dependencies": null,
     "src": "https://github.com/prhmhoseyni/the-dig/tree/main/packages/ui/src/Snackbar"
