@@ -59,6 +59,10 @@
     "dependencies": null,
     "src": "https://github.com/prhmhoseyni/the-dig/tree/main/packages/ui/src/LinearProgress"
   },
+  "Menu": {
+    "dependencies": null,
+    "src": "https://github.com/prhmhoseyni/the-dig/tree/main/packages/ui/src/Menu"
+  },
   "Modal": {
     "dependencies": ["motion"],
     "src": "https://github.com/prhmhoseyni/the-dig/tree/main/packages/ui/src/Modal"
