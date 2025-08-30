@@ -49,7 +49,7 @@ export default function Chip(props: ChipProps) {
   return (
     <div
       className={clsx(
-        "cursor-pointer h-8 px-3 text-subtitle5 inline-flex items-center justify-center gap-1.5 rounded-full min-w-fit transition-all ease-in-out duration-300",
+        "cursor-pointer h-8 ps-3 pe-2 text-subtitle5 inline-flex items-center justify-center gap-1.5 rounded-full min-w-fit transition-all ease-in-out duration-300",
         colors[color].tinted,
         className,
       )}
@@ -59,14 +59,7 @@ export default function Chip(props: ChipProps) {
 
       {children}
 
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="20"
-        height="20"
-        viewBox="0 0 20 20"
-        fill="none"
-        className="relative inset-x-1"
-      >
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
         <path
           fillRule="evenodd"
           clipRule="evenodd"

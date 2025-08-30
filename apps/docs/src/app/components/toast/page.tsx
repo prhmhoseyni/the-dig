@@ -1,8 +1,8 @@
 "use client";
 
-import Button from "@repo/ui/Button";
-import Notification from "@repo/ui/Notification";
 import { toast, Toaster } from "sonner";
+import Button from "@repo/ui/Button";
+import Toast from "@repo/ui/Toast";
 
 export default function NotificationPage() {
   return (
@@ -13,7 +13,7 @@ export default function NotificationPage() {
         <button
           onClick={() =>
             toast(
-              <Notification
+              <Toast
                 title="به‌روزرسانی جدید"
                 description="نسخه جدید آماده نصب است. برای بهبود عملکرد به‌روزرسانی کنید."
                 actions={

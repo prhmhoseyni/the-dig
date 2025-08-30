@@ -128,7 +128,6 @@ export default function Modal(props: ModalProps) {
             className={clsx(
               "w-full h-full inset-0 bg-black-48 z-[60] flex flex-col justify-end md:flex-row md:items-center md:justify-center",
             )}
-            onClick={props.onDeny}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}

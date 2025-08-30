@@ -14,7 +14,7 @@ export interface DialogHeaderProps extends PropsWithChildren {
 
 function DialogHeader(props: DialogHeaderProps) {
   return (
-    <div className={clsx("bg-background-primary rounded-t-2xl p-5 border-b border-gray-300", props.className)}>
+    <div className={clsx("bg-background-primary md:rounded-t-2xl p-5 border-b border-gray-300", props.className)}>
       {props.children}
     </div>
   );
@@ -122,6 +122,21 @@ function BaseDialog(props: BaseDialogProps) {
             exit={isMobile ? { y: "100%" } : { opacity: 0 }}
             transition={{ ease: "easeOut" }}
           >
+            <div className="flex flex-col justify-center items-center md:hidden py-4 px-4 bg-background-primary rounded-t-2xl">
+              <div className="flex items-center justify-center w-full">
+                <div
+                  ref={leftKnobRef}
+                  className="bg-gray-400 w-4 h-1 rounded -m-[1px] right-knob"
+                  style={{ transition: "transform ease-in-out 0.1s" }}
+                />
+                <div
+                  ref={rightKnobRef}
+                  className="bg-gray-400 w-4 h-1 rounded -m-[1px] left-knob"
+                  style={{ transition: "transform ease-in-out 0.1s" }}
+                />
+              </div>
+            </div>
+
             {props.children}
           </motion.dialog>
         </div>

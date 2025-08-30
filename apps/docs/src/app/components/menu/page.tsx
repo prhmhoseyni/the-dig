@@ -8,7 +8,7 @@ export default function MenuPage() {
   const [menuOpen, setMenuOpen] = useState(false);
   const anchorRef = useRef<HTMLButtonElement>(null);
 
-  const handleOpenMenu = () => setMenuOpen(true);
+  const handleOpenMenu = () => setMenuOpen(!menuOpen);
   const handleCloseMenu = () => setMenuOpen(false);
 
   const handleMenuItemClick = (item: string) => {

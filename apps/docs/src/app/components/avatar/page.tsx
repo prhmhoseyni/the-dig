@@ -1,4 +1,4 @@
-import Avatar from "@repo/ui/Avatar";
+import { Avatar } from "@repo/ui/Avatar";
 
 export default function AvatarPage() {
   return (
@@ -8,16 +8,16 @@ export default function AvatarPage() {
       <Avatar src="/prhm.jpg" alt="prhm" size="sm" />
       <Avatar src="/prhm.jpg" alt="prhm" size="xs" />
 
-      <Avatar size="lg" className="font-[var(--font-geist-mono)]">
+      <Avatar size="lg" alt="lg" className="font-[var(--font-geist-mono)]">
         VB
       </Avatar>
-      <Avatar size="md" className="font-[var(--font-geist-mono)]">
+      <Avatar size="md" alt="md" className="font-[var(--font-geist-mono)]">
         VB
       </Avatar>
-      <Avatar size="sm" className="font-[var(--font-geist-mono)]">
+      <Avatar size="sm" alt="sm" className="font-[var(--font-geist-mono)]">
         VB
       </Avatar>
-      <Avatar size="xs" className="font-[var(--font-geist-mono)]">
+      <Avatar size="xs" alt="xs" className="font-[var(--font-geist-mono)]">
         VB
       </Avatar>
 

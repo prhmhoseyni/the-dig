@@ -109,12 +109,12 @@ function BaseBottomSheet(props: BaseBottomSheetProps) {
               <div className="flex items-center justify-center w-full">
                 <div
                   ref={leftKnobRef}
-                  className="bg-gray-200 w-4 h-1 rounded -m-[1px] right-knob"
+                  className="bg-gray-400 w-4 h-1 rounded -m-[1px] right-knob"
                   style={{ transition: "transform ease-in-out 0.1s" }}
                 />
                 <div
                   ref={rightKnobRef}
-                  className="bg-gray-200 w-4 h-1 rounded -m-[1px] left-knob"
+                  className="bg-gray-400 w-4 h-1 rounded -m-[1px] left-knob"
                   style={{ transition: "transform ease-in-out 0.1s" }}
                 />
               </div>

@@ -1,6 +1,6 @@
 import clsx from "clsx";
 import { Info } from "lucide-react";
-import { memo, type ReactNode } from "react";
+import { type ReactNode } from "react";
 
 interface Props {
   title: ReactNode;
@@ -10,7 +10,7 @@ interface Props {
   className?: string;
 }
 
-const Notification = (props: Props) => {
+export default function Toast(props: Props) {
   const { title, description, actions, className = "" } = props;
 
   return (
@@ -28,6 +28,4 @@ const Notification = (props: Props) => {
       </div>
     </div>
   );
-};
-
-export default memo(Notification);
+}

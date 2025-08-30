@@ -70,7 +70,7 @@ export type AvatarStatus = "online" | "offline";
  */
 export interface AvatarProps extends PropsWithChildren {
   src?: string;
-  alt?: string;
+  alt: string;
   size?: AvatarSize;
   className?: string;
   status?: AvatarStatus;
@@ -85,11 +85,11 @@ export function Avatar(props: AvatarProps) {
     className,
   );
 
-  if (src && alt) {
+  if (src) {
     return (
       <div className={commonClasses}>
         <img src={src} alt={alt} className="w-full h-full rounded-full object-cover" />
-        {status ? online[size] : null}
+        {status === "online" ? online[size] : null}
       </div>
     );
   }
@@ -97,7 +97,7 @@ export function Avatar(props: AvatarProps) {
   return (
     <div className={commonClasses}>
       {children}
-      {status ? online[size] : null}
+      {status === "online" ? online[size] : null}
     </div>
   );
 }
@@ -129,7 +129,7 @@ export function AvatarGroup(props: AvatarGroupProps) {
         }
         return child;
       })}
-      {showCount && <Avatar size={size}>{`+${remainingCount}`}</Avatar>}
+      {showCount && <Avatar size={size} alt="count">{`+${remainingCount}`}</Avatar>}
     </div>
   );
 }

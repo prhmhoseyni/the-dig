@@ -12,7 +12,7 @@ function PaginationButton(props: PaginationButtonProps) {
   return (
     <button
       className={clsx(
-        "w-8 h-8 inline-flex items-center justify-center rounded text-label2 cursor-pointer",
+        "w-8 h-8 inline-flex items-center justify-center rounded text-label2 cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed",
         props.active ? "text-prose-brand bg-brand-light" : "text-prose-primary hover:bg-gray-200",
       )}
       {...rest}
@@ -31,11 +31,11 @@ export interface PaginationProps {
 export default function Pagination(props: PaginationProps) {
   return (
     <div className="w-fit flex items-center gap-px border border-gray-300 rounded-lg p-px">
-      <PaginationButton onClick={() => props.onChange(1)}>
+      <PaginationButton onClick={() => props.onChange(1)} disabled={props.page === 1}>
         <ChevronsRight size={16} />
       </PaginationButton>
 
-      <PaginationButton onClick={() => props.onChange(props.page - 1)}>
+      <PaginationButton onClick={() => props.onChange(props.page - 1)} disabled={props.page === 1}>
         <ChevronRight size={16} />
       </PaginationButton>
 
@@ -61,11 +61,11 @@ export default function Pagination(props: PaginationProps) {
         {toPersianDigits(props.total)}
       </PaginationButton>
 
-      <PaginationButton onClick={() => props.onChange(props.page + 1)}>
+      <PaginationButton onClick={() => props.onChange(props.page + 1)} disabled={props.page === props.total}>
         <ChevronLeft size={16} />
       </PaginationButton>
 
-      <PaginationButton onClick={() => props.onChange(props.total)}>
+      <PaginationButton onClick={() => props.onChange(props.total)} disabled={props.page === props.total}>
         <ChevronsLeft size={16} />
       </PaginationButton>
     </div>

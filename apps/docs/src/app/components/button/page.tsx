@@ -4,7 +4,9 @@ export default function ButtonPage() {
   return (
     <>
       <div className="flex items-center gap-4 p-4">
-        <Button color="brand">Click Me</Button>
+        <Button isLoading color="brand">
+          Click Me
+        </Button>
         <Button color="info">Click Me</Button>
         <Button color="success">Click Me</Button>
         <Button color="danger">Click Me</Button>
