@@ -24,6 +24,7 @@ function convertDayValue2Timestamp(value: DayValue) {
 export interface DatePickerProps {
   value: number | null;
   onChange: (value: number | null) => void;
+  locale?: "fa" | "en";
   minDate?: number;
   maxDate?: number;
   inputProps?: InputHTMLAttributes<HTMLInputElement>;
@@ -52,7 +53,7 @@ export default function DatePicker(props: DatePickerProps) {
 
   return (
     <ReactModernDatePicker
-      locale="fa"
+      locale={props.locale ?? "fa"}
       value={props.value ? convertTimestamp2DayValue(props.value) : null}
       shouldHighlightWeekends
       renderInput={render}
