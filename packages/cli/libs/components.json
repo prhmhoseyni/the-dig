@@ -71,6 +71,10 @@
     "dependencies": ["motion"],
     "src": "https://github.com/prhmhoseyni/the-dig/tree/main/packages/ui/src/Modal"
   },
+  "Navigation": {
+    "dependencies": null,
+    "src": "https://github.com/prhmhoseyni/the-dig/tree/main/packages/ui/src/Navigation"
+  },
   "Pagination": {
     "dependencies": ["msk-utils"],
     "src": "https://github.com/prhmhoseyni/the-dig/tree/main/packages/ui/src/Pagination"
