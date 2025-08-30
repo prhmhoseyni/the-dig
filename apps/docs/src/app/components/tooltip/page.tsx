@@ -50,7 +50,6 @@ export default function TooltipPage() {
       <Tooltip id="bottom-end" content="این یک راهنمای ابزار است." place="bottom-end">
         <button>bottom-end</button>
       </Tooltip>
-
     </div>
   );
 }

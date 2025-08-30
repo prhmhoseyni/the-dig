@@ -1,23 +1,23 @@
 @keyframes progress-stripes {
-    from {
-        background-position: 1rem 0;
-    }
-    to {
-        background-position: 0 0;
-    }
+  from {
+    background-position: 1rem 0;
+  }
+  to {
+    background-position: 0 0;
+  }
 }
 
 .progress-stripes {
-    background-image: repeating-linear-gradient(
-            45deg,
-            rgba(var(--dig-background-primary), 0.2) 25%,
-            transparent 25%,
-            transparent 50%,
-            rgba(var(--dig-background-primary), 0.2) 50%,
-            rgba(var(--dig-background-primary), 0.2) 75%,
-            transparent 75%,
-            transparent
-    );
-    background-size: 1rem 1rem;
-    animation: progress-stripes 1s linear infinite;
+  background-image: repeating-linear-gradient(
+    45deg,
+    rgba(var(--dig-background-primary), 0.2) 25%,
+    transparent 25%,
+    transparent 50%,
+    rgba(var(--dig-background-primary), 0.2) 50%,
+    rgba(var(--dig-background-primary), 0.2) 75%,
+    transparent 75%,
+    transparent
+  );
+  background-size: 1rem 1rem;
+  animation: progress-stripes 1s linear infinite;
 }

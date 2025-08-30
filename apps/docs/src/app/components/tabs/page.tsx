@@ -30,17 +30,17 @@ export default function TabsPage() {
       >
         <Tabs.Item>
           <span>عنوان</span>
-          <CircleX size={16}/>
+          <CircleX size={16} />
         </Tabs.Item>
 
         <Tabs.Item>
           <span>عنوان</span>
-          <CircleX size={16}/>
+          <CircleX size={16} />
         </Tabs.Item>
 
         <Tabs.Item>
           <span>عنوان</span>
-          <CircleX size={16}/>
+          <CircleX size={16} />
         </Tabs.Item>
       </Tabs>
     </div>
