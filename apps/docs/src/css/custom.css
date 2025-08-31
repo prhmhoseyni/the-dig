@@ -1,5 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Vazirmatn:wght@100..900&display=swap");
 @import "tailwindcss";
+@import "@repo/ui/styles";
 
 @custom-variant dark (&:is([data-theme="dark"] *));
 
