@@ -1,0 +1,119 @@
+---
+sidebar_position: 1
+---
+
+# Button
+
+import Container from "./Container";
+import Button from "@repo/ui/Button";
+
+<Container>
+  <Button>فشارم بده</Button>
+</Container>
+
+```tsx
+<Button variant="container" color="brand">
+  Primary
+</Button>
+```
+
+## Props
+
+| Prop        | Type                                                                          | Default                                                                        |
+| ----------- | ----------------------------------------------------------------------------- | ------------------------------------------------------------------------------ |
+| `variant`   | `"contained"` \| `"tinted"` \| `"outlined"`                                   | `"contained"`                                                                  |
+| `color`     | `"brand"` \| `"info"` \| `"success"` \| `"warning"` \| `"danger"` \| `"gray"` | `"brand"`                                                                      |
+| `size`      | `"xs"` \| `"sm"` \| `"md"` \| `"lg"` \| `"xl"`                                | `"md"`                                                                         |
+| `isLoading` | `boolean`                                                                     | `false`                                                                        |
+| `...props`  | `ButtonHTMLAttributes<HTMLButtonElement>` (e.g. `onClick`, `disabled`, etc.)  | [Document](https://developer.mozilla.org/en-US/docs/Web/API/HTMLButtonElement) |
+
+## Variants and Colors
+
+### `varinat="contained"`
+
+<Container>
+  <Button variant="contained" color="brand">
+    <span>فشارم بده</span>
+  </Button>
+  <Button variant="contained" color="info">
+    <span>فشارم بده</span>
+  </Button>
+  <Button variant="contained" color="success">
+    <span>فشارم بده</span>
+  </Button>
+  <Button variant="contained" color="warning">
+    <span>فشارم بده</span>
+  </Button>
+  <Button variant="contained" color="danger">
+    <span>فشارم بده</span>
+  </Button>
+  <Button variant="contained" color="gray">
+    <span>فشارم بده</span>
+  </Button>
+</Container>
+
+### `varinat="tinted"`
+
+<Container>
+  <Button variant="tinted" color="brand">
+    <span>فشارم بده</span>
+  </Button>
+  <Button variant="tinted" color="info">
+    <span>فشارم بده</span>
+  </Button>
+  <Button variant="tinted" color="success">
+    <span>فشارم بده</span>
+  </Button>
+  <Button variant="tinted" color="warning">
+    <span>فشارم بده</span>
+  </Button>
+  <Button variant="tinted" color="danger">
+    <span>فشارم بده</span>
+  </Button>
+  <Button variant="tinted" color="gray">
+    <span>فشارم بده</span>
+  </Button>
+</Container>
+
+### `varinat="outlined"`
+
+<Container>
+  <Button variant="outlined" color="brand">
+    <span>فشارم بده</span>
+  </Button>
+  <Button variant="outlined" color="info">
+    <span>فشارم بده</span>
+  </Button>
+  <Button variant="outlined" color="success">
+    <span>فشارم بده</span>
+  </Button>
+  <Button variant="outlined" color="warning">
+    <span>فشارم بده</span>
+  </Button>
+  <Button variant="outlined" color="danger">
+    <span>فشارم بده</span>
+  </Button>
+  <Button variant="outlined" color="gray">
+    <span>فشارم بده</span>
+  </Button>
+</Container>
+
+## Sizes
+
+<Container>
+  <Button variant="contained" color="brand" size="xs">
+    <span>فشارم بده</span>
+  </Button>
+  <Button variant="contained" color="brand" size="sm">
+    <span>فشارم بده</span>
+  </Button>
+  <Button variant="contained" color="brand" size="md">
+    <span>فشارم بده</span>
+  </Button>
+  <Button variant="contained" color="brand" size="lg">
+    <span>فشارم بده</span>
+  </Button>
+  <Button variant="contained" color="brand" size="xl">
+    <span>فشارم بده</span>
+  </Button>
+</Container>
