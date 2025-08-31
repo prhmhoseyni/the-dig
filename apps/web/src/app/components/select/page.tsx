@@ -35,7 +35,11 @@ export default function SelectPage() {
           <option value="value">label</option>
         </Select>
 
-        <Select variant="secondary" hasError startAdornment={<Activity size={15} />}>
+        <Select
+          variant="secondary"
+          hasError
+          startAdornment={<Activity size={15} />}
+        >
           <option value="value">label</option>
         </Select>
       </div>

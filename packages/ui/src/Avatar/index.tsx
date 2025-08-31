@@ -1,4 +1,11 @@
-import { Children, cloneElement, isValidElement, type ReactNode, useId, type PropsWithChildren } from "react";
+import {
+  Children,
+  cloneElement,
+  isValidElement,
+  type ReactNode,
+  useId,
+  type PropsWithChildren,
+} from "react";
 import clsx from "clsx";
 
 const online = {
@@ -11,7 +18,14 @@ const online = {
       fill="none"
       className="absolute inset-x-0 bottom-0"
     >
-      <circle cx="7" cy="7" r="6" fill="#43A824" stroke="rgb(var(--dig-background-secondary))" strokeWidth="2" />
+      <circle
+        cx="7"
+        cy="7"
+        r="6"
+        fill="#43A824"
+        stroke="rgb(var(--dig-background-secondary))"
+        strokeWidth="2"
+      />
     </svg>
   ),
   md: (
@@ -23,7 +37,14 @@ const online = {
       fill="none"
       className="absolute inset-x-0 bottom-0"
     >
-      <circle cx="6" cy="6" r="5" fill="#43A824" stroke="rgb(var(--dig-background-secondary))" strokeWidth="2" />
+      <circle
+        cx="6"
+        cy="6"
+        r="5"
+        fill="#43A824"
+        stroke="rgb(var(--dig-background-secondary))"
+        strokeWidth="2"
+      />
     </svg>
   ),
   sm: (
@@ -35,7 +56,14 @@ const online = {
       fill="none"
       className="absolute inset-x-0 bottom-0"
     >
-      <circle cx="5" cy="5" r="4" fill="#43A824" stroke="rgb(var(--dig-background-secondary))" strokeWidth="2" />
+      <circle
+        cx="5"
+        cy="5"
+        r="4"
+        fill="#43A824"
+        stroke="rgb(var(--dig-background-secondary))"
+        strokeWidth="2"
+      />
     </svg>
   ),
   xs: (
@@ -47,7 +75,14 @@ const online = {
       fill="none"
       className="absolute inset-x-0 bottom-0"
     >
-      <circle cx="4.5" cy="4.5" r="3.5" fill="#43A824" stroke="rgb(var(--dig-background-secondary))" strokeWidth="2" />
+      <circle
+        cx="4.5"
+        cy="4.5"
+        r="3.5"
+        fill="#43A824"
+        stroke="rgb(var(--dig-background-secondary))"
+        strokeWidth="2"
+      />
     </svg>
   ),
 };
@@ -77,7 +112,14 @@ export interface AvatarProps extends PropsWithChildren {
 }
 
 export function Avatar(props: AvatarProps) {
-  const { src, alt, size = "md", className = "", status = "offline", children } = props;
+  const {
+    src,
+    alt,
+    size = "md",
+    className = "",
+    status = "offline",
+    children,
+  } = props;
 
   const commonClasses = clsx(
     "relative rounded-full inline-flex items-center justify-center bg-gray-400 border-2 border-background-primary",
@@ -88,7 +130,11 @@ export function Avatar(props: AvatarProps) {
   if (src) {
     return (
       <div className={commonClasses}>
-        <img src={src} alt={alt} className="w-full h-full rounded-full object-cover" />
+        <img
+          src={src}
+          alt={alt}
+          className="w-full h-full rounded-full object-cover"
+        />
         {status === "online" ? online[size] : null}
       </div>
     );
@@ -125,11 +171,16 @@ export function AvatarGroup(props: AvatarGroupProps) {
     <div className="flex items-center -space-x-4">
       {visibleAvatars.map((child, index) => {
         if (isValidElement(child)) {
-          return cloneElement(child, { key: `avatar-group-${uuid}-${index}`, size } as Record<string, unknown>);
+          return cloneElement(child, {
+            key: `avatar-group-${uuid}-${index}`,
+            size,
+          } as Record<string, unknown>);
         }
         return child;
       })}
-      {showCount && <Avatar size={size} alt="count">{`+${remainingCount}`}</Avatar>}
+      {showCount && (
+        <Avatar size={size} alt="count">{`+${remainingCount}`}</Avatar>
+      )}
     </div>
   );
 }

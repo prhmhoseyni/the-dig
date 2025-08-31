@@ -21,7 +21,13 @@ const sizes = {
  * :::: types :::
  */
 export type CircularProgressSize = "xs" | "sm" | "md" | "lg";
-export type CircularProgressColor = "brand" | "info" | "success" | "warning" | "danger" | "gray";
+export type CircularProgressColor =
+  | "brand"
+  | "info"
+  | "success"
+  | "warning"
+  | "danger"
+  | "gray";
 
 /**
  * @name CircularProgress component
@@ -34,5 +40,14 @@ export interface CircularProgressProps {
 export default function CircularProgress(props: CircularProgressProps) {
   const { size = "md", color = "brand" } = props;
 
-  return <div className={clsx("rounded-full border-3 border-solid", colors[color], sizes[size], styles["animate-spin"])}></div>;
+  return (
+    <div
+      className={clsx(
+        "rounded-full border-3 border-solid",
+        colors[color],
+        sizes[size],
+        styles["animate-spin"],
+      )}
+    ></div>
+  );
 }

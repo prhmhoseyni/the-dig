@@ -11,7 +11,10 @@ export default function Slider(props: SliderProps<number | number[]>) {
           children: (
             <div
               className="absolute -mt-10 rounded-lg p-2 shadow-alert bg-gray-700 text-subtitle5 text-prose-inverse whitespace-nowrap"
-              style={{ left: `${offset}%`, transform: "translateX(40%)" }}
+              style={{
+                left: `${offset}%`,
+                transform: "translateX(40%)",
+              }}
             >
               {Math.round(Number(value))}%
             </div>

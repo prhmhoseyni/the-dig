@@ -1,10 +1,10 @@
 {
-    "tsx": true,
-    "tailwind": {
-        "version": 4,
-        "css": "/src/css/custom.css"
-    },
-    "aliases": {
-        "components": "/components"
-    }
+  "tsx": true,
+  "tailwind": {
+    "version": 4,
+    "css": "/src/css/custom.css"
+  },
+  "aliases": {
+    "components": "/components"
+  }
 }

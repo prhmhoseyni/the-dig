@@ -19,23 +19,43 @@ export default function TooltipPage() {
         <button>right</button>
       </Tooltip>
 
-      <Tooltip id="left-start" content="این یک راهنمای ابزار است." place="left-start">
+      <Tooltip
+        id="left-start"
+        content="این یک راهنمای ابزار است."
+        place="left-start"
+      >
         <button>left-start</button>
       </Tooltip>
 
-      <Tooltip id="left-end" content="این یک راهنمای ابزار است." place="left-end">
+      <Tooltip
+        id="left-end"
+        content="این یک راهنمای ابزار است."
+        place="left-end"
+      >
         <button>left-end</button>
       </Tooltip>
 
-      <Tooltip id="right-start" content="این یک راهنمای ابزار است." place="right-start">
+      <Tooltip
+        id="right-start"
+        content="این یک راهنمای ابزار است."
+        place="right-start"
+      >
         <button>right-start</button>
       </Tooltip>
 
-      <Tooltip id="right-end" content="این یک راهنمای ابزار است." place="right-end">
+      <Tooltip
+        id="right-end"
+        content="این یک راهنمای ابزار است."
+        place="right-end"
+      >
         <button>right-end</button>
       </Tooltip>
 
-      <Tooltip id="top-start" content="این یک راهنمای ابزار است." place="top-start">
+      <Tooltip
+        id="top-start"
+        content="این یک راهنمای ابزار است."
+        place="top-start"
+      >
         <button>top-start</button>
       </Tooltip>
 
@@ -43,11 +63,19 @@ export default function TooltipPage() {
         <button>top-end</button>
       </Tooltip>
 
-      <Tooltip id="bottom-start" content="این یک راهنمای ابزار است." place="bottom-start">
+      <Tooltip
+        id="bottom-start"
+        content="این یک راهنمای ابزار است."
+        place="bottom-start"
+      >
         <button>bottom-start</button>
       </Tooltip>
 
-      <Tooltip id="bottom-end" content="این یک راهنمای ابزار است." place="bottom-end">
+      <Tooltip
+        id="bottom-end"
+        content="این یک راهنمای ابزار است."
+        place="bottom-end"
+      >
         <button>bottom-end</button>
       </Tooltip>
     </div>

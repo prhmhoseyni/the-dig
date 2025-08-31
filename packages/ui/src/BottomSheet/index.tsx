@@ -1,6 +1,14 @@
 "use client";
 
-import { memo, useEffect, useRef, useState, type MemoExoticComponent, type PropsWithChildren, type ReactNode } from "react";
+import {
+  memo,
+  useEffect,
+  useRef,
+  useState,
+  type MemoExoticComponent,
+  type PropsWithChildren,
+  type ReactNode,
+} from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { type PanInfo } from "motion";
 import clsx from "clsx";
@@ -52,7 +60,10 @@ function BaseBottomSheet(props: BaseBottomSheetProps) {
     };
   }, []);
 
-  const onDrag = (event: MouseEvent | TouchEvent | PointerEvent, info: PanInfo) => {
+  const onDrag = (
+    event: MouseEvent | TouchEvent | PointerEvent,
+    info: PanInfo,
+  ) => {
     if (rightKnobRef.current && leftKnobRef.current) {
       if (info.velocity.y > 0) {
         rightKnobRef.current.style.transform = "rotate(12deg)";
@@ -64,7 +75,10 @@ function BaseBottomSheet(props: BaseBottomSheetProps) {
     }
   };
 
-  const onDragEnd = (event: MouseEvent | TouchEvent | PointerEvent, info: PanInfo) => {
+  const onDragEnd = (
+    event: MouseEvent | TouchEvent | PointerEvent,
+    info: PanInfo,
+  ) => {
     if (rightKnobRef.current && leftKnobRef.current) {
       rightKnobRef.current.style.transform = "rotate(0)";
       leftKnobRef.current.style.transform = "rotate(0)";
@@ -110,16 +124,22 @@ function BaseBottomSheet(props: BaseBottomSheetProps) {
                 <div
                   ref={leftKnobRef}
                   className="bg-gray-400 w-4 h-1 rounded -m-[1px] right-knob"
-                  style={{ transition: "transform ease-in-out 0.1s" }}
+                  style={{
+                    transition: "transform ease-in-out 0.1s",
+                  }}
                 />
                 <div
                   ref={rightKnobRef}
                   className="bg-gray-400 w-4 h-1 rounded -m-[1px] left-knob"
-                  style={{ transition: "transform ease-in-out 0.1s" }}
+                  style={{
+                    transition: "transform ease-in-out 0.1s",
+                  }}
                 />
               </div>
 
-              <div className="text-subtitle2 text-start w-full pt-4">{props.title}</div>
+              <div className="text-subtitle2 text-start w-full pt-4">
+                {props.title}
+              </div>
             </div>
 
             <div className="hidden md:flex items-center justify-between gap-2 py-3 px-4 bg-background-primary rounded-t-2xl">
@@ -141,7 +161,10 @@ interface ComposeProps {
   Body: typeof BottomSheetBody;
 }
 
-const BottomSheet = memo(BaseBottomSheet) as MemoExoticComponent<(props: BaseBottomSheetProps) => ReactNode> & ComposeProps;
+const BottomSheet = memo(BaseBottomSheet) as MemoExoticComponent<
+  (props: BaseBottomSheetProps) => ReactNode
+> &
+  ComposeProps;
 BottomSheet.Body = BottomSheetBody;
 
 export default BottomSheet;

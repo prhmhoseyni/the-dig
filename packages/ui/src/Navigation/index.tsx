@@ -54,7 +54,10 @@ function BaseNavigation(props: BaseNavigationProps) {
   return (
     <div className="fixed inset-x-0 bottom-0 z-[999] flex items-center pt-2 pb-[calc(0.5rem+env(safe-area-inset-bottom))] px-2">
       {Children.map(props.children, (child, index) => {
-        if (isValidElement<NavigationItemProps>(child) && child.type === NavigationItem) {
+        if (
+          isValidElement<NavigationItemProps>(child) &&
+          child.type === NavigationItem
+        ) {
           const active = index === props.value;
           return cloneElement(child, {
             active,
@@ -76,7 +79,10 @@ interface ComposeProps {
   Item: typeof NavigationItem;
 }
 
-const Navigation = memo(BaseNavigation) as MemoExoticComponent<(props: BaseNavigationProps) => ReactNode> & ComposeProps;
+const Navigation = memo(BaseNavigation) as MemoExoticComponent<
+  (props: BaseNavigationProps) => ReactNode
+> &
+  ComposeProps;
 Navigation.Item = NavigationItem;
 
 export default Navigation;

@@ -19,7 +19,9 @@ export async function getTheDigConfig(): Promise<TheDigConfig> {
   try {
     if (!fs.existsSync(configFilePath)) {
       spinner.fail(`${configFileName} not found.`);
-      throw new Error(`Configuration file "${configFileName}" not found. Please run "the-dig init" first.`);
+      throw new Error(
+        `Configuration file "${configFileName}" not found. Please run "the-dig init" first.`,
+      );
     }
 
     const config = (await fs.readJson(configFilePath)) as TheDigConfig;
@@ -38,7 +40,9 @@ export async function getTheDigConfig(): Promise<TheDigConfig> {
  * @param dependencies An array of package names to install.
  * @returns A Promise that resolves when dependencies are installed, or rejects on error.
  */
-export function installDependencies(dependencies: string[] | null): Promise<void> {
+export function installDependencies(
+  dependencies: string[] | null,
+): Promise<void> {
   return new Promise((resolve, reject) => {
     if (!dependencies || dependencies.length === 0) {
       console.log(chalk.gray("No dependencies to install."));
@@ -47,7 +51,9 @@ export function installDependencies(dependencies: string[] | null): Promise<void
     }
 
     const command = `npm install ${dependencies.join(" ")}`;
-    const spinner = ora(`Installing dependencies: ${chalk.cyan(dependencies.join(", "))}`).start();
+    const spinner = ora(
+      `Installing dependencies: ${chalk.cyan(dependencies.join(", "))}`,
+    ).start();
 
     exec(command, (error, stdout, stderr) => {
       if (error) {
@@ -68,14 +74,19 @@ export function installDependencies(dependencies: string[] | null): Promise<void
  * @returns A Promise that resolves with the ComponentsData, or rejects on error.
  */
 export async function getComponentData(): Promise<ComponentsData> {
-  const registryURL = "https://raw.githubusercontent.com/prhmhoseyni/the-dig/refs/heads/main/packages/cli/libs/components.json";
-  const spinner = ora(`Loading component registry from ${chalk.cyan(registryURL)}...`).start();
+  const registryURL =
+    "https://raw.githubusercontent.com/prhmhoseyni/the-dig/refs/heads/main/packages/cli/libs/components.json";
+  const spinner = ora(
+    `Loading component registry from ${chalk.cyan(registryURL)}...`,
+  ).start();
 
   try {
     const response = await fetch(registryURL);
 
     if (!response.ok) {
-      throw new Error(`Failed to fetch component registry: ${response.statusText} (${response.status})`);
+      throw new Error(
+        `Failed to fetch component registry: ${response.statusText} (${response.status})`,
+      );
     }
 
     const componentData = (await response.json()) as ComponentsData;
@@ -95,8 +106,13 @@ export async function getComponentData(): Promise<ComponentsData> {
  * @param destination The local path where the component files should be saved.
  * @returns A Promise that resolves when the component is fetched, or rejects on error.
  */
-export async function fetchComponentFromRepository(repoURL: string, destination: string): Promise<void> {
-  const spinner = ora(`Fetching component from ${chalk.cyan(repoURL)}...`).start();
+export async function fetchComponentFromRepository(
+  repoURL: string,
+  destination: string,
+): Promise<void> {
+  const spinner = ora(
+    `Fetching component from ${chalk.cyan(repoURL)}...`,
+  ).start();
   try {
     const parts = repoURL.split("/");
     const owner = parts[3];
@@ -113,7 +129,9 @@ export async function fetchComponentFromRepository(repoURL: string, destination:
     const files = (await response.json()) as any[];
 
     if (!Array.isArray(files)) {
-      throw new Error("The specified path is not a directory or the repository is private.");
+      throw new Error(
+        "The specified path is not a directory or the repository is private.",
+      );
     }
 
     await fs.ensureDir(destination);
@@ -129,7 +147,9 @@ export async function fetchComponentFromRepository(repoURL: string, destination:
         await fs.writeFile(path.join(destination, file.name), fileContent);
       }
     }
-    spinner.succeed(`Component successfully fetched and placed in ${chalk.green(destination)}.`);
+    spinner.succeed(
+      `Component successfully fetched and placed in ${chalk.green(destination)}.`,
+    );
   } catch (error: any) {
     spinner.fail("Failed to fetch component from Repository.");
     console.error(chalk.red(error.message));

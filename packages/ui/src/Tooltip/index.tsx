@@ -45,7 +45,10 @@ export default function Tooltip(props: TooltipProps) {
     "data-tooltip-place": place,
   };
 
-  const childWithProps = cloneElement(children, newProps as Record<string, unknown>);
+  const childWithProps = cloneElement(
+    children,
+    newProps as Record<string, unknown>,
+  );
 
   return (
     <>

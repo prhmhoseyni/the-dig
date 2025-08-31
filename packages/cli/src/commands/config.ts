@@ -16,7 +16,11 @@ export async function config() {
     const globalCssPathFromConfig = config.tailwind.css;
 
     if (!globalCssPathFromConfig) {
-      console.error(chalk.red(`Error: 'tailwind.css' path not found in .thedigrc.json. Please check your configuration.`));
+      console.error(
+        chalk.red(
+          `Error: 'tailwind.css' path not found in .thedigrc.json. Please check your configuration.`,
+        ),
+      );
       process.exit(1);
     }
 
@@ -37,7 +41,9 @@ export async function config() {
     } else {
       // If the file doesn't exist, create its parent directory if needed
       await fs.ensureDir(path.dirname(globalCssFilePath));
-      spinner.warn(`File ${chalk.yellow(globalCssFilePath)} not found. Creating it.`);
+      spinner.warn(
+        `File ${chalk.yellow(globalCssFilePath)} not found. Creating it.`,
+      );
     }
 
     /**
@@ -51,7 +57,9 @@ export async function config() {
      */
     await fs.writeFile(globalCssFilePath, newContent, "utf8");
 
-    spinner.succeed(`Successfully updated ${chalk.green(globalCssFilePath)} with The DIG styles.`);
+    spinner.succeed(
+      `Successfully updated ${chalk.green(globalCssFilePath)} with The DIG styles.`,
+    );
     console.log(chalk.bold.green(`\n✅ Project CSS configured successfully!`));
   } catch (error: any) {
     console.error(chalk.red(`\n❌ Failed to configure project CSS.`));

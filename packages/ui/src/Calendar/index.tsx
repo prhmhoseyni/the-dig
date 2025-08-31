@@ -1,11 +1,21 @@
 import { ComponentProps, useEffect, useRef } from "react";
 import clsx from "clsx";
-import { ChevronDownIcon, ChevronLeftIcon, ChevronRightIcon } from "lucide-react";
+import {
+  ChevronDownIcon,
+  ChevronLeftIcon,
+  ChevronRightIcon,
+} from "lucide-react";
 import { DayButton, getDefaultClassNames } from "react-day-picker";
 import { DayPicker } from "react-day-picker/persian";
 import IconButton from "../IconButton";
 
-function CalendarDayButton({ className, day, modifiers, color, ...props }: ComponentProps<typeof DayButton>) {
+function CalendarDayButton({
+  className,
+  day,
+  modifiers,
+  color,
+  ...props
+}: ComponentProps<typeof DayButton>) {
   const defaultClassNames = getDefaultClassNames();
 
   const ref = useRef<HTMLButtonElement>(null);
@@ -21,7 +31,12 @@ function CalendarDayButton({ className, day, modifiers, color, ...props }: Compo
       color="gray"
       variant="tinted"
       data-day={day.date.toLocaleDateString()}
-      data-selected-single={modifiers.selected && !modifiers.range_start && !modifiers.range_end && !modifiers.range_middle}
+      data-selected-single={
+        modifiers.selected &&
+        !modifiers.range_start &&
+        !modifiers.range_end &&
+        !modifiers.range_middle
+      }
       data-range-start={modifiers.range_start}
       data-range-end={modifiers.range_end}
       data-range-middle={modifiers.range_middle}
@@ -36,7 +51,13 @@ function CalendarDayButton({ className, day, modifiers, color, ...props }: Compo
 }
 
 export default function Calendar(props: ComponentProps<typeof DayPicker>) {
-  const { className, classNames, components, captionLayout = "label", ...rest } = props;
+  const {
+    className,
+    classNames,
+    components,
+    captionLayout = "label",
+    ...rest
+  } = props;
 
   const defaultClassNames = getDefaultClassNames();
 
@@ -51,9 +72,15 @@ export default function Calendar(props: ComponentProps<typeof DayPicker>) {
       captionLayout={captionLayout}
       classNames={{
         root: clsx("w-fit", defaultClassNames.root),
-        months: clsx("flex gap-4 flex-col md:flex-row relative", defaultClassNames.months),
+        months: clsx(
+          "flex gap-4 flex-col md:flex-row relative",
+          defaultClassNames.months,
+        ),
         month: clsx("flex flex-col w-full gap-4", defaultClassNames.month),
-        nav: clsx("flex items-center gap-1 w-full absolute top-0 inset-x-0 justify-between", defaultClassNames.nav),
+        nav: clsx(
+          "flex items-center gap-1 w-full absolute top-0 inset-x-0 justify-between",
+          defaultClassNames.nav,
+        ),
         month_caption: clsx(
           "flex items-center justify-center h-(--cell-size) w-full px-(--cell-size)",
           defaultClassNames.month_caption,
@@ -66,7 +93,10 @@ export default function Calendar(props: ComponentProps<typeof DayPicker>) {
           "relative has-focus:border-ring border border-input shadow-xs has-focus:ring-ring/50 has-focus:ring-[3px] rounded-md",
           defaultClassNames.dropdown_root,
         ),
-        dropdown: clsx("absolute bg-popover inset-0 opacity-0", defaultClassNames.dropdown),
+        dropdown: clsx(
+          "absolute bg-popover inset-0 opacity-0",
+          defaultClassNames.dropdown,
+        ),
         caption_label: clsx(
           "select-none font-medium",
           captionLayout === "label"
@@ -81,49 +111,94 @@ export default function Calendar(props: ComponentProps<typeof DayPicker>) {
           defaultClassNames.weekday,
         ),
         week: clsx("flex w-full mt-2", defaultClassNames.week),
-        week_number_header: clsx("select-none w-(--cell-size)", defaultClassNames.week_number_header),
-        week_number: clsx("text-[0.8rem] select-none text-muted-foreground", defaultClassNames.week_number),
+        week_number_header: clsx(
+          "select-none w-(--cell-size)",
+          defaultClassNames.week_number_header,
+        ),
+        week_number: clsx(
+          "text-[0.8rem] select-none text-muted-foreground",
+          defaultClassNames.week_number,
+        ),
         day: clsx(
           "relative w-full h-full p-0 text-center [&:first-child[data-selected=true]_button]:rounded-l-md [&:last-child[data-selected=true]_button]:rounded-r-md group/day aspect-square select-none",
           defaultClassNames.day,
         ),
-        range_start: clsx("rounded-l-md bg-accent", defaultClassNames.range_start),
+        range_start: clsx(
+          "rounded-l-md bg-accent",
+          defaultClassNames.range_start,
+        ),
         range_middle: clsx("rounded-none", defaultClassNames.range_middle),
         range_end: clsx("rounded-r-md bg-accent", defaultClassNames.range_end),
-        today: clsx("bg-accent text-accent-foreground rounded-md data-[selected=true]:rounded-none", defaultClassNames.today),
-        outside: clsx("text-muted-foreground aria-selected:text-muted-foreground", defaultClassNames.outside),
-        disabled: clsx("text-muted-foreground opacity-50", defaultClassNames.disabled),
+        today: clsx(
+          "bg-accent text-accent-foreground rounded-md data-[selected=true]:rounded-none",
+          defaultClassNames.today,
+        ),
+        outside: clsx(
+          "text-muted-foreground aria-selected:text-muted-foreground",
+          defaultClassNames.outside,
+        ),
+        disabled: clsx(
+          "text-muted-foreground opacity-50",
+          defaultClassNames.disabled,
+        ),
         hidden: clsx("invisible", defaultClassNames.hidden),
         ...classNames,
       }}
       components={{
         Root: ({ className, rootRef, ...props }) => {
-          return <div data-slot="calendar" ref={rootRef} className={clsx(className)} {...props} />;
+          return (
+            <div
+              data-slot="calendar"
+              ref={rootRef}
+              className={clsx(className)}
+              {...props}
+            />
+          );
         },
         Chevron: ({ className, orientation, ...props }) => {
           if (orientation === "left") {
             return (
-              <IconButton size="xs" color="gray" variant="tinted" className="bg-transparent">
-                <ChevronRightIcon className={clsx("size-4", className)} {...props} />
+              <IconButton
+                size="xs"
+                color="gray"
+                variant="tinted"
+                className="bg-transparent"
+              >
+                <ChevronRightIcon
+                  className={clsx("size-4", className)}
+                  {...props}
+                />
               </IconButton>
             );
           }
 
           if (orientation === "right") {
             return (
-              <IconButton size="xs" color="gray" variant="tinted" className="bg-transparent">
-                <ChevronLeftIcon className={clsx("size-4", className)} {...props} />
+              <IconButton
+                size="xs"
+                color="gray"
+                variant="tinted"
+                className="bg-transparent"
+              >
+                <ChevronLeftIcon
+                  className={clsx("size-4", className)}
+                  {...props}
+                />
               </IconButton>
             );
           }
 
-          return <ChevronDownIcon className={clsx("size-4", className)} {...props} />;
+          return (
+            <ChevronDownIcon className={clsx("size-4", className)} {...props} />
+          );
         },
         DayButton: CalendarDayButton,
         WeekNumber: ({ children, ...props }) => {
           return (
             <td {...props}>
-              <div className="flex size-(--cell-size) items-center justify-center text-center">{children}</div>
+              <div className="flex size-(--cell-size) items-center justify-center text-center">
+                {children}
+              </div>
             </td>
           );
         },

@@ -1,4 +1,8 @@
-import { type DetailedHTMLProps, type ReactNode, type TextareaHTMLAttributes } from "react";
+import {
+  type DetailedHTMLProps,
+  type ReactNode,
+  type TextareaHTMLAttributes,
+} from "react";
 import clsx from "clsx";
 
 /**
@@ -9,14 +13,24 @@ export type TextareaVariant = "primary" | "secondary";
 /**
  * @name Textarea component
  */
-export interface TextareaProps extends DetailedHTMLProps<TextareaHTMLAttributes<HTMLTextAreaElement>, HTMLTextAreaElement> {
+export interface TextareaProps
+  extends DetailedHTMLProps<
+    TextareaHTMLAttributes<HTMLTextAreaElement>,
+    HTMLTextAreaElement
+  > {
   variant?: TextareaVariant;
   hasError?: boolean;
   startAdornment?: ReactNode;
 }
 
 export default function Textarea(props: TextareaProps) {
-  const { variant = "primary", hasError = false, startAdornment, className = "", ...rest } = props;
+  const {
+    variant = "primary",
+    hasError = false,
+    startAdornment,
+    className = "",
+    ...rest
+  } = props;
 
   return (
     <div className="w-full relative">
@@ -27,14 +41,19 @@ export default function Textarea(props: TextareaProps) {
           "focus:border-brand focus:shadow-focus-brand",
           { "bg-background-secondary": variant === "primary" },
           { "bg-background-primary": variant === "secondary" },
-          { "!border-danger focus:!border-danger focus:!shadow-focus-danger": hasError },
+          {
+            "!border-danger focus:!border-danger focus:!shadow-focus-danger":
+              hasError,
+          },
           { "!ps-8": startAdornment },
           className,
         )}
         {...rest}
       />
 
-      {startAdornment && <div className="absolute top-3 start-2">{startAdornment}</div>}
+      {startAdornment && (
+        <div className="absolute top-3 start-2">{startAdornment}</div>
+      )}
     </div>
   );
 }

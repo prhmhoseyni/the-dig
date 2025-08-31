@@ -3,20 +3,26 @@ import clsx from "clsx";
 
 const colors = {
   brand: {
-    contained: "text-prose-inverse bg-brand hover:bg-brand-hover active:bg-brand-active active:shadow-focus-brand",
-    tinted: "text-prose-brand bg-brand-light hover:bg-brand-light-hover active:bg-brand-light-active active:shadow-focus-brand",
+    contained:
+      "text-prose-inverse bg-brand hover:bg-brand-hover active:bg-brand-active active:shadow-focus-brand",
+    tinted:
+      "text-prose-brand bg-brand-light hover:bg-brand-light-hover active:bg-brand-light-active active:shadow-focus-brand",
     outlined:
       "text-prose-brand border border-brand hover:border-brand-hover active:border-brand-active active:shadow-focus-brand",
   },
 
   info: {
-    contained: "text-prose-inverse bg-info hover:bg-info-hover active:bg-info-active active:shadow-focus-info",
-    tinted: "text-prose-info bg-info-light hover:bg-info-light-hover active:bg-info-light-active active:shadow-focus-info",
-    outlined: "text-prose-info border border-info hover:border-info-hover active:border-info-active active:shadow-focus-info",
+    contained:
+      "text-prose-inverse bg-info hover:bg-info-hover active:bg-info-active active:shadow-focus-info",
+    tinted:
+      "text-prose-info bg-info-light hover:bg-info-light-hover active:bg-info-light-active active:shadow-focus-info",
+    outlined:
+      "text-prose-info border border-info hover:border-info-hover active:border-info-active active:shadow-focus-info",
   },
 
   success: {
-    contained: "text-prose-inverse bg-success hover:bg-success-hover active:bg-success-active active:shadow-focus-success",
+    contained:
+      "text-prose-inverse bg-success hover:bg-success-hover active:bg-success-active active:shadow-focus-success",
     tinted:
       "text-prose-success bg-success-light hover:bg-success-light-hover active:bg-success-light-active active:shadow-focus-success",
     outlined:
@@ -24,7 +30,8 @@ const colors = {
   },
 
   warning: {
-    contained: "text-prose-inverse bg-warning hover:bg-warning-hover active:bg-warning-active active:shadow-focus-warning",
+    contained:
+      "text-prose-inverse bg-warning hover:bg-warning-hover active:bg-warning-active active:shadow-focus-warning",
     tinted:
       "text-prose-warning bg-warning-light hover:bg-warning-light-hover active:bg-warning-light-active active:shadow-focus-warning",
     outlined:
@@ -32,7 +39,8 @@ const colors = {
   },
 
   danger: {
-    contained: "text-prose-inverse bg-danger hover:bg-danger-hover active:bg-danger-active active:shadow-focus-danger",
+    contained:
+      "text-prose-inverse bg-danger hover:bg-danger-hover active:bg-danger-active active:shadow-focus-danger",
     tinted:
       "text-prose-danger bg-danger-light hover:bg-danger-light-hover active:bg-danger-light-active active:shadow-focus-danger",
     outlined:
@@ -40,9 +48,12 @@ const colors = {
   },
 
   gray: {
-    contained: "text-prose-inverse bg-gray hover:bg-gray-hover active:bg-gray-active active:shadow-focus-gray",
-    tinted: "text-prose-gray bg-gray-light hover:bg-gray-light-hover active:bg-gray-light-active active:shadow-focus-gray",
-    outlined: "text-prose-gray border border-gray hover:border-gray-hover active:border-gray-active active:shadow-focus-gray",
+    contained:
+      "text-prose-inverse bg-gray hover:bg-gray-hover active:bg-gray-active active:shadow-focus-gray",
+    tinted:
+      "text-prose-gray bg-gray-light hover:bg-gray-light-hover active:bg-gray-light-active active:shadow-focus-gray",
+    outlined:
+      "text-prose-gray border border-gray hover:border-gray-hover active:border-gray-active active:shadow-focus-gray",
   },
 };
 
@@ -58,13 +69,23 @@ const sizes = {
  * :::: types ::::
  */
 export type ButtonVariant = "contained" | "tinted" | "outlined";
-export type ButtonColor = "brand" | "info" | "success" | "warning" | "danger" | "gray";
+export type ButtonColor =
+  | "brand"
+  | "info"
+  | "success"
+  | "warning"
+  | "danger"
+  | "gray";
 export type ButtonSize = "xs" | "sm" | "md" | "lg" | "xl";
 
 /**
  * @name Button component
  */
-export interface ButtonProps extends DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement> {
+export interface ButtonProps
+  extends DetailedHTMLProps<
+    ButtonHTMLAttributes<HTMLButtonElement>,
+    HTMLButtonElement
+  > {
   variant?: ButtonVariant;
   color?: ButtonColor;
   size?: ButtonSize;
@@ -102,7 +123,14 @@ export default function Button(props: ButtonProps) {
           fill="none"
           viewBox="0 0 24 24"
         >
-          <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+          <circle
+            className="opacity-25"
+            cx="12"
+            cy="12"
+            r="10"
+            stroke="currentColor"
+            strokeWidth="4"
+          ></circle>
           <path
             className="opacity-75"
             fill="currentColor"

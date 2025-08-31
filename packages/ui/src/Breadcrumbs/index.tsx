@@ -1,4 +1,9 @@
-import { Children, Fragment, type PropsWithChildren, type ReactNode } from "react";
+import {
+  Children,
+  Fragment,
+  type PropsWithChildren,
+  type ReactNode,
+} from "react";
 
 /**
  * @name Breadcrumbs component
@@ -17,7 +22,9 @@ export default function Breadcrumbs(props: BreadcrumbsProps) {
       {Children.map(children, (child, index) => (
         <Fragment key={index}>
           {child}
-          {!(index === childrenCount - 1) && <span className="text-gray-500">{separator ?? "/"}</span>}
+          {!(index === childrenCount - 1) && (
+            <span className="text-gray-500">{separator ?? "/"}</span>
+          )}
         </Fragment>
       ))}
     </nav>

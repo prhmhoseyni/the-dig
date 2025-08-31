@@ -8,7 +8,11 @@ export default function Page() {
 
   return (
     <div className="flex items-center gap-4 p-4">
-      <DatePicker value={value} onChange={(val) => setValue(val)} inputProps={{ placeholder: "تاریخ را انتخاب کنید" }} />
+      <DatePicker
+        value={value}
+        onChange={(val) => setValue(val)}
+        inputProps={{ placeholder: "تاریخ را انتخاب کنید" }}
+      />
     </div>
   );
 }

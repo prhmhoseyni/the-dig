@@ -22,11 +22,23 @@ export default function MenuPage() {
         Open Menu
       </Button>
 
-      <Menu anchor={anchorRef.current} open={menuOpen} onClose={handleCloseMenu}>
-        <Menu.Item onClick={() => handleMenuItemClick("Item 1")}>عنوان ایتم منو</Menu.Item>
-        <Menu.Item onClick={() => handleMenuItemClick("Item 2 (Checked)")}>عنوان ایتم منو</Menu.Item>
-        <Menu.Item onClick={() => handleMenuItemClick("Item 3 (Selected)")}>عنوان ایتم منو</Menu.Item>
-        <Menu.Item onClick={() => handleMenuItemClick("Item 4 (SubMenu)")}>عنوان ایتم منو</Menu.Item>
+      <Menu
+        anchor={anchorRef.current}
+        open={menuOpen}
+        onClose={handleCloseMenu}
+      >
+        <Menu.Item onClick={() => handleMenuItemClick("Item 1")}>
+          عنوان ایتم منو
+        </Menu.Item>
+        <Menu.Item onClick={() => handleMenuItemClick("Item 2 (Checked)")}>
+          عنوان ایتم منو
+        </Menu.Item>
+        <Menu.Item onClick={() => handleMenuItemClick("Item 3 (Selected)")}>
+          عنوان ایتم منو
+        </Menu.Item>
+        <Menu.Item onClick={() => handleMenuItemClick("Item 4 (SubMenu)")}>
+          عنوان ایتم منو
+        </Menu.Item>
         <div>123</div>
       </Menu>
     </div>

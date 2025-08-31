@@ -19,7 +19,11 @@ export default function BottomSheetPage() {
         </Button>
       </div>
 
-      <BottomSheet title="This is a test bottom sheet" isOpen={isOpenBottomSheet} onClose={() => setIsOpenBottomSheet(false)}>
+      <BottomSheet
+        title="This is a test bottom sheet"
+        isOpen={isOpenBottomSheet}
+        onClose={() => setIsOpenBottomSheet(false)}
+      >
         <BottomSheet.Body>
           <ul>
             <li>start</li>

@@ -26,7 +26,9 @@ export async function init() {
       },
     };
 
-    const spinner = ora(`Creating ${chalk.cyan(configFileName)} at ${chalk.gray(configFilePath)}...`).start();
+    const spinner = ora(
+      `Creating ${chalk.cyan(configFileName)} at ${chalk.gray(configFilePath)}...`,
+    ).start();
 
     try {
       await fs.writeJson(configFilePath, configContent, { spaces: 2 });
@@ -42,7 +44,9 @@ export async function init() {
      */
     await installDependencies(["clsx", "lucide-react"]);
 
-    console.log(chalk.bold.green(`\n✨ The DIG project initialized successfully!`));
+    console.log(
+      chalk.bold.green(`\n✨ The DIG project initialized successfully!`),
+    );
   } catch (error) {
     console.error(chalk.red(`\n❌ Failed to initialize The DIG project.`));
     process.exit(1);

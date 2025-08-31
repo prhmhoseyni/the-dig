@@ -20,13 +20,23 @@ const sizes = {
 /**
  * :::: types ::::
  */
-export type SwitchColor = "brand" | "info" | "success" | "warning" | "danger" | "gray";
+export type SwitchColor =
+  | "brand"
+  | "info"
+  | "success"
+  | "warning"
+  | "danger"
+  | "gray";
 export type SwitchSize = "sm" | "md" | "lg";
 
 /**
  * @name Switch component
  */
-export interface SwitchProps extends Omit<DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>, "size"> {
+export interface SwitchProps
+  extends Omit<
+    DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>,
+    "size"
+  > {
   color?: "brand" | "info" | "success" | "warning" | "danger" | "gray";
   size?: "sm" | "md" | "lg";
 }

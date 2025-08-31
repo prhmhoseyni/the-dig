@@ -15,7 +15,11 @@ export default function DialogPage() {
         </Button>
       </div>
 
-      <Dialog title="This is a test bottom sheet" isOpen={isOpenDialog} onClose={() => setIsOpenDialog(false)}>
+      <Dialog
+        title="This is a test bottom sheet"
+        isOpen={isOpenDialog}
+        onClose={() => setIsOpenDialog(false)}
+      >
         <Dialog.Header>
           <div>123</div>
         </Dialog.Header>

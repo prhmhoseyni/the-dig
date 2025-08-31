@@ -1,8 +1,18 @@
-import React, { useRef, useEffect, useState, ReactNode, HTMLAttributes, DetailedHTMLProps } from "react";
+import React, {
+  useRef,
+  useEffect,
+  useState,
+  ReactNode,
+  HTMLAttributes,
+  DetailedHTMLProps,
+} from "react";
 import ReactDOM from "react-dom";
 import clsx from "clsx";
 
-type MenuItemProps = DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>;
+type MenuItemProps = DetailedHTMLProps<
+  HTMLAttributes<HTMLDivElement>,
+  HTMLDivElement
+>;
 
 function MenuItem(props: MenuItemProps) {
   const { children, className, ...rest } = props;
@@ -48,7 +58,10 @@ type MenuComponent = React.FC<MenuProps> & {
 
 const Menu: MenuComponent = ({ anchor, open, onClose, children }) => {
   const menuRef = useRef<HTMLDivElement>(null);
-  const [position, setPosition] = useState<{ top: number; left: number } | null>(null);
+  const [position, setPosition] = useState<{
+    top: number;
+    left: number;
+  } | null>(null);
   const [portalNode, setPortalNode] = useState<HTMLElement | null>(null);
 
   useEffect(() => {
@@ -63,7 +76,10 @@ const Menu: MenuComponent = ({ anchor, open, onClose, children }) => {
     }
     const updatePosition = () => {
       const anchorRect = anchor.getBoundingClientRect();
-      setPosition({ top: anchorRect.bottom + window.scrollY, left: anchorRect.left + window.scrollX });
+      setPosition({
+        top: anchorRect.bottom + window.scrollY,
+        left: anchorRect.left + window.scrollX,
+      });
     };
     updatePosition();
     window.addEventListener("scroll", updatePosition);

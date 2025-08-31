@@ -57,54 +57,198 @@
   --color-prose-hint: rgb(var(--dig-prose-hint));
   --color-prose-inverse: rgb(var(--dig-prose-inverse));
   --color-prose-link: rgb(var(--dig-prose-link));
-  --color-prose-brand: color-mix(in srgb, rgb(var(--dig-brand)), var(--dig-color-mix-prose));
-  --color-prose-info: color-mix(in srgb, rgb(var(--dig-info)), var(--dig-color-mix-prose));
-  --color-prose-success: color-mix(in srgb, rgb(var(--dig-success)), var(--dig-color-mix-prose));
-  --color-prose-warning: color-mix(in srgb, rgb(var(--dig-warning)), var(--dig-color-mix-prose));
-  --color-prose-danger: color-mix(in srgb, rgb(var(--dig-danger)), var(--dig-color-mix-prose));
-  --color-prose-gray: color-mix(in srgb, rgb(var(--dig-gray)), var(--dig-color-mix-prose));
+  --color-prose-brand: color-mix(
+    in srgb,
+    rgb(var(--dig-brand)),
+    var(--dig-color-mix-prose)
+  );
+  --color-prose-info: color-mix(
+    in srgb,
+    rgb(var(--dig-info)),
+    var(--dig-color-mix-prose)
+  );
+  --color-prose-success: color-mix(
+    in srgb,
+    rgb(var(--dig-success)),
+    var(--dig-color-mix-prose)
+  );
+  --color-prose-warning: color-mix(
+    in srgb,
+    rgb(var(--dig-warning)),
+    var(--dig-color-mix-prose)
+  );
+  --color-prose-danger: color-mix(
+    in srgb,
+    rgb(var(--dig-danger)),
+    var(--dig-color-mix-prose)
+  );
+  --color-prose-gray: color-mix(
+    in srgb,
+    rgb(var(--dig-gray)),
+    var(--dig-color-mix-prose)
+  );
 
   --color-brand: rgb(var(--dig-brand));
-  --color-brand-hover: color-mix(in srgb, rgb(var(--dig-brand)), var(--dig-color-mix-hover));
-  --color-brand-active: color-mix(in srgb, rgb(var(--dig-brand)), var(--dig-color-mix-active));
-  --color-brand-light: color-mix(in srgb, rgb(var(--dig-brand)), var(--dig-color-mix-light));
-  --color-brand-light-hover: color-mix(in srgb, rgb(var(--dig-brand)), var(--dig-color-mix-light-hover));
-  --color-brand-light-active: color-mix(in srgb, rgb(var(--dig-brand)), var(--dig-color-mix-light-active));
+  --color-brand-hover: color-mix(
+    in srgb,
+    rgb(var(--dig-brand)),
+    var(--dig-color-mix-hover)
+  );
+  --color-brand-active: color-mix(
+    in srgb,
+    rgb(var(--dig-brand)),
+    var(--dig-color-mix-active)
+  );
+  --color-brand-light: color-mix(
+    in srgb,
+    rgb(var(--dig-brand)),
+    var(--dig-color-mix-light)
+  );
+  --color-brand-light-hover: color-mix(
+    in srgb,
+    rgb(var(--dig-brand)),
+    var(--dig-color-mix-light-hover)
+  );
+  --color-brand-light-active: color-mix(
+    in srgb,
+    rgb(var(--dig-brand)),
+    var(--dig-color-mix-light-active)
+  );
 
   --color-info: rgb(var(--dig-info));
-  --color-info-hover: color-mix(in srgb, rgb(var(--dig-info)), var(--dig-color-mix-hover));
-  --color-info-active: color-mix(in srgb, rgb(var(--dig-info)), var(--dig-color-mix-active));
-  --color-info-light: color-mix(in srgb, rgb(var(--dig-info)), var(--dig-color-mix-light));
-  --color-info-light-light: color-mix(in srgb, rgb(var(--dig-info)), var(--dig-color-mix-light-hover));
-  --color-info-light-active: color-mix(in srgb, rgb(var(--dig-info)), var(--dig-color-mix-light-active));
+  --color-info-hover: color-mix(
+    in srgb,
+    rgb(var(--dig-info)),
+    var(--dig-color-mix-hover)
+  );
+  --color-info-active: color-mix(
+    in srgb,
+    rgb(var(--dig-info)),
+    var(--dig-color-mix-active)
+  );
+  --color-info-light: color-mix(
+    in srgb,
+    rgb(var(--dig-info)),
+    var(--dig-color-mix-light)
+  );
+  --color-info-light-light: color-mix(
+    in srgb,
+    rgb(var(--dig-info)),
+    var(--dig-color-mix-light-hover)
+  );
+  --color-info-light-active: color-mix(
+    in srgb,
+    rgb(var(--dig-info)),
+    var(--dig-color-mix-light-active)
+  );
 
   --color-success: rgb(var(--dig-success));
-  --color-success-hover: color-mix(in srgb, rgb(var(--dig-success)), var(--dig-color-mix-hover));
-  --color-success-active: color-mix(in srgb, rgb(var(--dig-success)), var(--dig-color-mix-active));
-  --color-success-light: color-mix(in srgb, rgb(var(--dig-success)), var(--dig-color-mix-light));
-  --color-success-light-hover: color-mix(in srgb, rgb(var(--dig-success)), var(--dig-color-mix-light-hover));
-  --color-success-light-active: color-mix(in srgb, rgb(var(--dig-success)), var(--dig-color-mix-light-active));
+  --color-success-hover: color-mix(
+    in srgb,
+    rgb(var(--dig-success)),
+    var(--dig-color-mix-hover)
+  );
+  --color-success-active: color-mix(
+    in srgb,
+    rgb(var(--dig-success)),
+    var(--dig-color-mix-active)
+  );
+  --color-success-light: color-mix(
+    in srgb,
+    rgb(var(--dig-success)),
+    var(--dig-color-mix-light)
+  );
+  --color-success-light-hover: color-mix(
+    in srgb,
+    rgb(var(--dig-success)),
+    var(--dig-color-mix-light-hover)
+  );
+  --color-success-light-active: color-mix(
+    in srgb,
+    rgb(var(--dig-success)),
+    var(--dig-color-mix-light-active)
+  );
 
   --color-warning: rgb(var(--dig-warning));
-  --color-warning-hover: color-mix(in srgb, rgb(var(--dig-warning)), var(--dig-color-mix-hover));
-  --color-warning-active: color-mix(in srgb, rgb(var(--dig-warning)), var(--dig-color-mix-active));
-  --color-warning-light: color-mix(in srgb, rgb(var(--dig-warning)), var(--dig-color-mix-light));
-  --color-warning-light-hover: color-mix(in srgb, rgb(var(--dig-warning)), var(--dig-color-mix-light-hover));
-  --color-warning-light-active: color-mix(in srgb, rgb(var(--dig-warning)), var(--dig-color-mix-light-active));
+  --color-warning-hover: color-mix(
+    in srgb,
+    rgb(var(--dig-warning)),
+    var(--dig-color-mix-hover)
+  );
+  --color-warning-active: color-mix(
+    in srgb,
+    rgb(var(--dig-warning)),
+    var(--dig-color-mix-active)
+  );
+  --color-warning-light: color-mix(
+    in srgb,
+    rgb(var(--dig-warning)),
+    var(--dig-color-mix-light)
+  );
+  --color-warning-light-hover: color-mix(
+    in srgb,
+    rgb(var(--dig-warning)),
+    var(--dig-color-mix-light-hover)
+  );
+  --color-warning-light-active: color-mix(
+    in srgb,
+    rgb(var(--dig-warning)),
+    var(--dig-color-mix-light-active)
+  );
 
   --color-danger: rgb(var(--dig-danger));
-  --color-danger-hover: color-mix(in srgb, rgb(var(--dig-danger)), var(--dig-color-mix-hover));
-  --color-danger-active: color-mix(in srgb, rgb(var(--dig-danger)), var(--dig-color-mix-active));
-  --color-danger-light: color-mix(in srgb, rgb(var(--dig-danger)), var(--dig-color-mix-light));
-  --color-danger-light-hover: color-mix(in srgb, rgb(var(--dig-danger)), var(--dig-color-mix-light-hover));
-  --color-danger-light-active: color-mix(in srgb, rgb(var(--dig-danger)), var(--dig-color-mix-light-active));
+  --color-danger-hover: color-mix(
+    in srgb,
+    rgb(var(--dig-danger)),
+    var(--dig-color-mix-hover)
+  );
+  --color-danger-active: color-mix(
+    in srgb,
+    rgb(var(--dig-danger)),
+    var(--dig-color-mix-active)
+  );
+  --color-danger-light: color-mix(
+    in srgb,
+    rgb(var(--dig-danger)),
+    var(--dig-color-mix-light)
+  );
+  --color-danger-light-hover: color-mix(
+    in srgb,
+    rgb(var(--dig-danger)),
+    var(--dig-color-mix-light-hover)
+  );
+  --color-danger-light-active: color-mix(
+    in srgb,
+    rgb(var(--dig-danger)),
+    var(--dig-color-mix-light-active)
+  );
 
   --color-gray: rgb(var(--dig-gray));
-  --color-gray-hover: color-mix(in srgb, rgb(var(--dig-gray)), var(--dig-color-mix-hover));
-  --color-gray-active: color-mix(in srgb, rgb(var(--dig-gray)), var(--dig-color-mix-active));
-  --color-gray-light: color-mix(in srgb, rgb(var(--dig-gray)), var(--dig-color-mix-light));
-  --color-gray-light-hover: color-mix(in srgb, rgb(var(--dig-gray)), var(--dig-color-mix-light-hover));
-  --color-gray-light-active: color-mix(in srgb, rgb(var(--dig-gray)), var(--dig-color-mix-light-active));
+  --color-gray-hover: color-mix(
+    in srgb,
+    rgb(var(--dig-gray)),
+    var(--dig-color-mix-hover)
+  );
+  --color-gray-active: color-mix(
+    in srgb,
+    rgb(var(--dig-gray)),
+    var(--dig-color-mix-active)
+  );
+  --color-gray-light: color-mix(
+    in srgb,
+    rgb(var(--dig-gray)),
+    var(--dig-color-mix-light)
+  );
+  --color-gray-light-hover: color-mix(
+    in srgb,
+    rgb(var(--dig-gray)),
+    var(--dig-color-mix-light-hover)
+  );
+  --color-gray-light-active: color-mix(
+    in srgb,
+    rgb(var(--dig-gray)),
+    var(--dig-color-mix-light-active)
+  );
 
   --color-gray-100: var(--dig-gray-100);
   --color-gray-200: var(--dig-gray-200);
@@ -223,10 +367,18 @@
 
   /** :::: shadows :::: */
   --shadow-xs: 0px 1px 2px 0px rgba(16, 24, 40, 0.05);
-  --shadow-sm: 0px 1px 2px 0px rgba(16, 24, 40, 0.06), 0px 1px 3px 0px rgba(16, 24, 40, 0.1);
-  --shadow-md: 0px 2px 4px 0px rgba(16, 24, 40, 0.06), 0px 4px 8px -2px rgba(16, 24, 40, 0.1);
-  --shadow-lg: 0px 4px 6px -2px rgba(16, 24, 40, 0.03), 0px 12px 16px -4px rgba(16, 24, 40, 0.08);
-  --shadow-xl: 0px 8px 8px -4px rgba(16, 24, 40, 0.03), 0px 20px 24px -4px rgba(16, 24, 40, 0.08);
+  --shadow-sm:
+    0px 1px 2px 0px rgba(16, 24, 40, 0.06), 0px 1px 3px 0px
+    rgba(16, 24, 40, 0.1);
+  --shadow-md:
+    0px 2px 4px 0px rgba(16, 24, 40, 0.06), 0px 4px 8px -2px
+    rgba(16, 24, 40, 0.1);
+  --shadow-lg:
+    0px 4px 6px -2px rgba(16, 24, 40, 0.03), 0px 12px 16px -4px
+    rgba(16, 24, 40, 0.08);
+  --shadow-xl:
+    0px 8px 8px -4px rgba(16, 24, 40, 0.03), 0px 20px 24px -4px
+    rgba(16, 24, 40, 0.08);
   --shadow-2xl: 0px 24px 48px -12px rgba(16, 24, 40, 0.18);
   --shadow-3xl: 0px 32px 64px -12px rgba(16, 24, 40, 0.14);
 
@@ -240,17 +392,34 @@
   --shadow-btn-warning: 0px 10px 20px 0px rgba(var(--dig-warning), 0.14);
   --shadow-btn-danger: 0px 10px 20px 0px rgba(var(--dig-danger), 0.14);
 
-  --shadow-focus-brand: 0px 0px 0px 1px rgb(var(--dig-background-primary)), 0px 0px 0px 4px rgba(var(--dig-brand), 0.14);
-  --shadow-focus-info: 0px 0px 0px 1px rgb(var(--dig-background-primary)), 0px 0px 0px 4px rgba(var(--dig-info), 0.14);
-  --shadow-focus-success: 0px 0px 0px 1px rgb(var(--dig-background-primary)), 0px 0px 0px 4px rgba(var(--dig-success), 0.14);
-  --shadow-focus-warning: 0px 0px 0px 1px rgb(var(--dig-background-primary)), 0px 0px 0px 4px rgba(var(--dig-warning), 0.14);
-  --shadow-focus-danger: 0px 0px 0px 1px rgb(var(--dig-background-primary)), 0px 0px 0px 4px rgba(var(--dig-danger), 0.14);
-  --shadow-focus-gray: 0px 0px 0px 1px rgb(var(--dig-background-primary)), 0px 0px 0px 4px rgba(var(--dig-danger), 0.06);
+  --shadow-focus-brand:
+    0px 0px 0px 1px rgb(var(--dig-background-primary)), 0px 0px 0px 4px
+    rgba(var(--dig-brand), 0.14);
+  --shadow-focus-info:
+    0px 0px 0px 1px rgb(var(--dig-background-primary)), 0px 0px 0px 4px
+    rgba(var(--dig-info), 0.14);
+  --shadow-focus-success:
+    0px 0px 0px 1px rgb(var(--dig-background-primary)), 0px 0px 0px 4px
+    rgba(var(--dig-success), 0.14);
+  --shadow-focus-warning:
+    0px 0px 0px 1px rgb(var(--dig-background-primary)), 0px 0px 0px 4px
+    rgba(var(--dig-warning), 0.14);
+  --shadow-focus-danger:
+    0px 0px 0px 1px rgb(var(--dig-background-primary)), 0px 0px 0px 4px
+    rgba(var(--dig-danger), 0.14);
+  --shadow-focus-gray:
+    0px 0px 0px 1px rgb(var(--dig-background-primary)), 0px 0px 0px 4px
+    rgba(var(--dig-danger), 0.06);
 
-  --shadow-dialog: 0px 20px 24px -4px rgba(16, 24, 40, 0.1), 0px 8px 8px -4px rgba(16, 24, 40, 0.04);
+  --shadow-dialog:
+    0px 20px 24px -4px rgba(16, 24, 40, 0.1), 0px 8px 8px -4px
+    rgba(16, 24, 40, 0.04);
   --shadow-menu: 0px 4px 8px 0px rgba(39, 41, 55, 0.08);
-  --shadow-control: 0px 1px 0.5px 0.05px rgba(24, 24, 27, 0.05), 0px -4px 8px 0px rgba(0, 0, 0, 0.02);
-  --shadow-alert: 0px 2px 7px 0px rgba(0, 0, 0, 0.15), 0px 5px 17px 0px rgba(0, 0, 0, 0.2);
+  --shadow-control:
+    0px 1px 0.5px 0.05px rgba(24, 24, 27, 0.05), 0px -4px 8px 0px
+    rgba(0, 0, 0, 0.02);
+  --shadow-alert:
+    0px 2px 7px 0px rgba(0, 0, 0, 0.15), 0px 5px 17px 0px rgba(0, 0, 0, 0.2);
 }
 
 @layer base {

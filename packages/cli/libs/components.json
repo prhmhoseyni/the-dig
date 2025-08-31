@@ -36,7 +36,11 @@
     "src": "https://github.com/prhmhoseyni/the-dig/tree/main/packages/ui/src/CircularProgress"
   },
   "DatePicker": {
-    "dependencies": ["@hassanmojab/react-modern-calendar-datepicker", "jalali-moment", "msk-utils"],
+    "dependencies": [
+      "@hassanmojab/react-modern-calendar-datepicker",
+      "jalali-moment",
+      "msk-utils"
+    ],
     "src": "https://github.com/prhmhoseyni/the-dig/tree/main/packages/ui/src/DatePicker"
   },
   "Dialog": {

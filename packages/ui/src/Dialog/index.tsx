@@ -1,6 +1,14 @@
 "use client";
 
-import { memo, useEffect, useRef, useState, type MemoExoticComponent, type PropsWithChildren, type ReactNode } from "react";
+import {
+  memo,
+  useEffect,
+  useRef,
+  useState,
+  type MemoExoticComponent,
+  type PropsWithChildren,
+  type ReactNode,
+} from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { type PanInfo } from "motion";
 import clsx from "clsx";
@@ -14,7 +22,12 @@ export interface DialogHeaderProps extends PropsWithChildren {
 
 function DialogHeader(props: DialogHeaderProps) {
   return (
-    <div className={clsx("bg-background-primary md:rounded-t-2xl p-5 border-b border-gray-300", props.className)}>
+    <div
+      className={clsx(
+        "bg-background-primary md:rounded-t-2xl p-5 border-b border-gray-300",
+        props.className,
+      )}
+    >
       {props.children}
     </div>
   );
@@ -28,7 +41,11 @@ export interface DialogBodyProps extends PropsWithChildren {
 }
 
 function DialogBody(props: DialogBodyProps) {
-  return <div className={clsx("bg-background-primary p-5", props.className)}>{props.children}</div>;
+  return (
+    <div className={clsx("bg-background-primary p-5", props.className)}>
+      {props.children}
+    </div>
+  );
 }
 
 /**
@@ -39,7 +56,16 @@ export interface DialogFooterProps extends PropsWithChildren {
 }
 
 function DialogFooter(props: DialogFooterProps) {
-  return <div className={clsx("bg-background-primary md:rounded-b-2xl px-5 py-4", props.className)}>{props.children}</div>;
+  return (
+    <div
+      className={clsx(
+        "bg-background-primary md:rounded-b-2xl px-5 py-4",
+        props.className,
+      )}
+    >
+      {props.children}
+    </div>
+  );
 }
 
 /**
@@ -69,7 +95,10 @@ function BaseDialog(props: BaseDialogProps) {
     };
   }, []);
 
-  const onDrag = (event: MouseEvent | TouchEvent | PointerEvent, info: PanInfo) => {
+  const onDrag = (
+    event: MouseEvent | TouchEvent | PointerEvent,
+    info: PanInfo,
+  ) => {
     if (rightKnobRef.current && leftKnobRef.current) {
       if (info.velocity.y > 0) {
         rightKnobRef.current.style.transform = "rotate(12deg)";
@@ -81,7 +110,10 @@ function BaseDialog(props: BaseDialogProps) {
     }
   };
 
-  const onDragEnd = (event: MouseEvent | TouchEvent | PointerEvent, info: PanInfo) => {
+  const onDragEnd = (
+    event: MouseEvent | TouchEvent | PointerEvent,
+    info: PanInfo,
+  ) => {
     if (rightKnobRef.current && leftKnobRef.current) {
       rightKnobRef.current.style.transform = "rotate(0)";
       leftKnobRef.current.style.transform = "rotate(0)";
@@ -127,12 +159,16 @@ function BaseDialog(props: BaseDialogProps) {
                 <div
                   ref={leftKnobRef}
                   className="bg-gray-400 w-4 h-1 rounded -m-[1px] right-knob"
-                  style={{ transition: "transform ease-in-out 0.1s" }}
+                  style={{
+                    transition: "transform ease-in-out 0.1s",
+                  }}
                 />
                 <div
                   ref={rightKnobRef}
                   className="bg-gray-400 w-4 h-1 rounded -m-[1px] left-knob"
-                  style={{ transition: "transform ease-in-out 0.1s" }}
+                  style={{
+                    transition: "transform ease-in-out 0.1s",
+                  }}
                 />
               </div>
             </div>
@@ -154,7 +190,10 @@ interface ComposeProps {
   Footer: typeof DialogFooter;
 }
 
-const Dialog = memo(BaseDialog) as MemoExoticComponent<(props: BaseDialogProps) => ReactNode> & ComposeProps;
+const Dialog = memo(BaseDialog) as MemoExoticComponent<
+  (props: BaseDialogProps) => ReactNode
+> &
+  ComposeProps;
 Dialog.Header = DialogHeader;
 Dialog.Body = DialogBody;
 Dialog.Footer = DialogFooter;

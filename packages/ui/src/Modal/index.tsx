@@ -5,7 +5,13 @@ import Button from "../Button";
 
 function InfoIcon() {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" width="56" height="56" viewBox="0 0 56 56" fill="none">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="56"
+      height="56"
+      viewBox="0 0 56 56"
+      fill="none"
+    >
       <path
         d="M0 28C0 12.536 12.536 0 28 0C43.464 0 56 12.536 56 28C56 43.464 43.464 56 28 56C12.536 56 0 43.464 0 28Z"
         fill="#1991FF"
@@ -29,7 +35,13 @@ function InfoIcon() {
 
 function SuccessIcon() {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" width="56" height="56" viewBox="0 0 56 56" fill="none">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="56"
+      height="56"
+      viewBox="0 0 56 56"
+      fill="none"
+    >
       <path
         d="M0 28C0 12.536 12.536 0 28 0C43.464 0 56 12.536 56 28C56 43.464 43.464 56 28 56C12.536 56 0 43.464 0 28Z"
         fill="#43A824"
@@ -53,7 +65,13 @@ function SuccessIcon() {
 
 function DangerIcon() {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" width="56" height="56" viewBox="0 0 56 56" fill="none">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="56"
+      height="56"
+      viewBox="0 0 56 56"
+      fill="none"
+    >
       <path
         d="M0 28C0 12.536 12.536 0 28 0C43.464 0 56 12.536 56 28C56 43.464 43.464 56 28 56C12.536 56 0 43.464 0 28Z"
         fill="#F1380E"
@@ -77,7 +95,13 @@ function DangerIcon() {
 
 function WarningIcon() {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" width="56" height="56" viewBox="0 0 56 56" fill="none">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="56"
+      height="56"
+      viewBox="0 0 56 56"
+      fill="none"
+    >
       <path
         d="M0 28C0 12.536 12.536 0 28 0C43.464 0 56 12.536 56 28C56 43.464 43.464 56 28 56C12.536 56 0 43.464 0 28Z"
         fill="#FF9500"
@@ -143,15 +167,25 @@ export default function Modal(props: ModalProps) {
             exit={{ opacity: 0 }}
             transition={{ ease: "easeOut" }}
           >
-            <div className="flex items-center justify-center">{icons[props.type]}</div>
+            <div className="flex items-center justify-center">
+              {icons[props.type]}
+            </div>
 
             <div className="flex flex-col items-center justify-center text-center gap-2 pt-5 pb-6">
               <p className="text-subtitle2 text-prose-primary">{props.title}</p>
-              <p className="text-paragraph3 text-prose-secondary">{props.description}</p>
+              <p className="text-paragraph3 text-prose-secondary">
+                {props.description}
+              </p>
             </div>
 
             <div className="w-full flex justify-center items-center gap-2">
-              <Button color="gray" variant="tinted" className="flex-1 w-full" onClick={props.onDeny} disabled={isLoading}>
+              <Button
+                color="gray"
+                variant="tinted"
+                className="flex-1 w-full"
+                onClick={props.onDeny}
+                disabled={isLoading}
+              >
                 انصراف
               </Button>
 

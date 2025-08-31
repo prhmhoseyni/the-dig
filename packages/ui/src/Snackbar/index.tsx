@@ -18,7 +18,13 @@ export default function Snackbar(props: SnackbarProps) {
             onClick={onClose}
             className="cursor-pointer text-prose-inverse w-12 h-10 flex items-center justify-center rounded-full"
           >
-            <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 10 10" fill="none">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="10"
+              height="10"
+              viewBox="0 0 10 10"
+              fill="none"
+            >
               <path
                 d="M0.999999 1.00001L9.00001 9M8.99995 1L0.99994 8.99999"
                 stroke="white"
@@ -35,7 +41,10 @@ export default function Snackbar(props: SnackbarProps) {
 
       {showMoreHref && (
         <>
-          <a href={showMoreHref} className="flex items-center px-4 text-subtitle5 text-prose-inverse">
+          <a
+            href={showMoreHref}
+            className="flex items-center px-4 text-subtitle5 text-prose-inverse"
+          >
             مشاهده بیشتر
           </a>
 
@@ -43,7 +52,9 @@ export default function Snackbar(props: SnackbarProps) {
         </>
       )}
 
-      <div className="flex items-center gap-3 p-3 text-prose-inverse text-label3">{children}</div>
+      <div className="flex items-center gap-3 p-3 text-prose-inverse text-label3">
+        {children}
+      </div>
     </div>
   );
 }

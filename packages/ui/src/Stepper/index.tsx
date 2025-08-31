@@ -24,7 +24,9 @@ export default function Stepper(props: StepperProps) {
           key={item.title}
           className={clsx(
             "relative flex gap-2",
-            vertical ? "flex-row pb-8 gap-3 justify-start items-start" : "flex-col justify-center items-center px-3 sm:px-4",
+            vertical
+              ? "flex-row pb-8 gap-3 justify-start items-start"
+              : "flex-col justify-center items-center px-3 sm:px-4",
             onChange && "cursor-pointer",
           )}
           onClick={() => onChange && onChange(index)}
@@ -45,15 +47,26 @@ export default function Stepper(props: StepperProps) {
           {index < steps.length - 1 &&
             (vertical ? (
               <div
-                className={clsx("h-full border absolute top-0 right-[11px]", index < step ? "border-brand" : "border-gray-400")}
+                className={clsx(
+                  "h-full border absolute top-0 right-[11px]",
+                  index < step ? "border-brand" : "border-gray-400",
+                )}
               />
             ) : (
               <div
-                className={clsx("w-full border absolute top-3 right-1/2", index < step ? "border-brand" : "border-gray-400")}
+                className={clsx(
+                  "w-full border absolute top-3 right-1/2",
+                  index < step ? "border-brand" : "border-gray-400",
+                )}
               />
             ))}
 
-          <div className={clsx("flex flex-col gap-1", vertical ? "text-start" : "text-center")}>
+          <div
+            className={clsx(
+              "flex flex-col gap-1",
+              vertical ? "text-start" : "text-center",
+            )}
+          >
             <p className="text-subtitle4 text-prose-primary">{item.title}</p>
             <p className="text-label4 text-prose-hint">{item.description}</p>
           </div>

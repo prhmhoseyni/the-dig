@@ -11,17 +11,62 @@ export default function AlertPage() {
       <Alert color="warning" description="توضیحات مختصر درمورد پیام هشدار." />
       <Alert color="gray" description="توضیحات مختصر درمورد پیام هشدار." />
 
-      <Alert color="info" title="عنوان پیام" description="توضیحات مختصر درمورد پیام هشدار." onClose={() => null} />
-      <Alert color="success" title="عنوان پیام" description="توضیحات مختصر درمورد پیام هشدار." onClose={() => null} />
-      <Alert color="danger" title="عنوان پیام" description="توضیحات مختصر درمورد پیام هشدار." onClose={() => null} />
-      <Alert color="warning" title="عنوان پیام" description="توضیحات مختصر درمورد پیام هشدار." onClose={() => null} />
-      <Alert color="gray" title="عنوان پیام" description="توضیحات مختصر درمورد پیام هشدار." onClose={() => null} />
+      <Alert
+        color="info"
+        title="عنوان پیام"
+        description="توضیحات مختصر درمورد پیام هشدار."
+        onClose={() => null}
+      />
+      <Alert
+        color="success"
+        title="عنوان پیام"
+        description="توضیحات مختصر درمورد پیام هشدار."
+        onClose={() => null}
+      />
+      <Alert
+        color="danger"
+        title="عنوان پیام"
+        description="توضیحات مختصر درمورد پیام هشدار."
+        onClose={() => null}
+      />
+      <Alert
+        color="warning"
+        title="عنوان پیام"
+        description="توضیحات مختصر درمورد پیام هشدار."
+        onClose={() => null}
+      />
+      <Alert
+        color="gray"
+        title="عنوان پیام"
+        description="توضیحات مختصر درمورد پیام هشدار."
+        onClose={() => null}
+      />
 
-      <Alert color="info" title="عنوان پیام" description="توضیحات مختصر درمورد پیام هشدار." />
-      <Alert color="success" title="عنوان پیام" description="توضیحات مختصر درمورد پیام هشدار." />
-      <Alert color="danger" title="عنوان پیام" description="توضیحات مختصر درمورد پیام هشدار." />
-      <Alert color="warning" title="عنوان پیام" description="توضیحات مختصر درمورد پیام هشدار." />
-      <Alert color="gray" title="عنوان پیام" description="توضیحات مختصر درمورد پیام هشدار." />
+      <Alert
+        color="info"
+        title="عنوان پیام"
+        description="توضیحات مختصر درمورد پیام هشدار."
+      />
+      <Alert
+        color="success"
+        title="عنوان پیام"
+        description="توضیحات مختصر درمورد پیام هشدار."
+      />
+      <Alert
+        color="danger"
+        title="عنوان پیام"
+        description="توضیحات مختصر درمورد پیام هشدار."
+      />
+      <Alert
+        color="warning"
+        title="عنوان پیام"
+        description="توضیحات مختصر درمورد پیام هشدار."
+      />
+      <Alert
+        color="gray"
+        title="عنوان پیام"
+        description="توضیحات مختصر درمورد پیام هشدار."
+      />
     </div>
   );
 }

@@ -14,8 +14,18 @@ export default function Toast(props: Props) {
   const { title, description, actions, className = "" } = props;
 
   return (
-    <div className={clsx("flex flex-row justify-between items-start gap-3", className)}>
-      <Info stroke="var(--color-background-primary)" fill="var(--color-info)" width={24} height={24} />
+    <div
+      className={clsx(
+        "flex flex-row justify-between items-start gap-3",
+        className,
+      )}
+    >
+      <Info
+        stroke="var(--color-background-primary)"
+        fill="var(--color-info)"
+        width={24}
+        height={24}
+      />
 
       <div className="flex flex-row flex-wrap flex-1 items-center gap-3">
         <p className="text-subtitle3 text-prose-primary">{title}</p>

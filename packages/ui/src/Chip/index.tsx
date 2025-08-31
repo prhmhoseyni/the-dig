@@ -1,13 +1,19 @@
-import { type HTMLAttributes, type DetailedHTMLProps, type ReactNode } from "react";
+import {
+  type HTMLAttributes,
+  type DetailedHTMLProps,
+  type ReactNode,
+} from "react";
 import clsx from "clsx";
 
 const colors = {
   brand: {
-    tinted: "text-prose-brand bg-brand-light hover:bg-brand-light-hover active:bg-brand-light-active active:shadow-focus-brand",
+    tinted:
+      "text-prose-brand bg-brand-light hover:bg-brand-light-hover active:bg-brand-light-active active:shadow-focus-brand",
   },
 
   info: {
-    tinted: "text-prose-info bg-info-light hover:bg-info-light-hover active:bg-info-light-active active:shadow-focus-info",
+    tinted:
+      "text-prose-info bg-info-light hover:bg-info-light-hover active:bg-info-light-active active:shadow-focus-info",
   },
 
   success: {
@@ -26,25 +32,39 @@ const colors = {
   },
 
   gray: {
-    tinted: "text-prose-gray bg-gray-light hover:bg-gray-light-hover active:bg-gray-light-active active:shadow-focus-gray",
+    tinted:
+      "text-prose-gray bg-gray-light hover:bg-gray-light-hover active:bg-gray-light-active active:shadow-focus-gray",
   },
 };
 
 /**
  * :::: types :::
  */
-export type ChipColor = "brand" | "info" | "success" | "warning" | "danger" | "gray";
+export type ChipColor =
+  | "brand"
+  | "info"
+  | "success"
+  | "warning"
+  | "danger"
+  | "gray";
 
 /**
  * @name Chip component
  */
-export interface ChipProps extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
+export interface ChipProps
+  extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
   color?: ChipColor;
   startAdornment?: ReactNode;
 }
 
 export default function Chip(props: ChipProps) {
-  const { color = "brand", className = "", startAdornment: icon, children, ...rest } = props;
+  const {
+    color = "brand",
+    className = "",
+    startAdornment: icon,
+    children,
+    ...rest
+  } = props;
 
   return (
     <div
@@ -59,7 +79,13 @@ export default function Chip(props: ChipProps) {
 
       {children}
 
-      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="20"
+        height="20"
+        viewBox="0 0 20 20"
+        fill="none"
+      >
         <path
           fillRule="evenodd"
           clipRule="evenodd"

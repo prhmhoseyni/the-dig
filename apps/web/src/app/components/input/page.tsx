@@ -7,13 +7,31 @@ export default function InputPage() {
       <div className="flex flex-col gap-4 p-8">
         <Input type="text" placeholder="Enter the information..." />
         <Input type="text" hasError placeholder="Enter the information..." />
-        <Input type="text" variant="secondary" placeholder="Enter the information..." />
-        <Input type="text" variant="secondary" hasError placeholder="Enter the information..." />
+        <Input
+          type="text"
+          variant="secondary"
+          placeholder="Enter the information..."
+        />
+        <Input
+          type="text"
+          variant="secondary"
+          hasError
+          placeholder="Enter the information..."
+        />
       </div>
 
       <div className="flex flex-col gap-4 p-8">
-        <Input type="text" placeholder="Enter the information..." startAdornment={<Activity size={15} />} />
-        <Input type="text" hasError placeholder="Enter the information..." startAdornment={<Activity size={15} />} />
+        <Input
+          type="text"
+          placeholder="Enter the information..."
+          startAdornment={<Activity size={15} />}
+        />
+        <Input
+          type="text"
+          hasError
+          placeholder="Enter the information..."
+          startAdornment={<Activity size={15} />}
+        />
         <Input
           type="text"
           variant="secondary"
