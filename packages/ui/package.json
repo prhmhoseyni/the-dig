@@ -31,6 +31,7 @@
     "msk-utils": "^0.2.0",
     "rc-slider": "^11.1.8",
     "react": "^19.1.0",
+    "react-day-picker": "^9.9.0",
     "react-dom": "^19.1.0",
     "react-tooltip": "^5.29.1",
     "tailwindcss": "^4.1.11"
