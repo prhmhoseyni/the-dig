@@ -1,8 +1,8 @@
 "use client";
 
-import { type ReactNode } from "react";
-import { CircleCheck, CircleX, Info, TriangleAlert, X } from "lucide-react";
 import clsx from "clsx";
+import { CircleCheck, CircleX, Info, TriangleAlert, X } from "lucide-react";
+import type { ReactNode } from "react";
 
 const colors = {
   info: "text-prose-info bg-info-light border-info-light-active",

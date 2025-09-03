@@ -510,6 +510,10 @@ a {
   @apply text-prose-link;
 }
 
+p {
+  @apply mb-0;
+}
+
 .navbar__link,
 .footer__link-item {
   @apply flex items-center gap-2;

@@ -1,0 +1,93 @@
+---
+sidebar_position: 1
+---
+
+# Alert
+
+import Alert from "@repo/ui/Alert";
+import Container from "./Container";
+
+<Container>
+  <Alert
+    title="عنوان پیام"
+    description="توضیحات مختصر درمورد پیام هشدار."
+    className="w-full"
+  />
+</Container>
+
+```tsx
+<Alert title="عنوان پیام" description="توضیحات مختصر درمورد پیام هشدار." />
+```
+
+## Props
+
+| Prop          | Type                                                             | Default  |
+| ------------- | ---------------------------------------------------------------- | -------- |
+| `title`       | `ReactNode`                                                      | -        |
+| `description` | `ReactNode`                                                      | -        |
+| `color`       | `"gray"` \| `"info"` \| `"success"` \| `"warning"` \| `"danger"` | `"gray"` |
+| `onClose`     | `VoidFunction`                                                   | -        |
+| `className`   | `string`                                                         | -        |
+
+## Colors
+
+<Container col>
+  <Alert
+    color="gray"
+    title="عنوان پیام"
+    description="توضیحات مختصر درمورد پیام هشدار."
+    className="w-full"
+  />
+  <Alert
+    color="info"
+    title="عنوان پیام"
+    description="توضیحات مختصر درمورد پیام هشدار."
+    className="w-full"
+  />
+  <Alert
+    color="success"
+    title="عنوان پیام"
+    description="توضیحات مختصر درمورد پیام هشدار."
+    className="w-full"
+  />
+  <Alert
+    color="warning"
+    title="عنوان پیام"
+    description="توضیحات مختصر درمورد پیام هشدار."
+    className="w-full"
+  />
+  <Alert
+    color="danger"
+    title="عنوان پیام"
+    description="توضیحات مختصر درمورد پیام هشدار."
+    className="w-full"
+  />
+</Container>
+
+<Container col>
+  <Alert
+    color="gray"
+    description="توضیحات مختصر درمورد پیام هشدار."
+    className="w-full"
+  />
+  <Alert
+    color="info"
+    description="توضیحات مختصر درمورد پیام هشدار."
+    className="w-full"
+  />
+  <Alert
+    color="success"
+    description="توضیحات مختصر درمورد پیام هشدار."
+    className="w-full"
+  />
+  <Alert
+    color="warning"
+    description="توضیحات مختصر درمورد پیام هشدار."
+    className="w-full"
+  />
+  <Alert
+    color="danger"
+    description="توضیحات مختصر درمورد پیام هشدار."
+    className="w-full"
+  />
+</Container>
