@@ -1,5 +1,5 @@
-import { cloneElement } from "react";
 import RCSlider, { type SliderProps } from "rc-slider";
+import { cloneElement } from "react";
 import "./index.css";
 
 export default function Slider(props: SliderProps<number | number[]>) {

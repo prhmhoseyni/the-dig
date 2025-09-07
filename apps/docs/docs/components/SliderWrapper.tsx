@@ -1,16 +1,15 @@
 "use client";
 
 import Slider from "@repo/ui/Slider";
-import type React from "react";
 import { useState } from "react";
 
-const App: React.FC = () => {
+export default function SliderWrapper() {
   const [singleValue, setSingleValue] = useState<number>(20);
   const [rangeValue, setRangeValue] = useState<[number, number]>([30, 70]);
 
   return (
-    <div className="min-h-screen bg-gray-50 flex flex-col items-center justify-center p-8 space-y-16">
-      <div className="w-full max-w-lg">
+    <div className="flex flex-col items-center justify-center gap-5">
+      <div className="w-full max-w-lg flex flex-col gap-8">
         <h2 className="text-xl font-semibold mb-4 text-center">
           Single Value Slider
         </h2>
@@ -20,7 +19,7 @@ const App: React.FC = () => {
         />
       </div>
 
-      <div className="w-full max-w-lg">
+      <div className="w-full max-w-lg flex flex-col gap-8">
         <h2 className="text-xl font-semibold mb-4 text-center">Range Slider</h2>
         <Slider
           range
@@ -30,6 +29,4 @@ const App: React.FC = () => {
       </div>
     </div>
   );
-};
-
-export default App;
+}

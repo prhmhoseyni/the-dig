@@ -1,0 +1,88 @@
+---
+sidebar_position: 1
+---
+
+# Stepper
+
+## Preview
+
+import Stepper from "@repo/ui/Stepper";
+import Button from "@repo/ui/Button";
+import { useState } from "react";
+import Container from "./Container";
+import StepperWrapper from "./StepperWrapper"
+
+<Container>
+    <StepperWrapper />
+</Container>
+
+
+## Code
+
+```tsx
+import Stepper from "@repo/ui/Stepper";
+import { useState } from "react";
+import Button from "@repo/ui/Button";
+
+function StepperExample() {
+  const [currentStep, setCurrentStep] = useState(2);
+
+  return (
+    <>
+      <Stepper
+        steps={[
+          { title: "مرحله اول", description: "راهنمای مرحله اول" },
+          { title: "مرحله دوم", description: "راهنمای مرحله دوم" },
+          { title: "مرحله سوم", description: "راهنمای مرحله سوم" },
+          { title: "مرحله چهارم", description: "راهنمای مرحله چهارم" },
+        ]}
+        step={currentStep}
+        onChange={setCurrentStep}
+      />
+
+      <Stepper
+        steps={[
+          { title: "مرحله اول" },
+          { title: "مرحله دوم" },
+          { title: "مرحله سوم" },
+          { title: "مرحله چهارم" },
+        ]}
+        step={currentStep}
+        onChange={setCurrentStep}
+      />
+
+      <Stepper
+        steps={[
+          { title: "مرحله اول", description: "راهنمای مرحله اول" },
+          { title: "مرحله دوم", description: "راهنمای مرحله دوم" },
+          { title: "مرحله سوم", description: "راهنمای مرحله سوم" },
+          { title: "مرحله چهارم", description: "راهنمای مرحله چهارم" },
+        ]}
+        step={currentStep}
+        vertical
+        onChange={setCurrentStep}
+      />
+
+      <div className="flex gap-4">
+        <Button onClick={() => currentStep > 0 && setCurrentStep(currentStep - 1)}>قبلی</Button>
+        <Button onClick={() => currentStep < 3 && setCurrentStep(currentStep + 1)}>بعدی</Button>
+      </div>
+    </>
+  );
+}
+```
+
+## Installation
+
+```bash
+npx the-dig@latest add Stepper
+```
+
+## Props
+
+| Prop       | Type                                                | Default |
+| ---------- | --------------------------------------------------- | ------- |
+| `steps`    | `Array<{ title: string; description?: ReactNode }>` | -       |
+| `vertical` | `boolean`                                           | `false` |
+| `step`     | `number`                                            | -       |
+| `onChange` | `(step: number) => void`                            | -       |

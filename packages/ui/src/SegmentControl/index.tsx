@@ -1,3 +1,4 @@
+import clsx from "clsx";
 import {
   Children,
   cloneElement,
@@ -5,7 +6,6 @@ import {
   type PropsWithChildren,
   type ReactElement,
 } from "react";
-import clsx from "clsx";
 
 /**
  * :::: types :::

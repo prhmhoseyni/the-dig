@@ -1,6 +1,6 @@
 import clsx from "clsx";
 import { Info } from "lucide-react";
-import { type ReactNode } from "react";
+import type { ReactNode } from "react";
 
 interface Props {
   title: ReactNode;
