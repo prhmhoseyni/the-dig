@@ -4,6 +4,8 @@ sidebar_position: 1
 
 # Alert
 
+## Preview
+
 import Alert from "@repo/ui/Alert";
 import Container from "./Container";
 
@@ -12,22 +14,35 @@ import Container from "./Container";
     title="عنوان پیام"
     description="توضیحات مختصر درمورد پیام هشدار."
     className="w-full"
+    onClose={() => null}
   />
 </Container>
 
+## Code
+
 ```tsx
-<Alert title="عنوان پیام" description="توضیحات مختصر درمورد پیام هشدار." />
+<Alert
+  title="عنوان پیام"
+  description="توضیحات مختصر درمورد پیام هشدار."
+  onClose={() => setOpen(false)}
+/>
+```
+
+## Installation
+
+```bash
+npx the-dig@latest add Alert
 ```
 
 ## Props
 
-| Prop          | Type                                                             | Default  |
-| ------------- | ---------------------------------------------------------------- | -------- |
-| `title`       | `ReactNode`                                                      | -        |
-| `description` | `ReactNode`                                                      | -        |
-| `color`       | `"gray"` \| `"info"` \| `"success"` \| `"warning"` \| `"danger"` | `"gray"` |
-| `onClose`     | `VoidFunction`                                                   | -        |
-| `className`   | `string`                                                         | -        |
+| Prop                                                               | Type                                                             | Default  |
+| ------------------------------------------------------------------ | ---------------------------------------------------------------- | -------- |
+| `title`                                                            | `ReactNode`                                                      | -        |
+| `description` <sup className="text-red-600 text-caption2">\*</sup> | `ReactNode`                                                      | -        |
+| `color`                                                            | `"gray"` \| `"info"` \| `"success"` \| `"warning"` \| `"danger"` | `"gray"` |
+| `onClose`                                                          | `VoidFunction`                                                   | -        |
+| `className`                                                        | `string`                                                         | -        |
 
 ## Colors
 
@@ -63,6 +78,8 @@ import Container from "./Container";
     className="w-full"
   />
 </Container>
+
+## Without Title
 
 <Container col>
   <Alert
