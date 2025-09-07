@@ -19,14 +19,16 @@ export default function Breadcrumbs(props: BreadcrumbsProps) {
 
   return (
     <nav className="flex items-center text-label3 gap-2">
-      {Children.map(children, (child, index) => (
-        <Fragment key={index}>
-          {child}
-          {!(index === childrenCount - 1) && (
-            <span className="text-gray-500">{separator ?? "/"}</span>
-          )}
-        </Fragment>
-      ))}
+      {Children.toArray(
+        Children.map(children, (child, index) => (
+          <Fragment>
+            {child}
+            {!(index === childrenCount - 1) && (
+              <span className="text-gray-500">{separator ?? "/"}</span>
+            )}
+          </Fragment>
+        )),
+      )}
     </nav>
   );
 }

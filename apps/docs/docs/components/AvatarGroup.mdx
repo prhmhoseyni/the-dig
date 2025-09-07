@@ -1,0 +1,48 @@
+---
+sidebar_position: 1
+---
+
+# AvatarGroup
+
+## Installation
+
+```bash
+npx the-dig@latest add Avatar
+```
+
+## Preview
+
+import { Avatar, AvatarGroup } from "@repo/ui/Avatar";
+import Container from "./Container";
+
+<Container>
+  <AvatarGroup max={4} size="lg">
+    <Avatar alt="Remy Sharp" src="/img/prhm.jpg" />
+    <Avatar alt="Travis Howard" src="/img/prhm.jpg" />
+    <Avatar alt="Cindy Baker" src="/img/prhm.jpg" />
+    <Avatar alt="Agnes Walker" src="/img/prhm.jpg" />
+    <Avatar alt="Trevor Henderson" src="/img/prhm.jpg" />
+  </AvatarGroup>
+</Container>
+
+## Code
+
+```tsx
+import { Avatar, AvatarGroup } from "@repo/ui/Avatar";
+
+<AvatarGroup max={4} size="lg">
+  <Avatar alt="Remy Sharp" src="/img/prhm.jpg" />
+  <Avatar alt="Travis Howard" src="/img/prhm.jpg" />
+  <Avatar alt="Cindy Baker" src="/img/prhm.jpg" />
+  <Avatar alt="Agnes Walker" src="/img/prhm.jpg" />
+  <Avatar alt="Trevor Henderson" src="/img/prhm.jpg" />
+</AvatarGroup>;
+```
+
+## Props
+
+| Prop       | Type                                 | Default |
+| ---------- | ------------------------------------ | ------- |
+| `size`     | `"xs"` \| `"sm"` \| `"md"` \| `"lg"` | `"md"`  |
+| `max`      | `number`                             | -       |
+| `children` | `ReactNode`                          | -       |

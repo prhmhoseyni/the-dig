@@ -1,12 +1,12 @@
+import clsx from "clsx";
 import {
   Children,
   cloneElement,
   isValidElement,
+  type PropsWithChildren,
   type ReactNode,
   useId,
-  type PropsWithChildren,
 } from "react";
-import clsx from "clsx";
 
 const online = {
   lg: (
@@ -18,6 +18,7 @@ const online = {
       fill="none"
       className="absolute inset-x-0 bottom-0"
     >
+      <title>online</title>
       <circle
         cx="7"
         cy="7"
@@ -37,6 +38,7 @@ const online = {
       fill="none"
       className="absolute inset-x-0 bottom-0"
     >
+      <title>online</title>
       <circle
         cx="6"
         cy="6"
@@ -56,6 +58,7 @@ const online = {
       fill="none"
       className="absolute inset-x-0 bottom-0"
     >
+      <title>online</title>
       <circle
         cx="5"
         cy="5"
@@ -75,6 +78,7 @@ const online = {
       fill="none"
       className="absolute inset-x-0 bottom-0"
     >
+      <title>online</title>
       <circle
         cx="4.5"
         cy="4.5"

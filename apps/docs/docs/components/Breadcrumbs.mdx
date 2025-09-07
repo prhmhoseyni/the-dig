@@ -1,0 +1,44 @@
+---
+sidebar_position: 1
+---
+
+# Breadcrumbs
+
+## Preview
+
+import Link from "@docusaurus/Link";
+import Breadcrumbs from "@repo/ui/Breadcrumbs";
+import Container from "./Container";
+
+<Container>
+  <Breadcrumbs separator="/">
+    <Link to="/docs/introduction">خانه</Link>
+    <Link to="/docs/category/components">کامپوننت‌ها</Link>
+    <span>بردکرامب</span>
+  </Breadcrumbs>
+</Container>
+
+## Code
+
+```tsx
+import Breadcrumbs from "@repo/ui/Breadcrumbs";
+
+<Breadcrumbs separator="/">
+  <Link to="/docs/introduction">خانه</Link>
+  <Link to="/docs/category/components">کامپوننت‌ها</Link>
+  <span>بردکرامب</span>
+</Breadcrumbs>;
+```
+
+## Installation
+
+```bash
+npx the-dig@latest add Breadcrumbs
+```
+
+## Props
+
+| Prop        | Type                                                     | Default |
+| ----------- | -------------------------------------------------------- | ------- |
+| `separator` | `ReactNode` (e.g. `"/"`, `">"`, etc.)                    | `"/"`   |
+| `children`  | `ReactNode` (Breadcrumb items, usually `Link` or `span`) |         |

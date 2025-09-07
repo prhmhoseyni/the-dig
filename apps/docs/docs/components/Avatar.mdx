@@ -1,0 +1,40 @@
+---
+sidebar_position: 1
+---
+
+# Avatar
+
+## Installation
+
+```bash
+npx the-dig@latest add Avatar
+```
+
+## Preview
+
+import { Avatar } from "@repo/ui/Avatar";
+import Container from "./Container";
+
+<Container>
+  <Avatar src="/img/prhm.jpg" alt="prhm" />
+  <Avatar alt="lg">پ</Avatar>
+</Container>
+
+## Code
+
+```tsx
+import { Avatar } from "@repo/ui/Avatar";
+
+<Avatar src="/img/prhm.jpg" alt="prhm" size="lg" />;
+```
+
+## Props
+
+| Prop        | Type                                 | Default     |
+| ----------- | ------------------------------------ | ----------- |
+| `src`       | `string`                             | -           |
+| `alt`       | `string`                             | -           |
+| `size`      | `"xs"` \| `"sm"` \| `"md"` \| `"lg"` | `"md"`      |
+| `className` | `string`                             | -           |
+| `status`    | `"online"` \| `"offline"`            | `"offline"` |
+| `children`  | `ReactNode`                          | -           |
