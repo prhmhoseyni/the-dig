@@ -46,16 +46,30 @@ import Container from "./Container";
 import Toast from "@repo/ui/Toast";
 import Button from "@repo/ui/Button";
 
-<Toast
-  title="به‌روزرسانی جدید"
-  description="نسخه جدید آماده نصب است. برای بهبود عملکرد به‌روزرسانی کنید."
-  actions={
-    <div className="flex gap-3">
-      <Button color="gray" variant="outlined">مشاهده تغییرات</Button>
-      <Button color="gray" variant="outlined">به‌روزرسانی</Button>
-    </div>
-  }
-/>;
+<button
+    onClick={() =>
+      toast(
+        <Toast
+          title="به‌روزرسانی جدید"
+          description="نسخه جدید آماده نصب است. برای بهبود عملکرد به‌روزرسانی کنید."
+          actions={
+            <div className="flex gap-3">
+              <Button color="gray" variant="outlined">
+                مشاهده تغییرات
+              </Button>
+
+              <Button color="gray" variant="outlined">
+                به‌روزرسانی
+              </Button>
+            </div>
+          }
+          onClose={() => null}
+        />,
+      )
+    }
+  >
+    نمایش
+  </button>
 ````
 
 ## Installation

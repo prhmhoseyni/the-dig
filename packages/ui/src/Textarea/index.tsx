@@ -1,9 +1,9 @@
-import {
-  type DetailedHTMLProps,
-  type ReactNode,
-  type TextareaHTMLAttributes,
-} from "react";
 import clsx from "clsx";
+import type {
+  DetailedHTMLProps,
+  ReactNode,
+  TextareaHTMLAttributes,
+} from "react";
 
 /**
  * :::: types ::::

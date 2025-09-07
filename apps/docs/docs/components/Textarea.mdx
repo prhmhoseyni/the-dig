@@ -1,0 +1,52 @@
+---
+sidebar_position: 1
+---
+
+# Textarea
+
+## Preview
+
+import Textarea from "@repo/ui/Textarea";
+import { Activity } from "lucide-react";
+import Container from "./Container";
+
+<Container className="flex flex-col gap-4">
+  <Textarea placeholder="یادداشت کنید..." />
+</Container>
+
+## Code
+
+```tsx
+import Textarea from "@repo/ui/Textarea";
+
+<Textarea placeholder="یادداشت کنید..." />;
+````
+
+## Installation
+
+```bash
+npx the-dig@latest add Textarea
+```
+
+## Props
+
+| Prop             | Type                                                                                  | Default     |
+| ---------------- | ------------------------------------------------------------------------------------- | ----------- |
+| `variant`        | `"primary"` \| `"secondary"`                                                          | `"primary"` |
+| `hasError`       | `boolean`                                                                             | `false`     |
+| `startAdornment` | `ReactNode`                                                                           | -           |
+| `className`      | `string`                                                                              | -           |
+| all other props  | `DetailedHTMLProps<TextareaHTMLAttributes<HTMLTextAreaElement>, HTMLTextAreaElement>` | -           |
+
+## Variants / Examples
+
+<Container className="flex flex-col gap-4">
+  <Textarea placeholder="یادداشت کنید..." />
+  <Textarea hasError placeholder="یادداشت کنید..." />
+  <Textarea variant="secondary" placeholder="یادداشت کنید..." />
+  <Textarea variant="secondary" hasError placeholder="یادداشت کنید..." />
+  <Textarea placeholder="یادداشت کنید..." startAdornment={<Activity size={15} />} />
+  <Textarea hasError placeholder="یادداشت کنید..." startAdornment={<Activity size={15} />} />
+  <Textarea variant="secondary" placeholder="یادداشت کنید..." startAdornment={<Activity size={15} />} />
+  <Textarea variant="secondary" hasError placeholder="یادداشت کنید..." startAdornment={<Activity size={15} />} />
+</Container>
