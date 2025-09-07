@@ -1,8 +1,8 @@
 "use client";
 
-import { toast, Toaster } from "sonner";
 import Button from "@repo/ui/Button";
 import Toast from "@repo/ui/Toast";
+import { Toaster, toast } from "sonner";
 
 export default function NotificationPage() {
   return (
