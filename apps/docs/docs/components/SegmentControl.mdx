@@ -1,0 +1,53 @@
+---
+sidebar_position: 1
+---
+
+# SegmentControl
+
+## Preview
+
+import SegmentControl from "@repo/ui/SegmentControl";
+import Container from "./Container"
+import SegmentControlWrapper from "./SegmentControlWrapper"
+
+<Container>
+    <SegmentControlWrapper/>
+</Container>
+
+## Code
+```tsx
+import SegmentControl from "@repo/ui/SegmentControl";
+
+<SegmentControl
+  size="sm"
+  value={value}
+  onChange={(value) => setValue(value)}
+>
+  <SegmentControl.Item value="1">عنوان نمونه 1</SegmentControl.Item>
+  <SegmentControl.Divider />
+  <SegmentControl.Item value="2">عنوان نمونه 2</SegmentControl.Item>
+  <SegmentControl.Divider />
+  <SegmentControl.Item value="3">عنوان نمونه 3</SegmentControl.Item>
+  <SegmentControl.Divider />
+  <SegmentControl.Item value="4">عنوان نمونه 4</SegmentControl.Item>
+</SegmentControl>
+```
+
+## Props
+
+| Prop       | Type                      | Default                  |
+| ---------- | ------------------------- | ------------------------ |
+| `value`    | `string`                  | -                        |
+| `onChange` | `(value: string) => void` | -                        |
+| `size`     | `"sm"`                    | `"md"`                   |
+| `children` | `SegmentControl.Item`     | -                        |
+
+### `SegmentControl.Item` Props
+
+| Prop            | Type                      | Default |
+| --------------- | ------------------------- | ------- |
+| `value`         | `string`                  | -       |
+| `onChange`      | `(value: string) => void` | -       |
+| `selectedValue` | `string`                  | -       |
+| `size`          | `"sm"`                    | `"md"`  |
+| `children`      | `ReactNode`               | -       |
