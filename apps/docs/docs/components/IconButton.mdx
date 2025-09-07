@@ -1,0 +1,147 @@
+---
+sidebar_position: 1
+---
+
+# IconButton
+
+## Preview
+
+import IconButton from "@repo/ui/IconButton";
+import Container from "./Container";
+import { Activity } from "lucide-react";
+
+<Container>
+  <IconButton>
+    <Activity size={18} />
+  </IconButton>
+</Container>
+
+## Code
+
+```tsx
+<IconButton variant="contained" color="brand">
+  <Activity size={18} />
+</IconButton>
+```
+
+## Installation
+
+```bash
+npx the-dig@latest add IconButton
+```
+
+## Props
+
+| Prop        | Type                                                                                 | Default                                                                            |
+| ----------- | ------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------- |
+| `variant`   | `"contained"` \| `"tinted"` \| `"outlined"`                                          | `"contained"`                                                                      |
+| `color`     | `"brand"` \| `"info"` \| `"success"` \| `"warning"` \| `"danger"` \| `"gray"`        | `"brand"`                                                                          |
+| `size`      | `"xs"` \| `"sm"` \| `"md"` \| `"lg"` \| `"xl"`                                       | `"md"`                                                                             |
+| `isLoading` | `boolean`                                                                            | `false`                                                                            |
+| `...props`  | `IconButtonHTMLAttributes<HTMLIconButtonElement>` (e.g. `onClick`, `disabled`, etc.) | [Document](https://developer.mozilla.org/en-US/docs/Web/API/HTMLIconButtonElement) |
+
+## Variants and Colors
+
+### brand
+
+<Container>
+  <IconButton variant="contained" color="brand">
+    <Activity size={18} />
+  </IconButton>
+  <IconButton variant="tinted" color="brand">
+    <Activity size={18} />
+  </IconButton>
+  <IconButton variant="outlined" color="brand">
+    <Activity size={18} />
+  </IconButton>
+</Container>
+
+### info
+
+<Container>
+  <IconButton variant="contained" color="info">
+    <Activity size={18} />
+  </IconButton>
+  <IconButton variant="tinted" color="info">
+    <Activity size={18} />
+  </IconButton>
+  <IconButton variant="outlined" color="info">
+    <Activity size={18} />
+  </IconButton>
+</Container>
+
+### success
+
+<Container>
+  <IconButton variant="contained" color="success">
+    <Activity size={18} />
+  </IconButton>
+  <IconButton variant="tinted" color="success">
+    <Activity size={18} />
+  </IconButton>
+  <IconButton variant="outlined" color="success">
+    <Activity size={18} />
+  </IconButton>
+</Container>
+
+### warning
+
+<Container>
+  <IconButton variant="contained" color="warning">
+    <Activity size={18} />
+  </IconButton>
+  <IconButton variant="tinted" color="warning">
+    <Activity size={18} />
+  </IconButton>
+  <IconButton variant="outlined" color="warning">
+    <Activity size={18} />
+  </IconButton>
+</Container>
+
+### danger
+
+<Container>
+  <IconButton variant="contained" color="danger">
+    <Activity size={18} />
+  </IconButton>
+  <IconButton variant="tinted" color="danger">
+    <Activity size={18} />
+  </IconButton>
+  <IconButton variant="outlined" color="danger">
+    <Activity size={18} />
+  </IconButton>
+</Container>
+
+### gray
+
+<Container>
+  <IconButton variant="contained" color="gray">
+    <Activity size={18} />
+  </IconButton>
+  <IconButton variant="tinted" color="gray">
+    <Activity size={18} />
+  </IconButton>
+  <IconButton variant="outlined" color="gray">
+    <Activity size={18} />
+  </IconButton>
+</Container>
+
+## Sizes
+
+<Container>
+  <IconButton variant="contained" color="brand" size="xs">
+    <Activity size={18} />
+  </IconButton>
+  <IconButton variant="contained" color="brand" size="sm">
+    <Activity size={18} />
+  </IconButton>
+  <IconButton variant="contained" color="brand" size="md">
+    <Activity size={18} />
+  </IconButton>
+  <IconButton variant="contained" color="brand" size="lg">
+    <Activity size={18} />
+  </IconButton>
+  <IconButton variant="contained" color="brand" size="xl">
+    <Activity size={18} />
+  </IconButton>
+</Container>
