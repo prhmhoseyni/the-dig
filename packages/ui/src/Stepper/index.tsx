@@ -1,8 +1,8 @@
 "use client";
 
-import { type ReactNode } from "react";
-import { Check } from "lucide-react";
 import clsx from "clsx";
+import { Check } from "lucide-react";
+import type { ReactNode } from "react";
 
 /**
  * @name Stepper component
