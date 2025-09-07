@@ -1,0 +1,46 @@
+---
+sidebar_position: 1
+---
+
+# Checkbox
+
+## Preview
+
+import Checkbox from "@repo/ui/Checkbox";
+import Container from "./Container";
+
+<Container>
+  <Checkbox label="مرا علامت بزن" />
+</Container>
+
+## Code
+
+```tsx
+import Checkbox from "@repo/ui/Checkbox";
+
+<Checkbox />;
+```
+
+## Installation
+
+```bash
+npx the-dig@latest add Checkbox
+```
+
+## Props
+
+| Prop       | Type                                                                        | Default                                                                       |
+| ---------- | --------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
+| `...props` | `InputHTMLAttributes<HTMLInputElement>` (e.g. `onChange`, `disabled`, etc.) | [Document](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement) |
+
+## Disabled
+
+<Container>
+  <Checkbox label="مرا علامت بزن" checked disabled />
+</Container>
+
+## Indeterminate
+
+<Container>
+  <Checkbox label="مرا علامت بزن" defaultChecked data-indeterminate />
+</Container>

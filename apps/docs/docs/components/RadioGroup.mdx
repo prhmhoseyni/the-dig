@@ -1,0 +1,42 @@
+---
+sidebar_position: 1
+---
+
+# RadioGroup
+
+## Preview
+
+import RadioGroup from "@repo/ui/RadioGroup";
+import Container from "./Container";
+
+<Container>
+  <RadioGroup name="name" value="1" />
+  <RadioGroup name="name" value="2" />
+  <RadioGroup name="name" value="3" />
+</Container>
+
+## Code
+
+```tsx
+import RadioGroup from "@repo/ui/RadioGroup";
+
+<RadioGroup />;
+```
+
+## Installation
+
+```bash
+npx the-dig@latest add Radio
+```
+
+## Props
+
+| Prop       | Type                                                                        | Default                                                                       |
+| ---------- | --------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
+| `...props` | `InputHTMLAttributes<HTMLInputElement>` (e.g. `onChange`, `disabled`, etc.) | [Document](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement) |
+
+## Disabled
+
+<Container>
+  <RadioGroup checked disabled />
+</Container>
