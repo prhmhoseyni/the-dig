@@ -1,0 +1,46 @@
+---
+sidebar_position: 1
+---
+
+# Select
+
+## Preview
+
+import Select from "@repo/ui/Select";
+import { Activity } from "lucide-react";
+import Container from "./Container"
+
+<Container>
+    <Select>
+      <option value="value">Label</option>
+    </Select>
+
+    <Select hasError startAdornment={<Activity size={15} />}>
+      <option value="value">Label</option>
+    </Select>
+</Container>
+
+
+## Code
+
+```tsx
+import Select from "@repo/ui/Select";
+import { Activity } from "lucide-react";
+
+<Select>
+  <option value="value">Label</option>
+</Select>
+
+<Select hasError startAdornment={<Activity size={15} />}>
+  <option value="value">Label</option>
+</Select>
+```
+
+## Props
+
+| Prop             | Type                                      | Default       |
+| ---------------- | ----------------------------------------- | ------------- |
+| `variant`        | `"primary"` \| `"secondary"`              | `"primary"`   |
+| `hasError`       | `boolean`                                 | `false`       |
+| `startAdornment` | `ReactNode`                               | -             |
+| Other props      | `SelectHTMLAttributes<HTMLSelectElement>` | -             |

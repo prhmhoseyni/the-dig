@@ -1,9 +1,5 @@
-import {
-  type DetailedHTMLProps,
-  type ReactNode,
-  type SelectHTMLAttributes,
-} from "react";
 import clsx from "clsx";
+import type { DetailedHTMLProps, ReactNode, SelectHTMLAttributes } from "react";
 
 /**
  * :::: types :::
