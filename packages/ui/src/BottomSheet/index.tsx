@@ -1,17 +1,17 @@
 "use client";
 
+import clsx from "clsx";
+import type { PanInfo } from "motion";
+import { AnimatePresence, motion } from "motion/react";
 import {
+  type MemoExoticComponent,
   memo,
+  type PropsWithChildren,
+  type ReactNode,
   useEffect,
   useRef,
   useState,
-  type MemoExoticComponent,
-  type PropsWithChildren,
-  type ReactNode,
 } from "react";
-import { AnimatePresence, motion } from "motion/react";
-import { type PanInfo } from "motion";
-import clsx from "clsx";
 
 /**
  * @name BottomSheetBody component
@@ -39,7 +39,7 @@ function BottomSheetBody(props: BottomSheetBodyProps) {
 export interface BaseBottomSheetProps extends PropsWithChildren {
   title: string;
   isOpen: boolean;
-  onClose: () => void;
+  onClose: VoidFunction;
 }
 
 function BaseBottomSheet(props: BaseBottomSheetProps) {

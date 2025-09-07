@@ -19,7 +19,9 @@ import Container from "./Container";
 ```tsx
 import { Avatar } from "@repo/ui/Avatar";
 
-<Avatar src="/img/prhm.jpg" alt="prhm" size="lg" />;
+<Avatar src="/img/prhm.jpg" alt="Parham Hoseyni" />;
+
+<Avatar alt="Parham Hoseyni">پ</Avatar>;
 ```
 
 ## Installation
@@ -30,11 +32,11 @@ npx the-dig@latest add Avatar
 
 ## Props
 
-| Prop        | Type                                 | Default     |
-| ----------- | ------------------------------------ | ----------- |
-| `src`       | `string`                             | -           |
-| `alt`       | `string`                             | -           |
-| `size`      | `"xs"` \| `"sm"` \| `"md"` \| `"lg"` | `"md"`      |
-| `className` | `string`                             | -           |
-| `status`    | `"online"` \| `"offline"`            | `"offline"` |
-| `children`  | `ReactNode`                          | -           |
+| Prop                                                       | Type                                 | Default     |
+| ---------------------------------------------------------- | ------------------------------------ | ----------- |
+| `src`                                                      | `string`                             | -           |
+| `alt` <sup className="text-red-600 text-caption2">\*</sup> | `string`                             | -           |
+| `size`                                                     | `"xs"` \| `"sm"` \| `"md"` \| `"lg"` | `"md"`      |
+| `className`                                                | `string`                             | -           |
+| `status`                                                   | `"online"` \| `"offline"`            | `"offline"` |
+| `children`                                                 | `ReactNode`                          | -           |
