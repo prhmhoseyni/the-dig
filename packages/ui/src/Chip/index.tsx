@@ -1,9 +1,5 @@
-import {
-  type HTMLAttributes,
-  type DetailedHTMLProps,
-  type ReactNode,
-} from "react";
 import clsx from "clsx";
+import type { DetailedHTMLProps, HTMLAttributes, ReactNode } from "react";
 
 const colors = {
   brand: {
@@ -86,6 +82,7 @@ export default function Chip(props: ChipProps) {
         viewBox="0 0 20 20"
         fill="none"
       >
+        <title>x</title>
         <path
           fillRule="evenodd"
           clipRule="evenodd"

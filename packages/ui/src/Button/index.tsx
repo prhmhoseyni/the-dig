@@ -1,5 +1,5 @@
-import { type ButtonHTMLAttributes, type DetailedHTMLProps } from "react";
 import clsx from "clsx";
+import type { ButtonHTMLAttributes, DetailedHTMLProps } from "react";
 
 const colors = {
   brand: {
@@ -123,6 +123,7 @@ export default function Button(props: ButtonProps) {
           fill="none"
           viewBox="0 0 24 24"
         >
+          <title>button</title>
           <circle
             className="opacity-25"
             cx="12"

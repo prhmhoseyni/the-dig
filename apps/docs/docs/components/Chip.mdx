@@ -1,0 +1,61 @@
+---
+sidebar_position: 1
+---
+
+# Chip
+
+## Preview
+
+import Chip from "@repo/ui/Chip";
+import Container from "./Container";
+
+<Container>
+  <Chip>بزن روم</Chip>
+</Container>
+
+## Code
+
+```tsx
+import Chip from "@repo/ui/Chip";
+
+<Chip />;
+```
+
+## Installation
+
+```bash
+npx the-dig@latest add Chip
+```
+
+## Props
+
+| Prop             | Type                                                                          | Default   |
+| ---------------- | ----------------------------------------------------------------------------- | --------- |
+| `color`          | `"brand"` \| `"info"` \| `"success"` \| `"warning"` \| `"danger"` \| `"gray"` | `"brand"` |
+| `startAdornment` | `ReactNode`                                                                   |           |
+
+## Colors
+
+<Container>
+  <Chip color="brand">بزن روم</Chip>
+</Container>
+
+<Container>
+  <Chip color="info">بزن روم</Chip>
+</Container>
+
+<Container>
+  <Chip color="success">بزن روم</Chip>
+</Container>
+
+<Container>
+  <Chip color="warning">بزن روم</Chip>
+</Container>
+
+<Container>
+  <Chip color="danger">بزن روم</Chip>
+</Container>
+
+<Container>
+  <Chip color="gray">بزن روم</Chip>
+</Container>
