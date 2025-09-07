@@ -1,0 +1,95 @@
+---
+sidebar_position: 1
+---
+
+# Toast
+
+## Preview
+
+import Toast from "@repo/ui/Toast";
+import Button from "@repo/ui/Button";
+import { Toaster, toast } from "sonner";
+import Container from "./Container";
+
+<Container>
+  <Toaster closeButton />
+
+  <button
+    onClick={() =>
+      toast(
+        <Toast
+          title="به‌روزرسانی جدید"
+          description="نسخه جدید آماده نصب است. برای بهبود عملکرد به‌روزرسانی کنید."
+          actions={
+            <div className="flex gap-3">
+              <Button color="gray" variant="outlined">
+                مشاهده تغییرات
+              </Button>
+
+              <Button color="gray" variant="outlined">
+                به‌روزرسانی
+              </Button>
+            </div>
+          }
+          onClose={() => null}
+        />,
+      )
+    }
+  >
+    نمایش
+  </button>
+</Container>
+
+## Code
+
+```tsx
+import Toast from "@repo/ui/Toast";
+import Button from "@repo/ui/Button";
+
+<Toast
+  title="به‌روزرسانی جدید"
+  description="نسخه جدید آماده نصب است. برای بهبود عملکرد به‌روزرسانی کنید."
+  actions={
+    <div className="flex gap-3">
+      <Button color="gray" variant="outlined">مشاهده تغییرات</Button>
+      <Button color="gray" variant="outlined">به‌روزرسانی</Button>
+    </div>
+  }
+/>;
+````
+
+## Installation
+
+```bash
+npx the-dig@latest add Toast
+```
+
+## Props
+
+| Prop          | Type           | Default |
+| ------------- | -------------- | ------- |
+| `title`       | `ReactNode`    | -       |
+| `description` | `ReactNode`    | -       |
+| `actions`     | `ReactNode`    | -       |
+| `onClose`     | `VoidFunction` | -       |
+| `className`   | `string`       | -       |
+
+## Variants / Examples
+
+<Container className="flex flex-col gap-4">
+  <Toast
+    title="به‌روزرسانی جدید"
+    description="نسخه جدید آماده نصب است."
+    actions={
+      <div className="flex gap-3">
+        <Button color="gray" variant="outlined">مشاهده تغییرات</Button>
+        <Button color="gray" variant="outlined">به‌روزرسانی</Button>
+      </div>
+    }
+  />
+
+<Toast
+title="پیام ساده"
+description="این یک پیام بدون اکشن است."
+actions={<></>}
+/> </Container>
