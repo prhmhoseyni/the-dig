@@ -1,0 +1,104 @@
+---
+sidebar_position: 1
+---
+
+# Badge
+
+## Preview
+
+import Badge from "@repo/ui/Badge";
+import Container from "./Container";
+
+<Container>
+  <Badge>به من توجه کن</Badge>
+</Container>
+
+## Code
+
+```tsx
+<Badge variant="contained" color="brand">
+  به من توجه کن
+</Badge>
+```
+
+## Installation
+
+```bash
+npx the-dig@latest add Badge
+```
+
+## API
+
+| Prop       | Type                                                                          | Default                                                                  |
+| ---------- | ----------------------------------------------------------------------------- | ------------------------------------------------------------------------ |
+| `variant`  | `"contained"` \| `"tinted"`                                                   | `"contained"`                                                            |
+| `color`    | `"brand"` \| `"info"` \| `"success"` \| `"warning"` \| `"danger"` \| `"gray"` | `"brand"`                                                                |
+| `...props` | `HTMLAttributes<HTMLDivElement>` (e.g. `onClick`, `disabled`, etc.)           | [Document](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement) |
+
+## Variants and Colors
+
+### brand
+
+<Container>
+  <Badge variant="contained" color="brand">
+    <span>به من توجه کن</span>
+  </Badge>
+  <Badge variant="tinted" color="brand">
+    <span>به من توجه کن</span>
+  </Badge>
+</Container>
+
+### info
+
+<Container>
+  <Badge variant="contained" color="info">
+    <span>به من توجه کن</span>
+  </Badge>
+  <Badge variant="tinted" color="info">
+    <span>به من توجه کن</span>
+  </Badge>
+</Container>
+
+### success
+
+<Container>
+  <Badge variant="contained" color="success">
+    <span>به من توجه کن</span>
+  </Badge>
+  <Badge variant="tinted" color="success">
+    <span>به من توجه کن</span>
+  </Badge>
+</Container>
+
+### warning
+
+<Container>
+  <Badge variant="contained" color="warning">
+    <span>به من توجه کن</span>
+  </Badge>
+  <Badge variant="tinted" color="warning">
+    <span>به من توجه کن</span>
+  </Badge>
+</Container>
+
+### danger
+
+<Container>
+  <Badge variant="contained" color="danger">
+    <span>به من توجه کن</span>
+  </Badge>
+  <Badge variant="tinted" color="danger">
+    <span>به من توجه کن</span>
+  </Badge>
+</Container>
+
+### gray
+
+<Container>
+  <Badge variant="contained" color="gray">
+    <span>به من توجه کن</span>
+  </Badge>
+  <Badge variant="tinted" color="gray">
+    <span>به من توجه کن</span>
+  </Badge>
+</Container>

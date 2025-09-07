@@ -1,5 +1,5 @@
-import { type HTMLAttributes, type DetailedHTMLProps } from "react";
 import clsx from "clsx";
+import type { DetailedHTMLProps, HTMLAttributes } from "react";
 
 const colors = {
   brand: {
