@@ -1,0 +1,68 @@
+---
+sidebar_position: 1
+---
+
+# CircularProgress
+
+## Preview
+
+import CircularProgress from "@repo/ui/CircularProgress";
+import Container from "./Container";
+
+<Container>
+  <CircularProgress />
+</Container>
+
+## Code
+
+```tsx
+<CircularProgress />
+```
+
+## Installation
+
+```bash
+npx the-dig@latest add CircularProgress
+```
+
+## Props
+
+| Prop    | Type                                                                          | Default   |
+| ------- | ----------------------------------------------------------------------------- | --------- |
+| `color` | `"brand"` \| `"info"` \| `"success"` \| `"warning"` \| `"danger"` \| `"gray"` | `"brand"` |
+| `size`  | `"xs"` \| `"sm"` \| `"md"` \| `"lg"`                                          | `"md"`    |
+
+## Colors
+
+<Container>
+  <CircularProgress size="md" color="brand" />
+</Container>
+
+<Container>
+  <CircularProgress size="md" color="info" />
+</Container>
+
+<Container>
+  <CircularProgress size="md" color="success" />
+</Container>
+
+<Container>
+  <CircularProgress size="md" color="warning" />
+</Container>
+
+<Container>
+  <CircularProgress size="md" color="danger" />
+</Container>
+
+<Container>
+  <CircularProgress size="md" color="gray" />
+</Container>
+
+## Sizes
+
+<Container>
+  <CircularProgress size="xs" color="brand" />
+  <CircularProgress size="sm" color="brand" />
+  <CircularProgress size="md" color="brand" />
+  <CircularProgress size="lg" color="brand" />
+</Container>
