@@ -1,5 +1,5 @@
-import { type DetailedHTMLProps, type InputHTMLAttributes } from "react";
 import clsx from "clsx";
+import type { DetailedHTMLProps, InputHTMLAttributes } from "react";
 import styles from "./index.module.css";
 
 const colors = {

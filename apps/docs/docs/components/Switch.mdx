@@ -1,0 +1,51 @@
+---
+sidebar_position: 1
+---
+
+# Switch
+
+## Preview
+
+import Switch from "@repo/ui/Switch";
+import Container from "./Container";
+
+<Container className="flex flex-wrap gap-3">
+  <Switch color="brand" />
+</Container>
+
+## Code
+
+```tsx
+import Switch from "@repo/ui/Switch";
+
+<Switch color="brand" />;
+````
+
+## Installation
+
+```bash
+npx the-dig@latest add Switch
+```
+
+## Props
+
+| Prop            | Type                                                                          | Default   |
+| --------------- | ----------------------------------------------------------------------------- | --------- |
+| `color`         | `"brand"` \| `"info"` \| `"success"` \| `"warning"` \| `"danger"` \| `"gray"` | `"brand"` |
+| `size`          | `"sm"` \| `"md"` \| `"lg"`                                                    | `"md"`    |
+| `...props`      | `DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>`  | -         |
+| `className`     | `string`                                                                      | -         |
+
+## Variants / Examples
+
+<Container className="flex flex-wrap gap-3">
+  <Switch color="brand" checked />
+  <Switch color="danger" checked />
+  <Switch color="info" />
+  <Switch color="gray" />
+  <Switch color="success" />
+  <Switch color="warning" />
+  <Switch size="lg" />
+  <Switch size="sm" />
+  <Switch disabled />
+</Container>
