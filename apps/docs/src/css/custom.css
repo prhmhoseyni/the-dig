@@ -523,3 +523,7 @@ p {
 .breadcrumbs__item {
   @apply flex items-center justify-start;
 }
+
+table {
+  width: 100%;
+}
