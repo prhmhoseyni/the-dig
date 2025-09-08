@@ -4,7 +4,7 @@ import Tabs from "@repo/ui/Tabs";
 import { CircleX } from "lucide-react";
 import { useState } from "react";
 
-export default function TabsWrapper() {
+export default function TabsPreview() {
   const [value, setValue] = useState(1);
 
   return (

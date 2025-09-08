@@ -10,41 +10,32 @@ import Tabs from "@repo/ui/Tabs";
 import { useState } from "react";
 import { CircleX } from "lucide-react";
 import Container from "./Container";
-import TabsWrapper from "./TabsWrapper";
+import TabsPreview from "../../src/components/TabsPreview";
 
 <Container className="flex flex-col gap-4">
-  <TabsWrapper />
+  <TabsPreview />
 </Container>
 
 ## Code
 
 ```tsx
 import Tabs from "@repo/ui/Tabs";
-import { useState } from "react";
 import { CircleX } from "lucide-react";
 
-function TabsWrapper() {
-  const [value, setValue] = useState(1);
-
-  return (
-    <>
-       <Tabs value={value} onChange={(v) => setValue(v)}>
-        <Tabs.Item>
-          <span>عنوان</span>
-          <CircleX size={16} />
-        </Tabs.Item>
-        <Tabs.Item>
-          <span>عنوان</span>
-          <CircleX size={16} />
-        </Tabs.Item>
-        <Tabs.Item>
-          <span>عنوان</span>
-          <CircleX size={16} />
-        </Tabs.Item>
-      </Tabs>
-    </>
-  );
-}
+<Tabs value={value} onChange={(v) => setValue(v)}>
+ <Tabs.Item>
+   <span>عنوان</span>
+   <CircleX size={16} />
+ </Tabs.Item>
+ <Tabs.Item>
+   <span>عنوان</span>
+   <CircleX size={16} />
+ </Tabs.Item>
+ <Tabs.Item>
+   <span>عنوان</span>
+   <CircleX size={16} />
+ </Tabs.Item>
+</Tabs>
 ````
 
 ## Installation
