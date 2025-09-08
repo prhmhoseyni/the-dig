@@ -33,7 +33,7 @@ export default function Select(props: SelectProps) {
     <div className="w-full relative">
       <select
         className={clsx(
-          "appearance-none w-full h-9 text-label2 text-prose-primary border border-gray-400 outline-0 px-2 rounded-lg placeholder:text-prose-hint transition-all ease-in-out duration-300",
+          "appearance-none w-full min-h-10 text-label2 text-prose-primary border border-gray-400 outline-0 px-2 rounded-lg placeholder:text-prose-hint transition-all ease-in-out duration-300",
           "disabled:cursor-not-allowed disabled:opacity-40",
           "focus:border-brand focus:shadow-focus-brand",
           { "bg-background-secondary": variant === "primary" },
@@ -64,6 +64,7 @@ export default function Select(props: SelectProps) {
           viewBox="0 0 24 24"
           fill="none"
         >
+          <title>arrow-bottom</title>
           <path
             d="M16 10L12 14L8 10"
             stroke="rgb(var(--dig-prose-hint))"
