@@ -1,11 +1,11 @@
-import { ComponentProps, useEffect, useRef } from "react";
 import clsx from "clsx";
 import {
   ChevronDownIcon,
   ChevronLeftIcon,
   ChevronRightIcon,
 } from "lucide-react";
-import { DayButton, getDefaultClassNames } from "react-day-picker";
+import { type ComponentProps, useEffect, useRef } from "react";
+import { type DayButton, getDefaultClassNames } from "react-day-picker";
 import { DayPicker } from "react-day-picker/persian";
 import IconButton from "../IconButton";
 
