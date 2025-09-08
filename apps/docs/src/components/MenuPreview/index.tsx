@@ -4,7 +4,7 @@ import Button from "@repo/ui/Button";
 import Menu from "@repo/ui/Menu";
 import { useRef, useState } from "react";
 
-export default function MenuPage() {
+export default function MenuPreview() {
   const [menuOpen, setMenuOpen] = useState(false);
   const anchorRef = useRef<HTMLButtonElement>(null);
 
@@ -19,7 +19,7 @@ export default function MenuPage() {
   return (
     <div className="container mx-auto flex justify-center items-center p-4">
       <Button ref={anchorRef} onClick={handleOpenMenu}>
-        Open Menu
+        باز کن
       </Button>
 
       <Menu
@@ -39,7 +39,6 @@ export default function MenuPage() {
         <Menu.Item onClick={() => handleMenuItemClick("Item 4 (SubMenu)")}>
           عنوان ایتم منو
         </Menu.Item>
-        <div>123</div>
       </Menu>
     </div>
   );

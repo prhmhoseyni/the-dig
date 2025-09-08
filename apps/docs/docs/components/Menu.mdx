@@ -1,0 +1,79 @@
+---
+sidebar_position: 1
+---
+
+# Menu
+
+## Preview
+
+import Menu from "@repo/ui/Menu";
+import MenuPreview from "../../src/components/MenuPreview";
+import Container from "./Container";
+
+<Container>
+  <MenuPreview />
+</Container>
+
+## Code
+
+```tsx
+"use client";
+
+import Button from "@repo/ui/Button";
+import Menu from "@repo/ui/Menu";
+import { useRef, useState } from "react";
+
+export default function MenuPage() {
+  const [menuOpen, setMenuOpen] = useState(false);
+  const anchorRef = useRef<HTMLButtonElement>(null);
+
+  return (
+    <div className="flex justify-center">
+      <Button ref={anchorRef} onClick={() => setMenuOpen(!menuOpen)}>
+        Open Menu
+      </Button>
+
+      <Menu
+        anchor={anchorRef.current}
+        open={menuOpen}
+        onClose={() => setMenuOpen(false)}
+      >
+        <Menu.Item onClick={() => console.log("Item 1 clicked")}>
+          گزینه اول
+        </Menu.Item>
+        <Menu.Item onClick={() => console.log("Item 2 clicked")}>
+          گزینه دوم
+        </Menu.Item>
+        <Menu.Item onClick={() => console.log("Item 3 clicked")}>
+          گزینه سوم
+        </Menu.Item>
+      </Menu>
+    </div>
+  );
+}
+````
+
+## Installation
+
+```bash
+npx the-dig@latest add Menu
+```
+
+## Props
+
+### `Menu`
+
+| Prop                                                            | Type                  | Default |
+| --------------------------------------------------------------- | --------------------- | ------- |
+| `anchor` <sup className="text-red-600 text-caption2">\*</sup>   | `HTMLElement \| null` | -       |
+| `open` <sup className="text-red-600 text-caption2">\*</sup>     | `boolean`             | -       |
+| `onClose` <sup className="text-red-600 text-caption2">\*</sup>  | `() => void`          | -       |
+| `children` <sup className="text-red-600 text-caption2">\*</sup> | `ReactNode`           | -       |
+
+### `Menu.Item`
+
+| Prop        | Type                   | Default |
+| ----------- | ---------------------- | ------- |
+| `children`  | `ReactNode`            | -       |
+| `className` | `string`               | -       |
+| `...props`  | `HTMLDivElement` props | -       |

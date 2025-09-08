@@ -1,0 +1,47 @@
+---
+sidebar_position: 1
+---
+
+# Pagination
+
+## Preview
+
+import PaginationPreview from "../../src/components/PaginationPreview";
+import Container from "./Container";
+
+<Container>
+  <PaginationPreview />
+</Container>
+
+## Code
+
+```tsx
+"use client";
+
+import Pagination from "@repo/ui/Pagination";
+import { useState } from "react";
+
+const [page, setPage] = useState(1);
+
+return (
+  <Pagination
+    total={10}
+    page={page}
+    onChange={(p) => setPage(p)}
+  />
+);
+````
+
+## Installation
+
+```bash
+npx the-dig@latest add Pagination
+```
+
+## Props
+
+| Prop                                                            | Type                     | Default |
+| --------------------------------------------------------------- | ------------------------ | ------- |
+| `total` <sup className="text-red-600 text-caption2">\*</sup>    | `number`                 | -       |
+| `page` <sup className="text-red-600 text-caption2">\*</sup>     | `number`                 | -       |
+| `onChange` <sup className="text-red-600 text-caption2">\*</sup> | `(page: number) => void` | -       |
