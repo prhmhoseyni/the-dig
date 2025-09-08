@@ -1,0 +1,34 @@
+---
+sidebar_position: 1
+---
+
+# DatePicker
+
+## Preview
+
+import DatePickerPreview from "../../src/components/DatePickerPreview";
+
+<DatePickerPreview />
+
+## Code
+
+```tsx
+import DatePicker from "@repo/ui/DatePicker";
+
+<DatePicker value={value} onChange={(_value) => setValue(_value)} />;
+```
+
+## Installation
+
+```bash
+npx the-dig@latest add DatePicker
+```
+
+## Props
+
+| Prop                                                            | Type                                    | Default                                                                       |
+| --------------------------------------------------------------- | --------------------------------------- | ----------------------------------------------------------------------------- |
+| `value` <sup className="text-red-600 text-caption2">\*</sup>    | `number` \| `null`                      | -                                                                             |
+| `onChange` <sup className="text-red-600 text-caption2">\*</sup> | `(value: number \| null) => void`       | -                                                                             |
+| `locale`                                                        | `"fa"` \| `"en"`                        | `"fa"`                                                                        |
+| `inputProps`                                                    | `InputHTMLAttributes<HTMLInputElement>` | [Document](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement) |
