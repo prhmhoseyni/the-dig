@@ -104,7 +104,6 @@ npm run build
 
 ### Development Dependencies
 
-- `chalk`: Terminal styling
 - `commander`: CLI framework
 - `fs-extra`: Enhanced file system operations
 - `node-fetch`: HTTP client

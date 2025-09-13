@@ -1,7 +1,7 @@
 export const GLOBALS_CSS_CONTENT = `
 @import "tailwindcss";
 
-@custom-variant dark (&:where(.dark, .dark *));
+@custom-variant dark (&:is([data-theme="dark"] *));
 
 :root {
   color-scheme: light;
@@ -46,7 +46,7 @@ export const GLOBALS_CSS_CONTENT = `
   --dig-color-mix-gray: #ffffff;
 }
 
-html.dark {
+html[data-theme="dark"] {
   color-scheme: dark;
 
   /** :::: generic variables: Each color is stored as an RGB triplet (e.g., 62, 136, 193) :::: */

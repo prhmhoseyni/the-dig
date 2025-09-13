@@ -1,14 +1,13 @@
-import chalk from "chalk";
 import path from "path";
 import {
-  fetchComponentFromRepository as fetchComponentFromRepository,
+  fetchComponentFromRepository,
   getComponentData,
   getTheDigConfig,
   installDependencies,
 } from "./helpers/methods";
 
 export async function add(componentName: string) {
-  console.log(chalk.blue(`Adding component: ${chalk.bold(componentName)}`));
+  console.log(`Adding component: ${componentName}`);
 
   try {
     /**
@@ -22,11 +21,9 @@ export async function add(componentName: string) {
     const component = componentData[componentName];
 
     if (!component) {
-      console.error(
-        chalk.red(`Error: Component "${componentName}" not found.`),
-      );
+      console.error(`Error: Component "${componentName}" not found.`);
       console.log(
-        chalk.yellow("Available components:"),
+        "Available components:",
         Object.keys(componentData).join(", "),
       );
       process.exit(1);
@@ -40,9 +37,7 @@ export async function add(componentName: string) {
 
     if (!componentsAlias) {
       console.error(
-        chalk.red(
-          `Error: 'aliases.components' not found in .thedigrc.json. Please check your configuration.`,
-        ),
+        `Error: 'aliases.components' not found in .thedigrc.json. Please check your configuration.`,
       );
       process.exit(1);
     }
@@ -59,13 +54,9 @@ export async function add(componentName: string) {
     const destination = path.join(rootDir, componentsAlias, componentName);
     await fetchComponentFromRepository(component.src, destination);
 
-    console.log(
-      chalk.bold.green(`\n🚀 Component "${componentName}" added successfully!`),
-    );
+    console.log(`\n🚀 Component "${componentName}" added successfully!`);
   } catch (error) {
-    console.error(
-      chalk.red(`\n❌ Failed to add component "${componentName}".`),
-    );
+    console.error(`\n❌ Failed to add component "${componentName}".`);
     process.exit(1);
   }
 }

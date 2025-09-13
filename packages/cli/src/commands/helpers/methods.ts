@@ -1,10 +1,9 @@
-import chalk from "chalk";
-import fetch from "node-fetch";
 import { exec } from "child_process";
 import fs from "fs-extra";
+import fetch from "node-fetch";
 import ora from "ora";
 import path from "path";
-import { ComponentsData, type TheDigConfig } from "./types";
+import type { ComponentsData, TheDigConfig } from "./types";
 
 /**
  * -----------------------------------------------------------------------------------------------------------------
@@ -14,7 +13,7 @@ import { ComponentsData, type TheDigConfig } from "./types";
 export async function getTheDigConfig(): Promise<TheDigConfig> {
   const configFileName = ".thedigrc.json";
   const configFilePath = path.join(process.cwd(), configFileName);
-  const spinner = ora(`Reading ${chalk.cyan(configFileName)}...`).start();
+  const spinner = ora(`Reading ${configFileName}...`).start();
 
   try {
     if (!fs.existsSync(configFilePath)) {
@@ -29,7 +28,7 @@ export async function getTheDigConfig(): Promise<TheDigConfig> {
     return config;
   } catch (error: any) {
     spinner.fail(`Failed to read ${configFileName}.`);
-    console.error(chalk.red(error.message));
+    console.error(error.message);
     process.exit(1);
   }
 }
@@ -45,20 +44,20 @@ export function installDependencies(
 ): Promise<void> {
   return new Promise((resolve, reject) => {
     if (!dependencies || dependencies.length === 0) {
-      console.log(chalk.gray("No dependencies to install."));
+      console.log("No dependencies to install.");
       resolve();
       return;
     }
 
     const command = `npm install ${dependencies.join(" ")}`;
     const spinner = ora(
-      `Installing dependencies: ${chalk.cyan(dependencies.join(", "))}`,
+      `Installing dependencies: ${dependencies.join(", ")}`,
     ).start();
 
     exec(command, (error, stdout, stderr) => {
       if (error) {
         spinner.fail("Failed to install dependencies.");
-        console.error(chalk.red(stderr));
+        console.error(stderr);
         reject(error);
         return;
       }
@@ -77,7 +76,7 @@ export async function getComponentData(): Promise<ComponentsData> {
   const registryURL =
     "https://raw.githubusercontent.com/prhmhoseyni/the-dig/refs/heads/main/packages/cli/libs/components.json";
   const spinner = ora(
-    `Loading component registry from ${chalk.cyan(registryURL)}...`,
+    `Loading component registry from ${registryURL}...`,
   ).start();
 
   try {
@@ -94,7 +93,7 @@ export async function getComponentData(): Promise<ComponentsData> {
     return componentData;
   } catch (error: any) {
     spinner.fail("Failed to load component registry.");
-    console.error(chalk.red(error.message));
+    console.error(error.message);
     process.exit(1);
   }
 }
@@ -110,9 +109,7 @@ export async function fetchComponentFromRepository(
   repoURL: string,
   destination: string,
 ): Promise<void> {
-  const spinner = ora(
-    `Fetching component from ${chalk.cyan(repoURL)}...`,
-  ).start();
+  const spinner = ora(`Fetching component from ${repoURL}...`).start();
   try {
     const parts = repoURL.split("/");
     const owner = parts[3];
@@ -148,11 +145,11 @@ export async function fetchComponentFromRepository(
       }
     }
     spinner.succeed(
-      `Component successfully fetched and placed in ${chalk.green(destination)}.`,
+      `Component successfully fetched and placed in ${destination}.`,
     );
   } catch (error: any) {
     spinner.fail("Failed to fetch component from Repository.");
-    console.error(chalk.red(error.message));
+    console.error(error.message);
     throw error;
   }
 }

@@ -1,9 +1,9 @@
 #!/usr/bin/env node
 
 import { Command } from "commander";
-import { init } from "./commands/init";
-import { config } from "./commands/config";
 import { add } from "./commands/add";
+import { config } from "./commands/config";
+import { init } from "./commands/init";
 
 const program = new Command();
 

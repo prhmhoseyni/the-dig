@@ -1,4 +1,3 @@
-import chalk from "chalk";
 import fs from "fs-extra";
 import ora from "ora";
 import path from "path";
@@ -6,7 +5,7 @@ import { getTheDigConfig } from "./helpers/methods";
 import { GLOBALS_CSS_CONTENT } from "./helpers/theme";
 
 export async function config() {
-  console.log(chalk.blue(`Configuring project CSS...`));
+  console.log(`Configuring project CSS...`);
 
   try {
     /**
@@ -17,9 +16,7 @@ export async function config() {
 
     if (!globalCssPathFromConfig) {
       console.error(
-        chalk.red(
-          `Error: 'tailwind.css' path not found in .thedigrc.json. Please check your configuration.`,
-        ),
+        `Error: 'tailwind.css' path not found in .thedigrc.json. Please check your configuration.`,
       );
       process.exit(1);
     }
@@ -30,7 +27,7 @@ export async function config() {
     const rootDir = process.cwd();
     const globalCssFilePath = path.join(rootDir, globalCssPathFromConfig);
 
-    const spinner = ora(`Updating ${chalk.cyan(globalCssFilePath)}...`).start();
+    const spinner = ora(`Updating ${globalCssFilePath}...`).start();
 
     /**
      * 3. Read existing content of globals.css
@@ -41,9 +38,7 @@ export async function config() {
     } else {
       // If the file doesn't exist, create its parent directory if needed
       await fs.ensureDir(path.dirname(globalCssFilePath));
-      spinner.warn(
-        `File ${chalk.yellow(globalCssFilePath)} not found. Creating it.`,
-      );
+      spinner.warn(`File ${globalCssFilePath} not found. Creating it.`);
     }
 
     /**
@@ -58,12 +53,12 @@ export async function config() {
     await fs.writeFile(globalCssFilePath, newContent, "utf8");
 
     spinner.succeed(
-      `Successfully updated ${chalk.green(globalCssFilePath)} with The DIG styles.`,
+      `Successfully updated ${globalCssFilePath} with The DIG styles.`,
     );
-    console.log(chalk.bold.green(`\n✅ Project CSS configured successfully!`));
+    console.log(`\n✅ Project CSS configured successfully!`);
   } catch (error: any) {
-    console.error(chalk.red(`\n❌ Failed to configure project CSS.`));
-    console.error(chalk.red(error.message));
+    console.error(`\n❌ Failed to configure project CSS.`);
+    console.error(error.message);
     process.exit(1);
   }
 }

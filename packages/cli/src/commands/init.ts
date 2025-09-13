@@ -1,12 +1,11 @@
-import chalk from "chalk";
 import fs from "fs-extra";
 import ora from "ora";
 import path from "path";
 import { installDependencies } from "./helpers/methods";
-import { type TheDigConfig } from "./helpers/types";
+import type { TheDigConfig } from "./helpers/types";
 
 export async function init() {
-  console.log(chalk.blue(`Initializing The DIG project...`));
+  console.log(`Initializing The DIG project...`);
 
   try {
     /**
@@ -27,7 +26,7 @@ export async function init() {
     };
 
     const spinner = ora(
-      `Creating ${chalk.cyan(configFileName)} at ${chalk.gray(configFilePath)}...`,
+      `Creating ${configFileName} at ${configFilePath}...`,
     ).start();
 
     try {
@@ -35,7 +34,7 @@ export async function init() {
       spinner.succeed(`${configFileName} created successfully.`);
     } catch (error: any) {
       spinner.fail(`Failed to create ${configFileName}.`);
-      console.error(chalk.red(error.message));
+      console.error(error.message);
       throw error;
     }
 
@@ -44,11 +43,9 @@ export async function init() {
      */
     await installDependencies(["clsx", "lucide-react"]);
 
-    console.log(
-      chalk.bold.green(`\n✨ The DIG project initialized successfully!`),
-    );
+    console.log(`\n✨ The DIG project initialized successfully!`);
   } catch (error) {
-    console.error(chalk.red(`\n❌ Failed to initialize The DIG project.`));
+    console.error(`\n❌ Failed to initialize The DIG project.`);
     process.exit(1);
   }
 }
