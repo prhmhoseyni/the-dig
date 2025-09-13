@@ -1,4 +1,4 @@
-import { X, Pause, Play, File as FileIcon, Trash } from "lucide-react";
+import { File as FileIcon, Pause, Play, Trash, X } from "lucide-react";
 import IconButton from "../IconButton";
 
 export type UploadStatus = "uploading" | "paused" | "completed" | "cancelled";

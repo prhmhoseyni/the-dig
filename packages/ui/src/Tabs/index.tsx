@@ -6,8 +6,8 @@ import {
 	cloneElement,
 	type HTMLProps,
 	isValidElement,
-	memo,
 	type MemoExoticComponent,
+	memo,
 	type PropsWithChildren,
 	type ReactNode,
 } from "react";

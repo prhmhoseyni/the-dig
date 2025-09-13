@@ -1,8 +1,8 @@
 "use client";
 
-import { type ChangeEvent, type DragEvent, type InputHTMLAttributes, useState } from "react";
-import { CloudUpload } from "lucide-react";
 import clsx from "clsx";
+import { CloudUpload } from "lucide-react";
+import { type ChangeEvent, type DragEvent, type InputHTMLAttributes, useState } from "react";
 
 export interface FileUploaderProps extends InputHTMLAttributes<HTMLInputElement> {
 	id: string;
