@@ -6,35 +6,23 @@ import {
   installDependencies,
 } from "./helpers/methods";
 
-export async function add(componentName: string) {
-  console.log(`Adding component: ${componentName}`);
+export async function add(componentNamesStr: string) {
+  // 1. Parse the comma-separated string into an array of names
+  const componentNames = componentNamesStr
+    .split(",")
+    .map((name) => name.trim());
+  console.log(`Adding components: ${componentNames.join(", ")}`);
 
   try {
     /**
-     * 1. Load data asynchronously from the remote source
+     * 2. Load remote component data and local config concurrently
      */
-    const componentData = await getComponentData();
+    const [componentData, config] = await Promise.all([
+      getComponentData(),
+      getTheDigConfig(),
+    ]);
 
-    /**
-     * 2. Validate component name
-     */
-    const component = componentData[componentName];
-
-    if (!component) {
-      console.error(`Error: Component "${componentName}" not found.`);
-      console.log(
-        "Available components:",
-        Object.keys(componentData).join(", "),
-      );
-      process.exit(1);
-    }
-
-    /**
-     * 3. Load project configuration from .thedigrc.json
-     */
-    const config = await getTheDigConfig();
     const componentsAlias = config.aliases.components;
-
     if (!componentsAlias) {
       console.error(
         `Error: 'aliases.components' not found in .thedigrc.json. Please check your configuration.`,
@@ -43,20 +31,74 @@ export async function add(componentName: string) {
     }
 
     /**
-     * 4. Install dependencies
+     * 3. Validate all requested components before proceeding
      */
-    await installDependencies(component.dependencies);
+    const validComponents: any[] = [];
+    const invalidNames: string[] = [];
+
+    for (const name of componentNames) {
+      const component = componentData[name];
+      if (component) {
+        // Add the component's name to its data for later use
+        validComponents.push({ ...component, name });
+      } else {
+        invalidNames.push(name);
+      }
+    }
+
+    if (invalidNames.length > 0) {
+      console.error(
+        `\n❌ Error: The following components were not found: ${invalidNames.join(", ")}.`,
+      );
+      console.log(
+        "\nAvailable components:",
+        Object.keys(componentData).join(", "),
+      );
+      process.exit(1);
+    }
 
     /**
-     * 5. Fetch component folder from Repository
+     * 4. Aggregate all unique dependencies from the valid components
+     */
+    const allDependencies = new Set<string>();
+    validComponents.forEach((component) => {
+      if (component.dependencies && Array.isArray(component.dependencies)) {
+        component.dependencies.map((dep: string) => {
+          allDependencies.add(dep);
+          return dep;
+        });
+      }
+    });
+
+    const dependenciesToInstall = Array.from(allDependencies);
+
+    /**
+     * 5. Install all collected dependencies in a single batch
+     */
+    if (dependenciesToInstall.length > 0) {
+      await installDependencies(dependenciesToInstall);
+    }
+
+    /**
+     * 6. Fetch all component folders from the repository concurrently
      */
     const rootDir = process.cwd();
-    const destination = path.join(rootDir, componentsAlias, componentName);
-    await fetchComponentFromRepository(component.src, destination);
+    const fetchPromises = validComponents.map((component) => {
+      const destination = path.join(rootDir, componentsAlias, component.name);
+      return fetchComponentFromRepository(component.src, destination);
+    });
 
-    console.log(`\n🚀 Component "${componentName}" added successfully!`);
+    await Promise.all(fetchPromises);
+
+    console.log(
+      `\n🚀 Components "${componentNames.join(", ")}" added successfully!`,
+    );
   } catch (error) {
-    console.error(`\n❌ Failed to add component "${componentName}".`);
+    console.error(
+      `\n❌ Failed to add components: "${componentNames.join(", ")}".`,
+    );
+    // For debugging, you might want to log the actual error
+    // console.error(error);
     process.exit(1);
   }
 }
