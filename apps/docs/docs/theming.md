@@ -17,9 +17,24 @@ They are stored as RGB triplets for flexible usage with `rgb()` or `rgba()`.
 Example:
 
 ```css
---dig-background-primary: 245, 245, 245;
---dig-prose-primary: 12, 14, 16;
---dig-brand: 62, 136, 193;
+  /** :::: generic variables: Each color is stored as an RGB triplet (e.g., 62, 136, 193) :::: */
+  --dig-background-primary: 245, 245, 245;
+  --dig-background-secondary: 255, 255, 255;
+  --dig-background-dialog: 255, 255, 255;
+  --dig-background-inverse: 0, 0, 0;
+
+  --dig-prose-primary: 12, 14, 16;
+  --dig-prose-secondary: 102, 117, 133;
+  --dig-prose-hint: 154, 166, 177;
+  --dig-prose-inverse: 246, 247, 248;
+  --dig-prose-link: 32, 156, 215;
+
+  --dig-brand: 62, 136, 193;
+  --dig-info: 45, 144, 210;
+  --dig-success: 21, 151, 84;
+  --dig-warning: 208, 124, 6;
+  --dig-danger: 197, 50, 17;
+  --dig-gray: 39, 41, 55;
 ```
 
 You can safely override these in your project to apply your own branding.

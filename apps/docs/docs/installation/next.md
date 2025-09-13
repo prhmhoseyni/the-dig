@@ -9,7 +9,8 @@ Install and configure The DIG for Next.js.
 ## Create project
 
 ```bash
-npx create-next-app@latest
+npx create-next-app@latest my-project --typescript --eslint --app
+cd my-project
 ```
 
 ## Install Tailwind CSS with Next.js
@@ -41,7 +42,6 @@ export default config;
 Add an `@import tailwindcss` to `./app/globals.css` that imports Tailwind CSS.
 
 ```css
-/* globals.css */
 @import "tailwindcss";
 ```
 
