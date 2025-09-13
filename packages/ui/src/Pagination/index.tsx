@@ -1,4 +1,3 @@
-import { type ButtonHTMLAttributes, type DetailedHTMLProps } from "react";
 import clsx from "clsx";
 import {
   ChevronLeft,
@@ -7,6 +6,7 @@ import {
   ChevronsRight,
 } from "lucide-react";
 import { toPersianDigits } from "msk-utils";
+import type { ButtonHTMLAttributes, DetailedHTMLProps } from "react";
 
 interface PaginationButtonProps
   extends DetailedHTMLProps<

@@ -4,7 +4,7 @@ import Button from "@repo/ui/Button";
 import Modal from "@repo/ui/Modal";
 import { useState } from "react";
 
-export default function ModalPage() {
+export default function ModalPreview() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (

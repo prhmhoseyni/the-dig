@@ -3,7 +3,7 @@
 import Slider from "@repo/ui/Slider";
 import { useState } from "react";
 
-export default function SliderWrapper() {
+export default function SliderPreview() {
   const [singleValue, setSingleValue] = useState<number>(20);
   const [rangeValue, setRangeValue] = useState<[number, number]>([30, 70]);
 

@@ -8,10 +8,10 @@ sidebar_position: 1
 
 import SegmentControl from "@repo/ui/SegmentControl";
 import Container from "./Container"
-import SegmentControlWrapper from "./SegmentControlWrapper"
+import SegmentControlPreview from "../../src/components/SegmentControlPreview";
 
 <Container>
-    <SegmentControlWrapper/>
+    <SegmentControlPreview/>
 </Container>
 
 ## Code
@@ -44,10 +44,10 @@ import SegmentControl from "@repo/ui/SegmentControl";
 
 ### `SegmentControl.Item` Props
 
-| Prop            | Type                      | Default |
-| --------------- | ------------------------- | ------- |
-| `value`         | `string`                  | -       |
-| `onChange`      | `(value: string) => void` | -       |
-| `selectedValue` | `string`                  | -       |
-| `size`          | `"sm"`                    | `"md"`  |
-| `children`      | `ReactNode`               | -       |
+| Prop                                                         | Type                      | Default |
+| ------------------------------------------------------------ | ------------------------- | ------- |
+| `value` <sup className="text-red-600 text-caption2">\*</sup> | `string`                  | -       |
+| `onChange`                                                   | `(value: string) => void` | -       |
+| `selectedValue`                                              | `string`                  | -       |
+| `size`                                                       | `"sm"`                    | `"md"`  |
+| `children`                                                   | `ReactNode`               | -       |

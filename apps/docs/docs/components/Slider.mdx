@@ -9,10 +9,10 @@ sidebar_position: 1
 import Slider from "@repo/ui/Slider";
 import { useState } from "react";
 import Container from "./Container";
-import SliderWrapper from "./SliderWrapper"
+import SliderPreview from "../../src/components/SliderPreview";
 
 <Container>
-  <SliderWrapper />
+  <SliderPreview />
 </Container>
 
 ## Code
@@ -41,9 +41,9 @@ npx the-dig@latest add Slider
 
 ## Props
 
-| Prop                    | Type                                                              | Default                      |   |
-| ----------------------- | ----------------------------------------------------------------- | ---------------------------- | - |
-| `value`                 | `number` \| `[number, number]`                                    | -                            |   |
-| `onChange`              | \`(value: number                                                  | \[number, number]) => void\` | - |
-| `range`                 | `boolean`                                                         | `false`                      |   |
-| Other `rc-slider` props | See [`rc-slider` docs](https://github.com/react-component/slider) | -                            |   |
+| Prop       | Type                                                  | Default |
+| ---------- | ----------------------------------------------------- | --------|
+| `value`    | `number` \| `number[]`                                | -       |
+| `onChange` | `(value: number \| [number, number]) => void`         | -       |
+| `range`    | `boolean`                                             | `false` |
+| `...props` | [Document](https://github.com/react-component/slider) | -       |

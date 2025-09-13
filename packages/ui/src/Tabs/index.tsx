@@ -4,9 +4,9 @@ import clsx from "clsx";
 import {
   Children,
   cloneElement,
+  type HTMLProps,
   isValidElement,
   memo,
-  type HTMLProps,
   type MemoExoticComponent,
   type PropsWithChildren,
   type ReactNode,

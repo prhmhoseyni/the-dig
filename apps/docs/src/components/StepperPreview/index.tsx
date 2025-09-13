@@ -4,13 +4,13 @@ import Button from "@repo/ui/Button";
 import Stepper from "@repo/ui/Stepper";
 import { useState } from "react";
 
-export default function StepperWrapper() {
+export default function StepperPreview() {
   const [currentStep, setCurrentStep] = useState(2);
 
   return (
     <div
-      dir="rtl"
-      className="flex h-screen flex-col justify-center items-center gap-10 p-4"
+      dir="rtl" 
+      className="flex flex-col justify-center items-center gap-10 p-4"
     >
       <Stepper
         steps={[

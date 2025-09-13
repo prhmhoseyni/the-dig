@@ -1,8 +1,8 @@
 "use client";
 
 import Navigation from "@repo/ui/Navigation";
-import { useState } from "react";
 import { CircleX } from "lucide-react";
+import { useState } from "react";
 
 export default function NavigationPage() {
   const [value, setValue] = useState(1);

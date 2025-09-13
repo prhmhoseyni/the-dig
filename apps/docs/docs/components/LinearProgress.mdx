@@ -1,0 +1,60 @@
+---
+sidebar_position: 1
+---
+
+# LinearProgress
+
+## Preview
+
+import LinearProgress from "@repo/ui/LinearProgress";
+import Container from "./Container";
+
+<Container>
+  <div className="flex flex-col gap-4 w-full">
+    <LinearProgress value={25} />
+  </div>
+</Container>
+
+## Code
+
+```tsx
+"use client";
+
+import LinearProgress from "@repo/ui/LinearProgress";
+
+export default function LinearProgressPage() {
+  return (
+    <div className="p-4 flex flex-col items-center justify-center gap-8 w-full">
+      <LinearProgress value={25} />
+    </div>
+  );
+}
+````
+
+## Installation
+
+```bash
+npx the-dig@latest add LinearProgress
+```
+
+## Props
+
+### `LinearProgress`
+
+| Prop                                                         | Type                                            | Default   |
+| ------------------------------------------------------------ | ----------------------------------------------- | --------- |
+| `value` <sup className="text-red-600 text-caption2">\*</sup> | `number`                                        | -         |
+| `color`                                                      | `"brand" \| "success" \| "warning" \| "danger"` | `"brand"` |
+
+---
+
+## Colors
+
+<Container>
+  <div className="flex flex-col gap-4 w-full">
+    <LinearProgress value={10} />
+    <LinearProgress value={30} color="success" />
+    <LinearProgress value={60} color="warning" />
+    <LinearProgress value={100} color="danger" />
+  </div>
+</Container>

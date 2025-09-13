@@ -1,0 +1,63 @@
+---
+sidebar_position: 1
+---
+
+# Modal
+
+## Preview
+
+import ModalPreview from "../../src/components/ModalPreview";
+import Container from "./Container";
+
+<Container>
+  <ModalPreview />
+</Container>
+
+## Code
+
+```tsx
+"use client";
+
+import Button from "@repo/ui/Button";
+import Modal from "@repo/ui/Modal";
+import { useState } from "react";
+
+export default function ModalPage() {
+  const [isOpen, setIsOpen] = useState(false);
+
+  return (
+    <>
+      <Button onClick={() => setIsOpen(true)}>بازکردن</Button>
+
+      <Modal
+        isOpen={isOpen}
+        type="info"
+        title="عنوان مودال"
+        description="لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ."
+        onAdmit={async () => {
+          await new Promise((resolve) => setTimeout(resolve, 2000));
+          setIsOpen(false);
+        }}
+        onDeny={() => setIsOpen(false)}
+      />
+    </>
+  );
+}
+````
+
+## Installation
+
+```bash
+npx the-dig@latest add Modal
+```
+
+## Props
+
+| Prop                                                              | Type                                              | Default |
+| ----------------------------------------------------------------- | ------------------------------------------------- | ------- |
+| `isOpen` <sup className="text-red-600 text-caption2">\*</sup>     | `boolean`                                         | -       |
+| `type` <sup className="text-red-600 text-caption2">\*</sup>       | `"info" \| "success" \| "danger" \| "warning"`    | -       |
+| `title` <sup className="text-red-600 text-caption2">\*</sup>      | `string`                                          | -       |
+| `description`                                                     | `string`                                          | -       |
+| `onAdmit` <sup className="text-red-600 text-caption2">\*</sup>    | `() => Promise<void>`                             | -       |
+| `onDeny` <sup className="text-red-600 text-caption2">\*</sup>     | `() => void`                                      | -       |

@@ -3,7 +3,7 @@
 import SegmentControl from "@repo/ui/SegmentControl";
 import { useState } from "react";
 
-export default function SegmentControlWrapper() {
+export default function SegmentControlPreview() {
   const [value, setValue] = useState<string>();
 
   return (

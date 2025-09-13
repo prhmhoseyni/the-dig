@@ -1,6 +1,6 @@
-import { useState } from "react";
-import { AnimatePresence, motion } from "motion/react";
 import clsx from "clsx";
+import { AnimatePresence, motion } from "motion/react";
+import { useState } from "react";
 import Button from "../Button";
 
 function InfoIcon() {
