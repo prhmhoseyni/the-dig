@@ -5,41 +5,35 @@ import Menu from "@repo/ui/Menu";
 import { useRef, useState } from "react";
 
 export default function MenuPreview() {
-  const [menuOpen, setMenuOpen] = useState(false);
-  const anchorRef = useRef<HTMLButtonElement>(null);
+	const [menuOpen, setMenuOpen] = useState(false);
+	const anchorRef = useRef<HTMLButtonElement>(null);
 
-  const handleOpenMenu = () => setMenuOpen(!menuOpen);
-  const handleCloseMenu = () => setMenuOpen(false);
+	const handleOpenMenu = () => setMenuOpen(!menuOpen);
+	const handleCloseMenu = () => setMenuOpen(false);
 
-  const handleMenuItemClick = (item: string) => {
-    console.log(`${item} clicked!`);
-    // handleCloseMenu();
-  };
+	const handleMenuItemClick = (item: string) => {
+		console.log(`${item} clicked!`);
+		// handleCloseMenu();
+	};
 
-  return (
-    <div className="container mx-auto flex justify-center items-center p-4">
-      <Button ref={anchorRef} onClick={handleOpenMenu}>
-        باز کن
-      </Button>
+	return (
+		<div className="container mx-auto flex justify-center items-center p-4">
+			<Button ref={anchorRef} onClick={handleOpenMenu}>
+				باز کن
+			</Button>
 
-      <Menu
-        anchor={anchorRef.current}
-        open={menuOpen}
-        onClose={handleCloseMenu}
-      >
-        <Menu.Item onClick={() => handleMenuItemClick("Item 1")}>
-          عنوان ایتم منو
-        </Menu.Item>
-        <Menu.Item onClick={() => handleMenuItemClick("Item 2 (Checked)")}>
-          عنوان ایتم منو
-        </Menu.Item>
-        <Menu.Item onClick={() => handleMenuItemClick("Item 3 (Selected)")}>
-          عنوان ایتم منو
-        </Menu.Item>
-        <Menu.Item onClick={() => handleMenuItemClick("Item 4 (SubMenu)")}>
-          عنوان ایتم منو
-        </Menu.Item>
-      </Menu>
-    </div>
-  );
+			<Menu anchor={anchorRef.current} open={menuOpen} onClose={handleCloseMenu}>
+				<Menu.Item onClick={() => handleMenuItemClick("Item 1")}>عنوان ایتم منو</Menu.Item>
+				<Menu.Item onClick={() => handleMenuItemClick("Item 2 (Checked)")}>
+					عنوان ایتم منو
+				</Menu.Item>
+				<Menu.Item onClick={() => handleMenuItemClick("Item 3 (Selected)")}>
+					عنوان ایتم منو
+				</Menu.Item>
+				<Menu.Item onClick={() => handleMenuItemClick("Item 4 (SubMenu)")}>
+					عنوان ایتم منو
+				</Menu.Item>
+			</Menu>
+		</div>
+	);
 }

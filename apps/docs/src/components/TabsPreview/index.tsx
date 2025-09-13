@@ -5,32 +5,32 @@ import { CircleX } from "lucide-react";
 import { useState } from "react";
 
 export default function TabsPreview() {
-  const [value, setValue] = useState(1);
+	const [value, setValue] = useState(1);
 
-  return (
-    <div className="flex flex-col gap-4 p-4">
-      <Tabs
-        value={value}
-        onChange={(value) => {
-          console.log(">>>>>>>>>", value);
-          setValue(value);
-        }}
-      >
-        <Tabs.Item>
-          <span>عنوان</span>
-          <CircleX size={16} />
-        </Tabs.Item>
+	return (
+		<div className="flex flex-col gap-4 p-4">
+			<Tabs
+				value={value}
+				onChange={(value) => {
+					console.log(">>>>>>>>>", value);
+					setValue(value);
+				}}
+			>
+				<Tabs.Item>
+					<span>عنوان</span>
+					<CircleX size={16} />
+				</Tabs.Item>
 
-        <Tabs.Item>
-          <span>عنوان</span>
-          <CircleX size={16} />
-        </Tabs.Item>
+				<Tabs.Item>
+					<span>عنوان</span>
+					<CircleX size={16} />
+				</Tabs.Item>
 
-        <Tabs.Item>
-          <span>عنوان</span>
-          <CircleX size={16} />
-        </Tabs.Item>
-      </Tabs>
-    </div>
-  );
+				<Tabs.Item>
+					<span>عنوان</span>
+					<CircleX size={16} />
+				</Tabs.Item>
+			</Tabs>
+		</div>
+	);
 }

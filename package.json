@@ -1,24 +1,25 @@
 {
-  "name": "the-dig-monorepo",
-  "private": true,
-  "scripts": {
-    "build": "turbo run build",
-    "dev": "turbo run dev",
-    "check-types": "turbo run check-types",
-    "lint": "biome check",
-    "format": "biome format --write"
-  },
-  "devDependencies": {
-    "@biomejs/biome": "2.2.2",
-    "turbo": "^2.5.5",
-    "typescript": "5.8.3"
-  },
-  "engines": {
-    "node": ">=18"
-  },
-  "packageManager": "npm@10.9.2",
-  "workspaces": [
-    "apps/*",
-    "packages/*"
-  ]
+	"name": "the-dig-monorepo",
+	"private": true,
+	"scripts": {
+		"build": "turbo run build",
+		"dev": "turbo run dev",
+		"check-types": "turbo run check-types",
+		"format": "npx @biomejs/biome format --write",
+		"lint": "npx @biomejs/biome lint --write",
+		"check": "npx @biomejs/biome check --write"
+	},
+	"devDependencies": {
+		"@biomejs/biome": "2.2.4",
+		"turbo": "^2.5.5",
+		"typescript": "5.8.3"
+	},
+	"engines": {
+		"node": ">=18"
+	},
+	"packageManager": "npm@10.9.2",
+	"workspaces": [
+		"apps/*",
+		"packages/*"
+	]
 }

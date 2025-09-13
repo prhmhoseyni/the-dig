@@ -1,23 +1,17 @@
-import { type InputHTMLAttributes, type DetailedHTMLProps } from "react";
 import clsx from "clsx";
+import type { DetailedHTMLProps, InputHTMLAttributes } from "react";
 import styles from "./index.module.css";
 
 /**
  * @name RadioGroup component
  */
 export type RadioGroupProps = DetailedHTMLProps<
-  InputHTMLAttributes<HTMLInputElement>,
-  HTMLInputElement
+	InputHTMLAttributes<HTMLInputElement>,
+	HTMLInputElement
 >;
 
 export default function RadioGroup(props: RadioGroupProps) {
-  const { className = "", ...rest } = props;
+	const { className = "", ...rest } = props;
 
-  return (
-    <input
-      type="radio"
-      className={clsx(styles["radio"], className)}
-      {...rest}
-    />
-  );
+	return <input type="radio" className={clsx(styles.radio, className)} {...rest} />;
 }

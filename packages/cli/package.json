@@ -1,42 +1,42 @@
 {
-  "name": "the-dig",
-  "version": "0.3.7",
-  "main": "./dist/main.js",
-  "bin": {
-    "the-dig": "./dist/main.js"
-  },
-  "scripts": {
-    "build": "tsc"
-  },
-  "keywords": [],
-  "author": {
-    "name": "Parham Hoseyni",
-    "email": "prhmhoseyni@gmail.com",
-    "url": "https://github.com/prhmhoseyni"
-  },
-  "homepage": "",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/prhmhoseyni/the-dig",
-    "directory": "packages/plugin"
-  },
-  "bugs": {
-    "url": "https://github.com/prhmhoseyni/the-dig/issues",
-    "email": "prhmhoseyni@gmail.com"
-  },
-  "license": "ISC",
-  "description": "A powerful command-line interface tool for managing The DIG component library.",
-  "dependencies": {
-    "commander": "^14.0.0",
-    "fs-extra": "^11.3.0",
-    "node-fetch": "^3.3.2",
-    "ora": "^8.2.0"
-  },
-  "devDependencies": {
-    "@types/commander": "^2.12.0",
-    "@types/fs-extra": "^11.0.4",
-    "@types/node": "^24.1.0",
-    "ts-node": "^10.9.2",
-    "typescript": "^5.8.3"
-  }
+	"name": "the-dig",
+	"version": "0.3.7",
+	"main": "./dist/main.js",
+	"bin": {
+		"the-dig": "./dist/main.js"
+	},
+	"scripts": {
+		"build": "tsc"
+	},
+	"keywords": [],
+	"author": {
+		"name": "Parham Hoseyni",
+		"email": "prhmhoseyni@gmail.com",
+		"url": "https://github.com/prhmhoseyni"
+	},
+	"homepage": "",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/prhmhoseyni/the-dig",
+		"directory": "packages/plugin"
+	},
+	"bugs": {
+		"url": "https://github.com/prhmhoseyni/the-dig/issues",
+		"email": "prhmhoseyni@gmail.com"
+	},
+	"license": "ISC",
+	"description": "A powerful command-line interface tool for managing The DIG component library.",
+	"dependencies": {
+		"commander": "^14.0.0",
+		"fs-extra": "^11.3.0",
+		"node-fetch": "^3.3.2",
+		"ora": "^8.2.0"
+	},
+	"devDependencies": {
+		"@types/commander": "^2.12.0",
+		"@types/fs-extra": "^11.0.4",
+		"@types/node": "^24.1.0",
+		"ts-node": "^10.9.2",
+		"typescript": "^5.8.3"
+	}
 }

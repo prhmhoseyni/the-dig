@@ -1,8 +1,8 @@
-import { exec } from "child_process";
+import { exec } from "node:child_process";
+import path from "node:path";
 import fs from "fs-extra";
 import fetch from "node-fetch";
 import ora from "ora";
-import path from "path";
 import type { ComponentsData, TheDigConfig } from "./types";
 
 /**
@@ -11,26 +11,26 @@ import type { ComponentsData, TheDigConfig } from "./types";
  * @returns A Promise that resolves with the TheDigConfig, or rejects if the file is not found or invalid.
  */
 export async function getTheDigConfig(): Promise<TheDigConfig> {
-  const configFileName = ".thedigrc.json";
-  const configFilePath = path.join(process.cwd(), configFileName);
-  const spinner = ora(`Reading ${configFileName}...`).start();
+	const configFileName = ".thedigrc.json";
+	const configFilePath = path.join(process.cwd(), configFileName);
+	const spinner = ora(`Reading ${configFileName}...`).start();
 
-  try {
-    if (!fs.existsSync(configFilePath)) {
-      spinner.fail(`${configFileName} not found.`);
-      throw new Error(
-        `Configuration file "${configFileName}" not found. Please run "the-dig init" first.`,
-      );
-    }
+	try {
+		if (!fs.existsSync(configFilePath)) {
+			spinner.fail(`${configFileName} not found.`);
+			throw new Error(
+				`Configuration file "${configFileName}" not found. Please run "the-dig init" first.`,
+			);
+		}
 
-    const config = (await fs.readJson(configFilePath)) as TheDigConfig;
-    spinner.succeed(`${configFileName} loaded successfully.`);
-    return config;
-  } catch (error: any) {
-    spinner.fail(`Failed to read ${configFileName}.`);
-    console.error(error.message);
-    process.exit(1);
-  }
+		const config = (await fs.readJson(configFilePath)) as TheDigConfig;
+		spinner.succeed(`${configFileName} loaded successfully.`);
+		return config;
+	} catch (error) {
+		spinner.fail(`Failed to read ${configFileName}.`);
+		console.error((error as Error).message);
+		process.exit(1);
+	}
 }
 
 /**
@@ -39,32 +39,28 @@ export async function getTheDigConfig(): Promise<TheDigConfig> {
  * @param dependencies An array of package names to install.
  * @returns A Promise that resolves when dependencies are installed, or rejects on error.
  */
-export function installDependencies(
-  dependencies: string[] | null,
-): Promise<void> {
-  return new Promise((resolve, reject) => {
-    if (!dependencies || dependencies.length === 0) {
-      console.log("No dependencies to install.");
-      resolve();
-      return;
-    }
+export function installDependencies(dependencies: string[] | null): Promise<void> {
+	return new Promise((resolve, reject) => {
+		if (!dependencies || dependencies.length === 0) {
+			console.log("No dependencies to install.");
+			resolve();
+			return;
+		}
 
-    const command = `npm install ${dependencies.join(" ")}`;
-    const spinner = ora(
-      `Installing dependencies: ${dependencies.join(", ")}`,
-    ).start();
+		const command = `npm install ${dependencies.join(" ")}`;
+		const spinner = ora(`Installing dependencies: ${dependencies.join(", ")}`).start();
 
-    exec(command, (error, stdout, stderr) => {
-      if (error) {
-        spinner.fail("Failed to install dependencies.");
-        console.error(stderr);
-        reject(error);
-        return;
-      }
-      spinner.succeed("Dependencies installed successfully.");
-      resolve();
-    });
-  });
+		exec(command, (error, _stdout, stderr) => {
+			if (error) {
+				spinner.fail("Failed to install dependencies.");
+				console.error(stderr);
+				reject(error);
+				return;
+			}
+			spinner.succeed("Dependencies installed successfully.");
+			resolve();
+		});
+	});
 }
 
 /**
@@ -73,29 +69,27 @@ export function installDependencies(
  * @returns A Promise that resolves with the ComponentsData, or rejects on error.
  */
 export async function getComponentData(): Promise<ComponentsData> {
-  const registryURL =
-    "https://raw.githubusercontent.com/prhmhoseyni/the-dig/refs/heads/main/packages/cli/libs/components.json";
-  const spinner = ora(
-    `Loading component registry from ${registryURL}...`,
-  ).start();
+	const registryURL =
+		"https://raw.githubusercontent.com/prhmhoseyni/the-dig/refs/heads/main/packages/cli/libs/components.json";
+	const spinner = ora(`Loading component registry from ${registryURL}...`).start();
 
-  try {
-    const response = await fetch(registryURL);
+	try {
+		const response = await fetch(registryURL);
 
-    if (!response.ok) {
-      throw new Error(
-        `Failed to fetch component registry: ${response.statusText} (${response.status})`,
-      );
-    }
+		if (!response.ok) {
+			throw new Error(
+				`Failed to fetch component registry: ${response.statusText} (${response.status})`,
+			);
+		}
 
-    const componentData = (await response.json()) as ComponentsData;
-    spinner.succeed("Component registry loaded successfully.");
-    return componentData;
-  } catch (error: any) {
-    spinner.fail("Failed to load component registry.");
-    console.error(error.message);
-    process.exit(1);
-  }
+		const componentData = (await response.json()) as ComponentsData;
+		spinner.succeed("Component registry loaded successfully.");
+		return componentData;
+	} catch (error) {
+		spinner.fail("Failed to load component registry.");
+		console.error((error as Error).message);
+		process.exit(1);
+	}
 }
 
 /**
@@ -106,50 +100,46 @@ export async function getComponentData(): Promise<ComponentsData> {
  * @returns A Promise that resolves when the component is fetched, or rejects on error.
  */
 export async function fetchComponentFromRepository(
-  repoURL: string,
-  destination: string,
+	repoURL: string,
+	destination: string,
 ): Promise<void> {
-  const spinner = ora(`Fetching component from ${repoURL}...`).start();
-  try {
-    const parts = repoURL.split("/");
-    const owner = parts[3];
-    const repo = parts[4];
-    const branch = parts[6];
-    const repoPath = parts.slice(7).join("/");
+	const spinner = ora(`Fetching component from ${repoURL}...`).start();
+	try {
+		const parts = repoURL.split("/");
+		const owner = parts[3];
+		const repo = parts[4];
+		const branch = parts[6];
+		const repoPath = parts.slice(7).join("/");
 
-    const apiUrl = `https://api.github.com/repos/${owner}/${repo}/contents/${repoPath}?ref=${branch}`;
+		const apiUrl = `https://api.github.com/repos/${owner}/${repo}/contents/${repoPath}?ref=${branch}`;
 
-    const response = await fetch(apiUrl);
-    if (!response.ok) {
-      throw new Error(`Failed to fetch directory info: ${response.statusText}`);
-    }
-    const files = (await response.json()) as any[];
+		const response = await fetch(apiUrl);
+		if (!response.ok) {
+			throw new Error(`Failed to fetch directory info: ${response.statusText}`);
+		}
+		const files = (await response.json()) as any[];
 
-    if (!Array.isArray(files)) {
-      throw new Error(
-        "The specified path is not a directory or the repository is private.",
-      );
-    }
+		if (!Array.isArray(files)) {
+			throw new Error("The specified path is not a directory or the repository is private.");
+		}
 
-    await fs.ensureDir(destination);
+		await fs.ensureDir(destination);
 
-    for (const file of files) {
-      if (file.type === "file" && file.download_url) {
-        const fileResponse = await fetch(file.download_url);
-        if (!fileResponse.ok) {
-          spinner.warn(`Could not fetch file: ${file.name}`);
-          continue;
-        }
-        const fileContent = await fileResponse.buffer();
-        await fs.writeFile(path.join(destination, file.name), fileContent);
-      }
-    }
-    spinner.succeed(
-      `Component successfully fetched and placed in ${destination}.`,
-    );
-  } catch (error: any) {
-    spinner.fail("Failed to fetch component from Repository.");
-    console.error(error.message);
-    throw error;
-  }
+		for (const file of files) {
+			if (file.type === "file" && file.download_url) {
+				const fileResponse = await fetch(file.download_url);
+				if (!fileResponse.ok) {
+					spinner.warn(`Could not fetch file: ${file.name}`);
+					continue;
+				}
+				const fileContent = await fileResponse.buffer();
+				await fs.writeFile(path.join(destination, file.name), fileContent);
+			}
+		}
+		spinner.succeed(`Component successfully fetched and placed in ${destination}.`);
+	} catch (error) {
+		spinner.fail("Failed to fetch component from Repository.");
+		console.error((error as Error).message);
+		throw error;
+	}
 }

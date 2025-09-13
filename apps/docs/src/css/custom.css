@@ -5,7 +5,7 @@
 @custom-variant dark (&:is([data-theme="dark"] *));
 
 .vazirmatn * {
-  font-family: "Vazirmatn", sans-serif !important;
+	font-family: "Vazirmatn", sans-serif !important;
 }
 
 /**
@@ -16,514 +16,405 @@
 
 /* You can override the default Infima variables here. */
 :root {
-  --ifm-color-primary: #0f0f16;
-  --ifm-color-primary-dark: #0d0d13;
-  --ifm-color-primary-darker: #0b0b10;
-  --ifm-color-primary-darkest: #08080c;
-  --ifm-color-primary-light: #2a2a38;
-  --ifm-color-primary-lighter: #46465a;
-  --ifm-color-primary-lightest: #6a6a80;
-  --ifm-code-font-size: 95%;
-  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
+	--ifm-color-primary: #0f0f16;
+	--ifm-color-primary-dark: #0d0d13;
+	--ifm-color-primary-darker: #0b0b10;
+	--ifm-color-primary-darkest: #08080c;
+	--ifm-color-primary-light: #2a2a38;
+	--ifm-color-primary-lighter: #46465a;
+	--ifm-color-primary-lightest: #6a6a80;
+	--ifm-code-font-size: 95%;
+	--docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
 }
 
 /* For readability concerns, you should choose a lighter palette in dark mode. */
 html[data-theme="dark"] {
-  --ifm-color-primary: #6a6a80;
-  --ifm-color-primary-dark: #555568;
-  --ifm-color-primary-darker: #46465a;
-  --ifm-color-primary-darkest: #2a2a38;
-  --ifm-color-primary-light: #828296;
-  --ifm-color-primary-lighter: #9b9bb0;
-  --ifm-color-primary-lightest: #c1c1cc;
-  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+	--ifm-color-primary: #6a6a80;
+	--ifm-color-primary-dark: #555568;
+	--ifm-color-primary-darker: #46465a;
+	--ifm-color-primary-darkest: #2a2a38;
+	--ifm-color-primary-light: #828296;
+	--ifm-color-primary-lighter: #9b9bb0;
+	--ifm-color-primary-lightest: #c1c1cc;
+	--docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
 }
 
 :root {
-  color-scheme: light;
+	color-scheme: light;
 
-  /** :::: generic variables: Each color is stored as an RGB triplet (e.g., 62, 136, 193) :::: */
-  --dig-background-primary: 245, 245, 245;
-  --dig-background-secondary: 255, 255, 255;
-  --dig-background-dialog: 255, 255, 255;
-  --dig-background-inverse: 0, 0, 0;
+	/** :::: generic variables: Each color is stored as an RGB triplet (e.g., 62, 136, 193) :::: */
+	--dig-background-primary: 245, 245, 245;
+	--dig-background-secondary: 255, 255, 255;
+	--dig-background-dialog: 255, 255, 255;
+	--dig-background-inverse: 0, 0, 0;
 
-  --dig-prose-primary: 12, 14, 16;
-  --dig-prose-secondary: 102, 117, 133;
-  --dig-prose-hint: 154, 166, 177;
-  --dig-prose-inverse: 246, 247, 248;
-  --dig-prose-link: 32, 156, 215;
+	--dig-prose-primary: 12, 14, 16;
+	--dig-prose-secondary: 102, 117, 133;
+	--dig-prose-hint: 154, 166, 177;
+	--dig-prose-inverse: 246, 247, 248;
+	--dig-prose-link: 32, 156, 215;
 
-  --dig-brand: 62, 136, 193;
-  --dig-info: 45, 144, 210;
-  --dig-success: 21, 151, 84;
-  --dig-warning: 208, 124, 6;
-  --dig-danger: 197, 50, 17;
-  --dig-gray: 39, 41, 55;
+	--dig-brand: 62, 136, 193;
+	--dig-info: 45, 144, 210;
+	--dig-success: 21, 151, 84;
+	--dig-warning: 208, 124, 6;
+	--dig-danger: 197, 50, 17;
+	--dig-gray: 39, 41, 55;
 
-  /** :::: design tokens: Please don't change design tokens :::: */
-  --dig-gray-100: #f8f8f9;
-  --dig-gray-200: #f4f4f5;
-  --dig-gray-300: #eeeeef;
-  --dig-gray-400: #e5e5e7;
-  --dig-gray-500: #b4b4b9;
-  --dig-gray-600: #5d5f69;
-  --dig-gray-700: #272937;
+	/** :::: design tokens: Please don't change design tokens :::: */
+	--dig-gray-100: #f8f8f9;
+	--dig-gray-200: #f4f4f5;
+	--dig-gray-300: #eeeeef;
+	--dig-gray-400: #e5e5e7;
+	--dig-gray-500: #b4b4b9;
+	--dig-gray-600: #5d5f69;
+	--dig-gray-700: #272937;
 
-  --dig-color-mix-prose: #000000 35%;
+	--dig-color-mix-prose: #000000 35%;
 
-  --dig-color-mix-hover: #000000 10%;
-  --dig-color-mix-active: #000000 15%;
+	--dig-color-mix-hover: #000000 10%;
+	--dig-color-mix-active: #000000 15%;
 
-  --dig-color-mix-light: #ffffff 90%;
-  --dig-color-mix-light-hover: #ffffff 85%;
-  --dig-color-mix-light-active: #ffffff 80%;
+	--dig-color-mix-light: #ffffff 90%;
+	--dig-color-mix-light-hover: #ffffff 85%;
+	--dig-color-mix-light-active: #ffffff 80%;
 
-  --dig-color-mix-gray: #ffffff;
+	--dig-color-mix-gray: #ffffff;
 }
 
 html[data-theme="dark"] {
-  color-scheme: dark;
+	color-scheme: dark;
 
-  /** :::: generic variables: Each color is stored as an RGB triplet (e.g., 62, 136, 193) :::: */
-  --dig-background-primary: 18, 18, 18;
-  --dig-background-secondary: 31, 31, 31;
-  --dig-background-dialog: 45, 45, 45;
-  --dig-background-inverse: 255, 255, 255;
+	/** :::: generic variables: Each color is stored as an RGB triplet (e.g., 62, 136, 193) :::: */
+	--dig-background-primary: 18, 18, 18;
+	--dig-background-secondary: 31, 31, 31;
+	--dig-background-dialog: 45, 45, 45;
+	--dig-background-inverse: 255, 255, 255;
 
-  --dig-prose-primary: 245, 245, 245;
-  --dig-prose-secondary: 179, 179, 179;
-  --dig-prose-hint: 109, 109, 109;
-  --dig-prose-inverse: 40, 40, 40;
-  --dig-prose-link: 45, 144, 210;
+	--dig-prose-primary: 245, 245, 245;
+	--dig-prose-secondary: 179, 179, 179;
+	--dig-prose-hint: 109, 109, 109;
+	--dig-prose-inverse: 40, 40, 40;
+	--dig-prose-link: 45, 144, 210;
 
-  --dig-brand: 62, 136, 193;
-  --dig-info: 45, 144, 210;
-  --dig-success: 21, 151, 84;
-  --dig-warning: 208, 124, 6;
-  --dig-danger: 197, 50, 17;
-  --dig-gray: 244, 244, 244;
+	--dig-brand: 62, 136, 193;
+	--dig-info: 45, 144, 210;
+	--dig-success: 21, 151, 84;
+	--dig-warning: 208, 124, 6;
+	--dig-danger: 197, 50, 17;
+	--dig-gray: 244, 244, 244;
 
-  /** :::: design tokens: Please don't change design tokens :::: */
-  --dig-gray-100: #333333;
-  --dig-gray-200: #373737;
-  --dig-gray-300: #3d3d3d;
-  --dig-gray-400: #464646;
-  --dig-gray-500: #767676;
-  --dig-gray-600: #cacaca;
-  --dig-gray-700: #ffffff;
+	/** :::: design tokens: Please don't change design tokens :::: */
+	--dig-gray-100: #333333;
+	--dig-gray-200: #373737;
+	--dig-gray-300: #3d3d3d;
+	--dig-gray-400: #464646;
+	--dig-gray-500: #767676;
+	--dig-gray-600: #cacaca;
+	--dig-gray-700: #ffffff;
 
-  --dig-color-mix-prose: #ffffff 35%;
+	--dig-color-mix-prose: #ffffff 35%;
 
-  --dig-color-mix-hover: #ffffff 10%;
-  --dig-color-mix-active: #ffffff 15%;
+	--dig-color-mix-hover: #ffffff 10%;
+	--dig-color-mix-active: #ffffff 15%;
 
-  --dig-color-mix-light: #000000 90%;
-  --dig-color-mix-light-hover: #000000 85%;
-  --dig-color-mix-light-active: #000000 80%;
+	--dig-color-mix-light: #000000 90%;
+	--dig-color-mix-light-hover: #000000 85%;
+	--dig-color-mix-light-active: #000000 80%;
 
-  --dig-color-mix-gray: #000000;
+	--dig-color-mix-gray: #000000;
 }
 
 @theme {
-  /** :::: colors :::: */
-  --color-background-primary: rgb(var(--dig-background-primary));
-  --color-background-secondary: rgb(var(--dig-background-secondary));
-  --color-background-dialog: rgb(var(--dig-background-dialog));
-  --color-background-inverse: rgb(var(--dig-background-inverse));
+	/** :::: colors :::: */
+	--color-background-primary: rgb(var(--dig-background-primary));
+	--color-background-secondary: rgb(var(--dig-background-secondary));
+	--color-background-dialog: rgb(var(--dig-background-dialog));
+	--color-background-inverse: rgb(var(--dig-background-inverse));
 
-  --color-prose-primary: rgb(var(--dig-prose-primary));
-  --color-prose-secondary: rgb(var(--dig-prose-secondary));
-  --color-prose-hint: rgb(var(--dig-prose-hint));
-  --color-prose-inverse: rgb(var(--dig-prose-inverse));
-  --color-prose-link: rgb(var(--dig-prose-link));
-  --color-prose-brand: color-mix(
-    in srgb,
-    rgb(var(--dig-brand)),
-    var(--dig-color-mix-prose)
-  );
-  --color-prose-info: color-mix(
-    in srgb,
-    rgb(var(--dig-info)),
-    var(--dig-color-mix-prose)
-  );
-  --color-prose-success: color-mix(
-    in srgb,
-    rgb(var(--dig-success)),
-    var(--dig-color-mix-prose)
-  );
-  --color-prose-warning: color-mix(
-    in srgb,
-    rgb(var(--dig-warning)),
-    var(--dig-color-mix-prose)
-  );
-  --color-prose-danger: color-mix(
-    in srgb,
-    rgb(var(--dig-danger)),
-    var(--dig-color-mix-prose)
-  );
-  --color-prose-gray: color-mix(
-    in srgb,
-    rgb(var(--dig-gray)),
-    var(--dig-color-mix-prose)
-  );
+	--color-prose-primary: rgb(var(--dig-prose-primary));
+	--color-prose-secondary: rgb(var(--dig-prose-secondary));
+	--color-prose-hint: rgb(var(--dig-prose-hint));
+	--color-prose-inverse: rgb(var(--dig-prose-inverse));
+	--color-prose-link: rgb(var(--dig-prose-link));
+	--color-prose-brand: color-mix(in srgb, rgb(var(--dig-brand)), var(--dig-color-mix-prose));
+	--color-prose-info: color-mix(in srgb, rgb(var(--dig-info)), var(--dig-color-mix-prose));
+	--color-prose-success: color-mix(in srgb, rgb(var(--dig-success)), var(--dig-color-mix-prose));
+	--color-prose-warning: color-mix(in srgb, rgb(var(--dig-warning)), var(--dig-color-mix-prose));
+	--color-prose-danger: color-mix(in srgb, rgb(var(--dig-danger)), var(--dig-color-mix-prose));
+	--color-prose-gray: color-mix(in srgb, rgb(var(--dig-gray)), var(--dig-color-mix-prose));
 
-  --color-brand: rgb(var(--dig-brand));
-  --color-brand-hover: color-mix(
-    in srgb,
-    rgb(var(--dig-brand)),
-    var(--dig-color-mix-hover)
-  );
-  --color-brand-active: color-mix(
-    in srgb,
-    rgb(var(--dig-brand)),
-    var(--dig-color-mix-active)
-  );
-  --color-brand-light: color-mix(
-    in srgb,
-    rgb(var(--dig-brand)),
-    var(--dig-color-mix-light)
-  );
-  --color-brand-light-hover: color-mix(
-    in srgb,
-    rgb(var(--dig-brand)),
-    var(--dig-color-mix-light-hover)
-  );
-  --color-brand-light-active: color-mix(
-    in srgb,
-    rgb(var(--dig-brand)),
-    var(--dig-color-mix-light-active)
-  );
+	--color-brand: rgb(var(--dig-brand));
+	--color-brand-hover: color-mix(in srgb, rgb(var(--dig-brand)), var(--dig-color-mix-hover));
+	--color-brand-active: color-mix(in srgb, rgb(var(--dig-brand)), var(--dig-color-mix-active));
+	--color-brand-light: color-mix(in srgb, rgb(var(--dig-brand)), var(--dig-color-mix-light));
+	--color-brand-light-hover: color-mix(
+		in srgb,
+		rgb(var(--dig-brand)),
+		var(--dig-color-mix-light-hover)
+	);
+	--color-brand-light-active: color-mix(
+		in srgb,
+		rgb(var(--dig-brand)),
+		var(--dig-color-mix-light-active)
+	);
 
-  --color-info: rgb(var(--dig-info));
-  --color-info-hover: color-mix(
-    in srgb,
-    rgb(var(--dig-info)),
-    var(--dig-color-mix-hover)
-  );
-  --color-info-active: color-mix(
-    in srgb,
-    rgb(var(--dig-info)),
-    var(--dig-color-mix-active)
-  );
-  --color-info-light: color-mix(
-    in srgb,
-    rgb(var(--dig-info)),
-    var(--dig-color-mix-light)
-  );
-  --color-info-light-light: color-mix(
-    in srgb,
-    rgb(var(--dig-info)),
-    var(--dig-color-mix-light-hover)
-  );
-  --color-info-light-active: color-mix(
-    in srgb,
-    rgb(var(--dig-info)),
-    var(--dig-color-mix-light-active)
-  );
+	--color-info: rgb(var(--dig-info));
+	--color-info-hover: color-mix(in srgb, rgb(var(--dig-info)), var(--dig-color-mix-hover));
+	--color-info-active: color-mix(in srgb, rgb(var(--dig-info)), var(--dig-color-mix-active));
+	--color-info-light: color-mix(in srgb, rgb(var(--dig-info)), var(--dig-color-mix-light));
+	--color-info-light-light: color-mix(
+		in srgb,
+		rgb(var(--dig-info)),
+		var(--dig-color-mix-light-hover)
+	);
+	--color-info-light-active: color-mix(
+		in srgb,
+		rgb(var(--dig-info)),
+		var(--dig-color-mix-light-active)
+	);
 
-  --color-success: rgb(var(--dig-success));
-  --color-success-hover: color-mix(
-    in srgb,
-    rgb(var(--dig-success)),
-    var(--dig-color-mix-hover)
-  );
-  --color-success-active: color-mix(
-    in srgb,
-    rgb(var(--dig-success)),
-    var(--dig-color-mix-active)
-  );
-  --color-success-light: color-mix(
-    in srgb,
-    rgb(var(--dig-success)),
-    var(--dig-color-mix-light)
-  );
-  --color-success-light-hover: color-mix(
-    in srgb,
-    rgb(var(--dig-success)),
-    var(--dig-color-mix-light-hover)
-  );
-  --color-success-light-active: color-mix(
-    in srgb,
-    rgb(var(--dig-success)),
-    var(--dig-color-mix-light-active)
-  );
+	--color-success: rgb(var(--dig-success));
+	--color-success-hover: color-mix(in srgb, rgb(var(--dig-success)), var(--dig-color-mix-hover));
+	--color-success-active: color-mix(in srgb, rgb(var(--dig-success)), var(--dig-color-mix-active));
+	--color-success-light: color-mix(in srgb, rgb(var(--dig-success)), var(--dig-color-mix-light));
+	--color-success-light-hover: color-mix(
+		in srgb,
+		rgb(var(--dig-success)),
+		var(--dig-color-mix-light-hover)
+	);
+	--color-success-light-active: color-mix(
+		in srgb,
+		rgb(var(--dig-success)),
+		var(--dig-color-mix-light-active)
+	);
 
-  --color-warning: rgb(var(--dig-warning));
-  --color-warning-hover: color-mix(
-    in srgb,
-    rgb(var(--dig-warning)),
-    var(--dig-color-mix-hover)
-  );
-  --color-warning-active: color-mix(
-    in srgb,
-    rgb(var(--dig-warning)),
-    var(--dig-color-mix-active)
-  );
-  --color-warning-light: color-mix(
-    in srgb,
-    rgb(var(--dig-warning)),
-    var(--dig-color-mix-light)
-  );
-  --color-warning-light-hover: color-mix(
-    in srgb,
-    rgb(var(--dig-warning)),
-    var(--dig-color-mix-light-hover)
-  );
-  --color-warning-light-active: color-mix(
-    in srgb,
-    rgb(var(--dig-warning)),
-    var(--dig-color-mix-light-active)
-  );
+	--color-warning: rgb(var(--dig-warning));
+	--color-warning-hover: color-mix(in srgb, rgb(var(--dig-warning)), var(--dig-color-mix-hover));
+	--color-warning-active: color-mix(in srgb, rgb(var(--dig-warning)), var(--dig-color-mix-active));
+	--color-warning-light: color-mix(in srgb, rgb(var(--dig-warning)), var(--dig-color-mix-light));
+	--color-warning-light-hover: color-mix(
+		in srgb,
+		rgb(var(--dig-warning)),
+		var(--dig-color-mix-light-hover)
+	);
+	--color-warning-light-active: color-mix(
+		in srgb,
+		rgb(var(--dig-warning)),
+		var(--dig-color-mix-light-active)
+	);
 
-  --color-danger: rgb(var(--dig-danger));
-  --color-danger-hover: color-mix(
-    in srgb,
-    rgb(var(--dig-danger)),
-    var(--dig-color-mix-hover)
-  );
-  --color-danger-active: color-mix(
-    in srgb,
-    rgb(var(--dig-danger)),
-    var(--dig-color-mix-active)
-  );
-  --color-danger-light: color-mix(
-    in srgb,
-    rgb(var(--dig-danger)),
-    var(--dig-color-mix-light)
-  );
-  --color-danger-light-hover: color-mix(
-    in srgb,
-    rgb(var(--dig-danger)),
-    var(--dig-color-mix-light-hover)
-  );
-  --color-danger-light-active: color-mix(
-    in srgb,
-    rgb(var(--dig-danger)),
-    var(--dig-color-mix-light-active)
-  );
+	--color-danger: rgb(var(--dig-danger));
+	--color-danger-hover: color-mix(in srgb, rgb(var(--dig-danger)), var(--dig-color-mix-hover));
+	--color-danger-active: color-mix(in srgb, rgb(var(--dig-danger)), var(--dig-color-mix-active));
+	--color-danger-light: color-mix(in srgb, rgb(var(--dig-danger)), var(--dig-color-mix-light));
+	--color-danger-light-hover: color-mix(
+		in srgb,
+		rgb(var(--dig-danger)),
+		var(--dig-color-mix-light-hover)
+	);
+	--color-danger-light-active: color-mix(
+		in srgb,
+		rgb(var(--dig-danger)),
+		var(--dig-color-mix-light-active)
+	);
 
-  --color-gray: rgb(var(--dig-gray));
-  --color-gray-hover: color-mix(
-    in srgb,
-    rgb(var(--dig-gray)),
-    var(--dig-color-mix-hover)
-  );
-  --color-gray-active: color-mix(
-    in srgb,
-    rgb(var(--dig-gray)),
-    var(--dig-color-mix-active)
-  );
-  --color-gray-light: color-mix(
-    in srgb,
-    rgb(var(--dig-gray)),
-    var(--dig-color-mix-light)
-  );
-  --color-gray-light-hover: color-mix(
-    in srgb,
-    rgb(var(--dig-gray)),
-    var(--dig-color-mix-light-hover)
-  );
-  --color-gray-light-active: color-mix(
-    in srgb,
-    rgb(var(--dig-gray)),
-    var(--dig-color-mix-light-active)
-  );
+	--color-gray: rgb(var(--dig-gray));
+	--color-gray-hover: color-mix(in srgb, rgb(var(--dig-gray)), var(--dig-color-mix-hover));
+	--color-gray-active: color-mix(in srgb, rgb(var(--dig-gray)), var(--dig-color-mix-active));
+	--color-gray-light: color-mix(in srgb, rgb(var(--dig-gray)), var(--dig-color-mix-light));
+	--color-gray-light-hover: color-mix(
+		in srgb,
+		rgb(var(--dig-gray)),
+		var(--dig-color-mix-light-hover)
+	);
+	--color-gray-light-active: color-mix(
+		in srgb,
+		rgb(var(--dig-gray)),
+		var(--dig-color-mix-light-active)
+	);
 
-  --color-gray-100: var(--dig-gray-100);
-  --color-gray-200: var(--dig-gray-200);
-  --color-gray-300: var(--dig-gray-300);
-  --color-gray-400: var(--dig-gray-400);
-  --color-gray-500: var(--dig-gray-500);
-  --color-gray-600: var(--dig-gray-600);
-  --color-gray-700: var(--dig-gray-700);
+	--color-gray-100: var(--dig-gray-100);
+	--color-gray-200: var(--dig-gray-200);
+	--color-gray-300: var(--dig-gray-300);
+	--color-gray-400: var(--dig-gray-400);
+	--color-gray-500: var(--dig-gray-500);
+	--color-gray-600: var(--dig-gray-600);
+	--color-gray-700: var(--dig-gray-700);
 
-  --color-white: rgba(255, 255, 255, 1);
-  --color-white-80: rgba(255, 255, 255, 80%);
-  --color-white-48: rgba(255, 255, 255, 48%);
-  --color-white-32: rgba(255, 255, 255, 32%);
-  --color-white-24: rgba(255, 255, 255, 24%);
-  --color-white-16: rgba(255, 255, 255, 16%);
-  --color-white-12: rgba(255, 255, 255, 12%);
-  --color-white-8: rgba(255, 255, 255, 08%);
+	--color-white: rgba(255, 255, 255, 1);
+	--color-white-80: rgba(255, 255, 255, 80%);
+	--color-white-48: rgba(255, 255, 255, 48%);
+	--color-white-32: rgba(255, 255, 255, 32%);
+	--color-white-24: rgba(255, 255, 255, 24%);
+	--color-white-16: rgba(255, 255, 255, 16%);
+	--color-white-12: rgba(255, 255, 255, 12%);
+	--color-white-8: rgba(255, 255, 255, 08%);
 
-  --color-black: rgba(0, 0, 0, 1);
-  --color-black-80: rgba(0, 0, 0, 80%);
-  --color-black-48: rgba(0, 0, 0, 48%);
-  --color-black-32: rgba(0, 0, 0, 32%);
-  --color-black-24: rgba(0, 0, 0, 24%);
-  --color-black-16: rgba(0, 0, 0, 16%);
-  --color-black-12: rgba(0, 0, 0, 12%);
-  --color-black-8: rgba(0, 0, 0, 08%);
+	--color-black: rgba(0, 0, 0, 1);
+	--color-black-80: rgba(0, 0, 0, 80%);
+	--color-black-48: rgba(0, 0, 0, 48%);
+	--color-black-32: rgba(0, 0, 0, 32%);
+	--color-black-24: rgba(0, 0, 0, 24%);
+	--color-black-16: rgba(0, 0, 0, 16%);
+	--color-black-12: rgba(0, 0, 0, 12%);
+	--color-black-8: rgba(0, 0, 0, 08%);
 
-  /** :::: typography :::: */
-  --text-heading1: 2.25rem;
-  --text-heading1--line-height: 3.375rem;
-  --text-heading1--font-weight: 700;
+	/** :::: typography :::: */
+	--text-heading1: 2.25rem;
+	--text-heading1--line-height: 3.375rem;
+	--text-heading1--font-weight: 700;
 
-  --text-heading2: 2rem;
-  --text-heading2--line-height: 3rem;
-  --text-heading2--font-weight: 700;
+	--text-heading2: 2rem;
+	--text-heading2--line-height: 3rem;
+	--text-heading2--font-weight: 700;
 
-  --text-heading3: 1.5rem;
-  --text-heading3--line-height: 2.25rem;
-  --text-heading3--font-weight: 700;
+	--text-heading3: 1.5rem;
+	--text-heading3--line-height: 2.25rem;
+	--text-heading3--font-weight: 700;
 
-  --text-heading4: 1.125rem;
-  --text-heading4--line-height: 1.75rem;
-  --text-heading4--font-weight: 700;
+	--text-heading4: 1.125rem;
+	--text-heading4--line-height: 1.75rem;
+	--text-heading4--font-weight: 700;
 
-  --text-heading5: 1rem;
-  --text-heading5--line-height: 1.5rem;
-  --text-heading5--font-weight: 700;
+	--text-heading5: 1rem;
+	--text-heading5--line-height: 1.5rem;
+	--text-heading5--font-weight: 700;
 
-  --text-subtitle1: 1.125rem;
-  --text-subtitle1--line-height: 1.6875rem;
-  --text-subtitle1--font-weight: 500;
+	--text-subtitle1: 1.125rem;
+	--text-subtitle1--line-height: 1.6875rem;
+	--text-subtitle1--font-weight: 500;
 
-  --text-subtitle2: 1rem;
-  --text-subtitle2--line-height: 1.5rem;
-  --text-subtitle2--font-weight: 500;
+	--text-subtitle2: 1rem;
+	--text-subtitle2--line-height: 1.5rem;
+	--text-subtitle2--font-weight: 500;
 
-  --text-subtitle3: 0.875rem;
-  --text-subtitle3--line-height: 1.3125rem;
-  --text-subtitle3--font-weight: 500;
+	--text-subtitle3: 0.875rem;
+	--text-subtitle3--line-height: 1.3125rem;
+	--text-subtitle3--font-weight: 500;
 
-  --text-subtitle4: 0.8125rem;
-  --text-subtitle4--line-height: 1.21875rem;
-  --text-subtitle4--font-weight: 500;
+	--text-subtitle4: 0.8125rem;
+	--text-subtitle4--line-height: 1.21875rem;
+	--text-subtitle4--font-weight: 500;
 
-  --text-subtitle5: 0.75rem;
-  --text-subtitle5--line-height: 1.125rem;
-  --text-subtitle5--font-weight: 500;
+	--text-subtitle5: 0.75rem;
+	--text-subtitle5--line-height: 1.125rem;
+	--text-subtitle5--font-weight: 500;
 
-  --text-subtitle6: 0.625rem;
-  --text-subtitle6--line-height: 0.9375rem;
-  --text-subtitle6--font-weight: 500;
+	--text-subtitle6: 0.625rem;
+	--text-subtitle6--line-height: 0.9375rem;
+	--text-subtitle6--font-weight: 500;
 
-  --text-paragraph1: 1.125rem;
-  --text-paragraph1--line-height: 2rem;
-  --text-paragraph1--font-weight: 400;
+	--text-paragraph1: 1.125rem;
+	--text-paragraph1--line-height: 2rem;
+	--text-paragraph1--font-weight: 400;
 
-  --text-paragraph2: 1rem;
-  --text-paragraph2--line-height: 1.75rem;
-  --text-paragraph2--font-weight: 400;
+	--text-paragraph2: 1rem;
+	--text-paragraph2--line-height: 1.75rem;
+	--text-paragraph2--font-weight: 400;
 
-  --text-paragraph3: 0.875rem;
-  --text-paragraph3--line-height: 1.5rem;
-  --text-paragraph3--font-weight: 400;
+	--text-paragraph3: 0.875rem;
+	--text-paragraph3--line-height: 1.5rem;
+	--text-paragraph3--font-weight: 400;
 
-  --text-paragraph4: 0.8125rem;
-  --text-paragraph4--line-height: 1.375rem;
-  --text-paragraph4--font-weight: 400;
+	--text-paragraph4: 0.8125rem;
+	--text-paragraph4--line-height: 1.375rem;
+	--text-paragraph4--font-weight: 400;
 
-  --text-paragraph5: 0.75rem;
-  --text-paragraph5--line-height: 1.25rem;
-  --text-paragraph5--font-weight: 400;
+	--text-paragraph5: 0.75rem;
+	--text-paragraph5--line-height: 1.25rem;
+	--text-paragraph5--font-weight: 400;
 
-  --text-label1: 1rem;
-  --text-label1--line-height: 1.4rem;
-  --text-label1--font-weight: 400;
+	--text-label1: 1rem;
+	--text-label1--line-height: 1.4rem;
+	--text-label1--font-weight: 400;
 
-  --text-label2: 0.875rem;
-  --text-label2--line-height: 1.225rem;
-  --text-label2--font-weight: 400;
+	--text-label2: 0.875rem;
+	--text-label2--line-height: 1.225rem;
+	--text-label2--font-weight: 400;
 
-  --text-label3: 0.8125rem;
-  --text-label3--line-height: 1.1375rem;
-  --text-label3--font-weight: 400;
+	--text-label3: 0.8125rem;
+	--text-label3--line-height: 1.1375rem;
+	--text-label3--font-weight: 400;
 
-  --text-label4: 0.75rem;
-  --text-label4--line-height: 1.05rem;
-  --text-label4--font-weight: 400;
+	--text-label4: 0.75rem;
+	--text-label4--line-height: 1.05rem;
+	--text-label4--font-weight: 400;
 
-  --text-caption1: 0.75rem;
-  --text-caption1--line-height: 1.25rem;
-  --text-caption1--font-weight: 400;
+	--text-caption1: 0.75rem;
+	--text-caption1--line-height: 1.25rem;
+	--text-caption1--font-weight: 400;
 
-  --text-caption2: 0.6875rem;
-  --text-caption2--line-height: 1.125rem;
-  --text-caption2--font-weight: 400;
+	--text-caption2: 0.6875rem;
+	--text-caption2--line-height: 1.125rem;
+	--text-caption2--font-weight: 400;
 
-  /** :::: shadows :::: */
-  --shadow-xs: 0px 1px 2px 0px rgba(16, 24, 40, 0.05);
-  --shadow-sm:
-    0px 1px 2px 0px rgba(16, 24, 40, 0.06), 0px 1px 3px 0px
-    rgba(16, 24, 40, 0.1);
-  --shadow-md:
-    0px 2px 4px 0px rgba(16, 24, 40, 0.06), 0px 4px 8px -2px
-    rgba(16, 24, 40, 0.1);
-  --shadow-lg:
-    0px 4px 6px -2px rgba(16, 24, 40, 0.03), 0px 12px 16px -4px
-    rgba(16, 24, 40, 0.08);
-  --shadow-xl:
-    0px 8px 8px -4px rgba(16, 24, 40, 0.03), 0px 20px 24px -4px
-    rgba(16, 24, 40, 0.08);
-  --shadow-2xl: 0px 24px 48px -12px rgba(16, 24, 40, 0.18);
-  --shadow-3xl: 0px 32px 64px -12px rgba(16, 24, 40, 0.14);
+	/** :::: shadows :::: */
+	--shadow-xs: 0px 1px 2px 0px rgba(16, 24, 40, 0.05);
+	--shadow-sm: 0px 1px 2px 0px rgba(16, 24, 40, 0.06), 0px 1px 3px 0px rgba(16, 24, 40, 0.1);
+	--shadow-md: 0px 2px 4px 0px rgba(16, 24, 40, 0.06), 0px 4px 8px -2px rgba(16, 24, 40, 0.1);
+	--shadow-lg: 0px 4px 6px -2px rgba(16, 24, 40, 0.03), 0px 12px 16px -4px rgba(16, 24, 40, 0.08);
+	--shadow-xl: 0px 8px 8px -4px rgba(16, 24, 40, 0.03), 0px 20px 24px -4px rgba(16, 24, 40, 0.08);
+	--shadow-2xl: 0px 24px 48px -12px rgba(16, 24, 40, 0.18);
+	--shadow-3xl: 0px 32px 64px -12px rgba(16, 24, 40, 0.14);
 
-  --shadow-card-sm: 0px 1px 2px 0px rgba(145, 158, 171, 0.16);
-  --shadow-card-md: 0px 2px 5px 0px rgba(145, 158, 171, 0.16);
-  --shadow-card-lg: 0px 4px 8px 0px rgba(145, 158, 171, 0.16);
+	--shadow-card-sm: 0px 1px 2px 0px rgba(145, 158, 171, 0.16);
+	--shadow-card-md: 0px 2px 5px 0px rgba(145, 158, 171, 0.16);
+	--shadow-card-lg: 0px 4px 8px 0px rgba(145, 158, 171, 0.16);
 
-  --shadow-btn-brand: 0px 10px 20px 0px rgba(var(--dig-brand), 0.14);
-  --shadow-btn-info: 0px 10px 20px 0px rgba(var(--dig-info), 0.14);
-  --shadow-btn-success: 0px 10px 20px 0px rgba(var(--dig-success), 0.14);
-  --shadow-btn-warning: 0px 10px 20px 0px rgba(var(--dig-warning), 0.14);
-  --shadow-btn-danger: 0px 10px 20px 0px rgba(var(--dig-danger), 0.14);
+	--shadow-btn-brand: 0px 10px 20px 0px rgba(var(--dig-brand), 0.14);
+	--shadow-btn-info: 0px 10px 20px 0px rgba(var(--dig-info), 0.14);
+	--shadow-btn-success: 0px 10px 20px 0px rgba(var(--dig-success), 0.14);
+	--shadow-btn-warning: 0px 10px 20px 0px rgba(var(--dig-warning), 0.14);
+	--shadow-btn-danger: 0px 10px 20px 0px rgba(var(--dig-danger), 0.14);
 
-  --shadow-focus-brand:
-    0px 0px 0px 1px rgb(var(--dig-background-primary)), 0px 0px 0px 4px
-    rgba(var(--dig-brand), 0.14);
-  --shadow-focus-info:
-    0px 0px 0px 1px rgb(var(--dig-background-primary)), 0px 0px 0px 4px
-    rgba(var(--dig-info), 0.14);
-  --shadow-focus-success:
-    0px 0px 0px 1px rgb(var(--dig-background-primary)), 0px 0px 0px 4px
-    rgba(var(--dig-success), 0.14);
-  --shadow-focus-warning:
-    0px 0px 0px 1px rgb(var(--dig-background-primary)), 0px 0px 0px 4px
-    rgba(var(--dig-warning), 0.14);
-  --shadow-focus-danger:
-    0px 0px 0px 1px rgb(var(--dig-background-primary)), 0px 0px 0px 4px
-    rgba(var(--dig-danger), 0.14);
-  --shadow-focus-gray:
-    0px 0px 0px 1px rgb(var(--dig-background-primary)), 0px 0px 0px 4px
-    rgba(var(--dig-danger), 0.06);
+	--shadow-focus-brand:
+		0px 0px 0px 1px rgb(var(--dig-background-primary)), 0px 0px 0px 4px rgba(var(--dig-brand), 0.14);
+	--shadow-focus-info:
+		0px 0px 0px 1px rgb(var(--dig-background-primary)), 0px 0px 0px 4px rgba(var(--dig-info), 0.14);
+	--shadow-focus-success:
+		0px 0px 0px 1px rgb(var(--dig-background-primary)), 0px 0px 0px 4px
+		rgba(var(--dig-success), 0.14);
+	--shadow-focus-warning:
+		0px 0px 0px 1px rgb(var(--dig-background-primary)), 0px 0px 0px 4px
+		rgba(var(--dig-warning), 0.14);
+	--shadow-focus-danger:
+		0px 0px 0px 1px rgb(var(--dig-background-primary)), 0px 0px 0px 4px
+		rgba(var(--dig-danger), 0.14);
+	--shadow-focus-gray:
+		0px 0px 0px 1px rgb(var(--dig-background-primary)), 0px 0px 0px 4px
+		rgba(var(--dig-danger), 0.06);
 
-  --shadow-dialog:
-    0px 20px 24px -4px rgba(16, 24, 40, 0.1), 0px 8px 8px -4px
-    rgba(16, 24, 40, 0.04);
-  --shadow-menu: 0px 4px 8px 0px rgba(39, 41, 55, 0.08);
-  --shadow-control:
-    0px 1px 0.5px 0.05px rgba(24, 24, 27, 0.05), 0px -4px 8px 0px
-    rgba(0, 0, 0, 0.02);
-  --shadow-alert:
-    0px 2px 7px 0px rgba(0, 0, 0, 0.15), 0px 5px 17px 0px rgba(0, 0, 0, 0.2);
+	--shadow-dialog:
+		0px 20px 24px -4px rgba(16, 24, 40, 0.1), 0px 8px 8px -4px rgba(16, 24, 40, 0.04);
+	--shadow-menu: 0px 4px 8px 0px rgba(39, 41, 55, 0.08);
+	--shadow-control:
+		0px 1px 0.5px 0.05px rgba(24, 24, 27, 0.05), 0px -4px 8px 0px rgba(0, 0, 0, 0.02);
+	--shadow-alert: 0px 2px 7px 0px rgba(0, 0, 0, 0.15), 0px 5px 17px 0px rgba(0, 0, 0, 0.2);
 }
 
 html {
-  scroll-behavior: smooth;
+	scroll-behavior: smooth;
 }
 
 a {
-  @apply text-prose-link;
+	@apply text-prose-link;
 }
 
 p {
-  @apply mb-0;
+	@apply mb-0;
 }
 
 .navbar__link,
 .footer__link-item {
-  @apply flex items-center gap-2;
+	@apply flex items-center gap-2;
 }
 
 .breadcrumbs,
 .breadcrumbs__item {
-  @apply flex items-center justify-start;
+	@apply flex items-center justify-start;
 }
 
 table {
-  width: 100%;
+	width: 100%;
 }

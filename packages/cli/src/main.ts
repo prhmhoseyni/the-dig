@@ -7,25 +7,16 @@ import { init } from "./commands/init";
 
 const program = new Command();
 
-program
-  .name("the-dig")
-  .description("🛠 CLI tool for the-dig component library")
-  .version("1.0.0");
+program.name("the-dig").description("🛠 CLI tool for the-dig component library").version("1.0.0");
+
+program.command("init").description("Initialize the project for the-dig").action(init);
+
+program.command("config").description("Configure the project for the-dig").action(config);
 
 program
-  .command("init")
-  .description("Initialize the project for the-dig")
-  .action(init);
-
-program
-  .command("config")
-  .description("Configure the project for the-dig")
-  .action(config);
-
-program
-  .command("add")
-  .description("Add components")
-  .argument("<components-name>", "Name of the components to add")
-  .action(add);
+	.command("add")
+	.description("Add components")
+	.argument("<components-name>", "Name of the components to add")
+	.action(add);
 
 program.parse();

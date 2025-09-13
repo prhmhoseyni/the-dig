@@ -1,12 +1,12 @@
 {
-  "extends": "@repo/typescript-config/react-library.json",
-  "compilerOptions": {
-    "outDir": "dist",
-    "module": "esnext",
-    "moduleResolution": "node",
-    "esModuleInterop": true,
-    "resolveJsonModule": true
-  },
-  "include": ["src"],
-  "exclude": ["node_modules", "dist"]
+	"extends": "@repo/typescript-config/react-library.json",
+	"compilerOptions": {
+		"outDir": "dist",
+		"module": "esnext",
+		"moduleResolution": "node",
+		"esModuleInterop": true,
+		"resolveJsonModule": true
+	},
+	"include": ["src"],
+	"exclude": ["node_modules", "dist"]
 }
