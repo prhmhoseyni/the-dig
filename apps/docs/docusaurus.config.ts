@@ -135,7 +135,17 @@ const config: Config = {
 		},
 	} satisfies Preset.ThemeConfig,
 
-	plugins: ["./src/plugins/tailwind-config.cjs"],
+	plugins: [
+		async function tailwindcssPlugin(context, options) {
+			return {
+				name: "tailwindcss-plugin",
+				configurePostCss(postcssOptions) {
+					postcssOptions.plugins.push(require("@tailwindcss/postcss"));
+					return postcssOptions;
+				},
+			};
+		},
+	],
 };
 
 export default config;
