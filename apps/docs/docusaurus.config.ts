@@ -136,7 +136,7 @@ const config: Config = {
 	} satisfies Preset.ThemeConfig,
 
 	plugins: [
-		async function tailwindcssPlugin(context, options) {
+		async function tailwindcssPlugin(_context, _options) {
 			return {
 				name: "tailwindcss-plugin",
 				configurePostCss(postcssOptions) {
