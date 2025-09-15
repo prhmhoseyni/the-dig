@@ -1,8 +1,9 @@
 @import url("https://fonts.googleapis.com/css2?family=Vazirmatn:wght@100..900&display=swap");
-@import "tailwindcss";
-@import "@repo/ui/styles";
+@layer theme, base, components, utilities;
+@import "tailwindcss/theme.css" layer(theme);
+@import "tailwindcss/utilities.css" layer(utilities);
 
-@custom-variant dark (&:is([data-theme="dark"] *));
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
 
 .vazirmatn,
 .vazirmatn * {
