@@ -4,56 +4,56 @@ import type { ButtonHTMLAttributes, DetailedHTMLProps } from "react";
 const colors = {
 	brand: {
 		contained:
-			"text-prose-inverse bg-brand hover:bg-brand-hover active:bg-brand-active active:shadow-focus-brand",
+			"text-prose-inverse bg-brand border-0 hover:bg-brand-hover active:bg-brand-active active:shadow-focus-brand",
 		tinted:
-			"text-prose-brand bg-brand-light hover:bg-brand-light-hover active:bg-brand-light-active active:shadow-focus-brand",
+			"border-0 text-prose-brand bg-brand-light hover:bg-brand-light-hover active:bg-brand-light-active active:shadow-focus-brand",
 		outlined:
-			"text-prose-brand border border-brand hover:border-brand-hover active:border-brand-active active:shadow-focus-brand",
+			"bg-transparent text-prose-brand border border-brand hover:border-brand-hover active:border-brand-active active:shadow-focus-brand",
 	},
 
 	info: {
 		contained:
-			"text-prose-inverse bg-info hover:bg-info-hover active:bg-info-active active:shadow-focus-info",
+			"text-prose-inverse bg-info border-0 hover:bg-info-hover active:bg-info-active active:shadow-focus-info",
 		tinted:
-			"text-prose-info bg-info-light hover:bg-info-light-hover active:bg-info-light-active active:shadow-focus-info",
+			"border-0 text-prose-info bg-info-light hover:bg-info-light-hover active:bg-info-light-active active:shadow-focus-info",
 		outlined:
-			"text-prose-info border border-info hover:border-info-hover active:border-info-active active:shadow-focus-info",
+			"bg-transparent text-prose-info border border-info hover:border-info-hover active:border-info-active active:shadow-focus-info",
 	},
 
 	success: {
 		contained:
-			"text-prose-inverse bg-success hover:bg-success-hover active:bg-success-active active:shadow-focus-success",
+			"text-prose-inverse bg-success border-0 hover:bg-success-hover active:bg-success-active active:shadow-focus-success",
 		tinted:
-			"text-prose-success bg-success-light hover:bg-success-light-hover active:bg-success-light-active active:shadow-focus-success",
+			"border-0 text-prose-success bg-success-light hover:bg-success-light-hover active:bg-success-light-active active:shadow-focus-success",
 		outlined:
-			"text-prose-success border border-success hover:border-success-hover active:border-success-active active:shadow-focus-success",
+			"bg-transparent text-prose-success border border-success hover:border-success-hover active:border-success-active active:shadow-focus-success",
 	},
 
 	warning: {
 		contained:
-			"text-prose-inverse bg-warning hover:bg-warning-hover active:bg-warning-active active:shadow-focus-warning",
+			"text-prose-inverse bg-warning border-0 hover:bg-warning-hover active:bg-warning-active active:shadow-focus-warning",
 		tinted:
-			"text-prose-warning bg-warning-light hover:bg-warning-light-hover active:bg-warning-light-active active:shadow-focus-warning",
+			"border-0 text-prose-warning bg-warning-light hover:bg-warning-light-hover active:bg-warning-light-active active:shadow-focus-warning",
 		outlined:
-			"text-prose-warning border border-warning hover:border-warning-hover active:border-warning-active active:shadow-focus-warning",
+			"bg-transparent text-prose-warning border border-warning hover:border-warning-hover active:border-warning-active active:shadow-focus-warning",
 	},
 
 	danger: {
 		contained:
-			"text-prose-inverse bg-danger hover:bg-danger-hover active:bg-danger-active active:shadow-focus-danger",
+			"text-prose-inverse bg-danger border-0 hover:bg-danger-hover active:bg-danger-active active:shadow-focus-danger",
 		tinted:
-			"text-prose-danger bg-danger-light hover:bg-danger-light-hover active:bg-danger-light-active active:shadow-focus-danger",
+			"border-0 text-prose-danger bg-danger-light hover:bg-danger-light-hover active:bg-danger-light-active active:shadow-focus-danger",
 		outlined:
-			"text-prose-danger border border-danger hover:border-danger-hover active:border-danger-active active:shadow-focus-danger",
+			"bg-transparent text-prose-danger border border-danger hover:border-danger-hover active:border-danger-active active:shadow-focus-danger",
 	},
 
 	gray: {
 		contained:
-			"text-prose-inverse bg-gray hover:bg-gray-hover active:bg-gray-active active:shadow-focus-gray",
+			"text-prose-inverse bg-gray border-0 hover:bg-gray-hover active:bg-gray-active active:shadow-focus-gray",
 		tinted:
-			"text-prose-gray bg-gray-light hover:bg-gray-light-hover active:bg-gray-light-active active:shadow-focus-gray",
+			"border-0 text-prose-gray bg-gray-light hover:bg-gray-light-hover active:bg-gray-light-active active:shadow-focus-gray",
 		outlined:
-			"text-prose-gray border border-gray hover:border-gray-hover active:border-gray-active active:shadow-focus-gray",
+			"bg-transparent text-prose-gray border border-gray hover:border-gray-hover active:border-gray-active active:shadow-focus-gray",
 	},
 };
 
