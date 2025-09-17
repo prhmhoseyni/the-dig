@@ -19,9 +19,9 @@ import Container from "./Container";
 ```tsx
 import { Avatar } from "@repo/ui/Avatar";
 
-<Avatar src="/img/prhm.jpg" alt="Parham Hoseyni" />;
+<Avatar src="/img/prhm.jpg" alt="Parham Hoseyni" />
 
-<Avatar alt="Parham Hoseyni">پ</Avatar>;
+<Avatar alt="Parham Hoseyni">پ</Avatar>
 ```
 
 ## Installation
@@ -40,3 +40,33 @@ npx the-dig@latest add Avatar
 | `className`                                                | `string`                             | -           |
 | `status`                                                   | `"online"` \| `"offline"`            | `"offline"` |
 | `children`                                                 | `ReactNode`                          | -           |
+
+## Status
+
+<Container>
+  <Avatar src="/img/prhm.jpg" alt="prhm" status="online" />
+</Container>
+
+```tsx
+import { Avatar } from "@repo/ui/Avatar";
+
+<Avatar src="/img/prhm.jpg" alt="prhm" status="online" />;
+```
+
+## Sizes
+
+<Container>
+  <Avatar src="/img/prhm.jpg" alt="prhm" size="xs" />
+  <Avatar src="/img/prhm.jpg" alt="prhm" size="sm" />
+  <Avatar src="/img/prhm.jpg" alt="prhm" size="md" />
+  <Avatar src="/img/prhm.jpg" alt="prhm" size="lg" />
+</Container>
+
+```tsx
+import { Avatar } from "@repo/ui/Avatar";
+
+<Avatar src="/img/prhm.jpg" alt="prhm" size="xs" />
+<Avatar src="/img/prhm.jpg" alt="prhm" size="sm" />
+<Avatar src="/img/prhm.jpg" alt="prhm" size="md" />
+<Avatar src="/img/prhm.jpg" alt="prhm" size="lg" />
+```

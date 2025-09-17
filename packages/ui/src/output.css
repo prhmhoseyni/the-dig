@@ -729,10 +729,6 @@
     --tw-border-style: dashed;
     border-style: dashed;
   }
-  .border-none {
-    --tw-border-style: none;
-    border-style: none;
-  }
   .border-solid {
     --tw-border-style: solid;
     border-style: solid;

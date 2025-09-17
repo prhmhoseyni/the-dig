@@ -10,7 +10,7 @@ import { Avatar, AvatarGroup } from "@repo/ui/Avatar";
 import Container from "./Container";
 
 <Container>
-  <AvatarGroup max={4} size="lg">
+  <AvatarGroup max={4}>
     <Avatar alt="Remy Sharp" src="/img/prhm.jpg" />
     <Avatar alt="Travis Howard" src="/img/prhm.jpg" />
     <Avatar alt="Cindy Baker" src="/img/prhm.jpg" />
@@ -24,7 +24,7 @@ import Container from "./Container";
 ```tsx
 import { Avatar, AvatarGroup } from "@repo/ui/Avatar";
 
-<AvatarGroup max={4} size="lg">
+<AvatarGroup max={4}>
   <Avatar alt="Remy Sharp" src="/img/prhm.jpg" />
   <Avatar alt="Travis Howard" src="/img/prhm.jpg" />
   <Avatar alt="Cindy Baker" src="/img/prhm.jpg" />
@@ -43,6 +43,30 @@ npx the-dig@latest add Avatar
 
 | Prop                                                            | Type                                 | Default |
 | --------------------------------------------------------------- | ------------------------------------ | ------- |
-| `size`                                                          | `"xs"` \| `"sm"` \| `"md"` \| `"lg"` | `"md"`  |
 | `max` <sup className="text-red-600 text-caption2">\*</sup>      | `number`                             | -       |
 | `children` <sup className="text-red-600 text-caption2">\*</sup> | `ReactNode`                          | -       |
+| `size`                                                          | `"xs"` \| `"sm"` \| `"md"` \| `"lg"` | `"md"`  |
+
+## Sizes
+
+<Container>
+  <AvatarGroup max={4} size="lg">
+    <Avatar alt="Remy Sharp" src="/img/prhm.jpg" />
+    <Avatar alt="Travis Howard" src="/img/prhm.jpg" />
+    <Avatar alt="Cindy Baker" src="/img/prhm.jpg" />
+    <Avatar alt="Agnes Walker" src="/img/prhm.jpg" />
+    <Avatar alt="Trevor Henderson" src="/img/prhm.jpg" />
+  </AvatarGroup>
+</Container>
+
+```tsx
+import { Avatar, AvatarGroup } from "@repo/ui/Avatar";
+
+<AvatarGroup max={4} size="lg">
+  <Avatar alt="Remy Sharp" src="/img/prhm.jpg" />
+  <Avatar alt="Travis Howard" src="/img/prhm.jpg" />
+  <Avatar alt="Cindy Baker" src="/img/prhm.jpg" />
+  <Avatar alt="Agnes Walker" src="/img/prhm.jpg" />
+  <Avatar alt="Trevor Henderson" src="/img/prhm.jpg" />
+</AvatarGroup>;
+```

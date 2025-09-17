@@ -8,6 +8,7 @@ sidebar_position: 1
 
 import Badge from "@repo/ui/Badge";
 import Container from "./Container";
+import RedirectLink from "../../src/components/RedirectLink";
 
 <Container>
   <Badge>به من توجه کن</Badge>
@@ -31,11 +32,11 @@ npx the-dig@latest add Badge
 
 ## Props
 
-| Prop       | Type                                                                          | Default                                                                  |
-| ---------- | ----------------------------------------------------------------------------- | ------------------------------------------------------------------------ |
-| `variant`  | `"contained"` \| `"tinted"`                                                   | `"contained"`                                                            |
-| `color`    | `"brand"` \| `"info"` \| `"success"` \| `"warning"` \| `"danger"` \| `"gray"` | `"brand"`                                                                |
-| `...props` | `HTMLAttributes<HTMLDivElement>` (e.g. `onClick`, `disabled`, etc.)           | [Document](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement) |
+| Prop      | Type                                                                          | Default                                                                                                   |
+| --------- | ----------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- |
+| `variant` | `"contained"` \| `"tinted"`                                                   | `"contained"`                                                                                             |
+| `color`   | `"brand"` \| `"info"` \| `"success"` \| `"warning"` \| `"danger"` \| `"gray"` | `"brand"`                                                                                                 |
+| `...rest` | `HTMLAttributes<HTMLDivElement>` (e.g. `onClick`, `disabled`, etc.)           | <RedirectLink href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement">Document</RedirectLink> |
 
 ## Variants and Colors
 
