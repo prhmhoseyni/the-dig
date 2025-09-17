@@ -2,6 +2,7 @@
 @layer theme, base, components, utilities;
 @import "tailwindcss/theme.css" layer(theme);
 @import "tailwindcss/utilities.css" layer(utilities);
+@import "@repo/ui/styles";
 
 @custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
 
@@ -397,10 +398,6 @@ html[data-theme="dark"] {
 
 html {
 	scroll-behavior: smooth;
-}
-
-a {
-	@apply text-prose-link;
 }
 
 p {
