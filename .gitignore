@@ -27,7 +27,6 @@ coverage
 out/
 build
 dist
-packages/ui/src/output.css
 
 
 # Debug
