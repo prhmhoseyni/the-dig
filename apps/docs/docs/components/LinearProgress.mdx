@@ -10,26 +10,14 @@ import LinearProgress from "@repo/ui/LinearProgress";
 import Container from "./Container";
 
 <Container>
-  <div className="flex flex-col gap-4 w-full">
-    <LinearProgress value={25} />
-  </div>
+  <LinearProgress value={25} />
 </Container>
 
-## Code
-
 ```tsx
-"use client";
-
 import LinearProgress from "@repo/ui/LinearProgress";
 
-export default function LinearProgressPage() {
-  return (
-    <div className="p-4 flex flex-col items-center justify-center gap-8 w-full">
-      <LinearProgress value={25} />
-    </div>
-  );
-}
-````
+<LinearProgress value={25} />;
+```
 
 ## Installation
 
@@ -39,22 +27,25 @@ npx the-dig@latest add LinearProgress
 
 ## Props
 
-### `LinearProgress`
-
 | Prop                                                         | Type                                            | Default   |
 | ------------------------------------------------------------ | ----------------------------------------------- | --------- |
 | `value` <sup className="text-red-600 text-caption2">\*</sup> | `number`                                        | -         |
 | `color`                                                      | `"brand" \| "success" \| "warning" \| "danger"` | `"brand"` |
 
----
-
 ## Colors
 
 <Container>
-  <div className="flex flex-col gap-4 w-full">
-    <LinearProgress value={10} />
-    <LinearProgress value={30} color="success" />
-    <LinearProgress value={60} color="warning" />
-    <LinearProgress value={100} color="danger" />
-  </div>
+  <LinearProgress value={50} color="brand" />
+  <LinearProgress value={50} color="success" />
+  <LinearProgress value={50} color="warning" />
+  <LinearProgress value={50} color="danger" />
 </Container>
+
+```tsx
+import LinearProgress from "@repo/ui/LinearProgress";
+
+<LinearProgress value={50} color="brand"/>
+<LinearProgress value={50} color="success" />
+<LinearProgress value={50} color="warning" />
+<LinearProgress value={50} color="danger" />
+```

@@ -13,9 +13,8 @@ import Container from "./Container";
 import StepperPreview from "../../src/components/StepperPreview";
 
 <Container>
-    <StepperPreview />
+  <StepperPreview />
 </Container>
-
 
 ## Code
 
@@ -64,8 +63,16 @@ function StepperExample() {
       />
 
       <div className="flex gap-4">
-        <Button onClick={() => currentStep > 0 && setCurrentStep(currentStep - 1)}>قبلی</Button>
-        <Button onClick={() => currentStep < 3 && setCurrentStep(currentStep + 1)}>بعدی</Button>
+        <Button
+          onClick={() => currentStep > 0 && setCurrentStep(currentStep - 1)}
+        >
+          قبلی
+        </Button>
+        <Button
+          onClick={() => currentStep < 3 && setCurrentStep(currentStep + 1)}
+        >
+          بعدی
+        </Button>
       </div>
     </>
   );
@@ -80,9 +87,9 @@ npx the-dig@latest add Stepper
 
 ## Props
 
-| Prop                                                           | Type                                                | Default |
-| -------------------------------------------------------------- | --------------------------------------------------- | ------- |
-| `steps` <sup className="text-red-600 text-caption2">\*</sup>   | `Array<{ title: string; description?: ReactNode }>` | -       |
-| `vertical`                                                     | `boolean`                                           | `false` |
-| `step` <sup className="text-red-600 text-caption2">\*</sup>    | `number`                                            | -       |
-| `onChange`                                                     | `(step: number) => void`                            | -       |
+| Prop                                                         | Type                                                | Default |
+| ------------------------------------------------------------ | --------------------------------------------------- | ------- |
+| `steps` <sup className="text-red-600 text-caption2">\*</sup> | `Array<{ title: string; description?: ReactNode }>` | -       |
+| `vertical`                                                   | `boolean`                                           | `false` |
+| `step` <sup className="text-red-600 text-caption2">\*</sup>  | `number`                                            | -       |
+| `onChange`                                                   | `(step: number) => void`                            | -       |

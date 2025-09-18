@@ -8,19 +8,16 @@ sidebar_position: 1
 
 import Button from "@repo/ui/Button";
 import Container from "./Container";
+import RedirectLink from "../../src/components/RedirectLink";
 
 <Container>
   <Button>فشارم بده</Button>
 </Container>
 
-## Code
-
 ```tsx
 import Button from "@repo/ui/Button";
 
-<Button variant="contained" color="brand">
-  فشارم بده
-</Button>;
+<Button>فشارم بده</Button>;
 ```
 
 ## Installation
@@ -31,17 +28,17 @@ npx the-dig@latest add Button
 
 ## Props
 
-| Prop        | Type                                                                          | Default                                                                        |
-| ----------- | ----------------------------------------------------------------------------- | ------------------------------------------------------------------------------ |
-| `variant`   | `"contained"` \| `"tinted"` \| `"outlined"`                                   | `"contained"`                                                                  |
-| `color`     | `"brand"` \| `"info"` \| `"success"` \| `"warning"` \| `"danger"` \| `"gray"` | `"brand"`                                                                      |
-| `size`      | `"xs"` \| `"sm"` \| `"md"` \| `"lg"` \| `"xl"`                                | `"md"`                                                                         |
-| `isLoading` | `boolean`                                                                     | `false`                                                                        |
-| `...props`  | `ButtonHTMLAttributes<HTMLButtonElement>` (e.g. `onClick`, `disabled`, etc.)  | [Document](https://developer.mozilla.org/en-US/docs/Web/API/HTMLButtonElement) |
+| Prop        | Type                                                                          | Default                                                                                                         |
+| ----------- | ----------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
+| `variant`   | `"contained"` \| `"tinted"` \| `"outlined"`                                   | `"contained"`                                                                                                   |
+| `color`     | `"brand"` \| `"info"` \| `"success"` \| `"warning"` \| `"danger"` \| `"gray"` | `"brand"`                                                                                                       |
+| `size`      | `"xs"` \| `"sm"` \| `"md"` \| `"lg"` \| `"xl"`                                | `"md"`                                                                                                          |
+| `isLoading` | `boolean`                                                                     | `false`                                                                                                         |
+| Others      | `ButtonHTMLAttributes<HTMLButtonElement>` (e.g. `onClick`, `disabled`, etc.)  | <RedirectLink href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLButtonElement">Document</RedirectLink> |
 
 ## Variants and Colors
 
-### brand
+### Brand
 
 <Container>
   <Button variant="contained" color="brand">
@@ -55,7 +52,21 @@ npx the-dig@latest add Button
   </Button>
 </Container>
 
-### info
+```tsx
+import Button from "@repo/ui/Button"
+
+<Button variant="contained" color="brand">
+  فشارم بده
+</Button>
+<Button variant="tinted" color="brand">
+  فشارم بده
+</Button>
+<Button variant="outlined" color="brand">
+  فشارم بده
+</Button>
+```
+
+### Info
 
 <Container>
   <Button variant="contained" color="info">
@@ -69,7 +80,21 @@ npx the-dig@latest add Button
   </Button>
 </Container>
 
-### success
+```tsx
+import Button from "@repo/ui/Button"
+
+<Button variant="contained" color="info">
+  فشارم بده
+</Button>
+<Button variant="tinted" color="info">
+  فشارم بده
+</Button>
+<Button variant="outlined" color="info">
+  فشارم بده
+</Button>
+```
+
+### Success
 
 <Container>
   <Button variant="contained" color="success">
@@ -83,7 +108,21 @@ npx the-dig@latest add Button
   </Button>
 </Container>
 
-### warning
+```tsx
+import Button from "@repo/ui/Button"
+
+<Button variant="contained" color="success">
+  فشارم بده
+</Button>
+<Button variant="tinted" color="success">
+  فشارم بده
+</Button>
+<Button variant="outlined" color="success">
+  فشارم بده
+</Button>
+```
+
+### Warning
 
 <Container>
   <Button variant="contained" color="warning">
@@ -97,7 +136,21 @@ npx the-dig@latest add Button
   </Button>
 </Container>
 
-### danger
+```tsx
+import Button from "@repo/ui/Button"
+
+<Button variant="contained" color="warning">
+  فشارم بده
+</Button>
+<Button variant="tinted" color="warning">
+  فشارم بده
+</Button>
+<Button variant="outlined" color="warning">
+  فشارم بده
+</Button>
+```
+
+### Danger
 
 <Container>
   <Button variant="contained" color="danger">
@@ -111,7 +164,21 @@ npx the-dig@latest add Button
   </Button>
 </Container>
 
-### gray
+```tsx
+import Button from "@repo/ui/Button"
+
+<Button variant="contained" color="danger">
+  فشارم بده
+</Button>
+<Button variant="tinted" color="danger">
+  فشارم بده
+</Button>
+<Button variant="outlined" color="danger">
+  فشارم بده
+</Button>
+```
+
+### Gray
 
 <Container>
   <Button variant="contained" color="gray">
@@ -125,22 +192,50 @@ npx the-dig@latest add Button
   </Button>
 </Container>
 
+```tsx
+import Button from "@repo/ui/Button"
+
+<Button variant="contained" color="gray">
+  فشارم بده
+</Button>
+<Button variant="tinted" color="gray">
+  فشارم بده
+</Button>
+<Button variant="outlined" color="gray">
+  فشارم بده
+</Button>
+```
+
 ## Sizes
 
 <Container>
-  <Button variant="contained" color="brand" size="xs">
-    فشارم بده
-  </Button>
-  <Button variant="contained" color="brand" size="sm">
-    فشارم بده
-  </Button>
-  <Button variant="contained" color="brand" size="md">
-    فشارم بده
-  </Button>
-  <Button variant="contained" color="brand" size="lg">
-    فشارم بده
-  </Button>
-  <Button variant="contained" color="brand" size="xl">
+  <Button size="xs">فشارم بده</Button>
+  <Button size="sm">فشارم بده</Button>
+  <Button size="md">فشارم بده</Button>
+  <Button size="lg">فشارم بده</Button>
+  <Button size="xl">فشارم بده</Button>
+</Container>
+
+```tsx
+import Button from "@repo/ui/Button"
+
+<Button size="xs">فشارم بده</Button>
+<Button size="sm">فشارم بده</Button>
+<Button size="md">فشارم بده</Button>
+<Button size="lg">فشارم بده</Button>
+<Button size="xl">فشارم بده</Button>
+```
+
+## Loading
+
+<Container>
+  <Button isLoading className="w-28">
     فشارم بده
   </Button>
 </Container>
+
+```tsx
+import Button from "@repo/ui/Button";
+
+<Button isLoading>فشارم بده</Button>;
+```

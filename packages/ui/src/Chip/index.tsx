@@ -1,32 +1,35 @@
 import clsx from "clsx";
-import type { DetailedHTMLProps, HTMLAttributes, ReactNode } from "react";
+import type { ButtonHTMLAttributes, DetailedHTMLProps, HTMLAttributes, ReactNode } from "react";
 
 const colors = {
 	brand: {
-		tinted: "text-prose-brand bg-brand-light hover:bg-brand-light-hover active:bg-brand-light-active active:shadow-focus-brand",
+		tinted:
+			"border-0 text-prose-brand bg-brand-light hover:bg-brand-light-hover active:bg-brand-light-active active:shadow-focus-brand",
 	},
 
 	info: {
-		tinted: "text-prose-info bg-info-light hover:bg-info-light-hover active:bg-info-light-active active:shadow-focus-info",
+		tinted:
+			"border-0 text-prose-info bg-info-light hover:bg-info-light-hover active:bg-info-light-active active:shadow-focus-info",
 	},
 
 	success: {
 		tinted:
-			"text-prose-success bg-success-light hover:bg-success-light-hover active:bg-success-light-active active:shadow-focus-success",
+			"border-0 text-prose-success bg-success-light hover:bg-success-light-hover active:bg-success-light-active active:shadow-focus-success",
 	},
 
 	warning: {
 		tinted:
-			"text-prose-warning bg-warning-light hover:bg-warning-light-hover active:bg-warning-light-active active:shadow-focus-warning",
+			"border-0 text-prose-warning bg-warning-light hover:bg-warning-light-hover active:bg-warning-light-active active:shadow-focus-warning",
 	},
 
 	danger: {
 		tinted:
-			"text-prose-danger bg-danger-light hover:bg-danger-light-hover active:bg-danger-light-active active:shadow-focus-danger",
+			"border-0 text-prose-danger bg-danger-light hover:bg-danger-light-hover active:bg-danger-light-active active:shadow-focus-danger",
 	},
 
 	gray: {
-		tinted: "text-prose-gray bg-gray-light hover:bg-gray-light-hover active:bg-gray-light-active active:shadow-focus-gray",
+		tinted:
+			"border-0 text-prose-gray bg-gray-light hover:bg-gray-light-hover active:bg-gray-light-active active:shadow-focus-gray",
 	},
 };
 
@@ -38,7 +41,8 @@ export type ChipColor = "brand" | "info" | "success" | "warning" | "danger" | "g
 /**
  * @name Chip component
  */
-export interface ChipProps extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
+export interface ChipProps
+	extends DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement> {
 	color?: ChipColor;
 	startAdornment?: ReactNode;
 }
@@ -47,7 +51,7 @@ export default function Chip(props: ChipProps) {
 	const { color = "brand", className = "", startAdornment: icon, children, ...rest } = props;
 
 	return (
-		<div
+		<button
 			className={clsx(
 				"cursor-pointer h-8 ps-3 pe-2 text-subtitle5 inline-flex items-center justify-center gap-1.5 rounded-full min-w-fit transition-all ease-in-out duration-300",
 				colors[color].tinted,
@@ -59,7 +63,13 @@ export default function Chip(props: ChipProps) {
 
 			{children}
 
-			<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+			<svg
+				xmlns="http://www.w3.org/2000/svg"
+				width="20"
+				height="20"
+				viewBox="0 0 20 20"
+				fill="none"
+			>
 				<title>x</title>
 				<path
 					fillRule="evenodd"
@@ -68,6 +78,6 @@ export default function Chip(props: ChipProps) {
 					fill={`rgb(var(--dig-${color}))`}
 				/>
 			</svg>
-		</div>
+		</button>
 	);
 }

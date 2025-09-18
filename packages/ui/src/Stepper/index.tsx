@@ -24,8 +24,10 @@ export default function Stepper(props: StepperProps) {
 					type="button"
 					key={item.title}
 					className={clsx(
-						"relative flex gap-2",
-						vertical ? "flex-row pb-8 gap-3 justify-start items-start" : "flex-col justify-center items-center px-3 sm:px-4",
+						"bg-transparent border-0 outline-none relative flex gap-2",
+						vertical
+							? "flex-row pb-8 gap-3 justify-start items-start"
+							: "flex-col justify-center items-center px-3 sm:px-4",
 						onChange && "cursor-pointer",
 					)}
 					onClick={() => {
@@ -48,11 +50,17 @@ export default function Stepper(props: StepperProps) {
 					{index < steps.length - 1 &&
 						(vertical ? (
 							<div
-								className={clsx("h-full border absolute top-0 right-[11px]", index < step ? "border-brand" : "border-gray-400")}
+								className={clsx(
+									"h-full border absolute top-0 right-[11px]",
+									index < step ? "border-brand" : "border-gray-400",
+								)}
 							/>
 						) : (
 							<div
-								className={clsx("w-full border absolute top-3 right-1/2", index < step ? "border-brand" : "border-gray-400")}
+								className={clsx(
+									"w-full border absolute top-3 right-1/2",
+									index < step ? "border-brand" : "border-gray-400",
+								)}
 							/>
 						))}
 

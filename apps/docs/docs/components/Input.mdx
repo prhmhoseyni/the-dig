@@ -8,13 +8,12 @@ sidebar_position: 1
 
 import Input from "@repo/ui/Input";
 import Container from "./Container";
-import { Activity } from "lucide-react";
+import { BadgeCheck } from "lucide-react";
+import RedirectLink from "../../src/components/RedirectLink";
 
 <Container>
-  <Input className="w-full" />
+  <Input />
 </Container>
-
-## Code
 
 ```tsx
 import Input from "@repo/ui/Input";
@@ -30,35 +29,62 @@ npx the-dig@latest add Input
 
 ## Props
 
-| Prop             | Type                                    | Default                                                                       |
-| ---------------- | --------------------------------------- | ----------------------------------------------------------------------------- |
-| `variant`        | `"primary"` \| `"secondary"`            | `"primary"`                                                                   |
-| `hasError`       | `boolean`                               | `false`                                                                       |
-| `startAdornment` | `ReactNode`                             | -                                                                             |
-| `endAdornment`   | `ReactNode`                             | -                                                                             |
-| Other props      | `InputHTMLAttributes<HTMLInputElement>` | [Document](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement) |
+| Prop             | Type                                    | Default                                                                                                        |
+| ---------------- | --------------------------------------- | -------------------------------------------------------------------------------------------------------------- |
+| `variant`        | `"primary"` \| `"secondary"`            | `"primary"`                                                                                                    |
+| `hasError`       | `boolean`                               | `false`                                                                                                        |
+| `startAdornment` | `ReactNode`                             | -                                                                                                              |
+| `endAdornment`   | `ReactNode`                             | -                                                                                                              |
+| Others           | `InputHTMLAttributes<HTMLInputElement>` | <RedirectLink href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement">Document</RedirectLink> |
 
 ## Variants
 
 <Container>
-  <Input className="w-full" />
-  <Input variant="secondary" className="w-full" />
+  <Input variant="primary" />
+  <Input variant="secondary" />
 </Container>
+
+```tsx
+import Input from "@repo/ui/Input";
+
+<Input variant="primary" />
+<Input variant="secondary" />
+```
 
 ## Has Error
 
 <Container>
-  <Input className="w-full" hasError />
+  <Input hasError />
 </Container>
+
+```tsx
+import Input from "@repo/ui/Input";
+
+<Input hasError />;
+```
 
 ## Start Adornment
 
 <Container>
-  <Input className="w-full" startAdornment={<Activity size={15} />} />
+  <Input startAdornment={<BadgeCheck size={18} />} />
 </Container>
+
+```tsx
+import Input from "@repo/ui/Input";
+import { BadgeCheck } from "lucide-react";
+
+<Input startAdornment={<BadgeCheck size={18} />} />;
+```
 
 ## End Adornment
 
 <Container>
-  <Input className="w-full" endAdornment={<Activity size={15} />} />
+  <Input endAdornment={<BadgeCheck size={18} />} />
 </Container>
+
+```tsx
+import Input from "@repo/ui/Input";
+import { BadgeCheck } from "lucide-react";
+
+<Input endAdornment={<BadgeCheck size={18} />} />;
+```

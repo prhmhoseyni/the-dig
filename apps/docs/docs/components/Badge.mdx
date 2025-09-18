@@ -14,8 +14,6 @@ import RedirectLink from "../../src/components/RedirectLink";
   <Badge>به من توجه کن</Badge>
 </Container>
 
-## Code
-
 ```tsx
 import Badge from "@repo/ui/Badge";
 
@@ -36,72 +34,138 @@ npx the-dig@latest add Badge
 | --------- | ----------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- |
 | `variant` | `"contained"` \| `"tinted"`                                                   | `"contained"`                                                                                             |
 | `color`   | `"brand"` \| `"info"` \| `"success"` \| `"warning"` \| `"danger"` \| `"gray"` | `"brand"`                                                                                                 |
-| `...rest` | `HTMLAttributes<HTMLDivElement>` (e.g. `onClick`, `disabled`, etc.)           | <RedirectLink href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement">Document</RedirectLink> |
+| Others    | `HTMLAttributes<HTMLDivElement>` (e.g. `onClick`, `disabled`, etc.)           | <RedirectLink href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement">Document</RedirectLink> |
 
 ## Variants and Colors
 
-### brand
+### Brand
 
 <Container>
   <Badge variant="contained" color="brand">
-    <span>به من توجه کن</span>
+    به من توجه کن
   </Badge>
   <Badge variant="tinted" color="brand">
-    <span>به من توجه کن</span>
+    به من توجه کن
   </Badge>
 </Container>
 
-### info
+```tsx
+import Badge from "@repo/ui/Badge";
+
+<Badge variant="contained" color="brand">
+  به من توجه کن
+</Badge>
+<Badge variant="tinted" color="brand">
+  به من توجه کن
+</Badge>
+```
+
+### Info
 
 <Container>
   <Badge variant="contained" color="info">
-    <span>به من توجه کن</span>
+    به من توجه کن
   </Badge>
   <Badge variant="tinted" color="info">
-    <span>به من توجه کن</span>
+    به من توجه کن
   </Badge>
 </Container>
 
-### success
+```tsx
+import Badge from "@repo/ui/Badge";
+
+<Badge variant="contained" color="info">
+  به من توجه کن
+</Badge>
+<Badge variant="tinted" color="info">
+  به من توجه کن
+</Badge>
+```
+
+### Success
 
 <Container>
   <Badge variant="contained" color="success">
-    <span>به من توجه کن</span>
+    به من توجه کن
   </Badge>
   <Badge variant="tinted" color="success">
-    <span>به من توجه کن</span>
+    به من توجه کن
   </Badge>
 </Container>
 
-### warning
+```tsx
+import Badge from "@repo/ui/Badge";
+
+<Badge variant="contained" color="success">
+  به من توجه کن
+</Badge>
+<Badge variant="tinted" color="success">
+  به من توجه کن
+</Badge>
+```
+
+### Warning
 
 <Container>
   <Badge variant="contained" color="warning">
-    <span>به من توجه کن</span>
+    به من توجه کن
   </Badge>
   <Badge variant="tinted" color="warning">
-    <span>به من توجه کن</span>
+    به من توجه کن
   </Badge>
 </Container>
 
-### danger
+```tsx
+import Badge from "@repo/ui/Badge";
+
+<Badge variant="contained" color="warning">
+  به من توجه کن
+</Badge>
+<Badge variant="tinted" color="warning">
+  به من توجه کن
+</Badge>
+```
+
+### Danger
 
 <Container>
   <Badge variant="contained" color="danger">
-    <span>به من توجه کن</span>
+    به من توجه کن
   </Badge>
   <Badge variant="tinted" color="danger">
-    <span>به من توجه کن</span>
+    به من توجه کن
   </Badge>
 </Container>
 
-### gray
+```tsx
+import Badge from "@repo/ui/Badge";
+
+<Badge variant="contained" color="danger">
+  به من توجه کن
+</Badge>
+<Badge variant="tinted" color="danger">
+  به من توجه کن
+</Badge>
+```
+
+### Gray
 
 <Container>
   <Badge variant="contained" color="gray">
-    <span>به من توجه کن</span>
+    به من توجه کن
   </Badge>
   <Badge variant="tinted" color="gray">
-    <span>به من توجه کن</span>
+    به من توجه کن
   </Badge>
 </Container>
+
+```tsx
+import Badge from "@repo/ui/Badge";
+
+<Badge variant="contained" color="gray">
+  به من توجه کن
+</Badge>
+<Badge variant="tinted" color="gray">
+  به من توجه کن
+</Badge>
+```

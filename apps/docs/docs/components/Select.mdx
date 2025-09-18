@@ -7,40 +7,126 @@ sidebar_position: 1
 ## Preview
 
 import Select from "@repo/ui/Select";
-import { Activity } from "lucide-react";
-import Container from "./Container"
+import { BadgeCheck } from "lucide-react";
+import Container from "./Container";
+import RedirectLink from "../../src/components/RedirectLink";
 
 <Container>
-    <Select>
-      <option value="value">Label</option>
-    </Select>
-
-    <Select hasError startAdornment={<Activity size={15} />}>
-      <option value="value">Label</option>
-    </Select>
+  <Select>
+    <option value="">انتخاب کنید</option>
+    <option value="1">گزینه ۱</option>
+    <option value="2">گزینه ۲</option>
+    <option value="3">گزینه ۳</option>
+    <option value="4">گزینه ۴</option>
+  </Select>
 </Container>
-
 
 ## Code
 
 ```tsx
 import Select from "@repo/ui/Select";
-import { Activity } from "lucide-react";
 
 <Select>
-  <option value="value">Label</option>
-</Select>
-
-<Select hasError startAdornment={<Activity size={15} />}>
-  <option value="value">Label</option>
-</Select>
+  <option value="">انتخاب کنید</option>
+  <option value="1">گزینه ۱</option>
+  <option value="2">گزینه ۲</option>
+  <option value="3">گزینه ۳</option>
+  <option value="4">گزینه ۴</option>
+</Select>;
 ```
 
 ## Props
 
-| Prop             | Type                                      | Default                                                                                 |
-| ---------------- | ----------------------------------------- | --------------------------------------------------------------------------------------- |
-| `variant`        | `"primary"` \| `"secondary"`              | `"primary"`                                                                             |
-| `hasError`       | `boolean`                                 | `false`                                                                                 |
-| `startAdornment` | `ReactNode`                               | -                                                                                       |
-| `...props`       | `SelectHTMLAttributes<HTMLSelectElement>` | [Document](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/select) |
+| Prop             | Type                                      | Default                                                                                                                  |
+| ---------------- | ----------------------------------------- | ------------------------------------------------------------------------------------------------------------------------ |
+| `variant`        | `"primary"` \| `"secondary"`              | `"primary"`                                                                                                              |
+| `hasError`       | `boolean`                                 | `false`                                                                                                                  |
+| `startAdornment` | `ReactNode`                               | -                                                                                                                        |
+| Others           | `SelectHTMLAttributes<HTMLSelectElement>` | <RedirectLink href="https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/select">Document</RedirectLink> |
+
+## Variants
+
+<Container>
+  <Select variant="primary">
+    <option value="">انتخاب کنید</option>
+    <option value="1">گزینه ۱</option>
+    <option value="2">گزینه ۲</option>
+    <option value="3">گزینه ۳</option>
+    <option value="4">گزینه ۴</option>
+  </Select>
+  <Select variant="secondary">
+    <option value="">انتخاب کنید</option>
+    <option value="1">گزینه ۱</option>
+    <option value="2">گزینه ۲</option>
+    <option value="3">گزینه ۳</option>
+    <option value="4">گزینه ۴</option>
+  </Select>
+</Container>
+
+```tsx
+import Select from "@repo/ui/Select";
+
+<Select variant="primary">
+  <option value="">انتخاب کنید</option>
+  <option value="1">گزینه ۱</option>
+  <option value="2">گزینه ۲</option>
+  <option value="3">گزینه ۳</option>
+  <option value="4">گزینه ۴</option>
+</Select>
+<Select variant="secondary">
+  <option value="">انتخاب کنید</option>
+  <option value="1">گزینه ۱</option>
+  <option value="2">گزینه ۲</option>
+  <option value="3">گزینه ۳</option>
+  <option value="4">گزینه ۴</option>
+</Select>
+```
+
+## Has Error
+
+<Container>
+  <Select hasError>
+    <option value="">انتخاب کنید</option>
+    <option value="1">گزینه ۱</option>
+    <option value="2">گزینه ۲</option>
+    <option value="3">گزینه ۳</option>
+    <option value="4">گزینه ۴</option>
+  </Select>
+</Container>
+
+```tsx
+import Select from "@repo/ui/Select";
+
+<Select hasError>
+  <option value="">انتخاب کنید</option>
+  <option value="1">گزینه ۱</option>
+  <option value="2">گزینه ۲</option>
+  <option value="3">گزینه ۳</option>
+  <option value="4">گزینه ۴</option>
+</Select>;
+```
+
+## Start Adornment
+
+<Container>
+  <Select startAdornment={<BadgeCheck size={18} />}>
+    <option value="">انتخاب کنید</option>
+    <option value="1">گزینه ۱</option>
+    <option value="2">گزینه ۲</option>
+    <option value="3">گزینه ۳</option>
+    <option value="4">گزینه ۴</option>
+  </Select>
+</Container>
+
+```tsx
+import Select from "@repo/ui/Select";
+import { BadgeCheck } from "lucide-react";
+
+<Select startAdornment={<BadgeCheck size={18} />}>
+  <option value="">انتخاب کنید</option>
+  <option value="1">گزینه ۱</option>
+  <option value="2">گزینه ۲</option>
+  <option value="3">گزینه ۳</option>
+  <option value="4">گزینه ۴</option>
+</Select>;
+```

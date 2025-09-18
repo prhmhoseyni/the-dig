@@ -9,20 +9,28 @@ export type SelectVariant = "primary" | "secondary";
 /**
  * @name Select component
  */
-export interface SelectProps extends DetailedHTMLProps<SelectHTMLAttributes<HTMLSelectElement>, HTMLSelectElement> {
+export interface SelectProps
+	extends DetailedHTMLProps<SelectHTMLAttributes<HTMLSelectElement>, HTMLSelectElement> {
 	variant?: SelectVariant;
 	hasError?: boolean;
 	startAdornment?: ReactNode;
 }
 
 export default function Select(props: SelectProps) {
-	const { variant = "primary", hasError = false, startAdornment, children, className = "", ...rest } = props;
+	const {
+		variant = "primary",
+		hasError = false,
+		startAdornment,
+		children,
+		className = "",
+		...rest
+	} = props;
 
 	return (
 		<div className="w-full relative">
 			<select
 				className={clsx(
-					"appearance-none w-full min-h-10 text-label2 text-prose-primary border border-gray-400 outline-0 px-2 rounded-lg placeholder:text-prose-hint transition-all ease-in-out duration-300",
+					"appearance-none w-full min-h-12 text-label2 text-prose-primary border border-gray-400 outline-0 px-3 rounded-lg placeholder:text-prose-hint transition-all ease-in-out duration-300",
 					"disabled:cursor-not-allowed disabled:opacity-40",
 					"focus:border-brand focus:shadow-focus-brand",
 					{ "bg-background-secondary": variant === "primary" },
@@ -30,7 +38,7 @@ export default function Select(props: SelectProps) {
 					{
 						"!border-danger focus:!border-danger focus:!shadow-focus-danger": hasError,
 					},
-					{ "!ps-8": startAdornment },
+					{ "!ps-9": startAdornment },
 					className,
 				)}
 				{...rest}
@@ -38,10 +46,20 @@ export default function Select(props: SelectProps) {
 				{children}
 			</select>
 
-			{startAdornment && <div className="absolute top-1/2 -translate-y-1/2 start-2">{startAdornment}</div>}
+			{startAdornment && (
+				<div className="absolute top-1/2 -translate-y-1/2 start-3 flex items-center">
+					{startAdornment}
+				</div>
+			)}
 
-			<div className="absolute top-1/2 -translate-y-1/2 end-2">
-				<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+			<div className="absolute top-1/2 -translate-y-1/2 end-3 flex items-center">
+				<svg
+					xmlns="http://www.w3.org/2000/svg"
+					width="24"
+					height="24"
+					viewBox="0 0 24 24"
+					fill="none"
+				>
 					<title>arrow-bottom</title>
 					<path
 						d="M16 10L12 14L8 10"

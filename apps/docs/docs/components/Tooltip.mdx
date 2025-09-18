@@ -10,20 +10,18 @@ import Tooltip from "@repo/ui/Tooltip";
 import Container from "./Container";
 
 <Container className="flex flex-wrap gap-4">
-  <Tooltip id="top" content="این یک راهنمای ابزار است." place="top">
-    <button>هاور</button>
+  <Tooltip id="tooltip" content="این یک راهنما است.">
+    موست رو بیار روی من
   </Tooltip>
 </Container>
-
-## Code
 
 ```tsx
 import Tooltip from "@repo/ui/Tooltip";
 
-<Tooltip id="top" content="این یک راهنمای ابزار است." place="top">
-  <button>هاور</button>
+<Tooltip id="tooltip" content="این یک راهنما است.">
+  موست رو بیار روی من
 </Tooltip>;
-````
+```
 
 ## Installation
 
@@ -33,50 +31,50 @@ npx the-dig@latest add Tooltip
 
 ## Props
 
-| Prop       | Type                                                                                                                                                                                       | Default |
-| ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------- |
-| `id`       | `string` <sup className="text-red-600 text-caption2">\*</sup>                                                                                                                              | -       |
-| `content`  | `string`  <sup className="text-red-600 text-caption2">\*</sup>                                                                                                                             | -       |
-| `place`    | `"top"` \| `"bottom"` \| `"left"` \| `"right"` \| `"left-start"` \| `"left-end"` \| `"right-start"` \| `"right-end"` \| `"top-start"` \| `"top-end"` \| `"bottom-start"` \| `"bottom-end"` | `"top"` |
-| `children` | `ReactElement` <sup className="text-red-600 text-caption2">\*</sup>                                                                                                                        | -       |
+| Prop                                                           | Type                                                                                                                                                                                       | Default |
+| -------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------- |
+| `id` <sup className="text-red-600 text-caption2">\*</sup>      | `string`                                                                                                                                                                                   | -       |
+| `content` <sup className="text-red-600 text-caption2">\*</sup> | `string`                                                                                                                                                                                   | -       |
+| `place` <sup className="text-red-600 text-caption2">\*</sup>   | `"top"` \| `"bottom"` \| `"left"` \| `"right"` \| `"left-start"` \| `"left-end"` \| `"right-start"` \| `"right-end"` \| `"top-start"` \| `"top-end"` \| `"bottom-start"` \| `"bottom-end"` | `"top"` |
+| `children`                                                     | `ReactNode`                                                                                                                                                                                | -       |
 
 ## Placements
 
 <Container className="flex flex-wrap gap-4">
-  <Tooltip id="top" content="این یک راهنمای ابزار است." place="top">
-    <button>top</button>
+  <Tooltip id="top" content="این یک راهنما است." place="top">
+    top
   </Tooltip>
-  <Tooltip id="top-start" content="این یک راهنمای ابزار است." place="top-start">
-    <button>top-start</button>
+  <Tooltip id="top-start" content="این یک راهنما است." place="top-start">
+    top-start
   </Tooltip>
-  <Tooltip id="top-end" content="این یک راهنمای ابزار است." place="top-end">
-    <button>top-end</button>
+  <Tooltip id="top-end" content="این یک راهنما است." place="top-end">
+    top-end
   </Tooltip>
-  <Tooltip id="bottom" content="این یک راهنمای ابزار است." place="bottom">
-    <button>bottom</button>
+  <Tooltip id="bottom" content="این یک راهنما است." place="bottom">
+    bottom
   </Tooltip>
-  <Tooltip id="bottom-start" content="این یک راهنمای ابزار است." place="bottom-start">
-    <button>bottom-start</button>
+  <Tooltip id="bottom-start" content="این یک راهنما است." place="bottom-start">
+    bottom-start
   </Tooltip>
-  <Tooltip id="bottom-end" content="این یک راهنمای ابزار است." place="bottom-end">
-    <button>bottom-end</button>
+  <Tooltip id="bottom-end" content="این یک راهنما است." place="bottom-end">
+    bottom-end
   </Tooltip>
-  <Tooltip id="left" content="این یک راهنمای ابزار است." place="left">
-    <button>left</button>
+  <Tooltip id="left" content="این یک راهنما است." place="left">
+    left
   </Tooltip>
-  <Tooltip id="left-start" content="این یک راهنمای ابزار است." place="left-start">
-    <button>left-start</button>
+  <Tooltip id="left-start" content="این یک راهنما است." place="left-start">
+    left-start
   </Tooltip>
-  <Tooltip id="left-end" content="این یک راهنمای ابزار است." place="left-end">
-    <button>left-end</button>
+  <Tooltip id="left-end" content="این یک راهنما است." place="left-end">
+    left-end
   </Tooltip>
-  <Tooltip id="right" content="این یک راهنمای ابزار است." place="right">
-    <button>right</button>
+  <Tooltip id="right" content="این یک راهنما است." place="right">
+    right
   </Tooltip>
-  <Tooltip id="right-start" content="این یک راهنمای ابزار است." place="right-start">
-    <button>right-start</button>
+  <Tooltip id="right-start" content="این یک راهنما است." place="right-start">
+    right-start
   </Tooltip>
-  <Tooltip id="right-end" content="این یک راهنمای ابزار است." place="right-end">
-    <button>right-end</button>
+  <Tooltip id="right-end" content="این یک راهنما است." place="right-end">
+    right-end
   </Tooltip>
 </Container>

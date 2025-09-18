@@ -1,28 +1,29 @@
 "use client";
 
 import Button from "@repo/ui/Button";
-import Modal from "@repo/ui/Modal";
+import Modal, { type ModalType } from "@repo/ui/Modal";
 import { useState } from "react";
 
-export default function ModalPreview() {
-	const [isOpen, setIsOpen] = useState(false);
+export default function ModalPreview(props: { type: ModalType }) {
+	const [open, setOpen] = useState(false);
 
 	return (
 		<>
-			<div className="container mx-auto flex justify-center items-center p-4">
-				<Button onClick={() => setIsOpen(true)}>بازکردن</Button>
-			</div>
+			<Button color={props.type} onClick={() => setOpen(true)}>
+				بازم کن
+			</Button>
 
 			<Modal
-				isOpen={isOpen}
-				type="info"
+				open={open}
+				type={props.type}
 				title="عنوان مودال"
 				description="لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است."
 				onAdmit={async () => {
 					await new Promise((resolve) => setTimeout(resolve, 2000));
+					setOpen(false);
 				}}
 				onDeny={() => {
-					setIsOpen(false);
+					setOpen(false);
 				}}
 			/>
 		</>

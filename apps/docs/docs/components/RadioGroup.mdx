@@ -8,19 +8,20 @@ sidebar_position: 1
 
 import RadioGroup from "@repo/ui/RadioGroup";
 import Container from "./Container";
+import RedirectLink from "../../src/components/RedirectLink";
 
 <Container>
-  <RadioGroup name="name" value="1" />
-  <RadioGroup name="name" value="2" />
-  <RadioGroup name="name" value="3" />
+  <RadioGroup name="radio" value="1" />
+  <RadioGroup name="radio" value="2" />
+  <RadioGroup name="radio" value="3" />
 </Container>
-
-## Code
 
 ```tsx
 import RadioGroup from "@repo/ui/RadioGroup";
 
-<RadioGroup />;
+<RadioGroup name="radio" value="1" />
+<RadioGroup name="radio" value="2" />
+<RadioGroup name="radio" value="3" />
 ```
 
 ## Installation
@@ -31,12 +32,18 @@ npx the-dig@latest add RadioGroup
 
 ## Props
 
-| Prop       | Type                                                                        | Default                                                                       |
-| ---------- | --------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
-| `...props` | `InputHTMLAttributes<HTMLInputElement>` (e.g. `onChange`, `disabled`, etc.) | [Document](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement) |
+| Prop   | Type                                                                        | Default                                                                                                        |
+| ------ | --------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- |
+| Others | `InputHTMLAttributes<HTMLInputElement>` (e.g. `onChange`, `disabled`, etc.) | <RedirectLink href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement">Document</RedirectLink> |
 
 ## Disabled
 
 <Container>
-  <RadioGroup checked disabled />
+  <RadioGroup defaultChecked disabled />
 </Container>
+
+```tsx
+import RadioGroup from "@repo/ui/RadioGroup";
+
+<RadioGroup defaultChecked disabled />;
+```

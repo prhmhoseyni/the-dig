@@ -6,14 +6,14 @@ sidebar_position: 1
 
 ## Preview
 
+import { BadgeCheck } from "lucide-react";
 import Chip from "@repo/ui/Chip";
 import Container from "./Container";
+import RedirectLink from "../../src/components/RedirectLink";
 
 <Container>
   <Chip>بزن روم</Chip>
 </Container>
-
-## Code
 
 ```tsx
 import Chip from "@repo/ui/Chip";
@@ -29,33 +29,77 @@ npx the-dig@latest add Chip
 
 ## Props
 
-| Prop             | Type                                                                          | Default   |
-| ---------------- | ----------------------------------------------------------------------------- | --------- |
-| `color`          | `"brand"` \| `"info"` \| `"success"` \| `"warning"` \| `"danger"` \| `"gray"` | `"brand"` |
-| `startAdornment` | `ReactNode`                                                                   |           |
+| Prop             | Type                                                                          | Default                                                                                                         |
+| ---------------- | ----------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
+| `color`          | `"brand"` \| `"info"` \| `"success"` \| `"warning"` \| `"danger"` \| `"gray"` | `"brand"`                                                                                                       |
+| `startAdornment` | `ReactNode`                                                                   |                                                                                                                 |
+| Others           | `ButtonHTMLAttributes<HTMLButtonElement>` (e.g. `onClick`, `disabled`, etc.)  | <RedirectLink href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLButtonElement">Document</RedirectLink> |
 
 ## Colors
 
 <Container>
   <Chip color="brand">بزن روم</Chip>
-</Container>
-
-<Container>
   <Chip color="info">بزن روم</Chip>
-</Container>
-
-<Container>
   <Chip color="success">بزن روم</Chip>
-</Container>
-
-<Container>
   <Chip color="warning">بزن روم</Chip>
-</Container>
-
-<Container>
   <Chip color="danger">بزن روم</Chip>
-</Container>
-
-<Container>
   <Chip color="gray">بزن روم</Chip>
 </Container>
+
+```tsx
+import Chip from "@repo/ui/Chip";
+
+<Chip color="brand">بزن روم</Chip>
+<Chip color="info">بزن روم</Chip>
+<Chip color="success">بزن روم</Chip>
+<Chip color="warning">بزن روم</Chip>
+<Chip color="danger">بزن روم</Chip>
+<Chip color="gray">بزن روم</Chip>
+```
+
+## Start Adornment
+
+<Container>
+  <Chip color="brand" startAdornment={<BadgeCheck size={16} />}>
+    بزن روم
+  </Chip>
+  <Chip color="info" startAdornment={<BadgeCheck size={16} />}>
+    بزن روم
+  </Chip>
+  <Chip color="success" startAdornment={<BadgeCheck size={16} />}>
+    بزن روم
+  </Chip>
+  <Chip color="warning" startAdornment={<BadgeCheck size={16} />}>
+    بزن روم
+  </Chip>
+  <Chip color="danger" startAdornment={<BadgeCheck size={16} />}>
+    بزن روم
+  </Chip>
+  <Chip color="gray" startAdornment={<BadgeCheck size={16} />}>
+    بزن روم
+  </Chip>
+</Container>
+
+```tsx
+import Chip from "@repo/ui/Chip";
+import { BadgeCheck } from "lucide-react";
+
+<Chip color="brand" startAdornment={<BadgeCheck size={16}/>}>
+  بزن روم
+</Chip>
+<Chip color="info" startAdornment={<BadgeCheck size={16}/>}>
+  بزن روم
+</Chip>
+<Chip color="success" startAdornment={<BadgeCheck size={16}/>}>
+  بزن روم
+</Chip>
+<Chip color="warning" startAdornment={<BadgeCheck size={16}/>}>
+  بزن روم
+</Chip>
+<Chip color="danger" startAdornment={<BadgeCheck size={16}/>}>
+  بزن روم
+</Chip>
+<Chip color="gray" startAdornment={<BadgeCheck size={16}/>}>
+  بزن روم
+</Chip>
+```

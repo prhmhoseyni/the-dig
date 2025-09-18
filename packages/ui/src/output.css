@@ -258,11 +258,20 @@
   .start-2 {
     inset-inline-start: calc(var(--spacing) * 2);
   }
+  .start-3 {
+    inset-inline-start: calc(var(--spacing) * 3);
+  }
   .end-2 {
     inset-inline-end: calc(var(--spacing) * 2);
   }
+  .end-3 {
+    inset-inline-end: calc(var(--spacing) * 3);
+  }
   .top-0 {
     top: calc(var(--spacing) * 0);
+  }
+  .top-1 {
+    top: calc(var(--spacing) * 1);
   }
   .top-1\/2 {
     top: calc(1/2 * 100%);
@@ -272,6 +281,9 @@
   }
   .right-0 {
     right: calc(var(--spacing) * 0);
+  }
+  .right-1 {
+    right: calc(var(--spacing) * 1);
   }
   .right-1\/2 {
     right: calc(1/2 * 100%);
@@ -424,6 +436,9 @@
   .min-h-16 {
     min-height: calc(var(--spacing) * 16);
   }
+  .min-h-20 {
+    min-height: calc(var(--spacing) * 20);
+  }
   .w-\(--cell-size\) {
     width: var(--cell-size);
   }
@@ -523,11 +538,18 @@
   .flex-1 {
     flex: 1;
   }
+  .flex-shrink {
+    flex-shrink: 1;
+  }
   .shrink-0 {
     flex-shrink: 0;
   }
   .border-collapse {
     border-collapse: collapse;
+  }
+  .-translate-y-1 {
+    --tw-translate-y: calc(var(--spacing) * -1);
+    translate: var(--tw-translate-x) var(--tw-translate-y);
   }
   .-translate-y-1\/2 {
     --tw-translate-y: calc(calc(1/2 * 100%) * -1);
@@ -921,14 +943,26 @@
   .py-4 {
     padding-block: calc(var(--spacing) * 4);
   }
+  .py-5 {
+    padding-block: calc(var(--spacing) * 5);
+  }
+  .py-6 {
+    padding-block: calc(var(--spacing) * 6);
+  }
   .\!ps-8 {
     padding-inline-start: calc(var(--spacing) * 8) !important;
+  }
+  .\!ps-9 {
+    padding-inline-start: calc(var(--spacing) * 9) !important;
   }
   .ps-3 {
     padding-inline-start: calc(var(--spacing) * 3);
   }
   .\!pe-8 {
     padding-inline-end: calc(var(--spacing) * 8) !important;
+  }
+  .\!pe-9 {
+    padding-inline-end: calc(var(--spacing) * 9) !important;
   }
   .pe-2 {
     padding-inline-end: calc(var(--spacing) * 2);
@@ -1133,6 +1167,10 @@
     --tw-shadow: 0px 1px 2px 0px var(--tw-shadow-color, rgba(16, 24, 40, 0.05));
     box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
   }
+  .outline {
+    outline-style: var(--tw-outline-style);
+    outline-width: 1px;
+  }
   .outline-0 {
     outline-style: var(--tw-outline-style);
     outline-width: 0px;
@@ -1186,6 +1224,10 @@
   .ease-out {
     --tw-ease: var(--ease-out);
     transition-timing-function: var(--ease-out);
+  }
+  .outline-none {
+    --tw-outline-style: none;
+    outline-style: none;
   }
   .select-none {
     -webkit-user-select: none;
