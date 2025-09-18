@@ -8,18 +8,17 @@ sidebar_position: 1
 
 import Switch from "@repo/ui/Switch";
 import Container from "./Container";
+import RedirectLink from "../../src/components/RedirectLink";
 
 <Container className="flex flex-wrap gap-3">
-  <Switch color="brand" />
+  <Switch />
 </Container>
-
-## Code
 
 ```tsx
 import Switch from "@repo/ui/Switch";
 
-<Switch color="brand" />;
-````
+<Switch />;
+```
 
 ## Installation
 
@@ -29,23 +28,98 @@ npx the-dig@latest add Switch
 
 ## Props
 
-| Prop            | Type                                                                          | Default                                                                                   |
-| --------------- | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
-| `color`         | `"brand"` \| `"info"` \| `"success"` \| `"warning"` \| `"danger"` \| `"gray"` | `"brand"`                                                                                 |
-| `size`          | `"sm"` \| `"md"` \| `"lg"`                                                    | `"md"`                                                                                    |
-| `...props`      | `DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>`  | [Document](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/textarea) |
-| `className`     | `string`                                                                      | -                                                                                         |
+| Prop    | Type                                                                          | Default                                                                                                        |
+| ------- | ----------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- |
+| `color` | `"brand"` \| `"info"` \| `"success"` \| `"warning"` \| `"danger"` \| `"gray"` | `"brand"`                                                                                                      |
+| `size`  | `"sm"` \| `"md"` \| `"lg"`                                                    | `"md"`                                                                                                         |
+| Others  | `InputHTMLAttributes<HTMLInputElement>` (e.g. `onChange`, `disabled`, etc.)   | <RedirectLink href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement">Document</RedirectLink> |
 
-## Variants / Examples
+## Colors
+
+### Brand
 
 <Container className="flex flex-wrap gap-3">
-  <Switch color="brand" checked />
-  <Switch color="danger" checked />
-  <Switch color="info" />
-  <Switch color="gray" />
-  <Switch color="success" />
-  <Switch color="warning" />
-  <Switch size="lg" />
-  <Switch size="sm" />
-  <Switch disabled />
+  <Switch defaultChecked color="brand" />
 </Container>
+
+```tsx
+import Switch from "@repo/ui/Switch";
+
+<Switch defaultChecked color="brand" />;
+```
+
+### Info
+
+<Container className="flex flex-wrap gap-3">
+  <Switch defaultChecked color="info" />
+</Container>
+
+```tsx
+import Switch from "@repo/ui/Switch";
+
+<Switch defaultChecked color="info" />;
+```
+
+### Success
+
+<Container className="flex flex-wrap gap-3">
+  <Switch defaultChecked color="success" />
+</Container>
+
+```tsx
+import Switch from "@repo/ui/Switch";
+
+<Switch defaultChecked color="success" />;
+```
+
+### Warning
+
+<Container className="flex flex-wrap gap-3">
+  <Switch defaultChecked color="warning" />
+</Container>
+
+```tsx
+import Switch from "@repo/ui/Switch";
+
+<Switch defaultChecked color="warning" />;
+```
+
+### Danger
+
+<Container className="flex flex-wrap gap-3">
+  <Switch defaultChecked color="danger" />
+</Container>
+
+```tsx
+import Switch from "@repo/ui/Switch";
+
+<Switch defaultChecked color="danger" />;
+```
+
+### Gray
+
+<Container className="flex flex-wrap gap-3">
+  <Switch defaultChecked color="gray" />
+</Container>
+
+```tsx
+import Switch from "@repo/ui/Switch";
+
+<Switch defaultChecked color="gray" />;
+```
+
+## Sizes
+
+<Container>
+  <Switch size="sm" />
+  <Switch size="md" />
+  <Switch size="lg" />
+</Container>
+
+```tsx
+import Switch from "@repo/ui/Switch";
+
+<Switch size="sm" />
+<Switch size="md" />
+<Switch size="lg" />
+```

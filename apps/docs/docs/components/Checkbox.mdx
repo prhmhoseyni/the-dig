@@ -8,12 +8,11 @@ sidebar_position: 1
 
 import Checkbox from "@repo/ui/Checkbox";
 import Container from "./Container";
+import RedirectLink from "../../src/components/RedirectLink";
 
 <Container>
-  <Checkbox label="مرا علامت بزن" />
+  <Checkbox />
 </Container>
-
-## Code
 
 ```tsx
 import Checkbox from "@repo/ui/Checkbox";
@@ -29,18 +28,30 @@ npx the-dig@latest add Checkbox
 
 ## Props
 
-| Prop       | Type                                                                        | Default                                                                       |
-| ---------- | --------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
-| `...props` | `InputHTMLAttributes<HTMLInputElement>` (e.g. `onChange`, `disabled`, etc.) | [Document](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement) |
+| Prop   | Type                                                                        | Default                                                                                                        |
+| ------ | --------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- |
+| Others | `InputHTMLAttributes<HTMLInputElement>` (e.g. `onChange`, `disabled`, etc.) | <RedirectLink href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement">Document</RedirectLink> |
 
 ## Disabled
 
 <Container>
-  <Checkbox label="مرا علامت بزن" checked disabled />
+  <Checkbox defaultChecked disabled />
 </Container>
+
+```tsx
+import Checkbox from "@repo/ui/Checkbox";
+
+<Checkbox defaultChecked disabled />;
+```
 
 ## Indeterminate
 
 <Container>
-  <Checkbox label="مرا علامت بزن" defaultChecked data-indeterminate />
+  <Checkbox defaultChecked data-indeterminate />
 </Container>
+
+```tsx
+import Checkbox from "@repo/ui/Checkbox";
+
+<Checkbox defaultChecked data-indeterminate />;
+```

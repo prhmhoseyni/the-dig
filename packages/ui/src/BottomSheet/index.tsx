@@ -38,7 +38,7 @@ function BottomSheetBody(props: BottomSheetBodyProps) {
  */
 export interface BaseBottomSheetProps extends PropsWithChildren {
 	title: string;
-	isOpen: boolean;
+	open: boolean;
 	onClose: VoidFunction;
 }
 
@@ -85,7 +85,7 @@ function BaseBottomSheet(props: BaseBottomSheetProps) {
 
 	return (
 		<AnimatePresence>
-			{props.isOpen && (
+			{props.open && (
 				<div className="fixed inset-0 w-dvw h-dvh flex justify-center items-center z-50">
 					<motion.div
 						className={clsx(
@@ -98,9 +98,9 @@ function BaseBottomSheet(props: BaseBottomSheetProps) {
 					/>
 
 					<motion.dialog
-						open={props.isOpen}
+						open={props.open}
 						className={clsx(
-							"fixed bottom-0 md:bottom-auto md:p-0 bg-transparent z-[999] mx-auto max-h-dvh md:shadow-2xl rounded-2xl md:max-w-[36rem] w-full",
+							"border-0 p-0 fixed bottom-0 md:bottom-auto md:p-0 bg-transparent z-[999] mx-auto max-h-dvh md:shadow-2xl rounded-2xl md:max-w-[36rem] w-full",
 						)}
 						drag={isMobile && "y"}
 						dragConstraints={{ top: 0 }}

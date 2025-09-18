@@ -7,22 +7,19 @@ sidebar_position: 1
 ## Preview
 
 import SegmentControl from "@repo/ui/SegmentControl";
-import Container from "./Container"
+import Container from "./Container";
 import SegmentControlPreview from "../../src/components/SegmentControlPreview";
 
 <Container>
-    <SegmentControlPreview/>
+  <SegmentControlPreview size="md" />
 </Container>
 
 ## Code
+
 ```tsx
 import SegmentControl from "@repo/ui/SegmentControl";
 
-<SegmentControl
-  size="sm"
-  value={value}
-  onChange={(value) => setValue(value)}
->
+<SegmentControl value={value} onChange={(value) => setValue(value)}>
   <SegmentControl.Item value="1">عنوان نمونه 1</SegmentControl.Item>
   <SegmentControl.Divider />
   <SegmentControl.Item value="2">عنوان نمونه 2</SegmentControl.Item>
@@ -30,24 +27,70 @@ import SegmentControl from "@repo/ui/SegmentControl";
   <SegmentControl.Item value="3">عنوان نمونه 3</SegmentControl.Item>
   <SegmentControl.Divider />
   <SegmentControl.Item value="4">عنوان نمونه 4</SegmentControl.Item>
-</SegmentControl>
+</SegmentControl>;
 ```
 
 ## Props
 
-| Prop       | Type                      | Default                  |
-| ---------- | ------------------------- | ------------------------ |
-| `value`    | `string`                  | -                        |
-| `onChange` | `(value: string) => void` | -                        |
-| `size`     | `"sm"`                    | `"md"`                   |
-| `children` | `SegmentControl.Item`     | -                        |
+| Prop       | Type                       | Default |
+| ---------- | -------------------------- | ------- |
+| `value`    | `string`                   | -       |
+| `onChange` | `(value: string) => void`  | -       |
+| `size`     | `"sm"` \| `"md"` \| `"lg"` | `"md"`  |
+| `children` | `ReactNode`                | -       |
 
-### `SegmentControl.Item` Props
+## Sizes
 
-| Prop                                                         | Type                      | Default |
-| ------------------------------------------------------------ | ------------------------- | ------- |
-| `value` <sup className="text-red-600 text-caption2">\*</sup> | `string`                  | -       |
-| `onChange`                                                   | `(value: string) => void` | -       |
-| `selectedValue`                                              | `string`                  | -       |
-| `size`                                                       | `"sm"`                    | `"md"`  |
-| `children`                                                   | `ReactNode`               | -       |
+<Container>
+  <SegmentControlPreview size="sm" />
+</Container>
+
+```tsx
+import SegmentControl from "@repo/ui/SegmentControl";
+
+<SegmentControl size="sm" value={value} onChange={(value) => setValue(value)}>
+  <SegmentControl.Item value="1">عنوان نمونه 1</SegmentControl.Item>
+  <SegmentControl.Divider />
+  <SegmentControl.Item value="2">عنوان نمونه 2</SegmentControl.Item>
+  <SegmentControl.Divider />
+  <SegmentControl.Item value="3">عنوان نمونه 3</SegmentControl.Item>
+  <SegmentControl.Divider />
+  <SegmentControl.Item value="4">عنوان نمونه 4</SegmentControl.Item>
+</SegmentControl>;
+```
+
+<Container>
+  <SegmentControlPreview size="md" />
+</Container>
+
+```tsx
+import SegmentControl from "@repo/ui/SegmentControl";
+
+<SegmentControl size="md" value={value} onChange={(value) => setValue(value)}>
+  <SegmentControl.Item value="1">عنوان نمونه 1</SegmentControl.Item>
+  <SegmentControl.Divider />
+  <SegmentControl.Item value="2">عنوان نمونه 2</SegmentControl.Item>
+  <SegmentControl.Divider />
+  <SegmentControl.Item value="3">عنوان نمونه 3</SegmentControl.Item>
+  <SegmentControl.Divider />
+  <SegmentControl.Item value="4">عنوان نمونه 4</SegmentControl.Item>
+</SegmentControl>;
+```
+
+<Container>
+  <SegmentControlPreview size="lg" />
+</Container>
+
+```tsx
+import SegmentControl from "@repo/ui/SegmentControl";
+
+<SegmentControl size="lg" value={value} onChange={(value) => setValue(value)}>
+  <SegmentControl.Item value="1">عنوان نمونه 1</SegmentControl.Item>
+  <SegmentControl.Divider />
+  <SegmentControl.Item value="2">عنوان نمونه 2</SegmentControl.Item>
+  <SegmentControl.Divider />
+  <SegmentControl.Item value="3">عنوان نمونه 3</SegmentControl.Item>
+  <SegmentControl.Divider />
+  <SegmentControl.Item value="4">عنوان نمونه 4</SegmentControl.Item>
+</SegmentControl>;
+```

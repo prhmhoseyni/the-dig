@@ -24,7 +24,7 @@ export default function Stepper(props: StepperProps) {
 					type="button"
 					key={item.title}
 					className={clsx(
-						"relative flex gap-2",
+						"bg-transparent border-0 outline-none relative flex gap-2",
 						vertical
 							? "flex-row pb-8 gap-3 justify-start items-start"
 							: "flex-col justify-center items-center px-3 sm:px-4",

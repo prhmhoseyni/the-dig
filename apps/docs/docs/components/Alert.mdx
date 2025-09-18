@@ -18,8 +18,6 @@ import Container from "./Container";
   />
 </Container>
 
-## Code
-
 ```tsx
 import Alert from "@repo/ui/Alert";
 
@@ -81,6 +79,36 @@ npx the-dig@latest add Alert
   />
 </Container>
 
+```tsx
+import Alert from "@repo/ui/Alert";
+
+<Alert
+  color="gray"
+  title="عنوان پیام"
+  description="توضیحات مختصر درمورد پیام هشدار."
+/>
+<Alert
+  color="info"
+  title="عنوان پیام"
+  description="توضیحات مختصر درمورد پیام هشدار."
+/>
+<Alert
+  color="success"
+  title="عنوان پیام"
+  description="توضیحات مختصر درمورد پیام هشدار."
+/>
+<Alert
+  color="warning"
+  title="عنوان پیام"
+  description="توضیحات مختصر درمورد پیام هشدار."
+/>
+<Alert
+  color="danger"
+  title="عنوان پیام"
+  description="توضیحات مختصر درمورد پیام هشدار."
+/>
+```
+
 ## Without Title
 
 <Container>
@@ -110,3 +138,28 @@ npx the-dig@latest add Alert
     className="w-full"
   />
 </Container>
+
+```tsx
+import Alert from "@repo/ui/Alert";
+
+<Alert
+  color="gray"
+  description="توضیحات مختصر درمورد پیام هشدار."
+/>
+<Alert
+  color="info"
+  description="توضیحات مختصر درمورد پیام هشدار."
+/>
+<Alert
+  color="success"
+  description="توضیحات مختصر درمورد پیام هشدار."
+/>
+<Alert
+  color="warning"
+  description="توضیحات مختصر درمورد پیام هشدار."
+/>
+<Alert
+  color="danger"
+  description="توضیحات مختصر درمورد پیام هشدار."
+/>
+```

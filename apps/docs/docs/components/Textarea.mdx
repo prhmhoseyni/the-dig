@@ -7,20 +7,19 @@ sidebar_position: 1
 ## Preview
 
 import Textarea from "@repo/ui/Textarea";
-import { Activity } from "lucide-react";
+import { BadgeCheck } from "lucide-react";
 import Container from "./Container";
+import RedirectLink from "../../src/components/RedirectLink";
 
-<Container className="flex flex-col gap-4">
-  <Textarea placeholder="یادداشت کنید..." />
+<Container>
+  <Textarea />
 </Container>
-
-## Code
 
 ```tsx
 import Textarea from "@repo/ui/Textarea";
 
-<Textarea placeholder="یادداشت کنید..." />;
-````
+<Textarea />;
+```
 
 ## Installation
 
@@ -30,23 +29,48 @@ npx the-dig@latest add Textarea
 
 ## Props
 
-| Prop             | Type                                                                                  | Default                                                                                   |
-| ---------------- | ------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
-| `variant`        | `"primary"` \| `"secondary"`                                                          | `"primary"`                                                                               |
-| `hasError`       | `boolean`                                                                             | `false`                                                                                   |
-| `startAdornment` | `ReactNode`                                                                           | -                                                                                         |
-| `className`      | `string`                                                                              | -                                                                                         |
-| `...props`       | `DetailedHTMLProps<TextareaHTMLAttributes<HTMLTextAreaElement>, HTMLTextAreaElement>` | [Document](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/textarea) |
+| Prop             | Type                                          | Default                                                                                                                    |
+| ---------------- | --------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------- |
+| `variant`        | `"primary"` \| `"secondary"`                  | `"primary"`                                                                                                                |
+| `hasError`       | `boolean`                                     | `false`                                                                                                                    |
+| `startAdornment` | `ReactNode`                                   | -                                                                                                                          |
+| Others           | `TextareaHTMLAttributes<HTMLTextAreaElement>` | <RedirectLink href="https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/textarea">Document</RedirectLink> |
 
-## Variants / Examples
+## Variants
 
-<Container className="flex flex-col gap-4">
-  <Textarea placeholder="یادداشت کنید..." />
-  <Textarea hasError placeholder="یادداشت کنید..." />
-  <Textarea variant="secondary" placeholder="یادداشت کنید..." />
-  <Textarea variant="secondary" hasError placeholder="یادداشت کنید..." />
-  <Textarea placeholder="یادداشت کنید..." startAdornment={<Activity size={15} />} />
-  <Textarea hasError placeholder="یادداشت کنید..." startAdornment={<Activity size={15} />} />
-  <Textarea variant="secondary" placeholder="یادداشت کنید..." startAdornment={<Activity size={15} />} />
-  <Textarea variant="secondary" hasError placeholder="یادداشت کنید..." startAdornment={<Activity size={15} />} />
+<Container>
+  <Textarea variant="primary" />
+  <Textarea variant="secondary" />
 </Container>
+
+```tsx
+import Textarea from "@repo/ui/Textarea";
+
+<Textarea variant="primary" />
+<Textarea variant="secondary" />
+```
+
+## Has Error
+
+<Container>
+  <Textarea hasError />
+</Container>
+
+```tsx
+import Textarea from "@repo/ui/Textarea";
+
+<Textarea hasError />;
+```
+
+## Start Adornment
+
+<Container>
+  <Textarea startAdornment={<BadgeCheck size={18} />} />
+</Container>
+
+```tsx
+import Textarea from "@repo/ui/Textarea";
+import { BadgeCheck } from "lucide-react";
+
+<Textarea startAdornment={<BadgeCheck size={18} />} />;
+```

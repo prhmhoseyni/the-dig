@@ -7,17 +7,16 @@ sidebar_position: 1
 ## Preview
 
 import CircularProgress from "@repo/ui/CircularProgress";
-import { Activity } from "lucide-react";
 import Container from "./Container";
 
 <Container>
   <CircularProgress />
 </Container>
 
-## Code
-
 ```tsx
-<CircularProgress />
+import CircularProgress from "@repo/ui/CircularProgress";
+
+<CircularProgress />;
 ```
 
 ## Installation
@@ -36,34 +35,39 @@ npx the-dig@latest add CircularProgress
 ## Colors
 
 <Container>
-  <CircularProgress size="md" color="brand" />
+  <CircularProgress color="brand" />
+  <CircularProgress color="info" />
+  <CircularProgress color="success" />
+  <CircularProgress color="warning" />
+  <CircularProgress color="danger" />
+  <CircularProgress color="gray" />
 </Container>
 
-<Container>
-  <CircularProgress size="md" color="info" />
-</Container>
+```tsx
+import CircularProgress from "@repo/ui/CircularProgress";
 
-<Container>
-  <CircularProgress size="md" color="success" />
-</Container>
-
-<Container>
-  <CircularProgress size="md" color="warning" />
-</Container>
-
-<Container>
-  <CircularProgress size="md" color="danger" />
-</Container>
-
-<Container>
-  <CircularProgress size="md" color="gray" />
-</Container>
+<CircularProgress color="brand" />
+<CircularProgress color="info" />
+<CircularProgress color="success" />
+<CircularProgress color="warning" />
+<CircularProgress color="danger" />
+<CircularProgress color="gray" />
+```
 
 ## Sizes
 
 <Container>
-  <CircularProgress size="xs" color="brand" />
-  <CircularProgress size="sm" color="brand" />
-  <CircularProgress size="md" color="brand" />
-  <CircularProgress size="lg" color="brand" />
+  <CircularProgress size="xs" />
+  <CircularProgress size="sm" />
+  <CircularProgress size="md" />
+  <CircularProgress size="lg" />
 </Container>
+
+```tsx
+import CircularProgress from "@repo/ui/CircularProgress";
+
+<CircularProgress size="xs" />
+<CircularProgress size="sm" />
+<CircularProgress size="md" />
+<CircularProgress size="lg" />
+```

@@ -64,7 +64,7 @@ function DialogFooter(props: DialogFooterProps) {
  */
 export interface BaseDialogProps extends PropsWithChildren {
 	title: string;
-	isOpen: boolean;
+	open: boolean;
 	onClose: () => void;
 }
 
@@ -111,7 +111,7 @@ function BaseDialog(props: BaseDialogProps) {
 
 	return (
 		<AnimatePresence>
-			{props.isOpen && (
+			{props.open && (
 				<div className="fixed inset-0 w-dvw h-dvh flex justify-center items-center z-50">
 					<motion.div
 						className={clsx(
@@ -124,7 +124,7 @@ function BaseDialog(props: BaseDialogProps) {
 					/>
 
 					<motion.dialog
-						open={props.isOpen}
+						open={props.open}
 						className={clsx(
 							"fixed bottom-0 md:bottom-auto md:p-0 bg-transparent z-[999] mx-auto max-h-dvh md:shadow-2xl rounded-2xl md:max-w-[36rem] w-full",
 						)}

@@ -10,54 +10,143 @@ import ModalPreview from "../../src/components/ModalPreview";
 import Container from "./Container";
 
 <Container>
-  <ModalPreview />
+  <ModalPreview type="info" />
 </Container>
 
-## Code
-
 ```tsx
-"use client";
-
 import Button from "@repo/ui/Button";
 import Modal from "@repo/ui/Modal";
-import { useState } from "react";
 
-export default function ModalPage() {
-  const [isOpen, setIsOpen] = useState(false);
+<Button onClick={() => setOpen(true)}>بازم کن</Button>
 
-  return (
-    <>
-      <Button onClick={() => setIsOpen(true)}>بازکردن</Button>
-
-      <Modal
-        isOpen={isOpen}
-        type="info"
-        title="عنوان مودال"
-        description="لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ."
-        onAdmit={async () => {
-          await new Promise((resolve) => setTimeout(resolve, 2000));
-          setIsOpen(false);
-        }}
-        onDeny={() => setIsOpen(false)}
-      />
-    </>
-  );
-}
-````
+<Modal
+  open={open}
+  type="info"
+  title="عنوان مودال"
+  description="لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ."
+  onAdmit={async () => {
+    await new Promise((resolve) => setTimeout(resolve, 2000));
+    setOpen(false);
+  }}
+  onDeny={() => setOpen(false)}
+/>
+```
 
 ## Installation
 
 ```bash
-npx the-dig@latest add Modal
+npx the-dig@latest add Button,Modal
 ```
 
 ## Props
 
-| Prop                                                              | Type                                              | Default |
-| ----------------------------------------------------------------- | ------------------------------------------------- | ------- |
-| `isOpen` <sup className="text-red-600 text-caption2">\*</sup>     | `boolean`                                         | -       |
-| `type` <sup className="text-red-600 text-caption2">\*</sup>       | `"info" \| "success" \| "danger" \| "warning"`    | -       |
-| `title` <sup className="text-red-600 text-caption2">\*</sup>      | `string`                                          | -       |
-| `description`                                                     | `string`                                          | -       |
-| `onAdmit` <sup className="text-red-600 text-caption2">\*</sup>    | `() => Promise<void>`                             | -       |
-| `onDeny` <sup className="text-red-600 text-caption2">\*</sup>     | `() => void`                                      | -       |
+| Prop                                                           | Type                                                 | Default |
+| -------------------------------------------------------------- | ---------------------------------------------------- | ------- |
+| `open` <sup className="text-red-600 text-caption2">\*</sup>    | `boolean`                                            | -       |
+| `type` <sup className="text-red-600 text-caption2">\*</sup>    | `"info"` \| `"success"` \| `"danger"` \| `"warning"` | -       |
+| `title` <sup className="text-red-600 text-caption2">\*</sup>   | `string`                                             | -       |
+| `description`                                                  | `string`                                             | -       |
+| `onAdmit` <sup className="text-red-600 text-caption2">\*</sup> | `() => Promise<void>`                                | -       |
+| `onDeny` <sup className="text-red-600 text-caption2">\*</sup>  | `VoidFunction`                                       | -       |
+
+## Types
+
+### Info
+
+<Container>
+  <ModalPreview type="info" />
+</Container>
+
+```tsx
+import Button from "@repo/ui/Button";
+import Modal from "@repo/ui/Modal";
+
+<Button onClick={() => setOpen(true)}>بازم کن</Button>
+
+<Modal
+  open={open}
+  type="info"
+  title="عنوان مودال"
+  description="لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ."
+  onAdmit={async () => {
+    await new Promise((resolve) => setTimeout(resolve, 2000));
+    setOpen(false);
+  }}
+  onDeny={() => setOpen(false)}
+/>
+```
+
+### Success
+
+<Container>
+  <ModalPreview type="success" />
+</Container>
+
+```tsx
+import Button from "@repo/ui/Button";
+import Modal from "@repo/ui/Modal";
+
+<Button onClick={() => setOpen(true)}>بازم کن</Button>
+
+<Modal
+  open={open}
+  type="success"
+  title="عنوان مودال"
+  description="لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ."
+  onAdmit={async () => {
+    await new Promise((resolve) => setTimeout(resolve, 2000));
+    setOpen(false);
+  }}
+  onDeny={() => setOpen(false)}
+/>
+```
+
+### Warning
+
+<Container>
+  <ModalPreview type="warning" />
+</Container>
+
+```tsx
+import Button from "@repo/ui/Button";
+import Modal from "@repo/ui/Modal";
+
+<Button onClick={() => setOpen(true)}>بازم کن</Button>
+
+<Modal
+  open={open}
+  type="warning"
+  title="عنوان مودال"
+  description="لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ."
+  onAdmit={async () => {
+    await new Promise((resolve) => setTimeout(resolve, 2000));
+    setOpen(false);
+  }}
+  onDeny={() => setOpen(false)}
+/>
+```
+
+### Danger
+
+<Container>
+  <ModalPreview type="danger" />
+</Container>
+
+```tsx
+import Button from "@repo/ui/Button";
+import Modal from "@repo/ui/Modal";
+
+<Button onClick={() => setOpen(true)}>بازم کن</Button>
+
+<Modal
+  open={open}
+  type="danger"
+  title="عنوان مودال"
+  description="لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ."
+  onAdmit={async () => {
+    await new Promise((resolve) => setTimeout(resolve, 2000));
+    setOpen(false);
+  }}
+  onDeny={() => setOpen(false)}
+/>
+```

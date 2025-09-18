@@ -113,7 +113,7 @@ const icons = {
 export type ModalType = "info" | "success" | "danger" | "warning";
 
 export interface ModalProps {
-	isOpen: boolean;
+	open: boolean;
 	type: ModalType;
 	title: string;
 	description?: string;
@@ -126,7 +126,7 @@ export default function Modal(props: ModalProps) {
 
 	return (
 		<AnimatePresence>
-			{props.isOpen && (
+			{props.open && (
 				<div className="fixed inset-0 w-dvw h-dvh flex justify-center items-center z-50">
 					<motion.div
 						className={clsx(
@@ -138,9 +138,9 @@ export default function Modal(props: ModalProps) {
 					/>
 
 					<motion.dialog
-						open={props.isOpen}
+						open={props.open}
 						className={clsx(
-							"fixed bottom-4 md:bottom-auto bg-background-primary p-4 z-[70] mx-auto max-h-dvh md:shadow-2xl rounded-2xl md:max-w-[36rem] w-[calc(100%-2rem)]",
+							"border-0 fixed bottom-4 md:bottom-auto bg-background-primary p-4 z-[70] mx-auto max-h-dvh md:shadow-2xl rounded-2xl md:max-w-[36rem] w-[calc(100%-2rem)]",
 						)}
 						initial={{ opacity: 0 }}
 						animate={{ opacity: 1 }}
@@ -149,7 +149,7 @@ export default function Modal(props: ModalProps) {
 					>
 						<div className="flex items-center justify-center">{icons[props.type]}</div>
 
-						<div className="flex flex-col items-center justify-center text-center gap-2 pt-5 pb-6">
+						<div className="flex flex-col items-center justify-center text-center gap-2 py-4">
 							<p className="text-subtitle2 text-prose-primary">{props.title}</p>
 							<p className="text-paragraph3 text-prose-secondary">{props.description}</p>
 						</div>

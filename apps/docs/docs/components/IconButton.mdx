@@ -6,9 +6,10 @@ sidebar_position: 1
 
 ## Preview
 
+import { Activity } from "lucide-react";
 import IconButton from "@repo/ui/IconButton";
 import Container from "./Container";
-import { Activity } from "lucide-react";
+import RedirectLink from "../../src/components/RedirectLink";
 
 <Container>
   <IconButton>
@@ -16,12 +17,13 @@ import { Activity } from "lucide-react";
   </IconButton>
 </Container>
 
-## Code
-
 ```tsx
-<IconButton variant="contained" color="brand">
+import IconButton from "@repo/ui/IconButton";
+import { Activity } from "lucide-react";
+
+<IconButton>
   <Activity size={18} />
-</IconButton>
+</IconButton>;
 ```
 
 ## Installation
@@ -32,17 +34,17 @@ npx the-dig@latest add IconButton
 
 ## Props
 
-| Prop        | Type                                                                                 | Default                                                                            |
-| ----------- | ------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------- |
-| `variant`   | `"contained"` \| `"tinted"` \| `"outlined"`                                          | `"contained"`                                                                      |
-| `color`     | `"brand"` \| `"info"` \| `"success"` \| `"warning"` \| `"danger"` \| `"gray"`        | `"brand"`                                                                          |
-| `size`      | `"xs"` \| `"sm"` \| `"md"` \| `"lg"` \| `"xl"`                                       | `"md"`                                                                             |
-| `isLoading` | `boolean`                                                                            | `false`                                                                            |
-| `...props`  | `IconButtonHTMLAttributes<HTMLIconButtonElement>` (e.g. `onClick`, `disabled`, etc.) | [Document](https://developer.mozilla.org/en-US/docs/Web/API/HTMLIconButtonElement) |
+| Prop        | Type                                                                          | Default                                                                                                         |
+| ----------- | ----------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
+| `variant`   | `"contained"` \| `"tinted"` \| `"outlined"`                                   | `"contained"`                                                                                                   |
+| `color`     | `"brand"` \| `"info"` \| `"success"` \| `"warning"` \| `"danger"` \| `"gray"` | `"brand"`                                                                                                       |
+| `size`      | `"xs"` \| `"sm"` \| `"md"` \| `"lg"` \| `"xl"`                                | `"md"`                                                                                                          |
+| `isLoading` | `boolean`                                                                     | `false`                                                                                                         |
+| Others      | `ButtonHTMLAttributes<HTMLButtonElement>` (e.g. `onClick`, `disabled`, etc.)  | <RedirectLink href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLButtonElement">Document</RedirectLink> |
 
 ## Variants and Colors
 
-### brand
+### Brand
 
 <Container>
   <IconButton variant="contained" color="brand">
@@ -56,7 +58,22 @@ npx the-dig@latest add IconButton
   </IconButton>
 </Container>
 
-### info
+```tsx
+import IconButton from "@repo/ui/IconButton";
+import { Activity } from "lucide-react";
+
+<IconButton variant="contained" color="brand">
+  <Activity size={18} />
+</IconButton>
+<IconButton variant="tinted" color="brand">
+  <Activity size={18} />
+</IconButton>
+<IconButton variant="outlined" color="brand">
+  <Activity size={18} />
+</IconButton>
+```
+
+### Info
 
 <Container>
   <IconButton variant="contained" color="info">
@@ -70,7 +87,22 @@ npx the-dig@latest add IconButton
   </IconButton>
 </Container>
 
-### success
+```tsx
+import IconButton from "@repo/ui/IconButton";
+import { Activity } from "lucide-react";
+
+<IconButton variant="contained" color="info">
+  <Activity size={18} />
+</IconButton>
+<IconButton variant="tinted" color="info">
+  <Activity size={18} />
+</IconButton>
+<IconButton variant="outlined" color="info">
+  <Activity size={18} />
+</IconButton>
+```
+
+### Success
 
 <Container>
   <IconButton variant="contained" color="success">
@@ -84,7 +116,22 @@ npx the-dig@latest add IconButton
   </IconButton>
 </Container>
 
-### warning
+```tsx
+import IconButton from "@repo/ui/IconButton";
+import { Activity } from "lucide-react";
+
+<IconButton variant="contained" color="success">
+  <Activity size={18} />
+</IconButton>
+<IconButton variant="tinted" color="success">
+  <Activity size={18} />
+</IconButton>
+<IconButton variant="outlined" color="success">
+  <Activity size={18} />
+</IconButton>
+```
+
+### Warning
 
 <Container>
   <IconButton variant="contained" color="warning">
@@ -98,7 +145,22 @@ npx the-dig@latest add IconButton
   </IconButton>
 </Container>
 
-### danger
+```tsx
+import IconButton from "@repo/ui/IconButton";
+import { Activity } from "lucide-react";
+
+<IconButton variant="contained" color="warning">
+  <Activity size={18} />
+</IconButton>
+<IconButton variant="tinted" color="warning">
+  <Activity size={18} />
+</IconButton>
+<IconButton variant="outlined" color="warning">
+  <Activity size={18} />
+</IconButton>
+```
+
+### Danger
 
 <Container>
   <IconButton variant="contained" color="danger">
@@ -112,7 +174,22 @@ npx the-dig@latest add IconButton
   </IconButton>
 </Container>
 
-### gray
+```tsx
+import IconButton from "@repo/ui/IconButton";
+import { Activity } from "lucide-react";
+
+<IconButton variant="contained" color="danger">
+  <Activity size={18} />
+</IconButton>
+<IconButton variant="tinted" color="danger">
+  <Activity size={18} />
+</IconButton>
+<IconButton variant="outlined" color="danger">
+  <Activity size={18} />
+</IconButton>
+```
+
+### Gray
 
 <Container>
   <IconButton variant="contained" color="gray">
@@ -126,22 +203,75 @@ npx the-dig@latest add IconButton
   </IconButton>
 </Container>
 
+```tsx
+import IconButton from "@repo/ui/IconButton";
+import { Activity } from "lucide-react";
+
+<IconButton variant="contained" color="gray">
+  <Activity size={18} />
+</IconButton>
+<IconButton variant="tinted" color="gray">
+  <Activity size={18} />
+</IconButton>
+<IconButton variant="outlined" color="gray">
+  <Activity size={18} />
+</IconButton>
+```
+
 ## Sizes
 
 <Container>
   <IconButton variant="contained" color="brand" size="xs">
     <Activity size={18} />
   </IconButton>
-  <IconButton variant="contained" color="brand" size="sm">
+  <IconButton size="sm">
     <Activity size={18} />
   </IconButton>
-  <IconButton variant="contained" color="brand" size="md">
+  <IconButton size="md">
     <Activity size={18} />
   </IconButton>
-  <IconButton variant="contained" color="brand" size="lg">
+  <IconButton size="lg">
     <Activity size={18} />
   </IconButton>
-  <IconButton variant="contained" color="brand" size="xl">
+  <IconButton size="xl">
     <Activity size={18} />
   </IconButton>
 </Container>
+
+```tsx
+import IconButton from "@repo/ui/IconButton";
+import { Activity } from "lucide-react";
+
+<IconButton size="xs">
+  <Activity size={18} />
+</IconButton>
+<IconButton size="sm">
+  <Activity size={18} />
+</IconButton>
+<IconButton size="md">
+  <Activity size={18} />
+</IconButton>
+<IconButton size="lg">
+  <Activity size={18} />
+</IconButton>
+<IconButton size="xl">
+  <Activity size={18} />
+</IconButton>
+```
+
+## Loading
+
+<Container>
+  <IconButton isLoading>
+    <Activity size={18} />
+  </IconButton>
+</Container>
+
+```tsx
+import IconButton from "@repo/ui/IconButton";
+import { Activity } from "lucide-react";
+
+<IconButton isLoading>
+  <Activity size={18} />
+</IconButton>;
+```

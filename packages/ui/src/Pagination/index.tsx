@@ -13,8 +13,10 @@ function PaginationButton(props: PaginationButtonProps) {
 	return (
 		<button
 			className={clsx(
-				"w-8 h-8 inline-flex items-center justify-center rounded text-label2 cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed",
-				props.active ? "text-prose-brand bg-brand-light" : "text-prose-primary hover:bg-gray-200",
+				"border-0 outlined-0 w-8 h-8 inline-flex items-center justify-center rounded text-label2 cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed",
+				props.active
+					? "text-prose-brand bg-brand-light"
+					: "bg-transparent text-prose-primary hover:bg-gray-200",
 			)}
 			{...rest}
 		>
@@ -66,7 +68,10 @@ export default function Pagination(props: PaginationProps) {
 				<PaginationButton> ... </PaginationButton>
 			)}
 
-			<PaginationButton onClick={() => props.onChange(1)} active={props.page === props.total}>
+			<PaginationButton
+				onClick={() => props.onChange(props.total)}
+				active={props.page === props.total}
+			>
 				{toPersianDigits(props.total)}
 			</PaginationButton>
 

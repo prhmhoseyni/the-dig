@@ -20,23 +20,13 @@ import TabsPreview from "../../src/components/TabsPreview";
 
 ```tsx
 import Tabs from "@repo/ui/Tabs";
-import { CircleX } from "lucide-react";
 
-<Tabs value={value} onChange={(v) => setValue(v)}>
- <Tabs.Item>
-   <span>عنوان</span>
-   <CircleX size={16} />
- </Tabs.Item>
- <Tabs.Item>
-   <span>عنوان</span>
-   <CircleX size={16} />
- </Tabs.Item>
- <Tabs.Item>
-   <span>عنوان</span>
-   <CircleX size={16} />
- </Tabs.Item>
-</Tabs>
-````
+<Tabs value={value} onChange={(value) => setValue(value)}>
+  <Tabs.Item>عنوان ۱</Tabs.Item>
+  <Tabs.Item>عنوان ۲</Tabs.Item>
+  <Tabs.Item>عنوان ۳</Tabs.Item>
+</Tabs>;
+```
 
 ## Installation
 
@@ -48,17 +38,8 @@ npx the-dig@latest add Tabs
 
 ### `Tabs` component
 
-| Prop                                                            | Type                         | Default |
-| --------------------------------------------------------------- | -----------------------------| ------- |
-| `value` <sup className="text-red-600 text-caption2">\*</sup>    | `number`                     | -       |
-| `onChange` <sup className="text-red-600 text-caption2">\*</sup> | `(newValue: number) => void` | -       |
-| `children`                                                      | `ReactNode`                  | -       |
-
-### `Tabs.Item` component
-
-| Prop        | Type         | Default |
-| ----------- | ------------ | ------- |
-| `active`    | `boolean`    | `false` |
-| `onClick`   | `() => void` | -       |
-| `className` | `string`     | -       |
-| `children`  | `ReactNode`  | -       |
+| Prop                                                            | Type                      | Default |
+| --------------------------------------------------------------- | ------------------------- | ------- |
+| `value` <sup className="text-red-600 text-caption2">\*</sup>    | `number`                  | -       |
+| `onChange` <sup className="text-red-600 text-caption2">\*</sup> | `(value: number) => void` | -       |
+| `children`                                                      | `ReactNode`               | -       |
