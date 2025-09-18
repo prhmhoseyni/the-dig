@@ -41,8 +41,7 @@ export type ChipColor = "brand" | "info" | "success" | "warning" | "danger" | "g
 /**
  * @name Chip component
  */
-export interface ChipProps
-	extends DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement> {
+export interface ChipProps extends DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement> {
 	color?: ChipColor;
 	startAdornment?: ReactNode;
 }
@@ -63,13 +62,7 @@ export default function Chip(props: ChipProps) {
 
 			{children}
 
-			<svg
-				xmlns="http://www.w3.org/2000/svg"
-				width="20"
-				height="20"
-				viewBox="0 0 20 20"
-				fill="none"
-			>
+			<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
 				<title>x</title>
 				<path
 					fillRule="evenodd"

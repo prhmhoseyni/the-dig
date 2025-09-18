@@ -9,8 +9,7 @@ export type InputVariant = "primary" | "secondary";
 /**
  * @name Input component
  */
-export interface InputProps
-	extends DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement> {
+export interface InputProps extends DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement> {
 	variant?: InputVariant;
 	hasError?: boolean;
 	startAdornment?: ReactNode;
@@ -18,14 +17,7 @@ export interface InputProps
 }
 
 export default function Input(props: InputProps) {
-	const {
-		variant = "primary",
-		hasError = false,
-		startAdornment,
-		endAdornment,
-		className = "",
-		...rest
-	} = props;
+	const { variant = "primary", hasError = false, startAdornment, endAdornment, className = "", ...rest } = props;
 
 	return (
 		<div className="w-full relative">
@@ -46,17 +38,9 @@ export default function Input(props: InputProps) {
 				{...rest}
 			/>
 
-			{startAdornment && (
-				<div className="absolute top-1/2 -translate-y-1/2 start-3 flex items-center">
-					{startAdornment}
-				</div>
-			)}
+			{startAdornment && <div className="absolute top-1/2 -translate-y-1/2 start-3 flex items-center">{startAdornment}</div>}
 
-			{endAdornment && (
-				<div className="absolute top-1/2 -translate-y-1/2 end-3 flex items-center">
-					{endAdornment}
-				</div>
-			)}
+			{endAdornment && <div className="absolute top-1/2 -translate-y-1/2 end-3 flex items-center">{endAdornment}</div>}
 		</div>
 	);
 }

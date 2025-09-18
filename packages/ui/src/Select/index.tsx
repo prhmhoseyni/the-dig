@@ -9,22 +9,14 @@ export type SelectVariant = "primary" | "secondary";
 /**
  * @name Select component
  */
-export interface SelectProps
-	extends DetailedHTMLProps<SelectHTMLAttributes<HTMLSelectElement>, HTMLSelectElement> {
+export interface SelectProps extends DetailedHTMLProps<SelectHTMLAttributes<HTMLSelectElement>, HTMLSelectElement> {
 	variant?: SelectVariant;
 	hasError?: boolean;
 	startAdornment?: ReactNode;
 }
 
 export default function Select(props: SelectProps) {
-	const {
-		variant = "primary",
-		hasError = false,
-		startAdornment,
-		children,
-		className = "",
-		...rest
-	} = props;
+	const { variant = "primary", hasError = false, startAdornment, children, className = "", ...rest } = props;
 
 	return (
 		<div className="w-full relative">
@@ -46,20 +38,10 @@ export default function Select(props: SelectProps) {
 				{children}
 			</select>
 
-			{startAdornment && (
-				<div className="absolute top-1/2 -translate-y-1/2 start-3 flex items-center">
-					{startAdornment}
-				</div>
-			)}
+			{startAdornment && <div className="absolute top-1/2 -translate-y-1/2 start-3 flex items-center">{startAdornment}</div>}
 
 			<div className="absolute top-1/2 -translate-y-1/2 end-3 flex items-center">
-				<svg
-					xmlns="http://www.w3.org/2000/svg"
-					width="24"
-					height="24"
-					viewBox="0 0 24 24"
-					fill="none"
-				>
+				<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
 					<title>arrow-bottom</title>
 					<path
 						d="M16 10L12 14L8 10"
