@@ -76,8 +76,7 @@ interface ComposeProps {
 	Item: typeof TabsItem;
 }
 
-const Tabs = memo(BaseTabs) as MemoExoticComponent<(props: BaseTabsProps) => ReactNode> &
-	ComposeProps;
+const Tabs = memo(BaseTabs) as MemoExoticComponent<(props: BaseTabsProps) => ReactNode> & ComposeProps;
 Tabs.Item = TabsItem;
 
 export default Tabs;

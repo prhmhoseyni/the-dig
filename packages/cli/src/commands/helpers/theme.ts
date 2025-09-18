@@ -119,7 +119,7 @@ html[data-theme="dark"] {
   --color-info-hover: color-mix(in srgb, rgb(var(--dig-info)), var(--dig-color-mix-hover));
   --color-info-active: color-mix(in srgb, rgb(var(--dig-info)), var(--dig-color-mix-active));
   --color-info-light: color-mix(in srgb, rgb(var(--dig-info)), var(--dig-color-mix-light));
-  --color-info-light-light: color-mix(in srgb, rgb(var(--dig-info)), var(--dig-color-mix-light-hover));
+  --color-info-light-hover: color-mix(in srgb, rgb(var(--dig-info)), var(--dig-color-mix-light-hover));
   --color-info-light-active: color-mix(in srgb, rgb(var(--dig-info)), var(--dig-color-mix-light-active));
 
   --color-success: rgb(var(--dig-success));

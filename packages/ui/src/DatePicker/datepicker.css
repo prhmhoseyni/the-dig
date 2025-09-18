@@ -541,9 +541,7 @@
 	height: 2.45em;
 }
 
-.Calendar__day:not(.-blank):not(.-selectedStart):not(.-selectedEnd):not(.-selectedBetween):not(
-		.-selected
-	):hover {
+.Calendar__day:not(.-blank):not(.-selectedStart):not(.-selectedEnd):not(.-selectedBetween):not(.-selected):hover {
 	background: #eaeaea;
 	border-radius: 50%;
 	color: var(--cl-color-black);
@@ -585,15 +583,11 @@
 	border-bottom-left-radius: 100em;
 }
 
-.Calendar__day.-weekend:not(.-selected):not(.-blank):not(.-selectedStart):not(.-selectedEnd):not(
-		.-selectedBetween
-	) {
+.Calendar__day.-weekend:not(.-selected):not(.-blank):not(.-selectedStart):not(.-selectedEnd):not(.-selectedBetween) {
 	color: var(--cl-color-error);
 }
 
-.Calendar__day.-weekend.-today:not(.-selectedStart):not(.-selectedEnd):not(
-		.-selectedBetween
-	)::after {
+.Calendar__day.-weekend.-today:not(.-selectedStart):not(.-selectedEnd):not(.-selectedBetween)::after {
 	background: var(--cl-color-error);
 }
 

@@ -1,11 +1,5 @@
 import clsx from "clsx";
-import {
-	Children,
-	cloneElement,
-	isValidElement,
-	type PropsWithChildren,
-	type ReactElement,
-} from "react";
+import { Children, cloneElement, isValidElement, type PropsWithChildren, type ReactElement } from "react";
 
 /**
  * :::: types :::
@@ -65,9 +59,7 @@ SegmentControl.Item = function SegmentControlItem(props: SegmentControlItemProps
 			className={clsx(
 				"cursor-pointer flex items-center gap-2 rounded transition-all ease-in-out hover:bg-background-secondary",
 				sizes[size ?? "md"],
-				selectedValue === value
-					? "text-prose-primary bg-background-secondary"
-					: "text-prose-secondary bg-transparent",
+				selectedValue === value ? "text-prose-primary bg-background-secondary" : "text-prose-secondary bg-transparent",
 			)}
 		>
 			<input

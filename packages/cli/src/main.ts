@@ -13,10 +13,6 @@ program.command("init").description("Initialize the project for the-dig").action
 
 program.command("config").description("Configure the project for the-dig").action(config);
 
-program
-	.command("add")
-	.description("Add components")
-	.argument("<components-name>", "Name of the components to add")
-	.action(add);
+program.command("add").description("Add components").argument("<components-name>", "Name of the components to add").action(add);
 
 program.parse();

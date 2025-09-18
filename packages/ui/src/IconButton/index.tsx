@@ -3,8 +3,7 @@ import type { ButtonHTMLAttributes, DetailedHTMLProps } from "react";
 
 const colors = {
 	brand: {
-		contained:
-			"border-0 text-prose-inverse bg-brand hover:bg-brand-hover active:bg-brand-active active:shadow-focus-brand",
+		contained: "border-0 text-prose-inverse bg-brand hover:bg-brand-hover active:bg-brand-active active:shadow-focus-brand",
 		tinted:
 			"border-0 text-prose-brand bg-brand-light hover:bg-brand-light-hover active:bg-brand-light-active active:shadow-focus-brand",
 		outlined:
@@ -12,8 +11,7 @@ const colors = {
 	},
 
 	info: {
-		contained:
-			"border-0 text-prose-inverse bg-info hover:bg-info-hover active:bg-info-active active:shadow-focus-info",
+		contained: "border-0 text-prose-inverse bg-info hover:bg-info-hover active:bg-info-active active:shadow-focus-info",
 		tinted:
 			"border-0 text-prose-info bg-info-light hover:bg-info-light-hover active:bg-info-light-active active:shadow-focus-info",
 		outlined:
@@ -39,8 +37,7 @@ const colors = {
 	},
 
 	danger: {
-		contained:
-			"border-0 text-prose-inverse bg-danger hover:bg-danger-hover active:bg-danger-active active:shadow-focus-danger",
+		contained: "border-0 text-prose-inverse bg-danger hover:bg-danger-hover active:bg-danger-active active:shadow-focus-danger",
 		tinted:
 			"border-0 text-prose-danger bg-danger-light hover:bg-danger-light-hover active:bg-danger-light-active active:shadow-focus-danger",
 		outlined:
@@ -48,8 +45,7 @@ const colors = {
 	},
 
 	gray: {
-		contained:
-			"border-0 text-prose-inverse bg-gray hover:bg-gray-hover active:bg-gray-active active:shadow-focus-gray",
+		contained: "border-0 text-prose-inverse bg-gray hover:bg-gray-hover active:bg-gray-active active:shadow-focus-gray",
 		tinted:
 			"border-0 text-prose-gray bg-gray-light hover:bg-gray-light-hover active:bg-gray-light-active active:shadow-focus-gray",
 		outlined:
@@ -75,8 +71,7 @@ export type IconButtonSize = "xs" | "sm" | "md" | "lg" | "xl";
 /**
  * @name IconButton component
  */
-export interface IconButtonProps
-	extends DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement> {
+export interface IconButtonProps extends DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement> {
 	variant?: IconButtonVariant;
 	color?: IconButtonColor;
 	size?: IconButtonSize;
@@ -115,14 +110,7 @@ export default function IconButton(props: IconButtonProps) {
 					viewBox="0 0 24 24"
 				>
 					<title>svg title</title>
-					<circle
-						className="opacity-25"
-						cx="12"
-						cy="12"
-						r="10"
-						stroke="currentColor"
-						strokeWidth="4"
-					></circle>
+					<circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
 					<path
 						className="opacity-75"
 						fill="currentColor"

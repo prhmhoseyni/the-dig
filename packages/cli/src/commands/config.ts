@@ -15,9 +15,7 @@ export async function config() {
 		const globalCssPathFromConfig = config.tailwind.css;
 
 		if (!globalCssPathFromConfig) {
-			console.error(
-				`Error: 'tailwind.css' path not found in .thedigrc.json. Please check your configuration.`,
-			);
+			console.error(`Error: 'tailwind.css' path not found in .thedigrc.json. Please check your configuration.`);
 			process.exit(1);
 		}
 

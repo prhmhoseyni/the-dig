@@ -76,10 +76,7 @@ interface ComposeProps {
 	Item: typeof NavigationItem;
 }
 
-const Navigation = memo(BaseNavigation) as MemoExoticComponent<
-	(props: BaseNavigationProps) => ReactNode
-> &
-	ComposeProps;
+const Navigation = memo(BaseNavigation) as MemoExoticComponent<(props: BaseNavigationProps) => ReactNode> & ComposeProps;
 Navigation.Item = NavigationItem;
 
 export default Navigation;

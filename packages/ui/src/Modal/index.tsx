@@ -155,13 +155,7 @@ export default function Modal(props: ModalProps) {
 						</div>
 
 						<div className="w-full flex justify-center items-center gap-2">
-							<Button
-								color="gray"
-								variant="tinted"
-								className="flex-1 w-full"
-								onClick={props.onDeny}
-								disabled={isLoading}
-							>
+							<Button color="gray" variant="tinted" className="flex-1 w-full" onClick={props.onDeny} disabled={isLoading}>
 								انصراف
 							</Button>
 

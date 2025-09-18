@@ -3,15 +3,7 @@
 import clsx from "clsx";
 import type { PanInfo } from "motion";
 import { AnimatePresence, motion } from "motion/react";
-import {
-	type MemoExoticComponent,
-	memo,
-	type PropsWithChildren,
-	type ReactNode,
-	useEffect,
-	useRef,
-	useState,
-} from "react";
+import { type MemoExoticComponent, memo, type PropsWithChildren, type ReactNode, useEffect, useRef, useState } from "react";
 
 /**
  * @name BottomSheetBody component
@@ -153,10 +145,7 @@ interface ComposeProps {
 	Body: typeof BottomSheetBody;
 }
 
-const BottomSheet = memo(BaseBottomSheet) as MemoExoticComponent<
-	(props: BaseBottomSheetProps) => ReactNode
-> &
-	ComposeProps;
+const BottomSheet = memo(BaseBottomSheet) as MemoExoticComponent<(props: BaseBottomSheetProps) => ReactNode> & ComposeProps;
 BottomSheet.Body = BottomSheetBody;
 
 export default BottomSheet;

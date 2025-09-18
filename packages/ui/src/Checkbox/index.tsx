@@ -5,10 +5,7 @@ import styles from "./index.module.css";
 /**
  * @name Checkbox component
  */
-export type CheckboxProps = DetailedHTMLProps<
-	InputHTMLAttributes<HTMLInputElement>,
-	HTMLInputElement
->;
+export type CheckboxProps = DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>;
 
 export default function Checkbox(props: CheckboxProps) {
 	const { className = "", ...rest } = props;

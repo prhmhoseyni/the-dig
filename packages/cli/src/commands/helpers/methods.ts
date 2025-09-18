@@ -18,9 +18,7 @@ export async function getTheDigConfig(): Promise<TheDigConfig> {
 	try {
 		if (!fs.existsSync(configFilePath)) {
 			spinner.fail(`${configFileName} not found.`);
-			throw new Error(
-				`Configuration file "${configFileName}" not found. Please run "the-dig init" first.`,
-			);
+			throw new Error(`Configuration file "${configFileName}" not found. Please run "the-dig init" first.`);
 		}
 
 		const config = (await fs.readJson(configFilePath)) as TheDigConfig;
@@ -69,17 +67,14 @@ export function installDependencies(dependencies: string[] | null): Promise<void
  * @returns A Promise that resolves with the ComponentsData, or rejects on error.
  */
 export async function getComponentData(): Promise<ComponentsData> {
-	const registryURL =
-		"https://raw.githubusercontent.com/prhmhoseyni/the-dig/refs/heads/main/packages/cli/libs/components.json";
+	const registryURL = "https://raw.githubusercontent.com/prhmhoseyni/the-dig/refs/heads/main/packages/cli/libs/components.json";
 	const spinner = ora(`Loading component registry from ${registryURL}...`).start();
 
 	try {
 		const response = await fetch(registryURL);
 
 		if (!response.ok) {
-			throw new Error(
-				`Failed to fetch component registry: ${response.statusText} (${response.status})`,
-			);
+			throw new Error(`Failed to fetch component registry: ${response.statusText} (${response.status})`);
 		}
 
 		const componentData = (await response.json()) as ComponentsData;
@@ -99,10 +94,7 @@ export async function getComponentData(): Promise<ComponentsData> {
  * @param destination The local path where the component files should be saved.
  * @returns A Promise that resolves when the component is fetched, or rejects on error.
  */
-export async function fetchComponentFromRepository(
-	repoURL: string,
-	destination: string,
-): Promise<void> {
+export async function fetchComponentFromRepository(repoURL: string, destination: string): Promise<void> {
 	const spinner = ora(`Fetching component from ${repoURL}...`).start();
 	try {
 		const parts = repoURL.split("/");

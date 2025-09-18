@@ -3,15 +3,7 @@
 import clsx from "clsx";
 import type { PanInfo } from "motion";
 import { AnimatePresence, motion } from "motion/react";
-import {
-	type MemoExoticComponent,
-	memo,
-	type PropsWithChildren,
-	type ReactNode,
-	useEffect,
-	useRef,
-	useState,
-} from "react";
+import { type MemoExoticComponent, memo, type PropsWithChildren, type ReactNode, useEffect, useRef, useState } from "react";
 
 /**
  * @name DialogHeader component
@@ -22,12 +14,7 @@ export interface DialogHeaderProps extends PropsWithChildren {
 
 function DialogHeader(props: DialogHeaderProps) {
 	return (
-		<div
-			className={clsx(
-				"bg-background-primary md:rounded-t-2xl p-5 border-b border-gray-300",
-				props.className,
-			)}
-		>
+		<div className={clsx("bg-background-primary md:rounded-t-2xl p-5 border-b border-gray-300", props.className)}>
 			{props.children}
 		</div>
 	);
@@ -52,11 +39,7 @@ export interface DialogFooterProps extends PropsWithChildren {
 }
 
 function DialogFooter(props: DialogFooterProps) {
-	return (
-		<div className={clsx("bg-background-primary md:rounded-b-2xl px-5 py-4", props.className)}>
-			{props.children}
-		</div>
-	);
+	return <div className={clsx("bg-background-primary md:rounded-b-2xl px-5 py-4", props.className)}>{props.children}</div>;
 }
 
 /**
@@ -175,8 +158,7 @@ interface ComposeProps {
 	Footer: typeof DialogFooter;
 }
 
-const Dialog = memo(BaseDialog) as MemoExoticComponent<(props: BaseDialogProps) => ReactNode> &
-	ComposeProps;
+const Dialog = memo(BaseDialog) as MemoExoticComponent<(props: BaseDialogProps) => ReactNode> & ComposeProps;
 Dialog.Header = DialogHeader;
 Dialog.Body = DialogBody;
 Dialog.Footer = DialogFooter;

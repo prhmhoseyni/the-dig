@@ -46,11 +46,7 @@ export default function Alert(props: AlertProps) {
 			<div className="flex flex-col gap-1 flex-1">
 				{title && <p className="text-subtitle3 text-prose-primary">{title}</p>}
 
-				<p
-					className={clsx("text-paragraph4", title ? "text-prose-secondary" : "text-prose-primary")}
-				>
-					{description}
-				</p>
+				<p className={clsx("text-paragraph4", title ? "text-prose-secondary" : "text-prose-primary")}>{description}</p>
 			</div>
 
 			{onClose && <X className="cursor-pointer" onClick={onClose} />}

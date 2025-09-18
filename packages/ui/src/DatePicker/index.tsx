@@ -1,6 +1,4 @@
-import ReactModernDatePicker, {
-	type DayValue,
-} from "@hassanmojab/react-modern-calendar-datepicker";
+import ReactModernDatePicker, { type DayValue } from "@hassanmojab/react-modern-calendar-datepicker";
 import moment from "jalali-moment";
 import { toEnglishDigits } from "msk-utils";
 import type { InputHTMLAttributes, RefObject } from "react";

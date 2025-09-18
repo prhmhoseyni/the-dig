@@ -42,8 +42,7 @@ export type BadgeVariant = "contained" | "tinted";
 /**
  * @name Badge component
  */
-export interface BadgeProps
-	extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
+export interface BadgeProps extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
 	variant?: BadgeVariant;
 	color?: BadgeColor;
 }

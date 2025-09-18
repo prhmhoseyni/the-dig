@@ -1,10 +1,5 @@
 import path from "node:path";
-import {
-	fetchComponentFromRepository,
-	getComponentData,
-	getTheDigConfig,
-	installDependencies,
-} from "./helpers/methods";
+import { fetchComponentFromRepository, getComponentData, getTheDigConfig, installDependencies } from "./helpers/methods";
 
 export async function add(componentNamesStr: string) {
 	// 1. Parse the comma-separated string into an array of names
@@ -19,9 +14,7 @@ export async function add(componentNamesStr: string) {
 
 		const componentsAlias = config.aliases.components;
 		if (!componentsAlias) {
-			console.error(
-				`Error: 'aliases.components' not found in .thedigrc.json. Please check your configuration.`,
-			);
+			console.error(`Error: 'aliases.components' not found in .thedigrc.json. Please check your configuration.`);
 			process.exit(1);
 		}
 
@@ -43,9 +36,7 @@ export async function add(componentNamesStr: string) {
 		}
 
 		if (invalidNames.length > 0) {
-			console.error(
-				`\n❌ Error: The following components were not found: ${invalidNames.join(", ")}.`,
-			);
+			console.error(`\n❌ Error: The following components were not found: ${invalidNames.join(", ")}.`);
 			console.log("\nAvailable components:", Object.keys(componentData).join(", "));
 			process.exit(1);
 		}

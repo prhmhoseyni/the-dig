@@ -9,8 +9,7 @@ export type TextareaVariant = "primary" | "secondary";
 /**
  * @name Textarea component
  */
-export interface TextareaProps
-	extends DetailedHTMLProps<TextareaHTMLAttributes<HTMLTextAreaElement>, HTMLTextAreaElement> {
+export interface TextareaProps extends DetailedHTMLProps<TextareaHTMLAttributes<HTMLTextAreaElement>, HTMLTextAreaElement> {
 	variant?: TextareaVariant;
 	hasError?: boolean;
 	startAdornment?: ReactNode;

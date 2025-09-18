@@ -26,12 +26,7 @@ export default function StepperPreview() {
 			/>
 
 			<Stepper
-				steps={[
-					{ title: "مرحله اول" },
-					{ title: "مرحله دوم" },
-					{ title: "مرحله سوم" },
-					{ title: "مرحله چهارم" },
-				]}
+				steps={[{ title: "مرحله اول" }, { title: "مرحله دوم" }, { title: "مرحله سوم" }, { title: "مرحله چهارم" }]}
 				step={currentStep}
 				onChange={(step) => {
 					setCurrentStep(step);

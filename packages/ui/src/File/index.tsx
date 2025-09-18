@@ -31,23 +31,11 @@ export default function File(props: FileProps) {
 		<div className="flex items-center gap-2">
 			{isPaused && (
 				<>
-					<IconButton
-						color="gray"
-						variant="tinted"
-						size="xs"
-						onClick={props.onUpload}
-						className="!rounded-full"
-					>
+					<IconButton color="gray" variant="tinted" size="xs" onClick={props.onUpload} className="!rounded-full">
 						<Play size={16} />
 					</IconButton>
 
-					<IconButton
-						color="gray"
-						variant="tinted"
-						size="xs"
-						onClick={props.onCancel}
-						className="!rounded-full"
-					>
+					<IconButton color="gray" variant="tinted" size="xs" onClick={props.onCancel} className="!rounded-full">
 						<X size={16} />
 					</IconButton>
 				</>
@@ -55,36 +43,18 @@ export default function File(props: FileProps) {
 
 			{isUploading && (
 				<>
-					<IconButton
-						color="gray"
-						variant="tinted"
-						size="xs"
-						onClick={props.onPause}
-						className="!rounded-full"
-					>
+					<IconButton color="gray" variant="tinted" size="xs" onClick={props.onPause} className="!rounded-full">
 						<Pause size={16} />
 					</IconButton>
 
-					<IconButton
-						color="gray"
-						variant="tinted"
-						size="xs"
-						onClick={props.onCancel}
-						className="!rounded-full"
-					>
+					<IconButton color="gray" variant="tinted" size="xs" onClick={props.onCancel} className="!rounded-full">
 						<X size={16} />
 					</IconButton>
 				</>
 			)}
 
 			{isCompleted && (
-				<IconButton
-					color="gray"
-					variant="tinted"
-					size="xs"
-					onClick={props.onRemove}
-					className="!rounded-full"
-				>
+				<IconButton color="gray" variant="tinted" size="xs" onClick={props.onRemove} className="!rounded-full">
 					<Trash size={16} />
 				</IconButton>
 			)}

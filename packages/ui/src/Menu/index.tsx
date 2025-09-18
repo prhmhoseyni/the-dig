@@ -1,13 +1,6 @@
 import clsx from "clsx";
 import type React from "react";
-import {
-	type DetailedHTMLProps,
-	type HTMLAttributes,
-	type ReactNode,
-	useEffect,
-	useRef,
-	useState,
-} from "react";
+import { type DetailedHTMLProps, type HTMLAttributes, type ReactNode, useEffect, useRef, useState } from "react";
 import ReactDOM from "react-dom";
 
 type MenuItemProps = DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>;

@@ -27,11 +27,7 @@ export default function LinearProgress(props: LinearProgressProps) {
 	return (
 		<div className="h-2 w-full rounded-full bg-gray-200 overflow-hidden">
 			<div
-				className={clsx(
-					"h-full rounded-full transition-all duration-500 ease-out",
-					styles["progress-stripes"],
-					colors[color],
-				)}
+				className={clsx("h-full rounded-full transition-all duration-500 ease-out", styles["progress-stripes"], colors[color])}
 				style={{ width: `${value}%` }}
 			/>
 		</div>

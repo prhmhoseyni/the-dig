@@ -1,12 +1,5 @@
 import clsx from "clsx";
-import {
-	Children,
-	cloneElement,
-	isValidElement,
-	type PropsWithChildren,
-	type ReactNode,
-	useId,
-} from "react";
+import { Children, cloneElement, isValidElement, type PropsWithChildren, type ReactNode, useId } from "react";
 
 const online = {
 	lg: (
@@ -19,14 +12,7 @@ const online = {
 			className="absolute inset-x-0 bottom-0"
 		>
 			<title>online</title>
-			<circle
-				cx="7"
-				cy="7"
-				r="6"
-				fill="#43A824"
-				stroke="rgb(var(--dig-background-secondary))"
-				strokeWidth="2"
-			/>
+			<circle cx="7" cy="7" r="6" fill="#43A824" stroke="rgb(var(--dig-background-secondary))" strokeWidth="2" />
 		</svg>
 	),
 	md: (
@@ -39,14 +25,7 @@ const online = {
 			className="absolute inset-x-0 bottom-0"
 		>
 			<title>online</title>
-			<circle
-				cx="6"
-				cy="6"
-				r="5"
-				fill="#43A824"
-				stroke="rgb(var(--dig-background-secondary))"
-				strokeWidth="2"
-			/>
+			<circle cx="6" cy="6" r="5" fill="#43A824" stroke="rgb(var(--dig-background-secondary))" strokeWidth="2" />
 		</svg>
 	),
 	sm: (
@@ -59,14 +38,7 @@ const online = {
 			className="absolute inset-x-0 bottom-0"
 		>
 			<title>online</title>
-			<circle
-				cx="5"
-				cy="5"
-				r="4"
-				fill="#43A824"
-				stroke="rgb(var(--dig-background-secondary))"
-				strokeWidth="2"
-			/>
+			<circle cx="5" cy="5" r="4" fill="#43A824" stroke="rgb(var(--dig-background-secondary))" strokeWidth="2" />
 		</svg>
 	),
 	xs: (
@@ -79,14 +51,7 @@ const online = {
 			className="absolute inset-x-0 bottom-0"
 		>
 			<title>online</title>
-			<circle
-				cx="4.5"
-				cy="4.5"
-				r="3.5"
-				fill="#43A824"
-				stroke="rgb(var(--dig-background-secondary))"
-				strokeWidth="2"
-			/>
+			<circle cx="4.5" cy="4.5" r="3.5" fill="#43A824" stroke="rgb(var(--dig-background-secondary))" strokeWidth="2" />
 		</svg>
 	),
 };
