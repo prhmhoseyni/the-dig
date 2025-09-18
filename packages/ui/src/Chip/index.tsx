@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import type { ButtonHTMLAttributes, DetailedHTMLProps, HTMLAttributes, ReactNode } from "react";
+import type { ButtonHTMLAttributes, DetailedHTMLProps, ReactNode } from "react";
 
 const colors = {
 	brand: {
