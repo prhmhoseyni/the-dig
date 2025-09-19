@@ -1,5 +1,4 @@
 import clsx from "clsx";
-import type React from "react";
 import { type DetailedHTMLProps, type HTMLAttributes, type ReactNode, useEffect, useRef, useState } from "react";
 import ReactDOM from "react-dom";
 
@@ -104,7 +103,7 @@ const Menu: MenuComponent = ({ anchor, open, onClose, children }) => {
 		<button
 			ref={menuRef}
 			type="button"
-			className="absolute bg-white rounded-lg shadow-lg py-1 z-50 min-w-[200px]"
+			className="border-0 outline-none absolute bg-white rounded-lg shadow-lg py-1 z-50 min-w-[200px]"
 			style={{ top: position.top, left: position.left }}
 			role="menu"
 			onClick={(e) => {

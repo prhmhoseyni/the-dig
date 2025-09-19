@@ -17,7 +17,7 @@ export default function Snackbar(props: SnackbarProps) {
 					<button
 						type="button"
 						onClick={onClose}
-						className="cursor-pointer text-prose-inverse w-12 h-10 flex items-center justify-center rounded-full"
+						className="bg-transparent border-0 outline-none cursor-pointer text-prose-inverse w-12 h-10 flex items-center justify-center rounded-full"
 					>
 						<svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 10 10" fill="none">
 							<title>svg title</title>

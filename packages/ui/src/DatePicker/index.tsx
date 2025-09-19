@@ -1,8 +1,8 @@
 import ReactModernDatePicker, { type DayValue } from "@hassanmojab/react-modern-calendar-datepicker";
 import moment from "jalali-moment";
 import { toEnglishDigits } from "msk-utils";
-import type { InputHTMLAttributes, RefObject } from "react";
-import Input from "../Input";
+import type { RefObject } from "react";
+import Input, { type InputProps } from "../Input";
 import "./datepicker.css";
 
 function convertTimestamp2DayValue(value: number) {
@@ -27,28 +27,26 @@ export interface DatePickerProps {
 	locale?: "fa" | "en";
 	minDate?: number;
 	maxDate?: number;
-	inputProps?: InputHTMLAttributes<HTMLInputElement>;
+	inputProps?: InputProps;
 }
 
 export default function DatePicker(props: DatePickerProps) {
 	const render = ({ ref }: { ref: RefObject<HTMLElement> }) => (
-		<div className="relative w-full">
-			<Input
-				dir="rtl"
-				ref={ref as RefObject<HTMLInputElement>}
-				readOnly
-				value={
-					props.value
-						? new Date(props.value).toLocaleDateString("fa", {
-								day: "numeric",
-								month: "long",
-								year: "numeric",
-							})
-						: undefined
-				}
-				{...props.inputProps}
-			/>
-		</div>
+		<Input
+			dir={props.locale === "en" ? "ltr" : "rtl"}
+			ref={ref as RefObject<HTMLInputElement>}
+			readOnly
+			value={
+				props.value
+					? new Date(props.value).toLocaleDateString(props.locale === "en" ? "en" : "fa", {
+							day: "numeric",
+							month: "long",
+							year: "numeric",
+						})
+					: undefined
+			}
+			{...props.inputProps}
+		/>
 	);
 
 	return (
@@ -56,6 +54,7 @@ export default function DatePicker(props: DatePickerProps) {
 			locale={props.locale ?? "fa"}
 			value={props.value ? convertTimestamp2DayValue(props.value) : null}
 			shouldHighlightWeekends
+			wrapperClassName="w-full"
 			renderInput={render}
 			maximumDate={props.maxDate ? convertTimestamp2DayValue(props.maxDate) : undefined}
 			minimumDate={props.minDate ? convertTimestamp2DayValue(props.minDate) : undefined}

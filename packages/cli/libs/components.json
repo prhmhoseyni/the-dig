@@ -23,6 +23,10 @@
 		"dependencies": null,
 		"src": "https://github.com/prhmhoseyni/the-dig/tree/main/packages/ui/src/Button"
 	},
+	"Calendar": {
+		"dependencies": ["react-day-picker"],
+		"src": "https://github.com/prhmhoseyni/the-dig/tree/main/packages/ui/src/Calendar"
+	},
 	"Checkbox": {
 		"dependencies": null,
 		"src": "https://github.com/prhmhoseyni/the-dig/tree/main/packages/ui/src/Checkbox"
@@ -92,7 +96,7 @@
 		"src": "https://github.com/prhmhoseyni/the-dig/tree/main/packages/ui/src/Select"
 	},
 	"Slider": {
-		"dependencies": null,
+		"dependencies": ["rc-slider"],
 		"src": "https://github.com/prhmhoseyni/the-dig/tree/main/packages/ui/src/Slider"
 	},
 	"Snackbar": {
@@ -116,7 +120,7 @@
 		"src": "https://github.com/prhmhoseyni/the-dig/tree/main/packages/ui/src/Textarea"
 	},
 	"Toast": {
-		"dependencies": ["sonner"],
+		"dependencies": null,
 		"src": "https://github.com/prhmhoseyni/the-dig/tree/main/packages/ui/src/Toast"
 	},
 	"Tooltip": {

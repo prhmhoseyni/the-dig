@@ -2,13 +2,12 @@
 
 import clsx from "clsx";
 import { Check } from "lucide-react";
-import type { ReactNode } from "react";
 
 /**
  * @name Stepper component
  */
 export interface StepperProps {
-	steps: Array<{ title: string; description?: ReactNode }>;
+	steps: Array<{ title: string; description?: string }>;
 	vertical?: boolean;
 	step: number;
 	onChange?: (step: number) => void;
@@ -48,7 +47,7 @@ export default function Stepper(props: StepperProps) {
 					{index < steps.length - 1 &&
 						(vertical ? (
 							<div
-								className={clsx("h-full border absolute top-0 right-[11px]", index < step ? "border-brand" : "border-gray-400")}
+								className={clsx("h-full border absolute top-0 right-4", index < step ? "border-brand" : "border-gray-400")}
 							/>
 						) : (
 							<div

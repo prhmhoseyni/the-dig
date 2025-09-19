@@ -2,12 +2,12 @@ import DatePicker from "@repo/ui/DatePicker";
 import { useState } from "react";
 import Preview from "../Preview";
 
-export default function DatePickerPreview() {
+export default function DatePickerPreview(props: { local: "fa" | "en" }) {
 	const [value, setValue] = useState<number | null>(null);
 
 	return (
 		<Preview>
-			<DatePicker value={value} onChange={(_value) => setValue(_value)} />
+			<DatePicker locale={props.local} value={value} onChange={(value) => setValue(value)} />
 		</Preview>
 	);
 }

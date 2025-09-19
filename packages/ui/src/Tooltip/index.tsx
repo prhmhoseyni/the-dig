@@ -9,17 +9,17 @@ import "react-tooltip/dist/react-tooltip.css";
  */
 export type TooltipPlace =
 	| "top"
-	| "bottom"
-	| "left"
-	| "right"
-	| "left-start"
-	| "left-end"
-	| "right-start"
-	| "right-end"
 	| "top-start"
 	| "top-end"
+	| "bottom"
 	| "bottom-start"
-	| "bottom-end";
+	| "bottom-end"
+	| "left"
+	| "left-start"
+	| "left-end"
+	| "right"
+	| "right-start"
+	| "right-end";
 
 /**
  * @name Tooltip component

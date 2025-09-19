@@ -4,6 +4,34 @@ sidebar_position: 1
 
 # Toast
 
+## Sonner
+
+import RedirectLink from "../../src/components/RedirectLink";
+
+<RedirectLink href="https://sonner.emilkowal.ski">Document</RedirectLink>
+
+### Installation
+
+```bash
+npm install sonner
+```
+
+### Setup
+
+```tsx
+import { Toaster } from "sonner";
+
+<Toaster />;
+```
+
+### Usage
+
+```tsx
+import { toast } from "sonner";
+
+toast("Event has been created.");
+```
+
 ## Preview
 
 import Toast from "@repo/ui/Toast";
@@ -21,7 +49,7 @@ import Container from "./Container";
           title="به‌روزرسانی جدید"
           description="نسخه جدید آماده نصب است. برای بهبود عملکرد به‌روزرسانی کنید."
           actions={
-            <div className="flex gap-3">
+            <div className="flex gap-4">
               <Button color="gray" variant="outlined">
                 مشاهده تغییرات
               </Button>
@@ -31,46 +59,47 @@ import Container from "./Container";
               </Button>
             </div>
           }
-          onClose={() => null}
         />,
       )
     }
-  >
+
+>
+
     نمایش
+
   </button>
 </Container>
 
-## Code
-
 ```tsx
 import Toast from "@repo/ui/Toast";
-import Button from "@repo/ui/Button";
+import { Toaster, toast } from "sonner";
+
+<Toaster closeButton />
 
 <button
-    onClick={() =>
-      toast(
-        <Toast
-          title="به‌روزرسانی جدید"
-          description="نسخه جدید آماده نصب است. برای بهبود عملکرد به‌روزرسانی کنید."
-          actions={
-            <div className="flex gap-3">
-              <Button color="gray" variant="outlined">
-                مشاهده تغییرات
-              </Button>
+  onClick={() =>
+    toast(
+      <Toast
+        title="به‌روزرسانی جدید"
+        description="نسخه جدید آماده نصب است. برای بهبود عملکرد به‌روزرسانی کنید."
+        actions={
+          <div className="flex gap-4">
+            <Button color="gray" variant="outlined">
+              مشاهده تغییرات
+            </Button>
 
-              <Button color="gray" variant="outlined">
-                به‌روزرسانی
-              </Button>
-            </div>
-          }
-          onClose={() => null}
-        />,
-      )
-    }
-  >
-    نمایش
-  </button>
-````
+            <Button color="gray" variant="outlined">
+              به‌روزرسانی
+            </Button>
+          </div>
+        }
+      />,
+    )
+  }
+>
+  نمایش
+</button>
+```
 
 ## Installation
 
@@ -80,30 +109,10 @@ npx the-dig@latest add Toast
 
 ## Props
 
-| Prop          | Type                                                             | Default |
-| ------------- | ---------------------------------------------------------------- | ------- |
-| `title`       | `ReactNode` <sup className="text-red-600 text-caption2">\*</sup> | -       |
-| `description` | `ReactNode` <sup className="text-red-600 text-caption2">\*</sup> | -       |
-| `actions`     | `ReactNode` <sup className="text-red-600 text-caption2">\*</sup> | -       |
-| `onClose`     | `VoidFunction`                                                   | -       |
-| `className`   | `string`                                                         | -       |
-
-## Variants / Examples
-
-<Container className="flex flex-col gap-4">
-  <Toast
-    title="به‌روزرسانی جدید"
-    description="نسخه جدید آماده نصب است."
-    actions={
-      <div className="flex gap-3">
-        <Button color="gray" variant="outlined">مشاهده تغییرات</Button>
-        <Button color="gray" variant="outlined">به‌روزرسانی</Button>
-      </div>
-    }
-  />
-
-<Toast
-title="پیام ساده"
-description="این یک پیام بدون اکشن است."
-actions={<></>}
-/> </Container>
+| Prop                                                               | Type           | Default |
+| ------------------------------------------------------------------ | -------------- | ------- |
+| `title` <sup className="text-red-600 text-caption2">\*</sup>       | `ReactNode`    | -       |
+| `description` <sup className="text-red-600 text-caption2">\*</sup> | `ReactNode`    | -       |
+| `actions` <sup className="text-red-600 text-caption2">\*</sup>     | `ReactNode`    | -       |
+| `className`                                                        | `string`       | -       |
+| `onClose`                                                          | `VoidFunction` | -       |

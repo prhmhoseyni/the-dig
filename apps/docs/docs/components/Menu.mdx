@@ -14,27 +14,25 @@ import Container from "./Container";
   <MenuPreview />
 </Container>
 
-## Code
-
 ```tsx
 "use client";
 
+import { useRef, useState } from "react";
 import Button from "@repo/ui/Button";
 import Menu from "@repo/ui/Menu";
-import { useRef, useState } from "react";
 
 export default function MenuPage() {
   const [menuOpen, setMenuOpen] = useState(false);
-  const anchorRef = useRef<HTMLButtonElement>(null);
+  const anchor = useRef<HTMLButtonElement>(null);
 
   return (
     <div className="flex justify-center">
-      <Button ref={anchorRef} onClick={() => setMenuOpen(!menuOpen)}>
-        Open Menu
+      <Button ref={anchor} onClick={() => setMenuOpen(!menuOpen)}>
+        روم کلیک کن تا نشونت بدم
       </Button>
 
       <Menu
-        anchor={anchorRef.current}
+        anchor={anchor.current}
         open={menuOpen}
         onClose={() => setMenuOpen(false)}
       >
@@ -63,17 +61,9 @@ npx the-dig@latest add Menu
 
 ### `Menu`
 
-| Prop                                                            | Type                  | Default |
-| --------------------------------------------------------------- | --------------------- | ------- |
-| `anchor` <sup className="text-red-600 text-caption2">\*</sup>   | `HTMLElement \| null` | -       |
-| `open` <sup className="text-red-600 text-caption2">\*</sup>     | `boolean`             | -       |
-| `onClose` <sup className="text-red-600 text-caption2">\*</sup>  | `VoidFunction`        | -       |
-| `children` <sup className="text-red-600 text-caption2">\*</sup> | `ReactNode`           | -       |
-
-### `Menu.Item`
-
-| Prop        | Type                   | Default |
-| ----------- | ---------------------- | ------- |
-| `children`  | `ReactNode`            | -       |
-| `className` | `string`               | -       |
-| Others      | `HTMLDivElement` props | -       |
+| Prop                                                           | Type                  | Default |
+| -------------------------------------------------------------- | --------------------- | ------- |
+| `anchor` <sup className="text-red-600 text-caption2">\*</sup>  | `HTMLElement \| null` | -       |
+| `open` <sup className="text-red-600 text-caption2">\*</sup>    | `boolean`             | -       |
+| `onClose` <sup className="text-red-600 text-caption2">\*</sup> | `VoidFunction`        | -       |
+| `children`                                                     | `ReactNode`           | -       |

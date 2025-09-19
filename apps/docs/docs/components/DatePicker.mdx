@@ -7,28 +7,31 @@ sidebar_position: 1
 ## Preview
 
 import DatePickerPreview from "../../src/components/DatePickerPreview";
+import RedirectLink from "../../src/components/RedirectLink";
 
-<DatePickerPreview />
-
-## Code
+<DatePickerPreview local="fa" />
 
 ```tsx
 import DatePicker from "@repo/ui/DatePicker";
 
-<DatePicker value={value} onChange={(_value) => setValue(_value)} />;
+<DatePicker value={value} onChange={(value) => setValue(value)} />;
 ```
 
 ## Installation
 
 ```bash
-npx the-dig@latest add DatePicker
+npx the-dig@latest add Input,DatePicker
 ```
 
 ## Props
 
-| Prop                                                            | Type                                    | Default                                                                       |
-| --------------------------------------------------------------- | --------------------------------------- | ----------------------------------------------------------------------------- |
-| `value` <sup className="text-red-600 text-caption2">\*</sup>    | `number` \| `null`                      | -                                                                             |
-| `onChange` <sup className="text-red-600 text-caption2">\*</sup> | `(value: number \| null) => void`       | -                                                                             |
-| `locale`                                                        | `"fa"` \| `"en"`                        | `"fa"`                                                                        |
-| `inputProps`                                                    | `InputHTMLAttributes<HTMLInputElement>` | [Document](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement) |
+| Prop                                                            | Type                              | Default                                                                                       |
+| --------------------------------------------------------------- | --------------------------------- | --------------------------------------------------------------------------------------------- |
+| `value` <sup className="text-red-600 text-caption2">\*</sup>    | `number` \| `null`                | -                                                                                             |
+| `onChange` <sup className="text-red-600 text-caption2">\*</sup> | `(value: number \| null) => void` | -                                                                                             |
+| `locale`                                                        | `"fa"` \| `"en"`                  | `"fa"`                                                                                        |
+| `inputProps`                                                    | `InputProps`                      | <RedirectLink href="https://the-dig.vercel.app/docs/components/Input">Document</RedirectLink> |
+
+## Local
+
+<DatePickerPreview local="en" />

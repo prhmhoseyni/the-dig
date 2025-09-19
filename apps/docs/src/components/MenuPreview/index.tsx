@@ -11,22 +11,16 @@ export default function MenuPreview() {
 	const handleOpenMenu = () => setMenuOpen(!menuOpen);
 	const handleCloseMenu = () => setMenuOpen(false);
 
-	const handleMenuItemClick = (item: string) => {
-		console.log(`${item} clicked!`);
-		// handleCloseMenu();
-	};
-
 	return (
 		<div className="container mx-auto flex justify-center items-center p-4">
 			<Button ref={anchorRef} onClick={handleOpenMenu}>
-				باز کن
+				روم کلیک کن تا نشونت بدم
 			</Button>
 
 			<Menu anchor={anchorRef.current} open={menuOpen} onClose={handleCloseMenu}>
-				<Menu.Item onClick={() => handleMenuItemClick("Item 1")}>عنوان ایتم منو</Menu.Item>
-				<Menu.Item onClick={() => handleMenuItemClick("Item 2 (Checked)")}>عنوان ایتم منو</Menu.Item>
-				<Menu.Item onClick={() => handleMenuItemClick("Item 3 (Selected)")}>عنوان ایتم منو</Menu.Item>
-				<Menu.Item onClick={() => handleMenuItemClick("Item 4 (SubMenu)")}>عنوان ایتم منو</Menu.Item>
+				<Menu.Item onClick={() => console.log("Item 1 clicked")}>گزینه اول</Menu.Item>
+				<Menu.Item onClick={() => console.log("Item 2 clicked")}>گزینه دوم</Menu.Item>
+				<Menu.Item onClick={() => console.log("Item 3 clicked")}>گزینه سوم</Menu.Item>
 			</Menu>
 		</div>
 	);
