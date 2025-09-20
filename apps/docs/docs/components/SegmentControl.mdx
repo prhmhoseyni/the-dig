@@ -16,15 +16,18 @@ import SegmentControlPreview from "../../src/components/SegmentControlPreview";
 
 ```tsx
 import SegmentControl from "@repo/ui/SegmentControl";
+import { useState } from "react";
+
+const [value, setValue] = useState<string>();
 
 <SegmentControl value={value} onChange={(value) => setValue(value)}>
-  <SegmentControl.Item value="1">عنوان نمونه 1</SegmentControl.Item>
+  <SegmentControl.Item value="1">عنوان نمونه ۱</SegmentControl.Item>
   <SegmentControl.Divider />
-  <SegmentControl.Item value="2">عنوان نمونه 2</SegmentControl.Item>
+  <SegmentControl.Item value="2">عنوان نمونه ۲</SegmentControl.Item>
   <SegmentControl.Divider />
-  <SegmentControl.Item value="3">عنوان نمونه 3</SegmentControl.Item>
+  <SegmentControl.Item value="3">عنوان نمونه ۳</SegmentControl.Item>
   <SegmentControl.Divider />
-  <SegmentControl.Item value="4">عنوان نمونه 4</SegmentControl.Item>
+  <SegmentControl.Item value="4">عنوان نمونه ۴</SegmentControl.Item>
 </SegmentControl>;
 ```
 

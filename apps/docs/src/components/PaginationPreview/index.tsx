@@ -4,7 +4,7 @@ import Pagination from "@repo/ui/Pagination";
 import { useState } from "react";
 
 export default function PaginationPage() {
-	const [page, setPage] = useState(10);
+	const [page, setPage] = useState(1);
 
 	return (
 		<div className="flex items-center gap-4 p-4">

@@ -15,40 +15,28 @@ import Container from "./Container";
 </Container>
 
 ```tsx
-"use client";
-
 import { useRef, useState } from "react";
-import Button from "@repo/ui/Button";
 import Menu from "@repo/ui/Menu";
+import Button from "@repo/ui/Button";
 
-export default function MenuPage() {
-  const [menuOpen, setMenuOpen] = useState(false);
-  const anchor = useRef<HTMLButtonElement>(null);
+const [open, setOpen] = useState(false);
+const anchor = useRef<HTMLButtonElement>(null);
 
-  return (
-    <div className="flex justify-center">
-      <Button ref={anchor} onClick={() => setMenuOpen(!menuOpen)}>
-        روم کلیک کن تا نشونت بدم
-      </Button>
+<Button ref={anchor} onClick={() => setOpen((prev) => !prev)}>
+  روم کلیک کن تا نشونت بدم
+</Button>
 
-      <Menu
-        anchor={anchor.current}
-        open={menuOpen}
-        onClose={() => setMenuOpen(false)}
-      >
-        <Menu.Item onClick={() => console.log("Item 1 clicked")}>
-          گزینه اول
-        </Menu.Item>
-        <Menu.Item onClick={() => console.log("Item 2 clicked")}>
-          گزینه دوم
-        </Menu.Item>
-        <Menu.Item onClick={() => console.log("Item 3 clicked")}>
-          گزینه سوم
-        </Menu.Item>
-      </Menu>
-    </div>
-  );
-}
+<Menu anchor={anchor.current} open={open} onClose={() => setOpen(false)}>
+  <Menu.Item onClick={() => console.log("Item 1 clicked")}>
+    گزینه اول
+  </Menu.Item>
+  <Menu.Item onClick={() => console.log("Item 2 clicked")}>
+    گزینه دوم
+  </Menu.Item>
+  <Menu.Item onClick={() => console.log("Item 3 clicked")}>
+    گزینه سوم
+  </Menu.Item>
+</Menu>
 ```
 
 ## Installation

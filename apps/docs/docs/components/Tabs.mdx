@@ -18,6 +18,9 @@ import TabsPreview from "../../src/components/TabsPreview";
 
 ```tsx
 import Tabs from "@repo/ui/Tabs";
+import { useState } from "react";
+
+const [value, setValue] = useState(1);
 
 <Tabs value={value} onChange={(value) => setValue(value)}>
   <Tabs.Item>عنوان ۱</Tabs.Item>

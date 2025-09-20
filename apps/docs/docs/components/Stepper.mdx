@@ -21,6 +21,9 @@ import {
 
 ```tsx
 import Stepper from "@repo/ui/Stepper";
+import { useState } from "react";
+
+const [step, setStep] = useState(2);
 
 <Stepper
   step={step}
@@ -57,6 +60,9 @@ npx the-dig@latest add Stepper
 
 ```tsx
 import Stepper from "@repo/ui/Stepper";
+import { useState } from "react";
+
+const [step, setStep] = useState(2);
 
 <Stepper
   vertical
