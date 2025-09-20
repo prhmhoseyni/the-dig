@@ -94,6 +94,8 @@ export default function Calendar(props: ComponentProps<typeof DayPicker>) {
 				outside: clsx("text-muted-foreground aria-selected:text-muted-foreground", defaultClassNames.outside),
 				disabled: clsx("text-muted-foreground opacity-50", defaultClassNames.disabled),
 				hidden: clsx("invisible", defaultClassNames.hidden),
+				button_previous: "border-0 outlined-none bg-transparent",
+				button_next: "border-0 outlined-none bg-transparent",
 				...classNames,
 			}}
 			components={{

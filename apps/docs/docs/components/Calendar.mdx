@@ -4,6 +4,20 @@ sidebar_position: 1
 
 # Calendar
 
+## Preview
+
+import CalendarPreview from "../../src/components/CalendarPreview";
+
+<CalendarPreview />
+
+```tsx
+import Calendar from "@repo/ui/Calendar";
+
+const [selected, setSelected] = useState<Date>();
+
+<Calendar mode="single" selected={selected} onSelect={setSelected} />;
+```
+
 ## Installation
 
 ```bash
