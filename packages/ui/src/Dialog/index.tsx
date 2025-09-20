@@ -46,7 +46,6 @@ function DialogFooter(props: DialogFooterProps) {
  * @name BaseDialog component
  */
 export interface BaseDialogProps extends PropsWithChildren {
-	title: string;
 	open: boolean;
 	onClose: () => void;
 }
@@ -109,7 +108,7 @@ function BaseDialog(props: BaseDialogProps) {
 					<motion.dialog
 						open={props.open}
 						className={clsx(
-							"fixed bottom-0 md:bottom-auto md:p-0 bg-transparent z-[999] mx-auto max-h-dvh md:shadow-2xl rounded-2xl md:max-w-[36rem] w-full",
+							"border-0 outline-none fixed bottom-0 md:bottom-auto md:p-0 bg-transparent z-[999] mx-auto max-h-dvh md:shadow-2xl rounded-2xl md:max-w-[36rem] w-full",
 						)}
 						drag={isMobile && "y"}
 						dragConstraints={{ top: 0 }}
