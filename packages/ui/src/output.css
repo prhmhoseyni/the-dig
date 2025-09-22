@@ -3,7 +3,6 @@
 @layer theme, base, components, utilities;
 @layer theme {
   :root, :host {
-    --color-lime-50: oklch(98.6% 0.031 120.757);
     --color-blue-200: oklch(88.2% 0.059 254.128);
     --color-gray-100: var(--dig-gray-100);
     --color-gray-200: var(--dig-gray-200);
