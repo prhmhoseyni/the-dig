@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import type { DetailedHTMLProps, ReactNode, SelectHTMLAttributes } from "react";
+import type { DetailedHTMLProps, HTMLAttributes, ReactNode, SelectHTMLAttributes } from "react";
 
 /**
  * :::: types :::
@@ -13,13 +13,15 @@ export interface SelectProps extends DetailedHTMLProps<SelectHTMLAttributes<HTML
 	variant?: SelectVariant;
 	hasError?: boolean;
 	startAdornment?: ReactNode;
+	inputWrapperProps?: DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>;
 }
 
 export default function Select(props: SelectProps) {
-	const { variant = "primary", hasError = false, startAdornment, children, className = "", ...rest } = props;
+	const { variant = "primary", hasError = false, startAdornment, children, className = "", inputWrapperProps, ...rest } = props;
+	const { className: wrapperClassName, ...restWrapper } = inputWrapperProps ?? {};
 
 	return (
-		<div className="w-full relative">
+		<div className={clsx("w-full relative", wrapperClassName)} {...restWrapper}>
 			<select
 				className={clsx(
 					"appearance-none w-full min-h-12 text-label2 text-prose-primary border border-gray-400 outline-0 px-3 rounded-lg placeholder:text-prose-hint transition-all ease-in-out duration-300",
@@ -27,9 +29,7 @@ export default function Select(props: SelectProps) {
 					"focus:border-brand focus:shadow-focus-brand",
 					{ "bg-background-secondary": variant === "primary" },
 					{ "bg-background-primary": variant === "secondary" },
-					{
-						"!border-danger focus:!border-danger focus:!shadow-focus-danger": hasError,
-					},
+					{ "!border-danger focus:!border-danger focus:!shadow-focus-danger": hasError },
 					{ "!ps-9": startAdornment },
 					className,
 				)}

@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import type { DetailedHTMLProps, ReactNode, TextareaHTMLAttributes } from "react";
+import type { DetailedHTMLProps, HTMLAttributes, ReactNode, TextareaHTMLAttributes } from "react";
 
 /**
  * :::: types ::::
@@ -13,13 +13,15 @@ export interface TextareaProps extends DetailedHTMLProps<TextareaHTMLAttributes<
 	variant?: TextareaVariant;
 	hasError?: boolean;
 	startAdornment?: ReactNode;
+	inputWrapperProps?: DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>;
 }
 
 export default function Textarea(props: TextareaProps) {
-	const { variant = "primary", hasError = false, startAdornment, className = "", ...rest } = props;
+	const { variant = "primary", hasError = false, startAdornment, className = "", inputWrapperProps, ...rest } = props;
+	const { className: wrapperClassName, ...restWrapper } = inputWrapperProps ?? {};
 
 	return (
-		<div className="w-full relative">
+		<div className={clsx("w-full relative", wrapperClassName)} {...restWrapper}>
 			<textarea
 				className={clsx(
 					"w-full resize-none min-h-20 text-label2 text-prose-primary border border-gray-400 outline-0 p-3 rounded-lg placeholder:text-prose-hint transition-all ease-in-out duration-300",
@@ -27,9 +29,7 @@ export default function Textarea(props: TextareaProps) {
 					"focus:border-brand focus:shadow-focus-brand",
 					{ "bg-background-secondary": variant === "primary" },
 					{ "bg-background-primary": variant === "secondary" },
-					{
-						"!border-danger focus:!border-danger focus:!shadow-focus-danger": hasError,
-					},
+					{ "!border-danger focus:!border-danger focus:!shadow-focus-danger": hasError },
 					{ "!ps-9": startAdornment },
 					className,
 				)}

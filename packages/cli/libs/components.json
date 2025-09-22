@@ -59,10 +59,6 @@
 		"dependencies": null,
 		"src": "https://github.com/prhmhoseyni/the-dig/tree/main/packages/ui/src/IconButton"
 	},
-	"Input": {
-		"dependencies": null,
-		"src": "https://github.com/prhmhoseyni/the-dig/tree/main/packages/ui/src/Input"
-	},
 	"LinearProgress": {
 		"dependencies": null,
 		"src": "https://github.com/prhmhoseyni/the-dig/tree/main/packages/ui/src/LinearProgress"
@@ -118,6 +114,10 @@
 	"Textarea": {
 		"dependencies": null,
 		"src": "https://github.com/prhmhoseyni/the-dig/tree/main/packages/ui/src/Textarea"
+	},
+	"TextField": {
+		"dependencies": null,
+		"src": "https://github.com/prhmhoseyni/the-dig/tree/main/packages/ui/src/TextField"
 	},
 	"Toast": {
 		"dependencies": null,

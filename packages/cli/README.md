@@ -52,7 +52,7 @@ Example:
 
 ```bash
 npx the-dig@latest add Button
-npx the-dig@latest add Input
+npx the-dig@latest add TextField
 npx the-dig@latest add Badge
 ```
 

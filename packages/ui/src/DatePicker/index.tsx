@@ -2,7 +2,7 @@ import ReactModernDatePicker, { type DayValue } from "@hassanmojab/react-modern-
 import moment from "jalali-moment";
 import { toEnglishDigits } from "msk-utils";
 import type { RefObject } from "react";
-import Input, { type InputProps } from "../Input";
+import TextField, { type TextFieldProps } from "../TextField";
 import "./datepicker.css";
 
 function convertTimestamp2DayValue(value: number) {
@@ -27,12 +27,12 @@ export interface DatePickerProps {
 	locale?: "fa" | "en";
 	minDate?: number;
 	maxDate?: number;
-	inputProps?: InputProps;
+	inputProps?: TextFieldProps;
 }
 
 export default function DatePicker(props: DatePickerProps) {
 	const render = ({ ref }: { ref: RefObject<HTMLElement> }) => (
-		<Input
+		<TextField
 			dir={props.locale === "en" ? "ltr" : "rtl"}
 			ref={ref as RefObject<HTMLInputElement>}
 			readOnly

@@ -1,0 +1,91 @@
+---
+sidebar_position: 1
+---
+
+# TextField
+
+## Preview
+
+import TextField from "@repo/ui/TextField";
+import Container from "./Container";
+import { BadgeCheck } from "lucide-react";
+import RedirectLink from "../../src/components/RedirectLink";
+
+<Container>
+  <TextField />
+</Container>
+
+```tsx
+import TextField from "@repo/ui/TextField";
+
+<TextField />;
+```
+
+## Installation
+
+```bash
+npx the-dig@latest add TextField
+```
+
+## Props
+
+| Prop                | Type                                    | Default                                                                                                        |
+| ------------------- | --------------------------------------- | -------------------------------------------------------------------------------------------------------------- |
+| `variant`           | `"primary"` \| `"secondary"`            | `"primary"`                                                                                                    |
+| `hasError`          | `boolean`                               | `false`                                                                                                        |
+| `startAdornment`    | `ReactNode`                             | -                                                                                                              |
+| `endAdornment`      | `ReactNode`                             | -                                                                                                              |
+| `inputWrapperProps` | `HTMLAttributes<HTMLDivElement>`        | <RedirectLink href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement">Document</RedirectLink>      |
+| Others              | `InputHTMLAttributes<HTMLInputElement>` | <RedirectLink href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement">Document</RedirectLink> |
+
+## Variants
+
+<Container>
+  <TextField variant="primary" />
+  <TextField variant="secondary" />
+</Container>
+
+```tsx
+import TextField from "@repo/ui/TextField";
+
+<TextField variant="primary" />
+<TextField variant="secondary" />
+```
+
+## Has Error
+
+<Container>
+  <TextField hasError />
+</Container>
+
+```tsx
+import TextField from "@repo/ui/TextField";
+
+<TextField hasError />;
+```
+
+## Start Adornment
+
+<Container>
+  <TextField startAdornment={<BadgeCheck size={18} />} />
+</Container>
+
+```tsx
+import TextField from "@repo/ui/TextField";
+import { BadgeCheck } from "lucide-react";
+
+<TextField startAdornment={<BadgeCheck size={18} />} />;
+```
+
+## End Adornment
+
+<Container>
+  <TextField endAdornment={<BadgeCheck size={18} />} />
+</Container>
+
+```tsx
+import TextField from "@repo/ui/TextField";
+import { BadgeCheck } from "lucide-react";
+
+<TextField endAdornment={<BadgeCheck size={18} />} />;
+```

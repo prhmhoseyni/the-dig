@@ -1,26 +1,36 @@
 import clsx from "clsx";
-import type { DetailedHTMLProps, InputHTMLAttributes, ReactNode } from "react";
+import type { DetailedHTMLProps, HTMLAttributes, InputHTMLAttributes, ReactNode } from "react";
 
 /**
  * :::: types :::
  */
-export type InputVariant = "primary" | "secondary";
+export type TextFieldVariant = "primary" | "secondary";
 
 /**
- * @name Input component
+ * @name TextField component
  */
-export interface InputProps extends DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement> {
-	variant?: InputVariant;
+export interface TextFieldProps extends DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement> {
+	variant?: TextFieldVariant;
 	hasError?: boolean;
 	startAdornment?: ReactNode;
 	endAdornment?: ReactNode;
+	inputWrapperProps?: DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>;
 }
 
-export default function Input(props: InputProps) {
-	const { variant = "primary", hasError = false, startAdornment, endAdornment, className = "", ...rest } = props;
+export default function TextField(props: TextFieldProps) {
+	const {
+		variant = "primary",
+		hasError = false,
+		startAdornment,
+		endAdornment,
+		className = "",
+		inputWrapperProps,
+		...rest
+	} = props;
+	const { className: wrapperClassName, ...restWrapper } = inputWrapperProps ?? {};
 
 	return (
-		<div className="w-full relative">
+		<div className={clsx("w-full relative", wrapperClassName)} {...restWrapper}>
 			<input
 				className={clsx(
 					"w-full min-h-12 text-label2 text-prose-primary border border-gray-400 outline-0 px-3 rounded-lg placeholder:text-prose-hint transition-all ease-in-out duration-300",
@@ -28,9 +38,7 @@ export default function Input(props: InputProps) {
 					"focus:border-brand focus:shadow-focus-brand",
 					{ "bg-background-secondary": variant === "primary" },
 					{ "bg-background-primary": variant === "secondary" },
-					{
-						"!border-danger focus:!border-danger focus:!shadow-focus-danger": hasError,
-					},
+					{ "!border-danger focus:!border-danger focus:!shadow-focus-danger": hasError },
 					{ "!ps-9": startAdornment },
 					{ "!pe-9": endAdornment },
 					className,
