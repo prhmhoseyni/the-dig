@@ -45,15 +45,29 @@ This will update your global CSS file with The DIG styles and Tailwind CSS confi
 Add components from The DIG library to your project:
 
 ```bash
-npx the-dig@latest add <component-name>
+npx the-dig@latest add <components-name>
 ```
 
 Example:
 
 ```bash
-npx the-dig@latest add Button
 npx the-dig@latest add TextField
-npx the-dig@latest add Badge
+npx the-dig@latest add Button,Badge
+```
+
+### Update Components
+
+Update components from The DIG library to your project:
+
+```bash
+npx the-dig@latest update <components-name>
+```
+
+Example:
+
+```bash
+npx the-dig@latest update TextField
+npx the-dig@latest update Button,Badge
 ```
 
 ## Configuration
@@ -82,25 +96,18 @@ The CLI uses a `.thedigrc.json` file to store project configuration. Here's the 
 
 ## Available Commands
 
-| Command           | Description                         |
-| ----------------- | ----------------------------------- |
-| `init`            | Initialize the project for The DIG  |
-| `config`          | Configure the project CSS           |
-| `add <component>` | Add a new component to your project |
-
-## Development
+| Command               | Description                          |
+| --------------------- | ------------------------------------ |
+| `init`                | Initialize the project for The DIG   |
+| `config`              | Configure the project CSS            |
+| `add <components>`    | Add new components to your project   |
+| `update <components>` | Update components to your project    |
 
 ### Prerequisites
 
 - Node.js 18+
 - TypeScript
 - npm or yarn
-
-### Building
-
-```bash
-npm run build
-```
 
 ### Development Dependencies
 
