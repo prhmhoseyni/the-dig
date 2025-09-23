@@ -14,7 +14,7 @@ export default function MenuPreview() {
 	return (
 		<div className="container mx-auto flex justify-center items-center p-4">
 			<Button ref={anchorRef} onClick={handleOpenMenu}>
-				روم کلیک کن تا نشونت بدم
+				کلیک کن
 			</Button>
 
 			<Menu anchor={anchorRef.current} open={menuOpen} onClose={handleCloseMenu}>

@@ -23,7 +23,7 @@ const [open, setOpen] = useState(false);
 const anchor = useRef<HTMLButtonElement>(null);
 
 <Button ref={anchor} onClick={() => setOpen((prev) => !prev)}>
-  روم کلیک کن تا نشونت بدم
+  کلیک کن
 </Button>
 
 <Menu anchor={anchor.current} open={open} onClose={() => setOpen(false)}>

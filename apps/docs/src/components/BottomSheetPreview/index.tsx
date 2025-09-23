@@ -8,7 +8,7 @@ export default function BottomSheetPreview() {
 
 	return (
 		<Preview>
-			<Button onClick={() => setOpen(true)}>بازم کن</Button>
+			<Button onClick={() => setOpen(true)}>کلیک کن</Button>
 
 			<BottomSheet title="عنوان مناسب" open={open} onClose={() => setOpen(false)}>
 				<BottomSheet.Body>

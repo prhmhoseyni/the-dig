@@ -10,7 +10,7 @@ export default function BottomSheetPreview() {
 
 	return (
 		<Preview>
-			<Button onClick={() => setOpen(true)}>بازم کن</Button>
+			<Button onClick={() => setOpen(true)}>کلیک کن</Button>
 
 			<Dialog open={open} onClose={() => setOpen(false)}>
 				<Dialog.Header className="flex justify-between items-center">
