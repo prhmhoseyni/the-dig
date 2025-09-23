@@ -17,6 +17,7 @@ import Container from "./Container";
 ```tsx
 import { useRef, useState } from "react";
 import Menu from "@repo/ui/Menu";
+import Checkbox from "@repo/ui/Checkbox";
 import Button from "@repo/ui/Button";
 
 const [open, setOpen] = useState(false);
@@ -26,14 +27,17 @@ const anchor = useRef<HTMLButtonElement>(null);
   کلیک کن
 </Button>
 
-<Menu anchor={anchor.current} open={open} onClose={() => setOpen(false)}>
-  <Menu.Item onClick={() => console.log("Item 1 clicked")}>
+<Menu anchor={anchorRef.current} open={menuOpen} onClose={handleCloseMenu}>
+  <Menu.Item>
+    <Checkbox />
     گزینه اول
   </Menu.Item>
-  <Menu.Item onClick={() => console.log("Item 2 clicked")}>
+  <Menu.Item>
+    <Checkbox />
     گزینه دوم
   </Menu.Item>
-  <Menu.Item onClick={() => console.log("Item 3 clicked")}>
+  <Menu.Item>
+    <Checkbox />
     گزینه سوم
   </Menu.Item>
 </Menu>

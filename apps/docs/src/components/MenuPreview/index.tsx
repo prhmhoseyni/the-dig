@@ -1,6 +1,7 @@
 "use client";
 
 import Button from "@repo/ui/Button";
+import Checkbox from "@repo/ui/Checkbox";
 import Menu from "@repo/ui/Menu";
 import { useRef, useState } from "react";
 
@@ -18,9 +19,18 @@ export default function MenuPreview() {
 			</Button>
 
 			<Menu anchor={anchorRef.current} open={menuOpen} onClose={handleCloseMenu}>
-				<Menu.Item onClick={() => console.log("Item 1 clicked")}>گزینه اول</Menu.Item>
-				<Menu.Item onClick={() => console.log("Item 2 clicked")}>گزینه دوم</Menu.Item>
-				<Menu.Item onClick={() => console.log("Item 3 clicked")}>گزینه سوم</Menu.Item>
+				<Menu.Item dir="rtl" className="vazirmatn">
+					<Checkbox />
+					گزینه اول
+				</Menu.Item>
+				<Menu.Item dir="rtl" className="vazirmatn">
+					<Checkbox />
+					گزینه دوم
+				</Menu.Item>
+				<Menu.Item dir="rtl" className="vazirmatn">
+					<Checkbox />
+					گزینه سوم
+				</Menu.Item>
 			</Menu>
 		</div>
 	);
