@@ -1,0 +1,170 @@
+---
+sidebar_position: 1
+---
+
+# Autocomplete
+
+## Preview
+import Autocomplete from "@repo/ui/Autocomplete";
+import Menu from "@repo/ui/Menu";
+import AutocompletePreview from "../../src/components/AutocompletePreview";
+import Container from "./Container";
+
+<Container>
+  <AutocompletePreview />
+</Container>
+
+<Container>
+  <Autocomplete
+ 				options={
+          
+          [
+  { code: 1, name: "تهران", slug: "tehran" },
+  { code: 2, name: "اصفهان", slug: "isfahan" },
+  { code: 3, name: "مشهد", slug: "mashhad" },
+]
+        }
+ 				placeholder="جستجو کنید"
+ 				notFoundText="موردی یافت نشد"
+ 				maxDropdownHeight={200} 
+        isDropDown={true}
+  idField="code"
+  labelField="name"
+  valueField="slug"
+  onSelect={(opt) => console.log("انتخاب شد:", opt)}
+ 			/>
+       <Autocomplete
+ 				options={
+          
+          [
+		{ id: 1, label: "خراسان رضوی", value: "tehran", disabled: true },
+		{ id: 2, label: "تهران", value: "isfahan"  , disabled: true },
+		{ id: 3, label: "خراسان شمالی", value: "mashhad" , disabled: true  },
+		{ id: 4, label: "کردستان", value: "shiraz" },
+		{ id: 5, label: "خراسان جنوبی", value: "tabriz" },
+		{ id: 6, label: "کرمان", value: "mashhad1" },
+		{ id: 7, label: "خوزستان", value: "mashhad2" },
+		{ id: 8, label: "همدان", value: "mashhad3" },
+		{ id: 9, label: "کرمانشاه", value: "mashhad4" },
+	]
+        }
+ 				placeholder="جستجو کنید"
+ 				onSelect={() => {}}
+ 				notFoundText="موردی یافت نشد"
+ 				maxDropdownHeight={200} 
+        isDropDown={false}
+ 			/>
+
+			       <Autocomplete
+ 				options={
+          
+          [
+ { id: 1, label: "خراسان رضوی", value: "tehran" },
+		{ id: 2, label: "تهران", value: "isfahan" },
+		{ id: 3, label: "خراسان شمالی", value: "mashhad" },
+		{ id: 4, label: "کردستان", value: "shiraz" },
+		{ id: 5, label: "خراسان جنوبی", value: "tabriz" },
+		{ id: 6, label: "کرمان", value: "mashhad1" },
+		{ id: 7, label: "خوزستان", value: "mashhad2" },
+		{ id: 8, label: "همدان", value: "mashhad3" },
+		{ id: 9, label: "کرمانشاه", value: "mashhad4" }
+]
+        }
+ 			defaultValue={{ id: 1, label: "خراسان رضوی", value: "tehran" }} 
+        onSelect={(option) => {
+          console.log("انتخاب شد:", option);
+        }}
+        placeholder="شهر مورد نظر را انتخاب کنید"
+ 			/>
+
+</Container>
+
+
+## static data
+```tsx
+import { useRef, useState } from "react";
+import Autocomplete from "@repo/ui/Autocomplete";
+
+export default function Page() {
+	const cities: AutocompleteOption[] = [
+		{ id: 1, label: "خراسان رضوی", value: "tehran" },
+		{ id: 2, label: "تهران", value: "isfahan" },
+		{ id: 3, label: "خراسان شمالی", value: "mashhad" },
+		{ id: 4, label: "کردستان", value: "shiraz" },
+		{ id: 5, label: "خراسان جنوبی", value: "tabriz" },
+		{ id: 6, label: "کرمان", value: "mashhad1" },
+		{ id: 7, label: "خوزستان", value: "mashhad2" },
+		{ id: 8, label: "همدان", value: "mashhad3" },
+		{ id: 9, label: "کرمانشاه", value: "mashhad4" },
+	];
+
+	const handleSelect = (option: AutocompleteOption) => {
+		console.log("انتخاب شد:", option); 
+
+	return (
+		<div className="min-h-screen flex items-center justify-center bg-gray-50">
+			<Autocomplete  isDropDown={false}
+			   	options={cities}
+				placeholder="جستجو کنید"
+				onSelect={handleSelect}
+				notFoundText="موردی یافت نشد"
+				maxDropdownHeight={200} // دلخواه قابل تغییر است
+			/>
+		</div>
+	);
+}
+```
+
+## async data 
+```tsx
+import { useRef, useState } from "react";
+import Autocomplete from "@repo/ui/Autocomplete";
+async function fetchBook(query: string): Promise<Place[]> {
+	console.log(query);
+	const url = `https://openlibrary.org/search.json?q=${query}`;
+
+	const resp = await fetch(url);
+
+	const data = await resp.json();
+	return data?.docs;
+}
+export default function Page() {
+	return (
+		<Autocomplete
+			fetchOptions={fetchBook}
+			placeholder="جستجو ..."
+			idField="cover_i"
+			labelField="title"
+			valueField="cover_i"
+			onSelect={(e) => {
+				console.log("انتخاب شد:", e);
+			}}
+		/>
+	);
+}
+```
+
+## Installation
+
+```bash
+npx the-dig@latest add Autocomplete,Menu,CircularProgress
+```
+
+## Props
+
+### `Autocomplete`
+
+| Prop                                                           | Type                  | Default |
+| -------------------------------------------------------------- | --------------------- | ------- |
+| `options` <sup className="text-red-600 text-caption2">\*</sup>  | `Array` | -       |
+| `fetchOptions` <sup className="text-red-600 text-caption2">\*</sup>    | `promise`             | -       |
+| `placeholder` <sup className="text-red-600 text-caption2">\*</sup> | `string`        |جستجو کنید        |
+| `debounceDelay`                                                     | `number`           | 500       |
+| `onSelect`                                                     | `function`           | -       |
+| `notFoundText`                                                     | `string`           | موردی یافت نشد       |
+| `isDropDown`                                                     | `boolean`           | true       |
+| `searchingText`                                                     | `string`           | در حال جستجو...       |
+| `idField`                                                     | ` keyof T`           | id  |
+| `labelField`                                                     | ` keyof T`           | label       |
+| `valueField`                                                     | ` keyof T`           | value       |
+| `minSearchChars`                                                     | `number`           | 2       |
