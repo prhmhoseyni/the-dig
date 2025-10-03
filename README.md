@@ -25,8 +25,8 @@ Each app is 100% [TypeScript](https://www.typescriptlang.org/).
 ### Step 1: Clone the Repository
 
 ```shell
-git clone https://github.com/prhmhoseyni/dig-ui.git
-cd dig-ui
+git clone https://github.com/prhmhoseyni/the-dig.git
+cd the-dig
 ```
 
 ### Step 2: Install Dependencies

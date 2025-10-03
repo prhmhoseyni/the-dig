@@ -44,7 +44,7 @@ const config: Config = {
 					sidebarPath: "./sidebars.ts",
 					// Please change this to your repo.
 					// Remove this to remove the "edit this page" links.
-					editUrl: "https://github.com/prhmhoseyni/dig-ui/tree/main/packages/create-docusaurus/templates/shared/",
+					editUrl: "https://github.com/prhmhoseyni/the-dig/tree/main/packages/create-docusaurus/templates/shared/",
 				},
 				blog: {
 					showReadingTime: true,
@@ -54,7 +54,7 @@ const config: Config = {
 					},
 					// Please change this to your repo.
 					// Remove this to remove the "edit this page" links.
-					editUrl: "https://github.com/prhmhoseyni/dig-ui/tree/main/packages/create-docusaurus/templates/shared/",
+					editUrl: "https://github.com/prhmhoseyni/the-dig/tree/main/packages/create-docusaurus/templates/shared/",
 					// Useful options to enforce blogging best practices
 					onInlineTags: "warn",
 					onInlineAuthors: "warn",
@@ -84,7 +84,7 @@ const config: Config = {
 					label: "Tutorial",
 				},
 				{
-					href: "https://github.com/prhmhoseyni/dig-ui",
+					href: "https://github.com/prhmhoseyni/the-dig",
 					label: "GitHub",
 					position: "right",
 				},
@@ -107,11 +107,11 @@ const config: Config = {
 					items: [
 						{
 							label: "NPM",
-							href: "https://www.npmjs.com/package/dig-ui",
+							href: "https://www.npmjs.com/package/the-dig",
 						},
 						{
 							label: "GitHub",
-							href: "https://github.com/prhmhoseyni/dig-ui",
+							href: "https://github.com/prhmhoseyni/the-dig",
 						},
 					],
 				},
@@ -120,7 +120,7 @@ const config: Config = {
 					items: [
 						{
 							label: "GitHub",
-							href: "https://github.com/prhmhoseyni/dig-ui",
+							href: "https://github.com/prhmhoseyni/the-dig",
 						},
 					],
 				},
