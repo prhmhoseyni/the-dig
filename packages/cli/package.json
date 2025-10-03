@@ -1,6 +1,6 @@
 {
 	"name": "the-dig",
-	"version": "1.1.3",
+	"version": "1.1.4",
 	"main": "./dist/main.js",
 	"bin": {
 		"the-dig": "./dist/main.js"

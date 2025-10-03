@@ -67,7 +67,7 @@ export function installDependencies(dependencies: string[] | null): Promise<void
  * @returns A Promise that resolves with the ComponentsData, or rejects on error.
  */
 export async function getComponentData(): Promise<ComponentsData> {
-	const registryURL = "https://pubgi.sandpod.ir/pod/frontobm/the-dig/-/raw/main/packages/cli/libs/components.json";
+	const registryURL = "https://pubgi.sandpod.ir/pod/frontobm/dig-ui/-/raw/main/packages/cli/libs/components.json";
 	const spinner = ora(`Loading component registry from ${registryURL}...`).start();
 
 	try {
