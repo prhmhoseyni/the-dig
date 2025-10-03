@@ -67,7 +67,7 @@ export function installDependencies(dependencies: string[] | null): Promise<void
  * @returns A Promise that resolves with the ComponentsData, or rejects on error.
  */
 export async function getComponentData(): Promise<ComponentsData> {
-	const registryURL = "https://pubgi.sandpod.ir/pod/frontobm/dig-ui/-/raw/main/packages/cli/libs/components.json";
+	const registryURL = "https://pubgi.sandpod.ir/pod/frontobm/the-dig/-/raw/main/packages/cli/libs/components.json";
 	const spinner = ora(`Loading component registry from ${registryURL}...`).start();
 
 	try {
@@ -97,25 +97,15 @@ export async function getComponentData(): Promise<ComponentsData> {
 export async function fetchComponentFromRepository(srcUrl: string, destination: string): Promise<void> {
 	const spinner = ora(`Fetching component from ${srcUrl}...`).start();
 	try {
-		// Example src: https://pubgi.sandpod.ir/pod/frontobm/the-dig/-/tree/main/packages/ui/src/Button
 		const url = new URL(srcUrl);
-		const host = url.host; // pubgi.sandpod.ir
+		const host = url.host;
 		const parts = url.pathname.split("/").filter(Boolean);
 
-		// parts = ["pod", "frontobm", "the-dig", "-", "tree", "main", "packages", "ui", "src", "Button"]
-		// const projectPath = parts.slice(0, 3).join("/"); // pod/frontobm/the-dig
-		const branch = parts[5]; // "main"
-		const repoPath = parts.slice(6).join("/"); // packages/ui/src/Button
+		const branch = parts[5];
+		const repoPath = parts.slice(6).join("/");
 
-		// 1. Get project ID
-		// const projectRes = await fetch(`https://${host}/api/v4/projects/${encodeURIComponent(projectPath)}`);
-		// if (!projectRes.ok) {
-		// 	throw new Error(`Failed to fetch project ID: ${projectRes.statusText}`);
-		// }
-		// const project = await projectRes.json();
-		const projectId = 94;
+		const projectId = 95;
 
-		// 2. List files inside component folder
 		const treeRes = await fetch(`https://${host}/api/v4/projects/${projectId}/repository/tree?path=${repoPath}&ref=${branch}`);
 		if (!treeRes.ok) {
 			throw new Error(`Failed to fetch repository tree: ${treeRes.statusText}`);
@@ -128,7 +118,6 @@ export async function fetchComponentFromRepository(srcUrl: string, destination: 
 
 		await fs.ensureDir(destination);
 
-		// 3. Download raw file content
 		for (const file of files) {
 			if (file.type === "blob") {
 				const rawRes = await fetch(

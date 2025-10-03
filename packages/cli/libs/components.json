@@ -1,130 +1,130 @@
 {
 	"Alert": {
 		"dependencies": null,
-		"src": "https://pubgi.sandpod.ir/pod/frontobm/dig-ui/-/tree/main/packages/ui/src/Alert"
+		"src": "https://pubgi.sandpod.ir/pod/frontobm/the-dig/-/tree/main/packages/ui/src/Alert"
 	},
 	"Avatar": {
 		"dependencies": null,
-		"src": "https://pubgi.sandpod.ir/pod/frontobm/dig-ui/-/tree/main/packages/ui/src/Avatar"
+		"src": "https://pubgi.sandpod.ir/pod/frontobm/the-dig/-/tree/main/packages/ui/src/Avatar"
 	},
 	"Badge": {
 		"dependencies": null,
-		"src": "https://pubgi.sandpod.ir/pod/frontobm/dig-ui/-/tree/main/packages/ui/src/Badge"
+		"src": "https://pubgi.sandpod.ir/pod/frontobm/the-dig/-/tree/main/packages/ui/src/Badge"
 	},
 	"BottomSheet": {
 		"dependencies": ["motion"],
-		"src": "https://pubgi.sandpod.ir/pod/frontobm/dig-ui/-/tree/main/packages/ui/src/BottomSheet"
+		"src": "https://pubgi.sandpod.ir/pod/frontobm/the-dig/-/tree/main/packages/ui/src/BottomSheet"
 	},
 	"Breadcrumbs": {
 		"dependencies": null,
-		"src": "https://pubgi.sandpod.ir/pod/frontobm/dig-ui/-/tree/main/packages/ui/src/Breadcrumbs"
+		"src": "https://pubgi.sandpod.ir/pod/frontobm/the-dig/-/tree/main/packages/ui/src/Breadcrumbs"
 	},
 	"Button": {
 		"dependencies": null,
-		"src": "https://pubgi.sandpod.ir/pod/frontobm/dig-ui/-/tree/main/packages/ui/src/Button"
+		"src": "https://pubgi.sandpod.ir/pod/frontobm/the-dig/-/tree/main/packages/ui/src/Button"
 	},
 	"Calendar": {
 		"dependencies": ["react-day-picker"],
-		"src": "https://pubgi.sandpod.ir/pod/frontobm/dig-ui/-/tree/main/packages/ui/src/Calendar"
+		"src": "https://pubgi.sandpod.ir/pod/frontobm/the-dig/-/tree/main/packages/ui/src/Calendar"
 	},
 	"Checkbox": {
 		"dependencies": null,
-		"src": "https://pubgi.sandpod.ir/pod/frontobm/dig-ui/-/tree/main/packages/ui/src/Checkbox"
+		"src": "https://pubgi.sandpod.ir/pod/frontobm/the-dig/-/tree/main/packages/ui/src/Checkbox"
 	},
 	"Chip": {
 		"dependencies": null,
-		"src": "https://pubgi.sandpod.ir/pod/frontobm/dig-ui/-/tree/main/packages/ui/src/Chip"
+		"src": "https://pubgi.sandpod.ir/pod/frontobm/the-dig/-/tree/main/packages/ui/src/Chip"
 	},
 	"CircularProgress": {
 		"dependencies": null,
-		"src": "https://pubgi.sandpod.ir/pod/frontobm/dig-ui/-/tree/main/packages/ui/src/CircularProgress"
+		"src": "https://pubgi.sandpod.ir/pod/frontobm/the-dig/-/tree/main/packages/ui/src/CircularProgress"
 	},
 	"DatePicker": {
 		"dependencies": ["@hassanmojab/react-modern-calendar-datepicker", "jalali-moment", "msk-utils"],
-		"src": "https://pubgi.sandpod.ir/pod/frontobm/dig-ui/-/tree/main/packages/ui/src/DatePicker"
+		"src": "https://pubgi.sandpod.ir/pod/frontobm/the-dig/-/tree/main/packages/ui/src/DatePicker"
 	},
 	"Dialog": {
 		"dependencies": ["motion"],
-		"src": "https://pubgi.sandpod.ir/pod/frontobm/dig-ui/-/tree/main/packages/ui/src/Dialog"
+		"src": "https://pubgi.sandpod.ir/pod/frontobm/the-dig/-/tree/main/packages/ui/src/Dialog"
 	},
 	"File": {
 		"dependencies": null,
-		"src": "https://pubgi.sandpod.ir/pod/frontobm/dig-ui/-/tree/main/packages/ui/src/File"
+		"src": "https://pubgi.sandpod.ir/pod/frontobm/the-dig/-/tree/main/packages/ui/src/File"
 	},
 	"FileUploader": {
 		"dependencies": null,
-		"src": "https://pubgi.sandpod.ir/pod/frontobm/dig-ui/-/tree/main/packages/ui/src/FileUploader"
+		"src": "https://pubgi.sandpod.ir/pod/frontobm/the-dig/-/tree/main/packages/ui/src/FileUploader"
 	},
 	"IconButton": {
 		"dependencies": null,
-		"src": "https://pubgi.sandpod.ir/pod/frontobm/dig-ui/-/tree/main/packages/ui/src/IconButton"
+		"src": "https://pubgi.sandpod.ir/pod/frontobm/the-dig/-/tree/main/packages/ui/src/IconButton"
 	},
 	"LinearProgress": {
 		"dependencies": null,
-		"src": "https://pubgi.sandpod.ir/pod/frontobm/dig-ui/-/tree/main/packages/ui/src/LinearProgress"
+		"src": "https://pubgi.sandpod.ir/pod/frontobm/the-dig/-/tree/main/packages/ui/src/LinearProgress"
 	},
 	"Menu": {
 		"dependencies": null,
-		"src": "https://pubgi.sandpod.ir/pod/frontobm/dig-ui/-/tree/main/packages/ui/src/Menu"
+		"src": "https://pubgi.sandpod.ir/pod/frontobm/the-dig/-/tree/main/packages/ui/src/Menu"
 	},
 	"Modal": {
 		"dependencies": ["motion"],
-		"src": "https://pubgi.sandpod.ir/pod/frontobm/dig-ui/-/tree/main/packages/ui/src/Modal"
+		"src": "https://pubgi.sandpod.ir/pod/frontobm/the-dig/-/tree/main/packages/ui/src/Modal"
 	},
 	"Navigation": {
 		"dependencies": null,
-		"src": "https://pubgi.sandpod.ir/pod/frontobm/dig-ui/-/tree/main/packages/ui/src/Navigation"
+		"src": "https://pubgi.sandpod.ir/pod/frontobm/the-dig/-/tree/main/packages/ui/src/Navigation"
 	},
 	"Pagination": {
 		"dependencies": ["msk-utils"],
-		"src": "https://pubgi.sandpod.ir/pod/frontobm/dig-ui/-/tree/main/packages/ui/src/Pagination"
+		"src": "https://pubgi.sandpod.ir/pod/frontobm/the-dig/-/tree/main/packages/ui/src/Pagination"
 	},
 	"RadioGroup": {
 		"dependencies": null,
-		"src": "https://pubgi.sandpod.ir/pod/frontobm/dig-ui/-/tree/main/packages/ui/src/RadioGroup"
+		"src": "https://pubgi.sandpod.ir/pod/frontobm/the-dig/-/tree/main/packages/ui/src/RadioGroup"
 	},
 	"SegmentControl": {
 		"dependencies": null,
-		"src": "https://pubgi.sandpod.ir/pod/frontobm/dig-ui/-/tree/main/packages/ui/src/SegmentControl"
+		"src": "https://pubgi.sandpod.ir/pod/frontobm/the-dig/-/tree/main/packages/ui/src/SegmentControl"
 	},
 	"Select": {
 		"dependencies": null,
-		"src": "https://pubgi.sandpod.ir/pod/frontobm/dig-ui/-/tree/main/packages/ui/src/Select"
+		"src": "https://pubgi.sandpod.ir/pod/frontobm/the-dig/-/tree/main/packages/ui/src/Select"
 	},
 	"Slider": {
 		"dependencies": ["rc-slider"],
-		"src": "https://pubgi.sandpod.ir/pod/frontobm/dig-ui/-/tree/main/packages/ui/src/Slider"
+		"src": "https://pubgi.sandpod.ir/pod/frontobm/the-dig/-/tree/main/packages/ui/src/Slider"
 	},
 	"Snackbar": {
 		"dependencies": null,
-		"src": "https://pubgi.sandpod.ir/pod/frontobm/dig-ui/-/tree/main/packages/ui/src/Snackbar"
+		"src": "https://pubgi.sandpod.ir/pod/frontobm/the-dig/-/tree/main/packages/ui/src/Snackbar"
 	},
 	"Stepper": {
 		"dependencies": null,
-		"src": "https://pubgi.sandpod.ir/pod/frontobm/dig-ui/-/tree/main/packages/ui/src/Stepper"
+		"src": "https://pubgi.sandpod.ir/pod/frontobm/the-dig/-/tree/main/packages/ui/src/Stepper"
 	},
 	"Switch": {
 		"dependencies": null,
-		"src": "https://pubgi.sandpod.ir/pod/frontobm/dig-ui/-/tree/main/packages/ui/src/Switch"
+		"src": "https://pubgi.sandpod.ir/pod/frontobm/the-dig/-/tree/main/packages/ui/src/Switch"
 	},
 	"Tabs": {
 		"dependencies": null,
-		"src": "https://pubgi.sandpod.ir/pod/frontobm/dig-ui/-/tree/main/packages/ui/src/Tabs"
+		"src": "https://pubgi.sandpod.ir/pod/frontobm/the-dig/-/tree/main/packages/ui/src/Tabs"
 	},
 	"Textarea": {
 		"dependencies": null,
-		"src": "https://pubgi.sandpod.ir/pod/frontobm/dig-ui/-/tree/main/packages/ui/src/Textarea"
+		"src": "https://pubgi.sandpod.ir/pod/frontobm/the-dig/-/tree/main/packages/ui/src/Textarea"
 	},
 	"TextField": {
 		"dependencies": null,
-		"src": "https://pubgi.sandpod.ir/pod/frontobm/dig-ui/-/tree/main/packages/ui/src/TextField"
+		"src": "https://pubgi.sandpod.ir/pod/frontobm/the-dig/-/tree/main/packages/ui/src/TextField"
 	},
 	"Toast": {
 		"dependencies": null,
-		"src": "https://pubgi.sandpod.ir/pod/frontobm/dig-ui/-/tree/main/packages/ui/src/Toast"
+		"src": "https://pubgi.sandpod.ir/pod/frontobm/the-dig/-/tree/main/packages/ui/src/Toast"
 	},
 	"Tooltip": {
 		"dependencies": ["react-tooltip"],
-		"src": "https://pubgi.sandpod.ir/pod/frontobm/dig-ui/-/tree/main/packages/ui/src/Tooltip"
+		"src": "https://pubgi.sandpod.ir/pod/frontobm/the-dig/-/tree/main/packages/ui/src/Tooltip"
 	}
 }

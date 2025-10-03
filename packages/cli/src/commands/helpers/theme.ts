@@ -1,7 +1,7 @@
 export const GLOBALS_CSS_CONTENT = `
 @import "tailwindcss";
 
-@custom-variant dark (&:is([data-theme="dark"] *));
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
 
 :root {
   color-scheme: light;

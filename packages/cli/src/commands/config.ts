@@ -30,9 +30,9 @@ export async function config() {
 		/**
 		 * 3. Read existing content of globals.css
 		 */
-		let existingContent = "";
+		let _existingContent = "";
 		if (fs.existsSync(globalCssFilePath)) {
-			existingContent = await fs.readFile(globalCssFilePath, "utf8");
+			_existingContent = await fs.readFile(globalCssFilePath, "utf8");
 		} else {
 			// If the file doesn't exist, create its parent directory if needed
 			await fs.ensureDir(path.dirname(globalCssFilePath));
@@ -42,7 +42,8 @@ export async function config() {
 		/**
 		 * 4. Prepend the new content
 		 */
-		const newContent = `${GLOBALS_CSS_CONTENT}\n${existingContent}`;
+		// const newContent = `${GLOBALS_CSS_CONTENT}\n${existingContent}`;
+		const newContent = `${GLOBALS_CSS_CONTENT}`;
 
 		/**
 		 * 5. Write the combined content back to the file
