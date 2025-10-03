@@ -1,9 +1,9 @@
 {
-	"name": "the-dig",
-	"version": "1.1.1",
+	"name": "dig-ui",
+	"version": "0.0.1",
 	"main": "./dist/main.js",
 	"bin": {
-		"the-dig": "./dist/main.js"
+		"dig-ui": "./dist/main.js"
 	},
 	"scripts": {
 		"build": "tsc"
@@ -14,14 +14,13 @@
 		"email": "prhmhoseyni@gmail.com",
 		"url": "https://github.com/prhmhoseyni"
 	},
-	"homepage": "https://the-dig.vercel.app",
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/prhmhoseyni/the-dig",
+		"url": "https://pubgi.sandpod.ir/pod/frontobm/dig-ui",
 		"directory": "packages/plugin"
 	},
 	"bugs": {
-		"url": "https://github.com/prhmhoseyni/the-dig/issues",
+		"url": "https://pubgi.sandpod.ir/pod/frontobm/dig-ui/-/issues",
 		"email": "prhmhoseyni@gmail.com"
 	},
 	"license": "ISC",

@@ -9,9 +9,9 @@ export async function init() {
 
 	try {
 		/**
-		 * 1. Create .thedigrc.json file
+		 * 1. Create .diguirc.json file
 		 */
-		const configFileName = ".thedigrc.json";
+		const configFileName = ".diguirc.json";
 		const configFilePath = path.join(process.cwd(), configFileName);
 
 		const configContent: TheDigConfig = {

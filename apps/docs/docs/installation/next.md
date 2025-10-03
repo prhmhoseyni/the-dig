@@ -50,12 +50,12 @@ Add an `@import tailwindcss` to `./app/globals.css` that imports Tailwind CSS.
 Set up your project with The DIG configuration:
 
 ```bash
-npx the-dig@latest init
+npx dig-ui@latest init
 ```
 
 This command will:
 
-- Create a `.thedigrc.json` configuration file.
+- Create a `.diguirc.json` configuration file.
 - Install necessary dependencies (`clsx`, `lucide-react`).
 - Set up the basic project structure.
 
@@ -64,7 +64,7 @@ This command will:
 Configure your project's CSS with The DIG styles:
 
 ```bash
-npx the-dig@latest config
+npx dig-ui@latest config
 ```
 
 This will update your global CSS file with The DIG styles and Tailwind CSS configuration.
@@ -74,5 +74,5 @@ This will update your global CSS file with The DIG styles and Tailwind CSS confi
 You can now start adding components to your project.
 
 ```bash
-npx the-dig@latest add Button
+npx dig-ui@latest add Button
 ```

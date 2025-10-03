@@ -7,18 +7,18 @@ import type { ComponentsData, TheDigConfig } from "./types";
 
 /**
  * -----------------------------------------------------------------------------------------------------------------
- * Reads the .thedigrc.json configuration file from the project root.
+ * Reads the .diguirc.json configuration file from the project root.
  * @returns A Promise that resolves with the TheDigConfig, or rejects if the file is not found or invalid.
  */
 export async function getTheDigConfig(): Promise<TheDigConfig> {
-	const configFileName = ".thedigrc.json";
+	const configFileName = ".diguirc.json";
 	const configFilePath = path.join(process.cwd(), configFileName);
 	const spinner = ora(`Reading ${configFileName}...`).start();
 
 	try {
 		if (!fs.existsSync(configFilePath)) {
 			spinner.fail(`${configFileName} not found.`);
-			throw new Error(`Configuration file "${configFileName}" not found. Please run "the-dig init" first.`);
+			throw new Error(`Configuration file "${configFileName}" not found. Please run "dig-ui init" first.`);
 		}
 
 		const config = (await fs.readJson(configFilePath)) as TheDigConfig;
@@ -67,7 +67,7 @@ export function installDependencies(dependencies: string[] | null): Promise<void
  * @returns A Promise that resolves with the ComponentsData, or rejects on error.
  */
 export async function getComponentData(): Promise<ComponentsData> {
-	const registryURL = "https://raw.githubusercontent.com/prhmhoseyni/the-dig/refs/heads/main/packages/cli/libs/components.json";
+	const registryURL = "https://pubgi.sandpod.ir/pod/frontobm/dig-ui/-/raw/main/packages/cli/libs/components.json";
 	const spinner = ora(`Loading component registry from ${registryURL}...`).start();
 
 	try {

@@ -21,12 +21,12 @@ The DIG CLI is a Node.js-based command-line tool that helps you initialize, conf
 Set up your project with The DIG configuration:
 
 ```bash
-npx the-dig@latest init
+npx dig-ui@latest init
 ```
 
 This command will:
 
-- Create a `.thedigrc.json` configuration file
+- Create a `.diguirc.json` configuration file
 - Install necessary dependencies (`clsx`, `lucide-react`)
 - Set up the basic project structure
 
@@ -35,7 +35,7 @@ This command will:
 Configure your project's CSS with The DIG styles:
 
 ```bash
-npx the-dig@latest config
+npx dig-ui@latest config
 ```
 
 This will update your global CSS file with The DIG styles and Tailwind CSS configuration.
@@ -45,14 +45,14 @@ This will update your global CSS file with The DIG styles and Tailwind CSS confi
 Add components from The DIG library to your project:
 
 ```bash
-npx the-dig@latest add <components-name>
+npx dig-ui@latest add <components-name>
 ```
 
 Example:
 
 ```bash
-npx the-dig@latest add TextField
-npx the-dig@latest add Button,Badge
+npx dig-ui@latest add TextField
+npx dig-ui@latest add Button,Badge
 ```
 
 ### Update Components
@@ -60,19 +60,19 @@ npx the-dig@latest add Button,Badge
 Update components from The DIG library to your project:
 
 ```bash
-npx the-dig@latest update <components-name>
+npx dig-ui@latest update <components-name>
 ```
 
 Example:
 
 ```bash
-npx the-dig@latest update TextField
-npx the-dig@latest update Button,Badge
+npx dig-ui@latest update TextField
+npx dig-ui@latest update Button,Badge
 ```
 
 ## Configuration
 
-The CLI uses a `.thedigrc.json` file to store project configuration. Here's the default configuration:
+The CLI uses a `.diguirc.json` file to store project configuration. Here's the default configuration:
 
 ```json
 {

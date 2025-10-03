@@ -14,7 +14,7 @@ export async function add(componentNamesStr: string) {
 
 		const componentsAlias = config.aliases.components;
 		if (!componentsAlias) {
-			console.error(`Error: 'aliases.components' not found in .thedigrc.json. Please check your configuration.`);
+			console.error(`Error: 'aliases.components' not found in .diguirc.json. Please check your configuration.`);
 			process.exit(1);
 		}
 

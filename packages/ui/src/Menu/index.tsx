@@ -24,7 +24,7 @@ function MenuItem(props: MenuItemProps) {
 // ... (The helper functions like getPortalRoot can remain the same)
 const getPortalRoot = () => {
 	// ... same as before
-	const portalId = "the-dig-portal";
+	const portalId = "dig-ui-portal";
 	let element = document.getElementById(portalId);
 	if (!element) {
 		element = document.createElement("div");
