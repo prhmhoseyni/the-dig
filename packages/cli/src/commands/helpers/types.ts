@@ -1,6 +1,6 @@
 /**
  * -----------------------------------------------------------------------------------------------------------------
- * Defines the structure of the .diguirc.json configuration file.
+ * Defines the structure of the .thedigrc.json configuration file.
  */
 export interface TheDigConfig {
 	tsx: boolean;

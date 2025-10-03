@@ -9,13 +9,13 @@ export async function config() {
 
 	try {
 		/**
-		 * 1. Load project configuration from .diguirc.json
+		 * 1. Load project configuration from .thedigrc.json
 		 */
 		const config = await getTheDigConfig();
 		const globalCssPathFromConfig = config.tailwind.css;
 
 		if (!globalCssPathFromConfig) {
-			console.error(`Error: 'tailwind.css' path not found in .diguirc.json. Please check your configuration.`);
+			console.error(`Error: 'tailwind.css' path not found in .thedigrc.json. Please check your configuration.`);
 			process.exit(1);
 		}
 

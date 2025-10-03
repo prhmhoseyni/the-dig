@@ -7,18 +7,18 @@ import type { ComponentsData, TheDigConfig } from "./types";
 
 /**
  * -----------------------------------------------------------------------------------------------------------------
- * Reads the .diguirc.json configuration file from the project root.
+ * Reads the .thedigrc.json configuration file from the project root.
  * @returns A Promise that resolves with the TheDigConfig, or rejects if the file is not found or invalid.
  */
 export async function getTheDigConfig(): Promise<TheDigConfig> {
-	const configFileName = ".diguirc.json";
+	const configFileName = ".thedigrc.json";
 	const configFilePath = path.join(process.cwd(), configFileName);
 	const spinner = ora(`Reading ${configFileName}...`).start();
 
 	try {
 		if (!fs.existsSync(configFilePath)) {
 			spinner.fail(`${configFileName} not found.`);
-			throw new Error(`Configuration file "${configFileName}" not found. Please run "dig-ui init" first.`);
+			throw new Error(`Configuration file "${configFileName}" not found. Please run "the-dig init" first.`);
 		}
 
 		const config = (await fs.readJson(configFilePath)) as TheDigConfig;
@@ -67,7 +67,7 @@ export function installDependencies(dependencies: string[] | null): Promise<void
  * @returns A Promise that resolves with the ComponentsData, or rejects on error.
  */
 export async function getComponentData(): Promise<ComponentsData> {
-	const registryURL = "https://pubgi.sandpod.ir/pod/frontobm/dig-ui/-/raw/main/packages/cli/libs/components.json";
+	const registryURL = "https://pubgi.sandpod.ir/pod/frontobm/the-dig/-/raw/main/packages/cli/libs/components.json";
 	const spinner = ora(`Loading component registry from ${registryURL}...`).start();
 
 	try {
@@ -94,43 +94,58 @@ export async function getComponentData(): Promise<ComponentsData> {
  * @param destination The local path where the component files should be saved.
  * @returns A Promise that resolves when the component is fetched, or rejects on error.
  */
-export async function fetchComponentFromRepository(repoURL: string, destination: string): Promise<void> {
-	const spinner = ora(`Fetching component from ${repoURL}...`).start();
+export async function fetchComponentFromRepository(srcUrl: string, destination: string): Promise<void> {
+	const spinner = ora(`Fetching component from ${srcUrl}...`).start();
 	try {
-		const parts = repoURL.split("/");
-		const owner = parts[3];
-		const repo = parts[4];
-		const branch = parts[6];
-		const repoPath = parts.slice(7).join("/");
+		// Example src: https://pubgi.sandpod.ir/pod/frontobm/the-dig/-/tree/main/packages/ui/src/Button
+		const url = new URL(srcUrl);
+		const host = url.host; // pubgi.sandpod.ir
+		const parts = url.pathname.split("/").filter(Boolean);
 
-		const apiUrl = `https://api.github.com/repos/${owner}/${repo}/contents/${repoPath}?ref=${branch}`;
+		// parts = ["pod", "frontobm", "the-dig", "-", "tree", "main", "packages", "ui", "src", "Button"]
+		// const projectPath = parts.slice(0, 3).join("/"); // pod/frontobm/the-dig
+		const branch = parts[5]; // "main"
+		const repoPath = parts.slice(6).join("/"); // packages/ui/src/Button
 
-		const response = await fetch(apiUrl);
-		if (!response.ok) {
-			throw new Error(`Failed to fetch directory info: ${response.statusText}`);
+		// 1. Get project ID
+		// const projectRes = await fetch(`https://${host}/api/v4/projects/${encodeURIComponent(projectPath)}`);
+		// if (!projectRes.ok) {
+		// 	throw new Error(`Failed to fetch project ID: ${projectRes.statusText}`);
+		// }
+		// const project = await projectRes.json();
+		const projectId = 94;
+
+		// 2. List files inside component folder
+		const treeRes = await fetch(`https://${host}/api/v4/projects/${projectId}/repository/tree?path=${repoPath}&ref=${branch}`);
+		if (!treeRes.ok) {
+			throw new Error(`Failed to fetch repository tree: ${treeRes.statusText}`);
 		}
-		const files = (await response.json()) as any[];
+		const files = await treeRes.json();
 
 		if (!Array.isArray(files)) {
-			throw new Error("The specified path is not a directory or the repository is private.");
+			throw new Error("The specified path is not a directory.");
 		}
 
 		await fs.ensureDir(destination);
 
+		// 3. Download raw file content
 		for (const file of files) {
-			if (file.type === "file" && file.download_url) {
-				const fileResponse = await fetch(file.download_url);
-				if (!fileResponse.ok) {
+			if (file.type === "blob") {
+				const rawRes = await fetch(
+					`https://${host}/api/v4/projects/${projectId}/repository/files/${encodeURIComponent(file.path)}/raw?ref=${branch}`,
+				);
+				if (!rawRes.ok) {
 					spinner.warn(`Could not fetch file: ${file.name}`);
 					continue;
 				}
-				const fileContent = await fileResponse.buffer();
+				const fileContent = await rawRes.buffer();
 				await fs.writeFile(path.join(destination, file.name), fileContent);
 			}
 		}
+
 		spinner.succeed(`Component successfully fetched and placed in ${destination}.`);
 	} catch (error) {
-		spinner.fail("Failed to fetch component from Repository.");
+		spinner.fail("Failed to fetch component from GitLab.");
 		console.error((error as Error).message);
 		throw error;
 	}
