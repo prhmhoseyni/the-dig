@@ -247,6 +247,7 @@ export default function Autocomplete<T>({
 	};
 
 	const handleRemoveChip = (option: T) => {
+		setInputValue("");
 		if (disabled || readOnly) return;
 		setSelectedOptions((prev) => prev.filter((o) => String((o as any)[idField]) !== String(option[idField])));
 
@@ -357,9 +358,9 @@ export default function Autocomplete<T>({
 				{inputValue && !loading && !disabled && !readOnly && !multiple && (
 					<X
 						onClick={handleClear}
-						className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-600 transition cursor-pointer hover:bg-gray-300 rounded-full"
+						className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-600 p-1 transition cursor-pointer hover:bg-gray-300 rounded-full"
 						style={isDropDown ? { left: "40px" } : {}}
-						size={17}
+						size={22}
 					/>
 				)}
 
@@ -416,11 +417,11 @@ export default function Autocomplete<T>({
 										dir="rtl"
 										aria-disabled={isDisabled ? "true" : "false"} //  تبدیل به Booleanish
 										tabIndex={isDisabled ? -1 : 0} //  جلوگیری از فوکوس روی آیتم غیرفعال
-										className={`vazirmatn text-base sm:text-sm  rounded p-1 ${
+										className={`vazirmatn text-base sm:text-sm  rounded p-1 mt-1 mb-1 ${
 											isDisabled
 												? "!text-gray-500 !bg-gray-200 !cursor-not-allowed opacity-60"
 												: "cursor-pointer hover:bg-gray-100"
-										} ${isSelected ? "bg-gray-200 font-medium" : ""}`}
+										} ${isSelected ? "bg-gray-200" : ""}`}
 										onClick={(e) => {
 											e.preventDefault();
 											e.stopPropagation();
