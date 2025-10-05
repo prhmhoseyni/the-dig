@@ -254,7 +254,7 @@ export default function Autocomplete<T>({
 		setOptions([]);
 		setMenuOpen(false);
 		setSelectedOption(null);
-		setSelectedOptions([]);
+		//setSelectedOptions([]);
 		setSearchDone(false);
 		setLastResults([]);
 		onSelect?.(null);
@@ -336,7 +336,7 @@ export default function Autocomplete<T>({
 					/>
 				</div>
 
-				{inputValue && !loading && !disabled && !readOnly && !multiple && (
+				{inputValue && !loading && !disabled && !readOnly && (
 					<X
 						onClick={handleClear}
 						className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-600 p-1 transition cursor-pointer hover:bg-gray-300 rounded-full"
