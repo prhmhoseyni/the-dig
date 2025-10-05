@@ -160,25 +160,6 @@ export default function Autocomplete<T>({
 		}, debounceDelay);
 
 		return () => clearTimeout(handler);
-
-		// const handler = setTimeout(async () => {
-		// 	setLoading(true);
-		// 	try {
-		// 		const res = await fetchOptions(inputValue);
-		// 		setOptions(res ?? []);
-		// 		setLastResults(res ?? []);
-		// 		setSearchDone(true);
-		// 	} catch (err) {
-		// 		console.error("Autocomplete fetch error:", err);
-		// 		setOptions([]);
-		// 		setLastResults([]);
-		// 		setSearchDone(true);
-		// 	} finally {
-		// 		setLoading(false);
-		// 	}
-		// }, debounceDelay);
-
-		// return () => clearTimeout(handler);
 	}, [
 		inputValue,
 		fetchOptions,
@@ -385,12 +366,7 @@ export default function Autocomplete<T>({
 				)}
 			</div>
 			<div style={!inputValue && !multiple ? { display: "none" } : {}}>
-				<Menu
-					anchor={containerRef.current}
-					open={menuOpen}
-					onClose={handleCloseMenu}
-					//style={!inputValue && !multiple ? { display: "none" } : {}}
-				>
+				<Menu anchor={containerRef.current} open={menuOpen} onClose={handleCloseMenu}>
 					<div
 						dir="rtl"
 						className="overflow-y-auto"
