@@ -1,37 +1,35 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState, ReactNode } from "react";
-import Menu from "@repo/ui/Menu";
-import CircularProgress from "@repo/ui/CircularProgress";
+import { useEffect, useMemo, useRef, useState } from "react";
+import type { ReactNode } from "react";
+import Menu from "../Menu";
+import CircularProgress from "../CircularProgress";
 import { X } from "lucide-react";
-import Chip from "@repo/ui/Chip";
+import Chip from "../Chip";
 
 export interface AutocompleteProps<T> {
-	options?: (T & { disabled?: boolean })[]; // داده لوکال + فیلد disable
-	fetchOptions?: (query: string) => Promise<T[]>; // گرفتن داده از API
+	options?: (T & { disabled?: boolean })[];
+	fetchOptions?: (query: string) => Promise<T[]>;
 	placeholder?: string;
 	debounceDelay?: number;
-	onSelect?: (option: T | T[] | null) => void; // single | multiple | null
-	maxDropdownHeight?: number; // پیش‌فرض 200px
+	onSelect?: (option: T | null) => void;
+	maxDropdownHeight?: number;
 	notFoundText?: string;
 	isDropDown?: boolean;
 	searchingText?: string;
-	minSearchChars?: number; // حداقل کاراکتر برای سرچ
-	defaultValue?: T | T[] | null; // مقدار پیش‌فرض
+	minSearchChars?: number;
+	defaultValue?: T | null;
+	multiple?: boolean;
 
-	// extras
 	hasError?: boolean;
-	size?: "xs" | "sm" | "md" | "lg";
+	sizeHeight?: "xs" | "sm" | "md" | "lg";
+	width?: number | string;
 	title?: string;
 	titleClassName?: string;
-	titleStyle?: React.CSSProperties;
-	titleAlign?: "left" | "right" | "center";
 	disabled?: boolean;
 	readOnly?: boolean;
-	renderOption?: (option: T, isSelected: boolean) => React.ReactNode;
-	multiple?: boolean; // حالت چندانتخابی
+	renderOption?: (option: T, isSelected: boolean) => ReactNode;
 
-	// مپینگ کلیدها
 	idField?: keyof T;
 	labelField?: keyof T;
 	valueField?: keyof T;
@@ -47,38 +45,37 @@ export default function Autocomplete<T>({
 	notFoundText = "موردی یافت نشد",
 	isDropDown = true,
 	searchingText = "در حال جستجو...",
-	minSearchChars = 2,
+	minSearchChars = 3,
 	defaultValue = null,
+	multiple = false,
 	hasError = false,
-	size = "md",
-	title = "test",
-	titleClassName,
-	titleStyle,
-	titleAlign = "right",
+	sizeHeight = "md",
+	width = "100%",
+	title = "لیست",
+	titleClassName = "",
 	disabled = false,
 	readOnly = false,
 	renderOption,
-	multiple = true,
 
 	idField = "id" as keyof T,
 	labelField = "label" as keyof T,
+	// biome-ignore lint/correctness/noUnusedFunctionParameters: ممکن است در آینده استفاده شود
 	valueField = "value" as keyof T,
 }: AutocompleteProps<T>) {
 	const [menuOpen, setMenuOpen] = useState(false);
 	const [inputValue, setInputValue] = useState("");
 	const [options, setOptions] = useState<(T & { disabled?: boolean })[]>([]);
 	const [loading, setLoading] = useState(false);
-	const [selectedOption, setSelectedOption] = useState<T | null>(null); // single
-	const [selectedOptions, setSelectedOptions] = useState<(T & { disabled?: boolean })[]>([]); // multiple
+	const [selectedOption, setSelectedOption] = useState<T | null>(null);
+	const [selectedOptions, setSelectedOptions] = useState<T[]>([]);
 	const [searchDone, setSearchDone] = useState(false);
 
+	const [lastResults, setLastResults] = useState<(T & { disabled?: boolean })[]>([]);
+
 	const isSelectingRef = useRef(false);
-	const wrapperRef = useRef<HTMLDivElement | null>(null); // anchor for Menu
-	const inputRef = useRef<HTMLInputElement | null>(null);
+	const containerRef = useRef<HTMLDivElement>(null);
+	const inputRef = useRef<HTMLInputElement>(null);
 
-	const [selectedIds, setSelectedIds] = useState<Set<string>>(() => new Set<string>());
-
-	// size classes
 	const sizeClasses: Record<string, string> = {
 		xs: "min-h-8 text-sm px-2",
 		sm: "min-h-10 text-sm px-3",
@@ -86,47 +83,41 @@ export default function Autocomplete<T>({
 		lg: "min-h-14 text-lg px-4",
 	};
 
-	// initialize defaultValue
+	const selectedIds = useMemo(
+		() => new Set(selectedOptions.map((o) => String((o as any)[idField]))),
+		[selectedOptions, idField],
+	);
+
 	useEffect(() => {
-		if (defaultValue == null) return;
-		if (multiple) {
-			if (Array.isArray(defaultValue)) {
-				setSelectedOptions(defaultValue as any);
-				const ids = new Set<string>((defaultValue as any).map((it: any) => String(it[idField])));
-				setSelectedIds(ids);
+		if (defaultValue) {
+			if (multiple) {
+				setSelectedOptions([defaultValue]);
 			} else {
-				setSelectedOptions([defaultValue as any]);
-				setSelectedIds(new Set([String((defaultValue as any)[idField])]));
-			}
-		} else {
-			if (!Array.isArray(defaultValue)) {
-				setSelectedOption(defaultValue as any);
-				setInputValue(String((defaultValue as any)[labelField] ?? ""));
-			} else {
-				const first = (defaultValue as any)[0] as T | undefined;
-				if (first) {
-					setSelectedOption(first);
-					setInputValue(String((first as any)[labelField] ?? ""));
-				}
+				setSelectedOption(defaultValue);
+				setInputValue(String(defaultValue[labelField]));
 			}
 		}
-	}, [defaultValue, multiple, idField, labelField]);
+	}, [defaultValue, labelField, multiple]);
 
 	const localMatches = useMemo(() => {
 		if (!localOptions) return [];
 		if (!inputValue) return localOptions;
 		const q = inputValue.toLowerCase();
-		return localOptions.filter((opt) =>
-			String((opt as any)[labelField])
-				.toLowerCase()
-				.includes(q),
-		);
+		return localOptions.filter((opt) => String(opt[labelField]).toLowerCase().includes(q));
 	}, [localOptions, inputValue, labelField]);
 
 	useEffect(() => {
 		if (!localOptions) return;
-		setOptions(localMatches as (T & { disabled?: boolean })[]);
-	}, [localMatches, localOptions]);
+
+		if (multiple) {
+			const filtered = localMatches.filter((opt) => !selectedIds.has(String((opt as any)[idField])));
+			setOptions(filtered as (T & { disabled?: boolean })[]);
+		} else if (selectedOption && menuOpen) {
+			setOptions(localOptions as (T & { disabled?: boolean })[]);
+		} else {
+			setOptions(localMatches as (T & { disabled?: boolean })[]);
+		}
+	}, [localMatches, localOptions, multiple, selectedIds, idField, menuOpen, selectedOption]);
 
 	useEffect(() => {
 		if (!fetchOptions) return;
@@ -152,7 +143,11 @@ export default function Autocomplete<T>({
 		const handler = setTimeout(async () => {
 			setLoading(true);
 			try {
-				const res = await fetchOptions(inputValue);
+				let res = await fetchOptions(inputValue);
+				// تغییر اصلی: حذف آیتم‌های انتخاب‌شده وقتی multiple=true
+				if (multiple && Array.isArray(res)) {
+					res = res.filter((r) => !selectedOptions.some((sel) => String(sel[idField]) === String(r[idField])));
+				}
 				setOptions((res ?? []) as (T & { disabled?: boolean })[]);
 				setSearchDone(true);
 			} catch (err) {
@@ -165,12 +160,49 @@ export default function Autocomplete<T>({
 		}, debounceDelay);
 
 		return () => clearTimeout(handler);
-	}, [inputValue, fetchOptions, debounceDelay, localOptions, localMatches, minSearchChars]);
+
+		// const handler = setTimeout(async () => {
+		// 	setLoading(true);
+		// 	try {
+		// 		const res = await fetchOptions(inputValue);
+		// 		setOptions(res ?? []);
+		// 		setLastResults(res ?? []);
+		// 		setSearchDone(true);
+		// 	} catch (err) {
+		// 		console.error("Autocomplete fetch error:", err);
+		// 		setOptions([]);
+		// 		setLastResults([]);
+		// 		setSearchDone(true);
+		// 	} finally {
+		// 		setLoading(false);
+		// 	}
+		// }, debounceDelay);
+
+		// return () => clearTimeout(handler);
+	}, [
+		inputValue,
+		fetchOptions,
+		debounceDelay,
+		minSearchChars,
+		localOptions,
+		localMatches.length,
+		multiple,
+		selectedOptions,
+		idField,
+	]);
 
 	const handleFocus = () => {
-		if (disabled || readOnly) return;
-		if ((options && options.length > 0) || fetchOptions || (localOptions && localOptions.length > 0)) {
-			setMenuOpen(true);
+		if (!disabled && !readOnly) {
+			if ((options && options.length > 0) || (fetchOptions && options.length > 0)) {
+				if (fetchOptions && lastResults.length > 0 && options.length === 0) {
+					setOptions(
+						lastResults.filter(
+							(opt) => !selectedOptions.some((sel) => String((sel as any)[idField]) === String((opt as any)[idField])),
+						),
+					);
+				}
+				setMenuOpen(true);
+			}
 		}
 	};
 
@@ -180,36 +212,58 @@ export default function Autocomplete<T>({
 			setInputValue("");
 			onSelect?.(null);
 		}
-		if (options.length === 0) setSearchDone(false);
 	};
 
 	const handleSelect = (option: T & { disabled?: boolean }) => {
-		const id = String((option as any)[idField]);
-		const propDisabled = Boolean((option as any).disabled);
-
-		if (propDisabled) return;
-		if (multiple && selectedIds.has(id)) return;
-
-		isSelectingRef.current = true;
-
 		if (multiple) {
-			const newSelected = [...selectedOptions, option];
-			setSelectedOptions(newSelected);
-			setSelectedIds((prev) => {
-				const s = new Set(prev);
-				s.add(id);
-				return s;
-			});
-			onSelect?.(newSelected);
-			setInputValue(""); // clear input
+			setSelectedOptions((prev) => {
+				const updated = [...prev, option];
 
-			if (inputRef.current) inputRef.current.focus();
+				if (localOptions) {
+					setOptions((opts) => {
+						const newOpts = opts.filter((o) => String((o as any)[idField]) !== String(option[idField]));
+						if (newOpts.length === 0) setMenuOpen(false);
+						return newOpts;
+					});
+				} else {
+					const newOpts = lastResults.filter(
+						(opt) => !updated.some((sel) => String((sel as any)[idField]) === String((opt as any)[idField])),
+					);
+					setOptions(newOpts);
+					if (newOpts.length === 0) setMenuOpen(false);
+				}
+
+				return updated;
+			});
+			onSelect?.(option);
+			setInputValue("");
 		} else {
+			isSelectingRef.current = true;
+			setInputValue(String(option[labelField]));
 			setSelectedOption(option);
-			setInputValue(String((option as any)[labelField] ?? ""));
 			setMenuOpen(false);
 			onSelect?.(option);
 		}
+	};
+
+	const handleRemoveChip = (option: T) => {
+		if (disabled || readOnly) return;
+		setSelectedOptions((prev) => prev.filter((o) => String((o as any)[idField]) !== String(option[idField])));
+
+		if (localOptions) {
+			setOptions((opts) => [...opts, option as T & { disabled?: boolean }]);
+		} else {
+			setOptions(
+				lastResults.filter(
+					(opt) =>
+						!selectedOptions
+							.filter((sel) => String((sel as any)[idField]) !== String(option[idField]))
+							.some((sel) => String((sel as any)[idField]) === String((opt as any)[idField])),
+				),
+			);
+		}
+
+		onSelect?.(null);
 	};
 
 	const handleClear = () => {
@@ -219,178 +273,173 @@ export default function Autocomplete<T>({
 		setMenuOpen(false);
 		setSelectedOption(null);
 		setSelectedOptions([]);
-		setSelectedIds(new Set());
 		setSearchDone(false);
+		setLastResults([]);
 		onSelect?.(null);
 	};
 
-	// remove chip in multiple mode
-	const removeChip = (option: T & { disabled?: boolean }) => {
-		const id = String((option as any)[idField]);
-		const updated = selectedOptions.filter((o) => String((o as any)[idField]) !== id);
-		setSelectedOptions(updated);
-		setSelectedIds((prev) => {
-			const s = new Set(prev);
-			s.delete(id);
-			return s;
-		});
-		onSelect?.(updated);
-		if (inputRef.current) inputRef.current.focus();
+	const handleClearAll = () => {
+		if (disabled || readOnly) return;
+		setSelectedOptions([]);
+		if (localOptions) {
+			setOptions(localOptions as (T & { disabled?: boolean })[]);
+		} else {
+			setOptions(lastResults);
+		}
+		onSelect?.(null);
 	};
 
+	useEffect(() => {
+		if (!multiple && menuOpen && selectedOption) {
+			const id = String((selectedOption as any)[idField]);
+			const el = document.getElementById(`autocomplete-item-${id}`);
+			if (el) {
+				setTimeout(() => el.scrollIntoView({ block: "nearest" }), 0);
+			}
+		}
+	}, [menuOpen, multiple, selectedOption, idField]);
+
 	return (
-		<div className="w-full flex flex-col gap-1">
-			{/* title */}
+		<div className="w-full flex flex-col justify-center items-start p-4" style={{ width }}>
 			{title && (
-				<label
-					className={`mb-2 text-sm font-medium text-gray-700 ${titleClassName ?? ""}`}
-					style={{ textAlign: titleAlign as any, ...(titleStyle ?? {}) }}
-				>
+				<label htmlFor="autocomplete-input" className={`mb-2 text-sm font-medium ${titleClassName}`}>
 					{title}
 				</label>
 			)}
 
-			{/* input wrapper (anchor for Menu) */}
-			<div ref={wrapperRef} className={`relative w-full max-w-md`}>
+			<div ref={containerRef} className="relative w-full">
 				<div
-					className={`
-    flex flex-wrap items-center gap-2 w-full rounded-lg border ${sizeClasses[size]} px-2
-    ${disabled ? "bg-gray-100 text-gray-400 cursor-not-allowed" : "bg-white text-prose-primary"}
-    ${readOnly ? "bg-gray-50 text-gray-500 cursor-default" : ""}
-    ${hasError ? "border-red-500" : "border-gray-300"}
-    focus-within:border-brand focus-within:shadow-focus-brand
-    transition-all ease-in-out duration-300
-  `}
-					onClick={() => {
-						if (disabled || readOnly) return;
-						inputRef.current?.focus();
-						if ((options && options.length > 0) || fetchOptions || (localOptions && localOptions.length > 0)) {
-							setMenuOpen(true);
-						}
-					}}
+					style={{ padding: "8px" }}
+					className={`flex flex-wrap items-center gap-1 border rounded-lg ${sizeClasses[sizeHeight]} ${
+						disabled ? "bg-gray-100 text-gray-400 cursor-not-allowed" : "text-prose-primary border-gray-400"
+					} ${readOnly ? "bg-gray-50 text-gray-500 cursor-default" : ""} ${
+						hasError
+							? "!border-danger focus:!border-danger focus:!shadow-focus-danger"
+							: "focus-within:border-brand focus-within:shadow-focus-brand"
+					}`}
 				>
-					{/* chips  multiple */}
 					{multiple &&
 						selectedOptions.map((opt) => (
-							<Chip
-								key={String((opt as any)[idField])}
-								color="brand"
-								onClick={(e) => {
-									e.stopPropagation();
-									removeChip(opt);
-								}}
-								className="!h-8"
-							>
-								{String((opt as any)[labelField])}
+							<Chip key={String((opt as any)[idField])} onClick={() => handleRemoveChip(opt)} className="mr-1">
+								{String(opt[labelField])}
 							</Chip>
 						))}
 
-					{/* input */}
-					{!readOnly && (
-						<input
-							ref={inputRef}
-							type="text"
-							value={inputValue}
-							onFocus={handleFocus}
-							onChange={(e) => {
-								if (disabled || readOnly) return;
-								setInputValue(e.target.value);
-								if (!multiple) setSelectedOption(null);
-								setMenuOpen(true);
-							}}
-							placeholder={multiple && selectedOptions.length > 0 ? "" : placeholder}
-							dir="rtl"
-							disabled={disabled}
-							readOnly={readOnly}
-							className="flex-1 min-w-[80px] outline-0 border-0 bg-transparent py-2"
-						/>
+					{multiple && selectedOptions.length > 2 && (
+						<Chip key="clear-all" onClick={handleClearAll} color="danger">
+							حذف همه
+						</Chip>
 					)}
 
-					{readOnly && !multiple && <div className="flex-1 min-w-[80px] py-2">{inputValue}</div>}
-
-					{!multiple && inputValue && !loading && !disabled && !readOnly && (
-						<X
-							onClick={handleClear}
-							className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 transition cursor-pointer"
-							style={isDropDown ? { left: "40px" } : {}}
-						/>
-					)}
-
-					{/* loading */}
-					{loading && (
-						<div className="absolute left-3 top-1/2 -translate-y-1/2" style={isDropDown ? { left: "40px" } : {}}>
-							<CircularProgress size="xs" />
-						</div>
-					)}
-
-					{isDropDown && !disabled && !readOnly && (
-						<div className="absolute top-1/2 -translate-y-1/2 end-3 flex items-center pointer-events-none">
-							<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none">
-								<path
-									d="M16 10L12 14L8 10"
-									stroke="rgb(var(--dig-prose-hint))"
-									strokeWidth="1.5"
-									strokeLinecap="round"
-									strokeLinejoin="round"
-								/>
-							</svg>
-						</div>
-					)}
+					<input
+						id="autocomplete-input"
+						ref={inputRef}
+						type="text"
+						autoComplete="off"
+						value={inputValue}
+						disabled={disabled}
+						readOnly={readOnly}
+						onFocus={handleFocus}
+						onChange={(e) => {
+							if (disabled || readOnly) return;
+							setInputValue(e.target.value);
+							if (!multiple) setSelectedOption(null);
+							setMenuOpen(true);
+						}}
+						placeholder={
+							((!multiple && placeholder) || (multiple && !selectedOptions.length && placeholder)) as string | undefined
+						}
+						dir="rtl"
+						className="flex-1 min-w-[60px] border-0 outline-none bg-transparent"
+					/>
 				</div>
+
+				{inputValue && !loading && !disabled && !readOnly && !multiple && (
+					<X
+						onClick={handleClear}
+						className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-600 transition cursor-pointer hover:bg-gray-300 rounded-full"
+						style={isDropDown ? { left: "40px" } : {}}
+						size={17}
+					/>
+				)}
+
+				{loading && (
+					<div className="absolute left-3 top-1/2 -translate-y-1/2" style={isDropDown ? { left: "40px" } : {}}>
+						<CircularProgress size="xs" />
+					</div>
+				)}
+				{isDropDown && (
+					<div className="absolute top-1/2 -translate-y-1/2 end-3 flex items-center pointer-events-none">
+						<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none">
+							<title>789</title>
+							<path
+								d="M16 10L12 14L8 10"
+								stroke="rgb(var(--dig-prose-hint))"
+								strokeWidth="1.5"
+								strokeLinecap="round"
+								strokeLinejoin="round"
+							/>
+						</svg>
+					</div>
+				)}
 			</div>
-
-			{/* Dropdown */}
-			<Menu anchor={wrapperRef.current} open={menuOpen} onClose={handleCloseMenu}>
-				<div
-					dir="rtl"
-					className="overflow-y-auto"
-					style={{
-						width: wrapperRef.current?.offsetWidth - 10 ?? "100%",
-						maxHeight: `${maxDropdownHeight}px`,
-						right: 0,
-					}}
+			<div style={!inputValue && !multiple ? { display: "none" } : {}}>
+				<Menu
+					anchor={containerRef.current}
+					open={menuOpen}
+					onClose={handleCloseMenu}
+					//style={!inputValue && !multiple ? { display: "none" } : {}}
 				>
-					{loading ? (
-						<Menu.Item dir="rtl" className="vazirmatn text-gray-500">
-							{searchingText}
-						</Menu.Item>
-					) : options.length > 0 ? (
-						options.map((option) => {
-							const id = String((option as any)[idField]);
-							const propDisabled = Boolean((option as any).disabled);
-							const isSelected = multiple
-								? selectedIds.has(id)
-								: selectedOption && String((selectedOption as any)[idField]) === id;
+					<div
+						dir="rtl"
+						className="overflow-y-auto"
+						style={{
+							width: containerRef.current?.offsetWidth ? containerRef.current.offsetWidth - 10 : "100%",
+							maxHeight: `${maxDropdownHeight}px`,
+							right: 0,
+						}}
+					>
+						{loading ? (
+							<Menu.Item dir="rtl" className="vazirmatn text-gray-500">
+								{searchingText}
+							</Menu.Item>
+						) : options.length > 0 ? (
+							options.map((option) => {
+								const id = String((option as any)[idField]);
+								const isSelected = !multiple && selectedOption && String((selectedOption as any)[idField]) === id;
+								const isDisabled = !multiple && isSelected;
 
-							const isDisabled = propDisabled || (multiple && selectedIds.has(id));
-
-							return (
-								<Menu.Item
-									key={id}
-									dir="rtl"
-									disabled={option.disabled} // در صورتی که Menu.Item پشتیبانی کنه
-									className={`vazirmatn text-base sm:text-lg px-2 py-1 rounded
-		${option.disabled ? "!text-gray-500 !bg-gray-200 !cursor-not-allowed opacity-60" : "cursor-pointer hover:bg-gray-100"}
-		${isSelected ? "bg-gray-200 font-medium" : ""}
-	`}
-									onClick={(e) => {
-										e.preventDefault();
-										e.stopPropagation();
-										if (isDisabled) return;
-										handleSelect(option as any);
-									}}
-								>
-									{renderOption ? renderOption(option as T, Boolean(isSelected)) : String(option[labelField])}
-								</Menu.Item>
-							);
-						})
-					) : searchDone || (!!localOptions && inputValue) ? (
-						<Menu.Item dir="rtl" className="vazirmatn text-gray-500">
-							{notFoundText}
-						</Menu.Item>
-					) : null}
-				</div>
-			</Menu>
+								return (
+									<Menu.Item
+										id={`autocomplete-item-${id}`}
+										key={id}
+										dir="rtl"
+										aria-disabled={isDisabled ? "true" : "false"} //  تبدیل به Booleanish
+										tabIndex={isDisabled ? -1 : 0} //  جلوگیری از فوکوس روی آیتم غیرفعال
+										className={`vazirmatn text-base sm:text-sm  rounded p-1 ${
+											isDisabled
+												? "!text-gray-500 !bg-gray-200 !cursor-not-allowed opacity-60"
+												: "cursor-pointer hover:bg-gray-100"
+										} ${isSelected ? "bg-gray-200 font-medium" : ""}`}
+										onClick={(e) => {
+											e.preventDefault();
+											e.stopPropagation();
+											if (isDisabled) return; //  جلوگیری از کلیک روی آیتم غیرفعال
+											handleSelect(option as any);
+										}}
+									>
+										{renderOption ? renderOption(option as T, Boolean(isSelected)) : String(option[labelField])}
+									</Menu.Item>
+								);
+							})
+						) : searchDone || (!!localOptions && inputValue) ? (
+							<Menu.Item dir="rtl" className="vazirmatn text-gray-500">
+								{notFoundText}
+							</Menu.Item>
+						) : null}
+					</div>
+				</Menu>
+			</div>
 		</div>
 	);
 }

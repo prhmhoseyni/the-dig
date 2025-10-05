@@ -1,17 +1,11 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 
-// این هوک یک مقدار ورودی می‌گیره و بعد از delay میلی‌ثانیه، مقدار نهایی رو برمی‌گردونه
-export function useDebounce(value, delay = 500) {
+export default function useDebounce<T>(value: T, delay: number): T {
 	const [debouncedValue, setDebouncedValue] = useState(value);
 
 	useEffect(() => {
-		const handler = setTimeout(() => {
-			setDebouncedValue(value);
-		}, delay);
-
-		return () => {
-			clearTimeout(handler); // جلوی اجراهای اضافی رو می‌گیره
-		};
+		const handler = setTimeout(() => setDebouncedValue(value), delay);
+		return () => clearTimeout(handler);
 	}, [value, delay]);
 
 	return debouncedValue;

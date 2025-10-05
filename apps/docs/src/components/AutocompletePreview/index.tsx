@@ -109,12 +109,13 @@ export default function Page() {
 		<Autocomplete
 			fetchOptions={fetchBook}
 			placeholder="جستجو ..."
-			idField="cover_i"
-			labelField="title"
-			valueField="cover_i"
+			idField={"key" as keyof Place}
+			labelField={"title" as keyof Place}
+			valueField={"key" as keyof Place}
 			onSelect={(book) => {
 				console.log("انتخاب شد:", book);
 			}}
+			title="Async Data"
 			minSearchChars={3}
 		/>
 	);
