@@ -41,6 +41,7 @@ export interface AutocompleteProps<T>
 	labelField?: keyof T;
 	valueField?: keyof T;
 	variant?: SelectVariant;
+	startAdornment?: ReactNode;
 }
 
 export default function Autocomplete<T>(props: AutocompleteProps<T>) {
@@ -64,6 +65,7 @@ export default function Autocomplete<T>(props: AutocompleteProps<T>) {
 		labelField = "label" as keyof T,
 		variant = "variant",
 		inputWrapperProps,
+		startAdornment,
 	} = props;
 
 	const disabled = props.disabled ?? (inputWrapperProps as { disabled?: boolean })?.disabled ?? false;
@@ -196,6 +198,9 @@ export default function Autocomplete<T>(props: AutocompleteProps<T>) {
 		}
 	};
 
+	/**
+	 * select item dropdown
+	 */
 	const handleSelect = (option: T & { disabled?: boolean }) => {
 		if (multiple) {
 			setSelectedOptions((prev) => {
@@ -228,6 +233,9 @@ export default function Autocomplete<T>(props: AutocompleteProps<T>) {
 		}
 	};
 
+	/**
+	 * remove selected item
+	 */
 	const handleRemoveChip = (option: T) => {
 		setInputValue("");
 		if (disabled || readOnly) return;
@@ -261,6 +269,9 @@ export default function Autocomplete<T>(props: AutocompleteProps<T>) {
 		onSelect?.(null);
 	};
 
+	/**
+	 * remove all selected item
+	 */
 	const handleClearAll = () => {
 		if (disabled || readOnly) return;
 		setSelectedOptions([]);
@@ -306,18 +317,24 @@ export default function Autocomplete<T>(props: AutocompleteProps<T>) {
 						},
 					)}
 				>
-					{multiple &&
-						selectedOptions.map((opt) => (
-							<Chip key={String((opt as any)[idField])} onClick={() => handleRemoveChip(opt)} className="mr-1">
-								{String(opt[labelField])}
-							</Chip>
-						))}
-
-					{multiple && selectedOptions.length > 2 && (
-						<Chip key="clear-all" onClick={handleClearAll} color="danger">
-							حذف همه
-						</Chip>
+					{startAdornment && (
+						<div className="absolute top-1/2 -translate-y-1/2 start-3 flex items-center">{startAdornment}</div>
 					)}
+
+					<div className={selectedOptions.length && startAdornment ? "mr-5" : ""}>
+						{multiple &&
+							selectedOptions.map((opt) => (
+								<Chip key={String((opt as any)[idField])} onClick={() => handleRemoveChip(opt)} className="mr-1">
+									{String(opt[labelField])}
+								</Chip>
+							))}
+
+						{multiple && selectedOptions.length > 2 && (
+							<Chip key="clear-all" onClick={handleClearAll} color="danger">
+								حذف همه
+							</Chip>
+						)}
+					</div>
 
 					<input
 						id="autocomplete-input"
@@ -342,6 +359,7 @@ export default function Autocomplete<T>(props: AutocompleteProps<T>) {
 							"flex-1 min-w-[60px] border-0 outline-none bg-transparent",
 							{ "bg-background-secondary": variant === "primary" },
 							{ "bg-background-primary": variant === "secondary" },
+							{ "mr-5": startAdornment && !selectedOptions.length },
 						)}
 						{...inputWrapperProps}
 					/>
@@ -366,7 +384,7 @@ export default function Autocomplete<T>(props: AutocompleteProps<T>) {
 				{isDropDown && (
 					<div className="absolute top-1/2 -translate-y-1/2 end-3 flex items-center pointer-events-none">
 						<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none">
-							<title>789</title>
+							<title>x</title>
 							<path
 								d="M16 10L12 14L8 10"
 								stroke="rgb(var(--dig-prose-hint))"

@@ -1,7 +1,7 @@
 "use client";
 
 import Autocomplete from "@repo/ui/Autocomplete"; // مسیر صحیح به فایل خودت
-
+import { BadgeCheck } from "lucide-react";
 interface Place {
 	// ساختار آبجکت مکانی برگشتی از Geoapify
 	place_id: string;
@@ -39,6 +39,7 @@ export default function Page() {
 			}}
 			title="Async Data"
 			minSearchChars={3}
+			startAdornment={<BadgeCheck size={18} />}
 		/>
 	);
 }
