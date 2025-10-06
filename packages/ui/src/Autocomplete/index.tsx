@@ -1,16 +1,29 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
-import type { ReactNode } from "react";
+import type { DetailedHTMLProps, HTMLAttributes, InputHTMLAttributes, ReactNode } from "react";
 import Menu from "../Menu";
 import CircularProgress from "../CircularProgress";
 import { X } from "lucide-react";
 import Chip from "../Chip";
+import clsx from "clsx";
 
-export interface AutocompleteProps<T> {
-	options?: (T & { disabled?: boolean })[];
+const sizeClasses: Record<string, string> = {
+	xs: "min-h-8 text-sm px-2",
+	sm: "min-h-10 text-sm px-3",
+	md: "min-h-12 text-base px-3",
+	lg: "min-h-14 text-lg px-4",
+};
+/**
+ * :::: types :::
+ */
+export type SelectVariant = "primary" | "secondary";
+
+export interface AutocompleteProps<T>
+	extends Omit<DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>, "defaultValue" | "onSelect"> {
+	inputWrapperProps?: Omit<DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>, "ref">;
+	options?: Array<T & { disabled?: boolean }>;
 	fetchOptions?: (query: string) => Promise<T[]>;
-	placeholder?: string;
 	debounceDelay?: number;
 	onSelect?: (option: T | null) => void;
 	maxDropdownHeight?: number;
@@ -20,48 +33,43 @@ export interface AutocompleteProps<T> {
 	minSearchChars?: number;
 	defaultValue?: T | null;
 	multiple?: boolean;
-
 	hasError?: boolean;
-	sizeHeight?: "xs" | "sm" | "md" | "lg";
+	heigth?: "xs" | "sm" | "md" | "lg";
 	width?: number | string;
-	title?: string;
-	titleClassName?: string;
-	disabled?: boolean;
-	readOnly?: boolean;
 	renderOption?: (option: T, isSelected: boolean) => ReactNode;
-
 	idField?: keyof T;
 	labelField?: keyof T;
 	valueField?: keyof T;
+	variant?: SelectVariant;
 }
 
-export default function Autocomplete<T>({
-	options: localOptions,
-	fetchOptions,
-	placeholder = "جستجو کنید",
-	debounceDelay = 500,
-	onSelect,
-	maxDropdownHeight = 200,
-	notFoundText = "موردی یافت نشد",
-	isDropDown = true,
-	searchingText = "در حال جستجو...",
-	minSearchChars = 3,
-	defaultValue = null,
-	multiple = false,
-	hasError = false,
-	sizeHeight = "md",
-	width = "100%",
-	title = "لیست",
-	titleClassName = "",
-	disabled = false,
-	readOnly = false,
-	renderOption,
+export default function Autocomplete<T>(props: AutocompleteProps<T>) {
+	const {
+		options: localOptions,
+		fetchOptions,
+		debounceDelay = 500,
+		onSelect,
+		maxDropdownHeight = 200,
+		notFoundText = "موردی یافت نشد",
+		isDropDown = true,
+		searchingText = "در حال جستجو...",
+		minSearchChars = 3,
+		defaultValue = null,
+		multiple = false,
+		hasError = false,
+		heigth = "md",
+		width = "100%",
+		renderOption,
+		idField = "id" as keyof T,
+		labelField = "label" as keyof T,
+		variant = "variant",
+		inputWrapperProps,
+	} = props;
 
-	idField = "id" as keyof T,
-	labelField = "label" as keyof T,
-	// biome-ignore lint/correctness/noUnusedFunctionParameters: ممکن است در آینده استفاده شود
-	valueField = "value" as keyof T,
-}: AutocompleteProps<T>) {
+	const disabled = props.disabled ?? (inputWrapperProps as { disabled?: boolean })?.disabled ?? false;
+	const readOnly = props.readOnly ?? (inputWrapperProps as { readOnly?: boolean })?.readOnly ?? false;
+	const placeholder = props.placeholder ?? (inputWrapperProps as { placeholder?: string })?.placeholder ?? false;
+
 	const [menuOpen, setMenuOpen] = useState(false);
 	const [inputValue, setInputValue] = useState("");
 	const [options, setOptions] = useState<(T & { disabled?: boolean })[]>([]);
@@ -75,13 +83,6 @@ export default function Autocomplete<T>({
 	const isSelectingRef = useRef(false);
 	const containerRef = useRef<HTMLDivElement>(null);
 	const inputRef = useRef<HTMLInputElement>(null);
-
-	const sizeClasses: Record<string, string> = {
-		xs: "min-h-8 text-sm px-2",
-		sm: "min-h-10 text-sm px-3",
-		md: "min-h-12 text-base px-3",
-		lg: "min-h-14 text-lg px-4",
-	};
 
 	const selectedIds = useMemo(
 		() => new Set(selectedOptions.map((o) => String((o as any)[idField]))),
@@ -283,22 +284,27 @@ export default function Autocomplete<T>({
 
 	return (
 		<div className="w-full flex flex-col justify-center items-start p-4" style={{ width }}>
-			{title && (
-				<label htmlFor="autocomplete-input" className={`mb-2 text-sm font-medium ${titleClassName}`}>
-					{title}
-				</label>
-			)}
-
 			<div ref={containerRef} className="relative w-full">
 				<div
-					style={{ padding: "8px" }}
-					className={`flex flex-wrap items-center gap-1 border rounded-lg ${sizeClasses[sizeHeight]} ${
-						disabled ? "bg-gray-100 text-gray-400 cursor-not-allowed" : "text-prose-primary border-gray-400"
-					} ${readOnly ? "bg-gray-50 text-gray-500 cursor-default" : ""} ${
-						hasError
-							? "!border-danger focus:!border-danger focus:!shadow-focus-danger"
-							: "focus-within:border-brand focus-within:shadow-focus-brand"
-					}`}
+					className={clsx(
+						"flex flex-wrap items-center gap-1 border rounded-lg transition-all ease-in-out duration-300 p-2",
+						sizeClasses[heigth],
+						{
+							// حالت غیرفعال
+							"bg-gray-100 text-gray-400 cursor-not-allowed": disabled,
+
+							//  حالت فقط خواندنی
+							"bg-gray-50 text-gray-500 cursor-default": readOnly,
+
+							//  حالت عادی
+							"text-prose-primary border-gray-400 focus-within:border-brand focus-within:shadow-focus-brand":
+								!hasError && !disabled && !readOnly,
+
+							// حالت ارور (box-shadow فقط موقع فوکوس)
+							"!border-danger focus-within:!border-danger focus-within:!shadow-focus-danger":
+								hasError && !disabled && !readOnly,
+						},
+					)}
 				>
 					{multiple &&
 						selectedOptions.map((opt) => (
@@ -319,9 +325,9 @@ export default function Autocomplete<T>({
 						type="text"
 						autoComplete="off"
 						value={inputValue}
-						disabled={disabled}
-						readOnly={readOnly}
 						onFocus={handleFocus}
+						//disabled={disabled}
+						readOnly={readOnly}
 						onChange={(e) => {
 							if (disabled || readOnly) return;
 							setInputValue(e.target.value);
@@ -332,21 +338,28 @@ export default function Autocomplete<T>({
 							((!multiple && placeholder) || (multiple && !selectedOptions.length && placeholder)) as string | undefined
 						}
 						dir="rtl"
-						className="flex-1 min-w-[60px] border-0 outline-none bg-transparent"
+						className={clsx(
+							"flex-1 min-w-[60px] border-0 outline-none bg-transparent",
+							{ "bg-background-secondary": variant === "primary" },
+							{ "bg-background-primary": variant === "secondary" },
+						)}
+						{...inputWrapperProps}
 					/>
 				</div>
 
 				{inputValue && !loading && !disabled && !readOnly && (
 					<X
 						onClick={handleClear}
-						className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-600 p-1 transition cursor-pointer hover:bg-gray-300 rounded-full"
-						style={isDropDown ? { left: "40px" } : {}}
+						className={clsx(
+							"absolute left-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-600 p-1 transition cursor-pointer hover:bg-gray-300 rounded-full",
+							{ "left-10": isDropDown },
+						)}
 						size={22}
 					/>
 				)}
 
 				{loading && (
-					<div className="absolute left-3 top-1/2 -translate-y-1/2" style={isDropDown ? { left: "40px" } : {}}>
+					<div className={clsx("absolute left-3 top-1/2 -translate-y-1/2", { "left-10": isDropDown })}>
 						<CircularProgress size="xs" />
 					</div>
 				)}
@@ -365,7 +378,7 @@ export default function Autocomplete<T>({
 					</div>
 				)}
 			</div>
-			<div style={!inputValue && !multiple ? { display: "none" } : {}}>
+			<div className={!inputValue && !multiple ? "hidden" : ""}>
 				<Menu anchor={containerRef.current} open={menuOpen} onClose={handleCloseMenu}>
 					<div
 						dir="rtl"
@@ -393,11 +406,16 @@ export default function Autocomplete<T>({
 										dir="rtl"
 										aria-disabled={isDisabled ? "true" : "false"} //  تبدیل به Booleanish
 										tabIndex={isDisabled ? -1 : 0} //  جلوگیری از فوکوس روی آیتم غیرفعال
-										className={`vazirmatn text-base sm:text-sm  rounded p-1 mt-1 mb-1 ${
-											isDisabled
-												? "!text-gray-500 !bg-gray-200 !cursor-not-allowed opacity-60"
-												: "cursor-pointer hover:bg-gray-100"
-										} ${isSelected ? "bg-gray-200" : ""}`}
+										className={clsx("vazirmatn text-base sm:text-sm rounded p-1 mt-1 mb-1", {
+											// حالت غیرفعال
+											"!text-gray-500 !bg-gray-200 !cursor-not-allowed opacity-60": isDisabled,
+
+											// حالت hover و کلیک‌پذیر
+											"cursor-pointer hover:bg-gray-100": !isDisabled,
+
+											// حالت انتخاب‌شده
+											"bg-gray-200": isSelected,
+										})}
 										onClick={(e) => {
 											e.preventDefault();
 											e.stopPropagation();
