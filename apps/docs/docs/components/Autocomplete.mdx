@@ -17,6 +17,7 @@ import Container from "./Container";
 ```tsx
 import { useRef, useState } from "react";
 import Autocomplete from "@repo/ui/Autocomplete";
+import { BadgeCheck } from "lucide-react";
 async function fetchBook(query: string): Promise<Place[]> {
   const url = `https://openlibrary.org/search.json?q=${query}`;
   const resp = await fetch(url);
@@ -33,6 +34,7 @@ export default function Page() {
       valueField="cover_i"
       onSelect={(e) => {
       }}
+      startAdornment={<BadgeCheck size={18} />}
     />
   );
 }
