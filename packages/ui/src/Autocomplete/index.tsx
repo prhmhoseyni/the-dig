@@ -324,7 +324,7 @@ export default function Autocomplete<T>(props: AutocompleteProps<T>) {
 					<div className={selectedOptions.length && startAdornment ? "mr-5" : ""}>
 						{multiple &&
 							selectedOptions.map((opt) => (
-								<Chip key={String((opt as any)[idField])} onClick={() => handleRemoveChip(opt)} className="mr-1">
+								<Chip key={String((opt as any)[idField])} onClick={() => handleRemoveChip(opt)} className="mr-1 mt-1">
 									{String(opt[labelField])}
 								</Chip>
 							))}
