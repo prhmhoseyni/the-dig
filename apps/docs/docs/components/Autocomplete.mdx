@@ -8,6 +8,7 @@ sidebar_position: 1
 import Autocomplete from "@repo/ui/Autocomplete";
 import Menu from "@repo/ui/Menu";
 import AutocompletePreview from "../../src/components/AutocompletePreview";
+import RedirectLink from "../../src/components/RedirectLink";
 import Container from "./Container";
 
 ## Async Data
@@ -28,7 +29,6 @@ export default function Page() {
   return (
     <Autocomplete
       fetchOptions={fetchBook}
-      placeholder="جستجو ..."
       idField="cover_i"
       labelField="title"
       valueField="cover_i"
@@ -48,7 +48,6 @@ export default function Page() {
   { code: 2, name: "اصفهان", slug: "isfahan" },
   { code: 3, name: "مشهد", slug: "mashhad" }]
     }
-         placeholder="جستجو کنید"
          notFoundText="موردی یافت نشد"
          maxDropdownHeight={200} 
     isDropDown={true}
@@ -74,7 +73,6 @@ export default function Page() {
              { code: 2, name: "اصفهان", slug: "isfahan" },
              { code: 3, name: "مشهد", slug: "mashhad" } 
              ]}
-           placeholder="جستجو کنید"
            notFoundText="موردی یافت نشد"
            maxDropdownHeight={200} 
            isDropDown={true}
@@ -100,7 +98,6 @@ export default function Page() {
   { code: 3, name: "مشهد", slug: "mashhad" },
 ]
     }
-         placeholder="جستجو کنید"
          notFoundText="موردی یافت نشد"
          maxDropdownHeight={200} 
     isDropDown={true}
@@ -109,7 +106,7 @@ export default function Page() {
   valueField="slug"
   onSelect={(opt) => console.log("انتخاب شد:", opt)}
   title=" sizeHeight=xs"
-  sizeHeight="xs"
+  size="xs"
        />
 </Container>
 ```tsx
@@ -126,7 +123,6 @@ export default function Page() {
              { code: 2, name: "اصفهان", slug: "isfahan" },
              { code: 3, name: "مشهد", slug: "mashhad" } 
              ]}
-           placeholder="جستجو کنید"
            notFoundText="موردی یافت نشد"
            maxDropdownHeight={200} 
            isDropDown={true}
@@ -159,7 +155,6 @@ export default function Page() {
     { id: 9, label: "کرمانشاه", value: "mashhad4" },
   ]
     }
-         placeholder="جستجو کنید"
          onSelect={() => {}}
          notFoundText="موردی یافت نشد"
          maxDropdownHeight={200} 
@@ -185,7 +180,6 @@ export default function Page() {
             { code: 2, name: "اصفهان", slug: "isfahan" },
             { code: 3, name: "مشهد", slug: "mashhad" } 
             ]}
-          placeholder="جستجو کنید"
           notFoundText="موردی یافت نشد"
           maxDropdownHeight={200} 
           isDropDown={true}
@@ -223,7 +217,6 @@ export default function Page() {
       
     }}
     title="default value"
-    placeholder="شهر مورد نظر را انتخاب کنید"
        />
 </Container>
 
@@ -248,7 +241,6 @@ export default function Page() {
               { id: 9, label: "کرمانشاه", value: "9" }
               ]}
             defaultValue={{ id: 1, label: "خراسان رضوی", value: "1" }} 
-            placeholder="جستجو کنید"
             notFoundText="موردی یافت نشد"
             maxDropdownHeight={200} 
             isDropDown={true}
@@ -283,9 +275,11 @@ export default function Page() {
     onSelect={(option) => {
       
     }}
-    placeholder="شهر مورد نظر را انتخاب کنید"
     title="readonly"
-    readOnly={true}
+     inputProps={{
+              readOnly:true,
+              placeholder:"جستجو کنید",
+            }}
        />
 </Container>
 
@@ -303,14 +297,16 @@ export default function Page() {
             { code: 2, name: "اصفهان", slug: "isfahan" },
             { code: 3, name: "مشهد", slug: "mashhad" } 
             ]}
-          placeholder="جستجو کنید"
           notFoundText="موردی یافت نشد"
           maxDropdownHeight={200} 
           isDropDown={true}
           idField="code"
           labelField="name"
           valueField="slug"
-          readOnly={true}
+          inputProps={{
+              readOnly : true,
+              placeholder:"جستجو کنید",
+            }}
           onSelect={handleSelect}
           title="readonly"/>
     </div>
@@ -338,9 +334,12 @@ export default function Page() {
 
     onSelect={(option) => {
     }}
-    placeholder="شهر مورد نظر را انتخاب کنید"
     title="disabled"
     disabled={true}
+    inputProps= {
+          {  disabled: true  ,
+             placeholder:"جستجو کنید"}
+          }
     isDropDown={true}
        />
 </Container>
@@ -359,7 +358,6 @@ export default function Page() {
             { code: 2, name: "اصفهان", slug: "isfahan" },
             { code: 3, name: "مشهد", slug: "mashhad" } 
             ]}
-          placeholder="جستجو کنید"
           notFoundText="موردی یافت نشد"
           maxDropdownHeight={200} 
           isDropDown={true}
@@ -367,6 +365,10 @@ export default function Page() {
           labelField="name"
           valueField="slug"
           disabled={true}
+          inputProps= {{
+              disabled: true,
+              placeholder:"جستجو کنید"
+             }}
           onSelect={handleSelect}
           title="disabled"/>
     </div>
@@ -395,7 +397,6 @@ export default function Page() {
     onSelect={(option) => {
       
     }}
-    placeholder="شهر مورد نظر را انتخاب کنید"
     multiple={true}
     title="multiple"
        />
@@ -416,7 +417,6 @@ export default function Page() {
             { code: 2, name: "اصفهان", slug: "isfahan" },
             { code: 3, name: "مشهد", slug: "mashhad" } 
             ]}
-          placeholder="جستجو کنید"
           notFoundText="موردی یافت نشد"
           maxDropdownHeight={200} 
           isDropDown={true}
@@ -454,7 +454,6 @@ export default function Page() {
     onSelect={(option) => {
       
     }}
-    placeholder="شهر مورد نظر را انتخاب کنید"
     multiple={true}
     title="isDropDown = false"
     isDropDown={false}
@@ -484,7 +483,6 @@ export default function Page() {
     <div className="min-h-screen flex items-center justify-center bg-gray-50">
       <Autocomplete  isDropDown={false}
         options={cities}
-        placeholder="جستجو کنید"
         onSelect={handleSelect}
         notFoundText="موردی یافت نشد"
         multiple = {true}
@@ -512,7 +510,6 @@ npx the-dig@latest add Autocomplete,Menu,CircularProgress
 | -------------------------------------------------------------- | --------------------- | ------- |
 | `options` <sup className="text-red-600 text-caption2">\*</sup>  | `Array` | -       |
 | `fetchOptions` <sup className="text-red-600 text-caption2">\*</sup>    | `promise`             | -       |
-| `placeholder` <sup className="text-red-600 text-caption2">\*</sup> | `string`        |جستجو کنید        |
 | `debounceDelay`                                                     | `number`           | 500       |
 | `onSelect`                                                     | `function`           | -       |
 | `notFoundText`                                                     | `string`           | موردی یافت نشد       |
@@ -522,10 +519,9 @@ npx the-dig@latest add Autocomplete,Menu,CircularProgress
 | `labelField`                                                     | ` keyof T`           | label       |
 | `valueField`                                                     | ` keyof T`           | value       |
 | `minSearchChars`                                                     | `number`           | 3      |
-| `readOnly`                                                     | `boolean`           | false       |
-| `disabled`                                                     | `boolean`           | false       |
 | `hasError`                                                     | `boolean`           | false       |
-| `sizeHeight`                                                     | `"xs"` \| `"sm"` \| `"md"` \| `"lg"`           | md       | 
+| `size`                                                     | `"xs"` \| `"sm"` \| `"md"` \| `"lg"`           | md       | 
 | `maxDropdownHeight`                                                     | `number`           | 200      |
 | `titleClassName`                                                     | `string`           | -      |
+|   inputProps    | `HTMLAttributes<HTMLInputElement>` (e.g. `onClick`, `disabled`, etc.)           | <RedirectLink href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement">Document</RedirectLink> |
 

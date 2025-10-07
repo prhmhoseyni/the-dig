@@ -1,12 +1,12 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState } from "react";
-import type { DetailedHTMLProps, HTMLAttributes, InputHTMLAttributes, ReactNode } from "react";
-import Menu from "../Menu";
-import CircularProgress from "../CircularProgress";
-import { X } from "lucide-react";
 import Chip from "../Chip";
 import clsx from "clsx";
+import CircularProgress from "../CircularProgress";
+import { X } from "lucide-react";
+import Menu from "../Menu";
+import { useEffect, useMemo, useRef, useState } from "react";
+import type { DetailedHTMLProps, InputHTMLAttributes, ReactNode } from "react";
 
 const sizeClasses: Record<string, string> = {
 	xs: "min-h-8 text-sm px-2",
@@ -19,9 +19,7 @@ const sizeClasses: Record<string, string> = {
  */
 export type SelectVariant = "primary" | "secondary";
 
-export interface AutocompleteProps<T>
-	extends Omit<DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>, "defaultValue" | "onSelect"> {
-	inputWrapperProps?: Omit<DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>, "ref">;
+export interface AutocompleteProps<T> {
 	options?: Array<T & { disabled?: boolean }>;
 	fetchOptions?: (query: string) => Promise<T[]>;
 	debounceDelay?: number;
@@ -42,9 +40,10 @@ export interface AutocompleteProps<T>
 	valueField?: keyof T;
 	variant?: SelectVariant;
 	startAdornment?: ReactNode;
+	inputProps: DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>;
 }
 
-export default function Autocomplete<T>(props: AutocompleteProps<T>) {
+export default function Autocomplete<T extends object>(props: AutocompleteProps<T>) {
 	const {
 		options: localOptions,
 		fetchOptions,
@@ -64,13 +63,13 @@ export default function Autocomplete<T>(props: AutocompleteProps<T>) {
 		idField = "id" as keyof T,
 		labelField = "label" as keyof T,
 		variant = "variant",
-		inputWrapperProps,
 		startAdornment,
+		inputProps = {},
 	} = props;
 
-	const disabled = props.disabled ?? (inputWrapperProps as { disabled?: boolean })?.disabled ?? false;
-	const readOnly = props.readOnly ?? (inputWrapperProps as { readOnly?: boolean })?.readOnly ?? false;
-	const placeholder = props.placeholder ?? (inputWrapperProps as { placeholder?: string })?.placeholder ?? false;
+	const disabled = inputProps.disabled ?? false;
+	const readOnly = inputProps.readOnly ?? false;
+	const placeholder = inputProps.placeholder ?? "جستجو کنید...";
 
 	const [menuOpen, setMenuOpen] = useState(false);
 	const [inputValue, setInputValue] = useState("");
@@ -86,10 +85,7 @@ export default function Autocomplete<T>(props: AutocompleteProps<T>) {
 	const containerRef = useRef<HTMLDivElement>(null);
 	const inputRef = useRef<HTMLInputElement>(null);
 
-	const selectedIds = useMemo(
-		() => new Set(selectedOptions.map((o) => String((o as any)[idField]))),
-		[selectedOptions, idField],
-	);
+	const selectedIds = useMemo(() => new Set(selectedOptions.map((o) => String(o[idField]))), [selectedOptions, idField]);
 
 	useEffect(() => {
 		if (defaultValue) {
@@ -113,7 +109,7 @@ export default function Autocomplete<T>(props: AutocompleteProps<T>) {
 		if (!localOptions) return;
 
 		if (multiple) {
-			const filtered = localMatches.filter((opt) => !selectedIds.has(String((opt as any)[idField])));
+			const filtered = localMatches.filter((opt) => !selectedIds.has(String(opt[idField])));
 			setOptions(filtered as (T & { disabled?: boolean })[]);
 		} else if (selectedOption && menuOpen) {
 			setOptions(localOptions as (T & { disabled?: boolean })[]);
@@ -180,9 +176,7 @@ export default function Autocomplete<T>(props: AutocompleteProps<T>) {
 			if ((options && options.length > 0) || (fetchOptions && options.length > 0)) {
 				if (fetchOptions && lastResults.length > 0 && options.length === 0) {
 					setOptions(
-						lastResults.filter(
-							(opt) => !selectedOptions.some((sel) => String((sel as any)[idField]) === String((opt as any)[idField])),
-						),
+						lastResults.filter((opt) => !selectedOptions.some((sel) => String(sel[idField]) === String(opt[idField]))),
 					);
 				}
 				setMenuOpen(true);
@@ -208,14 +202,12 @@ export default function Autocomplete<T>(props: AutocompleteProps<T>) {
 
 				if (localOptions) {
 					setOptions((opts) => {
-						const newOpts = opts.filter((o) => String((o as any)[idField]) !== String(option[idField]));
+						const newOpts = opts.filter((o) => String(o[idField]) !== String(option[idField]));
 						if (newOpts.length === 0) setMenuOpen(false);
 						return newOpts;
 					});
 				} else {
-					const newOpts = lastResults.filter(
-						(opt) => !updated.some((sel) => String((sel as any)[idField]) === String((opt as any)[idField])),
-					);
+					const newOpts = lastResults.filter((opt) => !updated.some((sel) => String(sel[idField]) === String(opt[idField])));
 					setOptions(newOpts);
 					if (newOpts.length === 0) setMenuOpen(false);
 				}
@@ -239,7 +231,7 @@ export default function Autocomplete<T>(props: AutocompleteProps<T>) {
 	const handleRemoveChip = (option: T) => {
 		setInputValue("");
 		if (disabled || readOnly) return;
-		setSelectedOptions((prev) => prev.filter((o) => String((o as any)[idField]) !== String(option[idField])));
+		setSelectedOptions((prev) => prev.filter((o) => String(o[idField]) !== String(option[idField])));
 
 		if (localOptions) {
 			setOptions((opts) => [...opts, option as T & { disabled?: boolean }]);
@@ -248,8 +240,8 @@ export default function Autocomplete<T>(props: AutocompleteProps<T>) {
 				lastResults.filter(
 					(opt) =>
 						!selectedOptions
-							.filter((sel) => String((sel as any)[idField]) !== String(option[idField]))
-							.some((sel) => String((sel as any)[idField]) === String((opt as any)[idField])),
+							.filter((sel) => String(sel[idField]) !== String(option[idField]))
+							.some((sel) => String(sel[idField]) === String(opt[idField])),
 				),
 			);
 		}
@@ -283,16 +275,6 @@ export default function Autocomplete<T>(props: AutocompleteProps<T>) {
 		onSelect?.(null);
 	};
 
-	useEffect(() => {
-		if (!multiple && menuOpen && selectedOption) {
-			const id = String((selectedOption as any)[idField]);
-			const el = document.getElementById(`autocomplete-item-${id}`);
-			if (el) {
-				setTimeout(() => el.scrollIntoView({ block: "nearest" }), 0);
-			}
-		}
-	}, [menuOpen, multiple, selectedOption, idField]);
-
 	return (
 		<div className="w-full flex flex-col justify-center items-start p-4" style={{ width }}>
 			<div ref={containerRef} className="relative w-full">
@@ -324,13 +306,13 @@ export default function Autocomplete<T>(props: AutocompleteProps<T>) {
 					<div className={selectedOptions.length && startAdornment ? "mr-5" : ""}>
 						{multiple &&
 							selectedOptions.map((opt) => (
-								<Chip key={String((opt as any)[idField])} onClick={() => handleRemoveChip(opt)} className="mr-1 mt-1">
+								<Chip key={String(opt[idField])} onClick={() => handleRemoveChip(opt)} className="mr-1 mt-1">
 									{String(opt[labelField])}
 								</Chip>
 							))}
 
 						{multiple && selectedOptions.length > 2 && (
-							<Chip key="clear-all" onClick={handleClearAll} color="danger">
+							<Chip className="mr-1 mt-1" key="clear-all" onClick={handleClearAll} color="danger">
 								حذف همه
 							</Chip>
 						)}
@@ -354,14 +336,13 @@ export default function Autocomplete<T>(props: AutocompleteProps<T>) {
 						placeholder={
 							((!multiple && placeholder) || (multiple && !selectedOptions.length && placeholder)) as string | undefined
 						}
-						dir="rtl"
 						className={clsx(
 							"flex-1 min-w-[60px] border-0 outline-none bg-transparent",
 							{ "bg-background-secondary": variant === "primary" },
 							{ "bg-background-primary": variant === "secondary" },
 							{ "mr-5": startAdornment && !selectedOptions.length },
 						)}
-						{...inputWrapperProps}
+						{...inputProps}
 					/>
 				</div>
 
@@ -413,8 +394,8 @@ export default function Autocomplete<T>(props: AutocompleteProps<T>) {
 							</Menu.Item>
 						) : options.length > 0 ? (
 							options.map((option) => {
-								const id = String((option as any)[idField]);
-								const isSelected = !multiple && selectedOption && String((selectedOption as any)[idField]) === id;
+								const id = String(option[idField]);
+								const isSelected = !multiple && selectedOption && String(selectedOption[idField]) === id;
 								const isDisabled = !multiple && isSelected;
 
 								return (
@@ -438,7 +419,7 @@ export default function Autocomplete<T>(props: AutocompleteProps<T>) {
 											e.preventDefault();
 											e.stopPropagation();
 											if (isDisabled) return; //  جلوگیری از کلیک روی آیتم غیرفعال
-											handleSelect(option as any);
+											handleSelect(option);
 										}}
 									>
 										{renderOption ? renderOption(option as T, Boolean(isSelected)) : String(option[labelField])}
