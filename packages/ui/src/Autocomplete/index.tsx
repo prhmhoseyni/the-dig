@@ -1,12 +1,13 @@
 "use client";
 
-import Chip from "../Chip";
 import clsx from "clsx";
-import CircularProgress from "../CircularProgress";
 import { X } from "lucide-react";
-import Menu from "../Menu";
-import { useEffect, useMemo, useRef, useState } from "react";
 import type { DetailedHTMLProps, InputHTMLAttributes, ReactNode } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
+
+import Chip from "../Chip";
+import CircularProgress from "../CircularProgress";
+import Menu from "../Menu";
 
 const sizeClasses: Record<string, string> = {
 	xs: "min-h-8 text-sm px-2",
@@ -18,9 +19,9 @@ const sizeClasses: Record<string, string> = {
  * :::: types :::
  */
 export type SelectVariant = "primary" | "secondary";
-
+export type DisabledType = { disabled?: boolean };
 export interface AutocompleteProps<T> {
-	options?: Array<T & { disabled?: boolean }>;
+	options?: Array<T & DisabledType>;
 	fetchOptions?: (query: string) => Promise<T[]>;
 	debounceDelay?: number;
 	onSelect?: (option: T | null) => void;
@@ -72,14 +73,14 @@ export default function Autocomplete<T extends object>(props: AutocompleteProps<
 	const placeholder = inputProps.placeholder ?? "جستجو کنید...";
 
 	const [menuOpen, setMenuOpen] = useState(false);
-	const [inputValue, setInputValue] = useState("");
-	const [options, setOptions] = useState<(T & { disabled?: boolean })[]>([]);
+	const [inputValue, setInputValue] = useState(defaultValue && !multiple ? String(defaultValue[labelField]) : "");
+	const [options, setOptions] = useState<(T & DisabledType)[]>([]);
 	const [loading, setLoading] = useState(false);
-	const [selectedOption, setSelectedOption] = useState<T | null>(null);
-	const [selectedOptions, setSelectedOptions] = useState<T[]>([]);
+	const [selectedOption, setSelectedOption] = useState<T | null>(defaultValue && !multiple ? defaultValue : null);
+	const [selectedOptions, setSelectedOptions] = useState<T[]>(defaultValue && multiple ? [defaultValue] : []);
 	const [searchDone, setSearchDone] = useState(false);
 
-	const [lastResults, setLastResults] = useState<(T & { disabled?: boolean })[]>([]);
+	const [lastResults, setLastResults] = useState<(T & DisabledType)[]>([]);
 
 	const isSelectingRef = useRef(false);
 	const containerRef = useRef<HTMLDivElement>(null);
@@ -87,16 +88,16 @@ export default function Autocomplete<T extends object>(props: AutocompleteProps<
 
 	const selectedIds = useMemo(() => new Set(selectedOptions.map((o) => String(o[idField]))), [selectedOptions, idField]);
 
-	useEffect(() => {
-		if (defaultValue) {
-			if (multiple) {
-				setSelectedOptions([defaultValue]);
-			} else {
-				setSelectedOption(defaultValue);
-				setInputValue(String(defaultValue[labelField]));
-			}
-		}
-	}, [defaultValue, labelField, multiple]);
+	// useEffect(() => {
+	// 	if (defaultValue) {
+	// 		if (multiple) {
+	// 			setSelectedOptions([defaultValue]);
+	// 		} else {
+	// 			setSelectedOption(defaultValue);
+	// 			setInputValue(String(defaultValue[labelField]));
+	// 		}
+	// 	}
+	// }, [defaultValue, labelField, multiple]);
 
 	const localMatches = useMemo(() => {
 		if (!localOptions) return [];
@@ -110,11 +111,11 @@ export default function Autocomplete<T extends object>(props: AutocompleteProps<
 
 		if (multiple) {
 			const filtered = localMatches.filter((opt) => !selectedIds.has(String(opt[idField])));
-			setOptions(filtered as (T & { disabled?: boolean })[]);
+			setOptions(filtered as (T & DisabledType)[]);
 		} else if (selectedOption && menuOpen) {
-			setOptions(localOptions as (T & { disabled?: boolean })[]);
+			setOptions(localOptions as (T & DisabledType)[]);
 		} else {
-			setOptions(localMatches as (T & { disabled?: boolean })[]);
+			setOptions(localMatches as (T & DisabledType)[]);
 		}
 	}, [localMatches, localOptions, multiple, selectedIds, idField, menuOpen, selectedOption]);
 
@@ -147,7 +148,7 @@ export default function Autocomplete<T extends object>(props: AutocompleteProps<
 				if (multiple && Array.isArray(res)) {
 					res = res.filter((r) => !selectedOptions.some((sel) => String(sel[idField]) === String(r[idField])));
 				}
-				setOptions((res ?? []) as (T & { disabled?: boolean })[]);
+				setOptions((res ?? []) as (T & DisabledType)[]);
 				setSearchDone(true);
 			} catch (err) {
 				console.error("Autocomplete fetch error:", err);
@@ -195,7 +196,7 @@ export default function Autocomplete<T extends object>(props: AutocompleteProps<
 	/**
 	 * select item dropdown
 	 */
-	const handleSelect = (option: T & { disabled?: boolean }) => {
+	const handleSelect = (option: T & DisabledType) => {
 		if (multiple) {
 			setSelectedOptions((prev) => {
 				const updated = [...prev, option];
@@ -234,7 +235,7 @@ export default function Autocomplete<T extends object>(props: AutocompleteProps<
 		setSelectedOptions((prev) => prev.filter((o) => String(o[idField]) !== String(option[idField])));
 
 		if (localOptions) {
-			setOptions((opts) => [...opts, option as T & { disabled?: boolean }]);
+			setOptions((opts) => [...opts, option as T & DisabledType]);
 		} else {
 			setOptions(
 				lastResults.filter(
@@ -268,7 +269,7 @@ export default function Autocomplete<T extends object>(props: AutocompleteProps<
 		if (disabled || readOnly) return;
 		setSelectedOptions([]);
 		if (localOptions) {
-			setOptions(localOptions as (T & { disabled?: boolean })[]);
+			setOptions(localOptions as (T & DisabledType)[]);
 		} else {
 			setOptions(lastResults);
 		}
@@ -350,15 +351,15 @@ export default function Autocomplete<T extends object>(props: AutocompleteProps<
 					<X
 						onClick={handleClear}
 						className={clsx(
-							"absolute left-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-600 p-1 transition cursor-pointer hover:bg-gray-300 rounded-full",
-							{ "left-10": isDropDown },
+							"absolute end-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-600 p-1 transition cursor-pointer hover:bg-gray-300 rounded-full",
+							{ "end-10": isDropDown },
 						)}
 						size={22}
 					/>
 				)}
 
 				{loading && (
-					<div className={clsx("absolute left-3 top-1/2 -translate-y-1/2", { "left-10": isDropDown })}>
+					<div className={clsx("absolute end-3 top-1/2 -translate-y-1/2", { "end-10": isDropDown })}>
 						<CircularProgress size="xs" />
 					</div>
 				)}
