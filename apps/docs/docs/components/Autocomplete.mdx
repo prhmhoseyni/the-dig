@@ -240,7 +240,7 @@ export default function Page() {
               { id: 8, label: "همدان", value: "8" },
               { id: 9, label: "کرمانشاه", value: "9" }
               ]}
-            defaultValue={{ id: 1, label: "خراسان رضوی", value: "1" }} 
+            defaultValue={{ id: 1, label: "خراسان رضوی", value: "1" }} // ["1"]
             notFoundText="موردی یافت نشد"
             maxDropdownHeight={200} 
             isDropDown={true}
@@ -439,18 +439,18 @@ export default function Page() {
          options={
       
       [
- { id: 1, label: "خراسان رضوی", value: "1" },
-    { id: 2, label: "تهران", value: "2" },
-    { id: 3, label: "خراسان شمالی", value: "3" },
-    { id: 4, label: "کردستان", value: "4" },
-    { id: 5, label: "خراسان جنوبی", value: "5" },
-    { id: 6, label: "کرمان", value: "6" },
-    { id: 7, label: "خوزستان", value: "7" },
-    { id: 8, label: "همدان", value: "8" },
-    { id: 9, label: "کرمانشاه", value: "9" }
+ { id: "1", label: "خراسان رضوی", value: "1" },
+    { id: "2", label: "تهران", value: "2" },
+    { id: "3", label: "خراسان شمالی", value: "3" },
+    { id: "4", label: "کردستان", value: "4" },
+    { id: "5", label: "خراسان جنوبی", value: "5" },
+    { id: "6", label: "کرمان", value: "6" },
+    { id: "7", label: "خوزستان", value: "7" },
+    { id: "8", label: "همدان", value: "8" },
+    { id: "9", label: "کرمانشاه", value: "9" }
 ]
     }
-       defaultValue={{ id: 1, label: "خراسان رضوی", value: "tehran" }} 
+       defaultValue={["4" , "5"]} 
     onSelect={(option) => {
       
     }}
@@ -483,6 +483,7 @@ export default function Page() {
     <div className="min-h-screen flex items-center justify-center bg-gray-50">
       <Autocomplete  isDropDown={false}
         options={cities}
+        defaultValue={["4" , "5"]} 
         onSelect={handleSelect}
         notFoundText="موردی یافت نشد"
         multiple = {true}

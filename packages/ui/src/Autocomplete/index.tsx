@@ -3,7 +3,7 @@
 import clsx from "clsx";
 import { X } from "lucide-react";
 import type { DetailedHTMLProps, InputHTMLAttributes, ReactNode } from "react";
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 
 import Chip from "../Chip";
 import CircularProgress from "../CircularProgress";
@@ -30,7 +30,7 @@ export interface AutocompleteProps<T> {
 	isDropDown?: boolean;
 	searchingText?: string;
 	minSearchChars?: number;
-	defaultValue?: T | null;
+	defaultValue?: T | string | Array<T | string> | null;
 	multiple?: boolean;
 	hasError?: boolean;
 	heigth?: "xs" | "sm" | "md" | "lg";
@@ -73,18 +73,49 @@ export default function Autocomplete<T extends object>(props: AutocompleteProps<
 	const placeholder = inputProps.placeholder ?? "جستجو کنید...";
 
 	const [menuOpen, setMenuOpen] = useState(false);
-	const [inputValue, setInputValue] = useState(defaultValue && !multiple ? String(defaultValue[labelField]) : "");
+
 	const [options, setOptions] = useState<(T & DisabledType)[]>([]);
 	const [loading, setLoading] = useState(false);
 	const [searchDone, setSearchDone] = useState(false);
-	const [selected, setSelected] = useState<T[]>(defaultValue ? (multiple ? [defaultValue] : [defaultValue]) : []);
 	const [lastResults, setLastResults] = useState<(T & DisabledType)[]>([]);
 
 	const isSelectingRef = useRef(false);
 	const containerRef = useRef<HTMLDivElement>(null);
 	const inputRef = useRef<HTMLInputElement>(null);
 
+	// تابع برای پیدا کردن آیتم بر اساس آیدی
+
+	// تابع کمکی برای پیدا کردن آیتم بر اساس id
+	const findOptionById = useCallback(
+		(id: string) => localOptions?.find((o) => String(o[idField]) === id),
+		[localOptions, idField],
+	);
+
+	// و حالا useMemo بدون خطا:
+	const initialSelected = useMemo(() => {
+		if (!defaultValue) return [];
+
+		if (Array.isArray(defaultValue)) {
+			// حالت multiple: آرایه‌ای از id یا object
+			return defaultValue
+				.map((item) => (typeof item === "string" ? findOptionById(item) : item))
+				.filter((v): v is T => Boolean(v));
+		}
+
+		// حالت تکی id یا object
+		if (typeof defaultValue === "string") {
+			const found = findOptionById(defaultValue);
+			return found ? [found] : [];
+		}
+
+		return [defaultValue];
+	}, [defaultValue, findOptionById]);
+
+	const [selected, setSelected] = useState<T[]>(initialSelected);
 	const selectedIds = useMemo(() => new Set(selected.map((o) => String(o[idField]))), [selected, idField]);
+	const [inputValue, setInputValue] = useState(
+		!multiple && initialSelected.length > 0 ? String(initialSelected[0]?.[labelField] ?? "") : "",
+	);
 
 	const localMatches = useMemo(() => {
 		if (!localOptions) return [];
