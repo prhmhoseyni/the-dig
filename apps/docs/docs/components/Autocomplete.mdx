@@ -88,7 +88,25 @@ export default function Page() {
 
 ## Size
 <Container>
-
+ <Autocomplete
+    options={
+      
+    [
+  { code: 1, name: "تهران", slug: "tehran" },
+  { code: 2, name: "اصفهان", slug: "isfahan" },
+  { code: 3, name: "مشهد", slug: "mashhad" },
+]
+    }
+         notFoundText="موردی یافت نشد"
+         maxDropdownHeight={200} 
+    isDropDown={true}
+  idField="code"
+  labelField="name"
+  valueField="slug"
+  onSelect={(opt) => console.log("انتخاب شد:", opt)}
+  title=" size=xs"
+  size="lg"
+       />
        <Autocomplete
          options={
       
@@ -108,6 +126,7 @@ export default function Page() {
   title=" size=xs"
   size="xs"
        />
+           
 </Container>
 ```tsx
 import { useRef, useState } from "react";
@@ -240,7 +259,7 @@ export default function Page() {
               { id: 8, label: "همدان", value: "8" },
               { id: 9, label: "کرمانشاه", value: "9" }
               ]}
-            defaultValue={{ id: 1, label: "خراسان رضوی", value: "1" }} // ["1"]
+            defaultValue={{ id: 1, label: "خراسان رضوی", value: "tehran" }} 
             notFoundText="موردی یافت نشد"
             maxDropdownHeight={200} 
             isDropDown={true}
@@ -450,7 +469,6 @@ export default function Page() {
     { id: "9", label: "کرمانشاه", value: "9" }
 ]
     }
-       defaultValue={["4" , "5"]} 
     onSelect={(option) => {
       
     }}
@@ -483,7 +501,6 @@ export default function Page() {
     <div className="min-h-screen flex items-center justify-center bg-gray-50">
       <Autocomplete  isDropDown={false}
         options={cities}
-        defaultValue={["4" , "5"]} 
         onSelect={handleSelect}
         notFoundText="موردی یافت نشد"
         multiple = {true}
@@ -494,6 +511,69 @@ export default function Page() {
   );
 }
 ```
+
+## Variant
+<Container>
+ <Autocomplete
+         options={
+      
+      [
+ { id: 1, label: "خراسان رضوی", value: "tehran" },
+    { id: 2, label: "تهران", value: "isfahan" },
+    { id: 3, label: "خراسان شمالی", value: "mashhad" },
+    { id: 4, label: "کردستان", value: "shiraz" },
+    { id: 5, label: "خراسان جنوبی", value: "tabriz" },
+    { id: 6, label: "کرمان", value: "mashhad1" },
+    { id: 7, label: "خوزستان", value: "mashhad2" },
+    { id: 8, label: "همدان", value: "mashhad3" },
+    { id: 9, label: "کرمانشاه", value: "mashhad4" }
+]
+    }
+    onSelect={(option) => {
+      
+    }}
+    title="default value"
+    variant="secondary"
+       />
+</Container>
+
+```tsx
+import { useRef, useState } from "react";
+import Autocomplete from "@repo/ui/Autocomplete";
+
+export default function Page() {
+  const handleSelect = (option: AutocompleteOption) => { }
+  return (
+    <div className="min-h-screen flex items-center justify-center bg-gray-50">
+       <Autocomplete
+            options={[
+              { id: 1, label: "خراسان رضوی", value: "1" },
+              { id: 2, label: "تهران", value: "2" },
+              { id: 3, label: "خراسان شمالی", value: "3" },
+              { id: 4, label: "کردستان", value: "4" },
+              { id: 5, label: "خراسان جنوبی", value: "5" },
+              { id: 6, label: "کرمان", value: "6" },
+              { id: 7, label: "خوزستان", value: "7" },
+              { id: 8, label: "همدان", value: "8" },
+              { id: 9, label: "کرمانشاه", value: "9" }
+              ]}
+            notFoundText="موردی یافت نشد"
+            maxDropdownHeight={200} 
+            isDropDown={true}
+            idField="code"
+            labelField="name"
+            valueField="slug"
+            onSelect={handleSelect}
+            variant="secondary"
+            title="default value"/>
+    </div>
+  );
+}
+```
+
+
+
+
 
 
 
@@ -522,7 +602,7 @@ npx the-dig@latest add Autocomplete,Menu,CircularProgress
 | `minSearchChars`                                                     | `number`           | 3      |
 | `hasError`                                                     | `boolean`           | false       |
 | `size`                                                     | `"xs"` \| `"sm"` \| `"md"` \| `"lg"`           | md       | 
+| `variant`                                                     | `"primary"` \| `"secondary"` \|        | primary       | 
 | `maxDropdownHeight`                                                     | `number`           | 200      |
-| `titleClassName`                                                     | `string`           | -      |
 |   inputProps    | `HTMLAttributes<HTMLInputElement>` (`placeholder`, `disabled`, `readOnly` , etc.)           | <RedirectLink href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement">Document</RedirectLink> |
 
