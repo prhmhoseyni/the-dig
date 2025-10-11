@@ -83,15 +83,12 @@ export default function Autocomplete<T extends object>(props: AutocompleteProps<
 	const containerRef = useRef<HTMLDivElement>(null);
 	const inputRef = useRef<HTMLInputElement>(null);
 
-	// تابع برای پیدا کردن آیتم بر اساس آیدی
-
 	// تابع کمکی برای پیدا کردن آیتم بر اساس id
 	const findOptionById = useCallback(
 		(id: string) => localOptions?.find((o) => String(o[idField]) === id),
 		[localOptions, idField],
 	);
 
-	// و حالا useMemo بدون خطا:
 	const initialSelected = useMemo(() => {
 		if (!defaultValue) return [];
 
