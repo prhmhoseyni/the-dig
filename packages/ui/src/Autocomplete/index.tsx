@@ -33,7 +33,7 @@ export interface AutocompleteProps<T> {
 	defaultValue?: T | string | Array<T | string> | null;
 	multiple?: boolean;
 	hasError?: boolean;
-	heigth?: "xs" | "sm" | "md" | "lg";
+	size?: "xs" | "sm" | "md" | "lg";
 	width?: number | string;
 	renderOption?: (option: T, isSelected: boolean) => ReactNode;
 	idField?: keyof T;
@@ -58,7 +58,7 @@ export default function Autocomplete<T extends object>(props: AutocompleteProps<
 		defaultValue = null,
 		multiple = false,
 		hasError = false,
-		heigth = "md",
+		size = "md",
 		width = "100%",
 		renderOption,
 		idField = "id" as keyof T,
@@ -285,7 +285,7 @@ export default function Autocomplete<T extends object>(props: AutocompleteProps<
 				<div
 					className={clsx(
 						"flex flex-wrap items-center gap-1 border rounded-lg transition-all ease-in-out duration-300 p-2",
-						sizeClasses[heigth],
+						sizeClasses[size],
 						{
 							// حالت غیرفعال
 							"bg-gray-100 text-gray-400 cursor-not-allowed": disabled,
