@@ -5,6 +5,7 @@ sidebar_position: 1
 # Autocomplete
 
 ## Preview
+
 import Autocomplete from "@repo/ui/Autocomplete";
 import Menu from "@repo/ui/Menu";
 import AutocompletePreview from "../../src/components/AutocompletePreview";
@@ -12,6 +13,7 @@ import RedirectLink from "../../src/components/RedirectLink";
 import Container from "./Container";
 
 ## Async Data
+
 <Container>
   <AutocompletePreview />
 </Container>
@@ -40,21 +42,18 @@ export default function Page() {
 ```
 
 ## Default Component
+
 <Container>
 
   <Autocomplete
-         options={[
-  { code: 1, name: "تهران", slug: "tehran" },
-  { code: 2, name: "اصفهان", slug: "isfahan" },
-  { code: 3, name: "مشهد", slug: "mashhad" }]
-    }
-         notFoundText="موردی یافت نشد"
-         maxDropdownHeight={200} 
+    options={[
+        { code: 1, name: "تهران"},
+        { code: 2, name: "اصفهان"},
+        { code: 3, name: "مشهد"}]}
     isDropDown={true}
-  idField="code"
-  labelField="name"
-  onSelect={(opt) => {}}
-  title="default"
+    idField="code"
+    labelField="name"
+    onSelect={(opt) => {}}
        />
 </Container>
 
@@ -63,89 +62,69 @@ import { useRef, useState } from "react";
 import Autocomplete from "@repo/ui/Autocomplete";
 
 export default function Page() {
-  const handleSelect = (option: AutocompleteOption) => { }
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-50">
        <Autocomplete
            options={[
-             { code: 1, name: "تهران", slug: "tehran" },
-             { code: 2, name: "اصفهان", slug: "isfahan" },
-             { code: 3, name: "مشهد", slug: "mashhad" } 
+             { code: 1, name: "تهران"},
+             { code: 2, name: "اصفهان"},
+             { code: 3, name: "مشهد"}
              ]}
-           notFoundText="موردی یافت نشد"
-           maxDropdownHeight={200} 
            isDropDown={true}
            idField="code"
            labelField="name"
-           onSelect={handleSelect}
-           title="default"/>
+           onSelect={(e) => {}}
+           />
     </div>
   );
 }
 ```
 
 ## Size
+
 <Container>
- <Autocomplete
-    options={
-      
-    [
-  { code: 1, name: "تهران", slug: "tehran" },
-  { code: 2, name: "اصفهان", slug: "isfahan" },
-  { code: 3, name: "مشهد", slug: "mashhad" },
-]
-    }
-         notFoundText="موردی یافت نشد"
-         maxDropdownHeight={200} 
+  <Autocomplete
+    options={[
+      { code: 1, name: "تهران"},
+      { code: 2, name: "اصفهان"},
+      { code: 3, name: "مشهد"},
+    ]}
     isDropDown={true}
-  idField="code"
-  labelField="name"
-  onSelect={(opt) => {}}
-  title=" size=xs"
-  size="lg"
-       />
-       <Autocomplete
-         options={
-      
-      [
-  { code: 1, name: "تهران", slug: "tehran" },
-  { code: 2, name: "اصفهان", slug: "isfahan" },
-  { code: 3, name: "مشهد", slug: "mashhad" },
-]
-    }
-         notFoundText="موردی یافت نشد"
-         maxDropdownHeight={200} 
+    idField="code"
+    labelField="name"
+    onSelect={(opt) => {}}
+    size="lg"
+  />
+  <Autocomplete
+    options={[
+      { code: 1, name: "تهران"},
+      { code: 2, name: "اصفهان"},
+      { code: 3, name: "مشهد"},
+    ]}
     isDropDown={true}
-  idField="code"
-  labelField="name"
-  onSelect={(opt) => {}}
-  title=" size=xs"
-  size="xs"
-       />
-           
+    idField="code"
+    labelField="name"
+    onSelect={(opt) => {}}
+    size="xs"
+  />
 </Container>
-```tsx
-import { useRef, useState } from "react";
-import Autocomplete from "@repo/ui/Autocomplete";
+```tsx import {(useRef, useState)} from "react"; import Autocomplete from "@repo/ui/Autocomplete";
 
 export default function Page() {
-  const handleSelect = (option: AutocompleteOption) => { }
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-50">
        <Autocomplete
            options={[
-             { code: 1, name: "تهران", slug: "tehran" },
-             { code: 2, name: "اصفهان", slug: "isfahan" },
-             { code: 3, name: "مشهد", slug: "mashhad" } 
+             { code: 1, name: "تهران"},
+             { code: 2, name: "اصفهان"},
+             { code: 3, name: "مشهد"} 
              ]}
-           notFoundText="موردی یافت نشد"
-           maxDropdownHeight={200} 
            isDropDown={true}
            idField="code"
            labelField="name"
            size="xs"
-           onSelect={handleSelect}
-           title="size=xs"/>
+           onSelect={(e) => {}}
+           />
     </div>
   );
 }
@@ -153,78 +132,79 @@ export default function Page() {
 ## Has Error
 <Container>
 
-
   <Autocomplete
          options={[
-              { id: "1", label: "خراسان رضوی", value: "1" },
-              { id: "2", label: "تهران", value: "2" },
-              { id: "3", label: "خراسان شمالی", value: "3" },
-              { id: "4", label: "کردستان", value: "4" },
-              { id: "5", label: "خراسان جنوبی", value: "5" },
-              { id: "6", label: "کرمان", value: "6" },
-              { id: "7", label: "خوزستان", value: "7" },
-              { id: "8", label: "همدان", value: "8" },
-              { id: "9", label: "کرمانشاه", value: "9" }
+              { id: "1", label: "خراسان رضوی"},
+              { id: "2", label: "تهران"},
+              { id: "3", label: "خراسان شمالی"},
+              { id: "4", label: "کردستان"},
+              { id: "5", label: "خراسان جنوبی"},
+              { id: "6", label: "کرمان"},
+              { id: "7", label: "خوزستان"},
+              { id: "8", label: "همدان"},
+              { id: "9", label: "کرمانشاه"}
               ]}
          onSelect={() => {}}
-         notFoundText="موردی یافت نشد"
-         maxDropdownHeight={200} 
-    isDropDown={true}
-    title="hasError = true"
-    hasError = {true}
+         isDropDown={true}
+         hasError = {true}
        />
 </Container>
-
-
-
-```tsx
-import { useRef, useState } from "react";
-import Autocomplete from "@repo/ui/Autocomplete";
+```tsx import {(useRef, useState)} from "react"; import Autocomplete from "@repo/ui/Autocomplete";
 
 export default function Page() {
-  const handleSelect = (option: AutocompleteOption) => { }
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-50">
        <Autocomplete
-          options={[
-            { code: 1, name: "تهران", slug: "tehran" },
-            { code: 2, name: "اصفهان", slug: "isfahan" },
-            { code: 3, name: "مشهد", slug: "mashhad" } 
-            ]}
-          notFoundText="موردی یافت نشد"
-          maxDropdownHeight={200} 
-          isDropDown={true}
-          idField="code"
-          labelField="name"
-          size="lg"
-          hasError = {true}
-          onSelect={handleSelect}
-          title="hasError = true"/>
+           options={[
+             { code: 1, name: "تهران"},
+             { code: 2, name: "اصفهان"},
+             { code: 3, name: "مشهد"} 
+             ]}
+           isDropDown={true}
+           hasError={true}
+           idField="code"
+           labelField="name"
+           onSelect={(e) => {}}
+           />
     </div>
   );
 }
 ```
 
 ## Default value
+
 <Container>
- <Autocomplete
-         options={
-          [
-              { id: "1", label: "خراسان رضوی", value: "1" },
-              { id: "2", label: "تهران", value: "2" },
-              { id: "3", label: "خراسان شمالی", value: "3" },
-              { id: "4", label: "کردستان", value: "4" },
-              { id: "5", label: "خراسان جنوبی", value: "5" },
-              { id: "6", label: "کرمان", value: "6" },
-              { id: "7", label: "خوزستان", value: "7" },
-              { id: "8", label: "همدان", value: "8" },
-              { id: "9", label: "کرمانشاه", value: "9" }
-          ]}
-       defaultValue={["5" , "8"]} 
-       multiple
+  <Autocomplete
+    options={[
+      { id: "1", label: "خراسان رضوی"},
+      { id: "2", label: "تهران"},
+      { id: "3", label: "خراسان شمالی"},
+      { id: "4", label: "کردستان"},
+      { id: "5", label: "خراسان جنوبی"},
+      { id: "6", label: "کرمان"},
+      { id: "7", label: "خوزستان"},
+      { id: "8", label: "همدان"},
+      { id: "9", label: "کرمانشاه"},
+    ]}
+    defaultValue={["5", "8"]}
+    multiple
     onSelect={(option) => {}}
-    title="default value"
-       />
+  />
+  <Autocomplete
+    options={[
+      { id: "1", label: "خراسان رضوی"},
+      { id: "2", label: "تهران"},
+      { id: "3", label: "خراسان شمالی"},
+      { id: "4", label: "کردستان"},
+      { id: "5", label: "خراسان جنوبی"},
+      { id: "6", label: "کرمان"},
+      { id: "7", label: "خوزستان"},
+      { id: "8", label: "همدان"},
+      { id: "9", label: "کرمانشاه"},
+    ]}
+    defaultValue={"5"}
+    onSelect={(option) => {}}
+  />
 </Container>
 
 ```tsx
@@ -232,58 +212,54 @@ import { useRef, useState } from "react";
 import Autocomplete from "@repo/ui/Autocomplete";
 
 export default function Page() {
-  const handleSelect = (option: AutocompleteOption) => { }
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-50">
        <Autocomplete
             options={[
-              { id: "1", label: "خراسان رضوی", value: "1" },
-              { id: "2", label: "تهران", value: "2" },
-              { id: "3", label: "خراسان شمالی", value: "3" },
-              { id: "4", label: "کردستان", value: "4" },
-              { id: "5", label: "خراسان جنوبی", value: "5" },
-              { id: "6", label: "کرمان", value: "6" },
-              { id: "7", label: "خوزستان", value: "7" },
-              { id: "8", label: "همدان", value: "8" },
-              { id: "9", label: "کرمانشاه", value: "9" }
+              { id: "1", label: "خراسان رضوی"},
+              { id: "2", label: "تهران"},
+              { id: "3", label: "خراسان شمالی"},
+              { id: "4", label: "کردستان"},
+              { id: "5", label: "خراسان جنوبی"},
+              { id: "6", label: "کرمان"},
+              { id: "7", label: "خوزستان"},
+              { id: "8", label: "همدان"},
+              { id: "9", label: "کرمانشاه"}
               ]}
-            defaultValue={["5" , "8"]} 
-            notFoundText="موردی یافت نشد"
-            maxDropdownHeight={200} 
+            defaultValue={["5" , "8"]}
             isDropDown={true}
-            idField="code"
-            labelField="name"
-            onSelect={handleSelect}
-            title="default value"/>
+            onSelect={(e) => {}}
+            />
     </div>
   );
 }
 ```
 
 ## ReadOnly
+
 <Container>
  <Autocomplete
          options={[
-              { id: "1", label: "خراسان رضوی", value: "1" },
-              { id: "2", label: "تهران", value: "2" },
-              { id: "3", label: "خراسان شمالی", value: "3" },
-              { id: "4", label: "کردستان", value: "4" },
-              { id: "5", label: "خراسان جنوبی", value: "5" },
-              { id: "6", label: "کرمان", value: "6" },
-              { id: "7", label: "خوزستان", value: "7" },
-              { id: "8", label: "همدان", value: "8" },
-              { id: "9", label: "کرمانشاه", value: "9" }
+              { id: "1", label: "خراسان رضوی"},
+              { id: "2", label: "تهران"},
+              { id: "3", label: "خراسان شمالی"},
+              { id: "4", label: "کردستان"},
+              { id: "5", label: "خراسان جنوبی"},
+              { id: "6", label: "کرمان"},
+              { id: "7", label: "خوزستان"},
+              { id: "8", label: "همدان"},
+              { id: "9", label: "کرمانشاه"}
               ]}
 
     onSelect={(option) => {
-      
+
     }}
-    title="readonly"
      inputProps={{
               readOnly:true,
               placeholder:"جستجو کنید",
             }}
        />
+
 </Container>
 
 ```tsx
@@ -291,17 +267,14 @@ import { useRef, useState } from "react";
 import Autocomplete from "@repo/ui/Autocomplete";
 
 export default function Page() {
-  const handleSelect = (option: AutocompleteOption) => { }
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-50">
        <Autocomplete
           options={[
-            { code: 1, name: "تهران", slug: "tehran" },
-            { code: 2, name: "اصفهان", slug: "isfahan" },
-            { code: 3, name: "مشهد", slug: "mashhad" } 
+            { code: 1, name: "تهران"},
+            { code: 2, name: "اصفهان"},
+            { code: 3, name: "مشهد"}
             ]}
-          notFoundText="موردی یافت نشد"
-          maxDropdownHeight={200} 
           isDropDown={true}
           idField="code"
           labelField="name"
@@ -309,31 +282,31 @@ export default function Page() {
               readOnly : true,
               placeholder:"جستجو کنید",
             }}
-          onSelect={handleSelect}
-          title="readonly"/>
+          onSelect={(e) => {}}
+          />
     </div>
   );
 }
 ```
 
 ## Disabled
+
 <Container>
  <Autocomplete
          options={[
-              { id: "1", label: "خراسان رضوی", value: "1" },
-              { id: "2", label: "تهران", value: "2" },
-              { id: "3", label: "خراسان شمالی", value: "3" },
-              { id: "4", label: "کردستان", value: "4" },
-              { id: "5", label: "خراسان جنوبی", value: "5" },
-              { id: "6", label: "کرمان", value: "6" },
-              { id: "7", label: "خوزستان", value: "7" },
-              { id: "8", label: "همدان", value: "8" },
-              { id: "9", label: "کرمانشاه", value: "9" }
+              { id: "1", label: "خراسان رضوی"},
+              { id: "2", label: "تهران"},
+              { id: "3", label: "خراسان شمالی"},
+              { id: "4", label: "کردستان"},
+              { id: "5", label: "خراسان جنوبی"},
+              { id: "6", label: "کرمان"},
+              { id: "7", label: "خوزستان"},
+              { id: "8", label: "همدان"},
+              { id: "9", label: "کرمانشاه"}
               ]}
 
     onSelect={(option) => {
     }}
-    title="disabled"
     disabled={true}
     inputProps= {
           {  disabled: true  ,
@@ -341,6 +314,7 @@ export default function Page() {
           }
     isDropDown={true}
        />
+
 </Container>
 
 ```tsx
@@ -348,104 +322,93 @@ import { useRef, useState } from "react";
 import Autocomplete from "@repo/ui/Autocomplete";
 
 export default function Page() {
-  const handleSelect = (option: AutocompleteOption) => { }
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-50">
        <Autocomplete
           options={[
-            { code:"1", name: "تهران", slug: "tehran" },
-            { code: "2", name: "اصفهان", slug: "isfahan" },
-            { code: "3", name: "مشهد", slug: "mashhad" } 
+            { code: 1, name: "تهران"},
+            { code: 2, name: "اصفهان"},
+            { code: 3, name: "مشهد"}
             ]}
-          notFoundText="موردی یافت نشد"
-          maxDropdownHeight={200} 
           isDropDown={true}
           idField="code"
           labelField="name"
-          disabled={true}
-          inputProps= {{
-              disabled: true,
-              placeholder:"جستجو کنید"
-             }}
-          onSelect={handleSelect}
-          title="disabled"/>
+          inputProps={{
+              disabled : true,
+              placeholder:"جستجو کنید",
+            }}
+          onSelect={(e) => {}}
+          />
     </div>
   );
 }
 ```
 
 ## Mulitple Select
+
 <Container>
 
       <Autocomplete
          options={[
-              { id: "1", label: "خراسان رضوی", value: "1" },
-              { id: "2", label: "تهران", value: "2" },
-              { id: "3", label: "خراسان شمالی", value: "3" },
-              { id: "4", label: "کردستان", value: "4" },
-              { id: "5", label: "خراسان جنوبی", value: "5" },
-              { id: "6", label: "کرمان", value: "6" },
-              { id: "7", label: "خوزستان", value: "7" },
-              { id: "8", label: "همدان", value: "8" },
-              { id: "9", label: "کرمانشاه", value: "9" }
+              { id: "1", label: "خراسان رضوی"},
+              { id: "2", label: "تهران"},
+              { id: "3", label: "خراسان شمالی"},
+              { id: "4", label: "کردستان"},
+              { id: "5", label: "خراسان جنوبی"},
+              { id: "6", label: "کرمان"},
+              { id: "7", label: "خوزستان"},
+              { id: "8", label: "همدان"},
+              { id: "9", label: "کرمانشاه"}
               ]}
-    onSelect={(option) => {
-      
-    }}
-    multiple={true}
-    title="multiple"
+         onSelect={(option) => {}}
+         multiple={true}
+    
        />
-</Container>
 
+</Container>
 
 ```tsx
 import { useRef, useState } from "react";
 import Autocomplete from "@repo/ui/Autocomplete";
 
 export default function Page() {
-  const handleSelect = (option: AutocompleteOption) => { }
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-50">
        <Autocomplete
           options={[
-            { code: "1", name: "تهران", slug: "tehran" },
-            { code: "2", name: "اصفهان", slug: "isfahan" },
-            { code: "3", name: "مشهد", slug: "mashhad" } 
+            { code: "1", name: "تهران"},
+            { code: "2", name: "اصفهان"},
+            { code: "3", name: "مشهد"}
             ]}
-          notFoundText="موردی یافت نشد"
-          maxDropdownHeight={200} 
           isDropDown={true}
           idField="code"
           labelField="name"
           multiple={false}
-          onSelect={handleSelect}
-          title="multiple"/>
+          onSelect={(e) => {}}
+          />
     </div>
   );
 }
 ```
 
 ## DropDown Icon
-<Container>
 
+<Container>
 
       <Autocomplete
          options={[
-              { id: "1", label: "خراسان رضوی", value: "1" },
-              { id: "2", label: "تهران", value: "2" },
-              { id: "3", label: "خراسان شمالی", value: "3" },
-              { id: "4", label: "کردستان", value: "4" },
-              { id: "5", label: "خراسان جنوبی", value: "5" },
-              { id: "6", label: "کرمان", value: "6" },
-              { id: "7", label: "خوزستان", value: "7" },
-              { id: "8", label: "همدان", value: "8" },
-              { id: "9", label: "کرمانشاه", value: "9" }
+              { id: "1", label: "خراسان رضوی"},
+              { id: "2", label: "تهران"},
+              { id: "3", label: "خراسان شمالی"},
+              { id: "4", label: "کردستان"},
+              { id: "5", label: "خراسان جنوبی"},
+              { id: "6", label: "کرمان"},
+              { id: "7", label: "خوزستان"},
+              { id: "8", label: "همدان"},
+              { id: "9", label: "کرمانشاه"}
               ]}
-    onSelect={(option) => {
-      
-    }}
+    onSelect={(option) => {}}
     multiple={true}
-    title="isDropDown = false"
     isDropDown={false}
        />
 
@@ -456,54 +419,43 @@ import { useRef, useState } from "react";
 import Autocomplete from "@repo/ui/Autocomplete";
 
 export default function Page() {
-  const cities: AutocompleteOption[] = [
-          { id: "1", label: "خراسان رضوی", value: "1" },
-           { id: "2", label: "تهران", value: "2" },
-           { id: "3", label: "خراسان شمالی", value: "3" },
-           { id: "4", label: "کردستان", value: "4" },
-           { id: "5", label: "خراسان جنوبی", value: "5" },
-           { id: "6", label: "کرمان", value: "6" },
-           { id: "7", label: "خوزستان", value: "7" },
-           { id: "8", label: "همدان", value: "8" },
-           { id: "9", label: "کرمانشاه", value: "9" }
-           ];
-
-  const handleSelect = (option: AutocompleteOption) => { }
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-50">
-      <Autocomplete  isDropDown={false}
-        options={cities}
-        onSelect={handleSelect}
-        notFoundText="موردی یافت نشد"
-        multiple = {true}
-        title="isDropDown = false"
-        isDropDown={false}
-      />
+       <Autocomplete
+          options={[
+            { code: "1", name: "تهران"},
+            { code: "2", name: "اصفهان"},
+            { code: "3", name: "مشهد"}
+            ]}
+          isDropDown={true}
+          idField="code"
+          labelField="name"
+          multiple={false}
+          onSelect={(e) => {}}
+          />
     </div>
   );
 }
 ```
 
 ## Variant
+
 <Container>
- <Autocomplete
-         options={[
-              { id: "1", label: "خراسان رضوی", value: "1" },
-              { id: "2", label: "تهران", value: "2" },
-              { id: "3", label: "خراسان شمالی", value: "3" },
-              { id: "4", label: "کردستان", value: "4" },
-              { id: "5", label: "خراسان جنوبی", value: "5" },
-              { id: "6", label: "کرمان", value: "6" },
-              { id: "7", label: "خوزستان", value: "7" },
-              { id: "8", label: "همدان", value: "8" },
-              { id: "9", label: "کرمانشاه", value: "9" }
-              ]}
-    onSelect={(option) => {
-      
-    }}
-    title="Variant"
+  <Autocomplete
+    options={[
+      { id: "1", label: "خراسان رضوی"},
+      { id: "2", label: "تهران"},
+      { id: "3", label: "خراسان شمالی"},
+      { id: "4", label: "کردستان"},
+      { id: "5", label: "خراسان جنوبی"},
+      { id: "6", label: "کرمان"},
+      { id: "7", label: "خوزستان"},
+      { id: "8", label: "همدان"},
+      { id: "9", label: "کرمانشاه"},
+    ]}
+    onSelect={(option) => {}}
     variant="secondary"
-       />
+  />
 </Container>
 
 ```tsx
@@ -511,39 +463,28 @@ import { useRef, useState } from "react";
 import Autocomplete from "@repo/ui/Autocomplete";
 
 export default function Page() {
-  const handleSelect = (option: AutocompleteOption) => { }
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-50">
        <Autocomplete
             options={[
-              { id: "1", label: "خراسان رضوی", value: "1" },
-              { id: "2", label: "تهران", value: "2" },
-              { id: "3", label: "خراسان شمالی", value: "3" },
-              { id: "4", label: "کردستان", value: "4" },
-              { id: "5", label: "خراسان جنوبی", value: "5" },
-              { id: "6", label: "کرمان", value: "6" },
-              { id: "7", label: "خوزستان", value: "7" },
-              { id: "8", label: "همدان", value: "8" },
-              { id: "9", label: "کرمانشاه", value: "9" }
+              { id: "1", label: "خراسان رضوی"},
+              { id: "2", label: "تهران"},
+              { id: "3", label: "خراسان شمالی"},
+              { id: "4", label: "کردستان"},
+              { id: "5", label: "خراسان جنوبی"},
+              { id: "6", label: "کرمان"},
+              { id: "7", label: "خوزستان"},
+              { id: "8", label: "همدان"},
+              { id: "9", label: "کرمانشاه" }
               ]}
-            notFoundText="موردی یافت نشد"
-            maxDropdownHeight={200} 
             isDropDown={true}
-            idField="code"
-            labelField="name"
-            onSelect={handleSelect}
+            onSelect={(e) => {}}
             variant="secondary"
-            title="Variant"/>
+            />
     </div>
   );
 }
 ```
-
-
-
-
-
-
 
 ## Installation
 
@@ -555,23 +496,22 @@ npx the-dig@latest add Autocomplete,Menu,CircularProgress
 
 ### `Autocomplete`
 
-| Prop                                                           | Type                  | Default |
-| -------------------------------------------------------------- | --------------------- | ------- |
-| `options` <sup className="text-red-600 text-caption2">\*</sup>  | `Array` | -       |
-| `fetchOptions` <sup className="text-red-600 text-caption2">\*</sup>    | `promise`             | -       |
-| `debounceDelay`                                                     | `number`           | 500       |
-| `defaultValue`                                                     | `number`           | 500       |
-| `onSelect`                                                     | `function`           | -       |
-| `notFoundText`                                                     | `string`           | موردی یافت نشد       |
-| `isDropDown`                                                     | `boolean`           | true       |
-| `searchingText`                                                     | `string`           | در حال جستجو...       |
-| `idField`                                                     | ` string`           | id  |
-| `labelField`                                                     | ` string`           | label       |
-| `minSearchChars`                                                     | `number`           | 3      |
-| `hasError`                                                     | `boolean`           | false       |
-| `size`                                                     | `"xs"` \| `"sm"` \| `"md"` \| `"lg"`           | md       | 
-| `width`                                                     | `string`           | 100%     |
-| `variant`                                                     | `"primary"` \| `"secondary"` \|        | primary       | 
-| `maxDropdownHeight`                                                     | `number`           | 200      |
-|   `inputProps`    | `HTMLAttributes<HTMLInputElement>` (`placeholder`, `disabled`, `readOnly` , etc.)           | <RedirectLink href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement">Document</RedirectLink> |
-
+| Prop                                                                | Type                                                                              | Default                                                                                                   |
+| ------------------------------------------------------------------- | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- |
+| `options` <sup className="text-red-600 text-caption2">\*</sup>      | `Array`                                                                           | -                                                                                                         |
+| `fetchOptions` <sup className="text-red-600 text-caption2">\*</sup> | `promise`                                                                         | -                                                                                                         |
+| `debounceDelay`                                                     | `number`                                                                          | 500                                                                                                       |
+| `defaultValue`                                                      | `number`                                                                          | 500                                                                                                       |
+| `onSelect`                                                          | `function`                                                                        | -                                                                                                         |
+| `notFoundText`                                                      | `string`                                                                          | موردی یافت نشد                                                                                            |
+| `isDropDown`                                                        | `boolean`                                                                         | true                                                                                                      |
+| `searchingText`                                                     | `string`                                                                          | در حال جستجو...                                                                                           |
+| `idField`                                                           | ` string`                                                                         | id                                                                                                        |
+| `labelField`                                                        | ` string`                                                                         | label                                                                                                     |
+| `minSearchChars`                                                    | `number`                                                                          | 3                                                                                                         |
+| `hasError`                                                          | `boolean`                                                                         | false                                                                                                     |
+| `size`                                                              | `"xs"` \| `"sm"` \| `"md"` \| `"lg"`                                              | md                                                                                                        |
+| `width`                                                             | `string`                                                                          | 100%                                                                                                      |
+| `variant`                                                           | `"primary"` \| `"secondary"` \|                                                   | primary                                                                                                   |
+| `maxDropdownHeight`                                                 | `number`                                                                          | 200                                                                                                       |
+| `inputProps`                                                        | `HTMLAttributes<HTMLInputElement>` (`placeholder`, `disabled`, `readOnly` , etc.) | <RedirectLink href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement">Document</RedirectLink> |

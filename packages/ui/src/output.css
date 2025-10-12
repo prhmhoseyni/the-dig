@@ -4,6 +4,7 @@
 @layer theme {
   :root, :host {
     --color-red-500: oklch(63.7% 0.237 25.331);
+    --color-red-600: oklch(57.7% 0.245 27.325);
     --color-blue-200: oklch(88.2% 0.059 254.128);
     --color-gray-50: oklch(98.5% 0.002 247.839);
     --color-gray-100: var(--dig-gray-100);
@@ -227,6 +228,9 @@
     --text-label4: 0.75rem;
     --text-label4--line-height: 1.05rem;
     --text-label4--font-weight: 400;
+    --text-caption2: 0.6875rem;
+    --text-caption2--line-height: 1.125rem;
+    --text-caption2--font-weight: 400;
   }
 }
 @layer utilities {
@@ -460,6 +464,9 @@
   }
   .min-h-20 {
     min-height: calc(var(--spacing) * 20);
+  }
+  .min-h-screen {
+    min-height: 100vh;
   }
   .w-\(--cell-size\) {
     width: var(--cell-size);
@@ -1033,6 +1040,11 @@
     line-height: var(--tw-leading, var(--text-subtitle5--line-height)) !important;
     font-weight: var(--tw-font-weight, var(--text-subtitle5--font-weight)) !important;
   }
+  .text-caption2 {
+    font-size: var(--text-caption2);
+    line-height: var(--tw-leading, var(--text-caption2--line-height));
+    font-weight: var(--tw-font-weight, var(--text-caption2--font-weight));
+  }
   .text-label2 {
     font-size: var(--text-label2);
     line-height: var(--tw-leading, var(--text-label2--line-height));
@@ -1171,6 +1183,9 @@
   }
   .text-prose-warning {
     color: var(--color-prose-warning);
+  }
+  .text-red-600 {
+    color: var(--color-red-600);
   }
   .\!opacity-40 {
     opacity: 40% !important;

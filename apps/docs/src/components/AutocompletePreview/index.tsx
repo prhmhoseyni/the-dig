@@ -34,6 +34,9 @@ export default function Page() {
 			onSelect={(book) => {
 				console.log("انتخاب شد:", book);
 			}}
+			multiple
+			idField="cover_i"
+			labelField="title"
 			minSearchChars={3}
 			startAdornment={<BadgeCheck size={18} />}
 		/>
