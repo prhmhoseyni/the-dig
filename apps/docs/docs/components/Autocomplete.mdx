@@ -234,7 +234,7 @@ export default function Page() {
        defaultValue={["5" , "8"]} 
        multiple
     onSelect={(option) => {
-      console.log(option)
+      console.log("mdx file " , option)
     }}
     title="default value"
        />
@@ -260,7 +260,7 @@ export default function Page() {
               { id: 8, label: "همدان", value: "8" },
               { id: 9, label: "کرمانشاه", value: "9" }
               ]}
-            defaultValue={{ id: 1, label: "خراسان رضوی", value: "tehran" }} 
+            defaultValue={["5" , "8"]} 
             notFoundText="موردی یافت نشد"
             maxDropdownHeight={200} 
             isDropDown={true}
