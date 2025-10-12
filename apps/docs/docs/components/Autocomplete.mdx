@@ -231,9 +231,10 @@ export default function Page() {
     { id: 9, label: "کرمانشاه", value: "mashhad4" }
 ]
     }
-       defaultValue={{ id: 1, label: "خراسان رضوی", value: "tehran" }} 
+       defaultValue={["5" , "8"]} 
+       multiple
     onSelect={(option) => {
-      
+      console.log(option)
     }}
     title="default value"
        />
@@ -532,7 +533,7 @@ export default function Page() {
     onSelect={(option) => {
       
     }}
-    title="default value"
+    title="Variant"
     variant="secondary"
        />
 </Container>
@@ -565,7 +566,7 @@ export default function Page() {
             valueField="slug"
             onSelect={handleSelect}
             variant="secondary"
-            title="default value"/>
+            title="Variant"/>
     </div>
   );
 }

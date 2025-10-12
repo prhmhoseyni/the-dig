@@ -24,7 +24,7 @@ export interface AutocompleteProps<T> {
 	options?: Array<T & DisabledType>;
 	fetchOptions?: (query: string) => Promise<T[]>;
 	debounceDelay?: number;
-	onSelect?: (option: T | null) => void;
+	onSelect?: (option: T | T[] | null) => void;
 	maxDropdownHeight?: number;
 	notFoundText?: string;
 	isDropDown?: boolean;
@@ -88,16 +88,59 @@ export default function Autocomplete<T extends object>(props: AutocompleteProps<
 
 	const selectedIds = useMemo(() => new Set(selectedOptions.map((o) => String(o[idField]))), [selectedOptions, idField]);
 
-	// useEffect(() => {
-	// 	if (defaultValue) {
-	// 		if (multiple) {
-	// 			setSelectedOptions([defaultValue]);
-	// 		} else {
-	// 			setSelectedOption(defaultValue);
-	// 			setInputValue(String(defaultValue[labelField]));
-	// 		}
-	// 	}
-	// }, [defaultValue, labelField, multiple]);
+	useEffect(() => {
+		if (!defaultValue) return;
+
+		const resolveDefaults = async () => {
+			const findById = async (id: any): Promise<T | null> => {
+				if (localOptions) {
+					return (localOptions.find((opt) => String(opt[idField]) === String(id)) as T) ?? null;
+				} else if (fetchOptions) {
+					try {
+						const res = await fetchOptions(String(id));
+						if (Array.isArray(res)) {
+							return (res.find((opt) => String(opt[idField]) === String(id)) as T) ?? null;
+						}
+					} catch (err) {
+						console.error("fetchOptions defaultValue error:", err);
+					}
+				}
+				return null;
+			};
+
+			if (multiple) {
+				let defaults: T[] = [];
+				if (Array.isArray(defaultValue)) {
+					const resolved = await Promise.all(
+						defaultValue.map(async (val: any) => {
+							if (typeof val === "object" && val !== null) return val as T;
+							return await findById(val);
+						}),
+					);
+					defaults = resolved.filter(Boolean) as T[];
+				} else if (typeof defaultValue === "object") {
+					defaults = [defaultValue as T];
+				} else {
+					const obj = await findById(defaultValue);
+					if (obj) defaults = [obj];
+				}
+				setSelectedOptions(defaults);
+			} else {
+				let def: T | null = null;
+				if (typeof defaultValue === "object") {
+					def = defaultValue as T;
+				} else {
+					def = await findById(defaultValue);
+				}
+				if (def) {
+					setSelectedOption(def);
+					setInputValue(String(def[labelField]));
+				}
+			}
+		};
+
+		resolveDefaults();
+	}, [defaultValue, multiple, fetchOptions, localOptions, idField, labelField]);
 
 	const localMatches = useMemo(() => {
 		if (!localOptions) return [];
@@ -172,6 +215,9 @@ export default function Autocomplete<T extends object>(props: AutocompleteProps<
 		idField,
 	]);
 
+	/**
+	 * focus input
+	 */
 	const handleFocus = () => {
 		if (!disabled && !readOnly) {
 			if ((options && options.length > 0) || (fetchOptions && options.length > 0)) {
@@ -185,6 +231,9 @@ export default function Autocomplete<T extends object>(props: AutocompleteProps<
 		}
 	};
 
+	/**
+	 * close menu drop down
+	 */
 	const handleCloseMenu = () => {
 		setMenuOpen(false);
 		if (!multiple && !selectedOption) {
@@ -215,7 +264,9 @@ export default function Autocomplete<T extends object>(props: AutocompleteProps<
 
 				return updated;
 			});
-			onSelect?.(option);
+			const updated = [...selectedOptions, option];
+			setSelectedOptions(updated);
+			onSelect?.(updated);
 			setInputValue("");
 		} else {
 			isSelectingRef.current = true;
@@ -230,11 +281,13 @@ export default function Autocomplete<T extends object>(props: AutocompleteProps<
 	 * remove selected item
 	 */
 	const handleRemoveChip = (option: T) => {
+		console.log("option: ", option);
 		setInputValue("");
 		if (disabled || readOnly) return;
 		setSelectedOptions((prev) => prev.filter((o) => String(o[idField]) !== String(option[idField])));
-
+		console.log("localOptions : ", localOptions);
 		if (localOptions) {
+			console.log("if: ", [...options, option as T & DisabledType]);
 			setOptions((opts) => [...opts, option as T & DisabledType]);
 		} else {
 			setOptions(
@@ -245,11 +298,17 @@ export default function Autocomplete<T extends object>(props: AutocompleteProps<
 							.some((sel) => String(sel[idField]) === String(opt[idField])),
 				),
 			);
+			console.log("if: ", options);
 		}
-
-		onSelect?.(null);
+		const seletedList = selectedOptions.filter((sel) => String(sel[idField]) !== String(option[idField]));
+		console.log("selected options : ", selectedOptions);
+		console.log("seletedList : ", seletedList);
+		onSelect?.(seletedList || null);
 	};
 
+	/**
+	 *  clear selected
+	 */
 	const handleClear = () => {
 		if (disabled || readOnly) return;
 		setInputValue("");
