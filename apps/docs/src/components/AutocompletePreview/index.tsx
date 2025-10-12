@@ -30,14 +30,10 @@ export default function Page() {
 	return (
 		<Autocomplete
 			fetchOptions={fetchBook}
-			placeholder="جستجو ..."
-			idField={"key" as keyof Place}
-			labelField={"title" as keyof Place}
-			valueField={"key" as keyof Place}
+			inputProps={{ placeholder: "جستجو ..." }}
 			onSelect={(book) => {
 				console.log("انتخاب شد:", book);
 			}}
-			title="Async Data"
 			minSearchChars={3}
 			startAdornment={<BadgeCheck size={18} />}
 		/>

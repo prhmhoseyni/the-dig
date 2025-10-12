@@ -3,7 +3,7 @@
 import clsx from "clsx";
 import { X } from "lucide-react";
 import type { DetailedHTMLProps, InputHTMLAttributes, ReactNode } from "react";
-import { useEffect, useMemo, useRef, useState } from "react";
+import { memo, useEffect, useMemo, useRef, useState } from "react";
 
 import Chip from "../Chip";
 import CircularProgress from "../CircularProgress";
@@ -38,7 +38,6 @@ export interface AutocompleteProps<T> {
 	renderOption?: (option: T, isSelected: boolean) => ReactNode;
 	idField?: keyof T;
 	labelField?: keyof T;
-	valueField?: keyof T;
 	variant?: SelectVariant;
 	startAdornment?: ReactNode;
 	inputProps: DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>;
@@ -76,8 +75,6 @@ export default function Autocomplete<T extends object>(props: AutocompleteProps<
 	const [inputValue, setInputValue] = useState(defaultValue && !multiple ? String(defaultValue[labelField]) : "");
 	const [options, setOptions] = useState<(T & DisabledType)[]>([]);
 	const [loading, setLoading] = useState(false);
-	// const [selectedOption, setSelectedOption] = useState<T | null>(defaultValue && !multiple ? defaultValue : null);
-	// const [selectedOptions, setSelectedOptions] = useState<T[]>(defaultValue && multiple ? [defaultValue] : []);
 	const [selectedList, setSelectedList] = useState<T[]>(
 		defaultValue ? (multiple ? (Array.isArray(defaultValue) ? defaultValue : [defaultValue]) : [defaultValue]) : [],
 	);
@@ -90,7 +87,7 @@ export default function Autocomplete<T extends object>(props: AutocompleteProps<
 	const inputRef = useRef<HTMLInputElement>(null);
 
 	const selectedIds = useMemo(() => new Set(selectedList.map((o) => String(o[idField]))), [selectedList, idField]);
-
+	const MemoChip = memo(Chip);
 	useEffect(() => {
 		if (!defaultValue) return;
 
@@ -246,34 +243,22 @@ export default function Autocomplete<T extends object>(props: AutocompleteProps<
 	 * select item dropdown
 	 */
 	const handleSelect = (option: T & DisabledType) => {
+		const updated = multiple ? [...selectedList, option] : [option];
+		setSelectedList(updated);
+		onSelect?.(updated);
+
 		if (multiple) {
-			setSelectedList((prev) => {
-				const updated = [...prev, option];
-
-				if (localOptions) {
-					setOptions((opts) => {
-						const newOpts = opts.filter((o) => String(o[idField]) !== String(option[idField]));
-						if (newOpts.length === 0) setMenuOpen(false);
-						return newOpts;
-					});
-				} else {
-					const newOpts = lastResults.filter((opt) => !updated.some((sel) => String(sel[idField]) === String(opt[idField])));
-					setOptions(newOpts);
-					if (newOpts.length === 0) setMenuOpen(false);
-				}
-
-				return updated;
-			});
-			const updated = [...selectedList, option];
-			setSelectedList(updated);
-			onSelect?.(updated);
+			if (localOptions) {
+				setOptions((opts) => opts.filter((o) => String(o[idField]) !== String(option[idField])));
+			} else {
+				const newOpts = lastResults.filter((opt) => !updated.some((sel) => String(sel[idField]) === String(opt[idField])));
+				setOptions(newOpts);
+			}
 			setInputValue("");
 		} else {
 			isSelectingRef.current = true;
 			setInputValue(String(option[labelField]));
-			setSelectedList([option]);
 			setMenuOpen(false);
-			onSelect?.(option);
 		}
 	};
 
@@ -281,24 +266,17 @@ export default function Autocomplete<T extends object>(props: AutocompleteProps<
 	 * remove selected item
 	 */
 	const handleRemoveChip = (option: T) => {
-		setInputValue("");
 		if (disabled || readOnly) return;
-		setSelectedList((prev) => prev.filter((o) => String(o[idField]) !== String(option[idField])));
+		setInputValue("");
+		const updated = selectedList.filter((o) => String(o[idField]) !== String(option[idField]));
+		setSelectedList(updated);
+		onSelect?.(updated.length ? updated : null);
+
 		if (localOptions) {
 			setOptions((opts) => [...opts, option as T & DisabledType]);
 		} else {
-			setOptions(
-				lastResults.filter(
-					(opt) =>
-						!selectedList
-							.filter((sel) => String(sel[idField]) !== String(option[idField]))
-							.some((sel) => String(sel[idField]) === String(opt[idField])),
-				),
-			);
+			setOptions(lastResults.filter((opt) => !updated.some((sel) => String(sel[idField]) === String(opt[idField]))));
 		}
-		const seleted = selectedList.filter((sel) => String(sel[idField]) !== String(option[idField]));
-
-		onSelect?.(seleted || null);
 	};
 
 	/**
@@ -310,7 +288,6 @@ export default function Autocomplete<T extends object>(props: AutocompleteProps<
 		setOptions([]);
 		setMenuOpen(false);
 		setSelectedList([]);
-		//setSelectedOptions([]);
 		setSearchDone(false);
 		setLastResults([]);
 		onSelect?.(null);
@@ -331,7 +308,7 @@ export default function Autocomplete<T extends object>(props: AutocompleteProps<
 	};
 
 	return (
-		<div className="w-full flex flex-col justify-center items-start p-4" style={{ width }}>
+		<div className="w-full flex flex-col justify-center items-start p-4" style={{ width: width }}>
 			<div ref={containerRef} className="relative w-full">
 				<div
 					className={clsx(
@@ -366,16 +343,16 @@ export default function Autocomplete<T extends object>(props: AutocompleteProps<
 							selectedList.map(
 								(opt) =>
 									opt[labelField] && (
-										<Chip key={String(opt[idField])} onClick={() => handleRemoveChip(opt)} className="mr-1 mt-1">
+										<MemoChip key={String(opt[idField])} onClick={() => handleRemoveChip(opt)} className="mr-1 mt-1">
 											{String(opt[labelField])}
-										</Chip>
+										</MemoChip>
 									),
 							)}
 
 						{multiple && selectedList.length > 2 && (
-							<Chip className="mr-1 mt-1" key="clear-all" onClick={handleClearAll} color="danger">
+							<MemoChip className="mr-1 mt-1" key="clear-all" onClick={handleClearAll} color="danger">
 								حذف همه
-							</Chip>
+							</MemoChip>
 						)}
 					</div>
 
@@ -394,9 +371,7 @@ export default function Autocomplete<T extends object>(props: AutocompleteProps<
 							if (!multiple) setSelectedList([]);
 							setMenuOpen(true);
 						}}
-						placeholder={
-							((!multiple && placeholder) || (multiple && !selectedList.length && placeholder)) as string | undefined
-						}
+						placeholder={!multiple || (multiple && !selectedList.length) ? placeholder : undefined}
 						className={clsx(
 							"flex-1 min-w-[60px] border-0 outline-none bg-transparent",
 							{ "bg-background-secondary": variant === "primary" },
@@ -456,7 +431,7 @@ export default function Autocomplete<T extends object>(props: AutocompleteProps<
 						) : options.length > 0 ? (
 							options.map((option) => {
 								const id = String(option[idField]);
-								const isSelected = !multiple && String(selectedList[0]?.[idField]) === id;
+								const isSelected = !multiple && selectedIds.has(id);
 								const isDisabled = !multiple && isSelected;
 
 								return (
