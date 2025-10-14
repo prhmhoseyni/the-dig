@@ -285,9 +285,9 @@ export default function Autocomplete<T extends object>(props: AutocompleteProps<
 	const handleClear = () => {
 		if (disabled || readOnly) return;
 		setInputValue("");
-		setOptions([]);
+		//setOptions([]);
 		setMenuOpen(false);
-		setSelectedList([]);
+		//setSelectedList([]);
 		setSearchDone(false);
 		setLastResults([]);
 		onSelect?.(null);

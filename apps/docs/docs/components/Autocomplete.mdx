@@ -226,7 +226,10 @@ export default function Page() {
               { id: "8", label: "همدان"},
               { id: "9", label: "کرمانشاه"}
               ]}
-            defaultValue={["5" , "8"]}
+            defaultValue={[ // multiple -> ["4" , "5"] single -> { id: "5", label: "خراسان جنوبی"} || {"5"}
+              { id: "4", label: "کردستان"},
+              { id: "5", label: "خراسان جنوبی"}
+              ]}
             isDropDown={true}
             onSelect={(e) => {}}
             />
@@ -501,7 +504,7 @@ npx the-dig@latest add Autocomplete,Menu,CircularProgress
 | `options` <sup className="text-red-600 text-caption2">\*</sup>      | `Array`                                                                           | -                                                                                                         |
 | `fetchOptions` <sup className="text-red-600 text-caption2">\*</sup> | `promise`                                                                         | -                                                                                                         |
 | `debounceDelay`                                                     | `number`                                                                          | 500                                                                                                       |
-| `defaultValue`                                                      | `number`                                                                          | 500                                                                                                       |
+| `defaultValue`                                                      |  `object` \| `Array<object>` \| `string` \| `Array<string>`                                                                           | -                                                                                                       |
 | `onSelect`                                                          | `function`                                                                        | -                                                                                                         |
 | `notFoundText`                                                      | `string`                                                                          | موردی یافت نشد                                                                                            |
 | `isDropDown`                                                        | `boolean`                                                                         | true                                                                                                      |
