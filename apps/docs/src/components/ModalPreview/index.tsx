@@ -9,7 +9,7 @@ export default function ModalPreview(props: { type: ModalType }) {
 
 	return (
 		<>
-			<Button color={props.type} onClick={() => setOpen(true)}>
+			<Button color="info" onClick={() => setOpen(true)}>
 				کلیک کن
 			</Button>
 
