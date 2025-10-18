@@ -9,12 +9,12 @@ sidebar_position: 1
 import DatePickerPreview from "../../src/components/DatePickerPreview";
 import RedirectLink from "../../src/components/RedirectLink";
 
-<DatePickerPreview local="fa" />
+<DatePickerPreview local="fa"/>
 
 ```tsx
 import DatePicker from "@repo/ui/DatePicker";
 
-<DatePicker value={value} onChange={(value) => setValue(value)} />;
+<DatePicker inputProps={{ size: "md" }} value={value} onChange={(value) => setValue(value)} />;
 ```
 
 ## Installation
