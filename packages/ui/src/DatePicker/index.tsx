@@ -49,8 +49,6 @@ const generateDisabledRange = (start: JalaliDate, end: JalaliDate): JalaliDate[]
 			current.year++;
 		}
 	}
-
-	console.log("days : ", days);
 	return days;
 };
 
