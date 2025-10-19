@@ -46,21 +46,21 @@ const [value, setValue] = useState<number | null>(1758573000000);
 
 ```tsx
 const [value, setValue] = useState<number | null>(1758573000000);
-<DatePicker 
-    locale="fa" 
-    value={value}
-    disableDays={[
-        { year: 1404, month: 7, day: 10 },
-        { year: 1404, month: 7, day: 12 },
-        { year: 1404, month: 7, day: 15 },
-        { year: 1404, month: 7, day: 16 },
-        { year: 1404, month: 7, day: 20 },
-	]}
-    inputProps={{
-        endAdornment: <Calendar size={18} />
-        }}
-    onChange={(value) => setValue(value)}
-    />
+<DatePicker
+  locale="fa"
+  value={value}
+  disableDays={[
+    { year: 1404, month: 7, day: 10 },
+    { year: 1404, month: 7, day: 12 },
+    { year: 1404, month: 7, day: 15 },
+    { year: 1404, month: 7, day: 16 },
+    { year: 1404, month: 7, day: 20 }
+  ]}
+  inputProps={{
+    endAdornment: <Calendar size={18} />
+  }}
+  onChange={(value) => setValue(value)}
+/>
 ```
 
 ## Disable Rage Days
@@ -70,15 +70,15 @@ const [value, setValue] = useState<number | null>(1758573000000);
 
 ```tsx
 const [value, setValue] = useState<number | null>(1758573000000);
-<DatePicker 
-    locale="fa"
-    value={value}
-    disabledRange={{
-        start: { year: 1404, month: 7, day: 10 },
-        end: { year: 1404, month: 8, day: 25 }
-        }}
-    onChange={(value) => setValue(value)}
-    />
+<DatePicker
+  locale="fa"
+  value={value}
+  disabledRange={{
+    start: { year: 1404, month: 7, day: 10 },
+    end: { year: 1404, month: 8, day: 25 }
+  }}
+  onChange={(value) => setValue(value)}
+/>
 ```
 
 
