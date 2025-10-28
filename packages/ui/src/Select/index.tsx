@@ -103,6 +103,15 @@ export default function SelectList<T extends object>(props: SelectListProps<T>) 
 
 	const selectedIds = useMemo(() => new Set(selectedList.map((o) => String(o[idField]))), [selectedList, idField]);
 
+	/**
+	 * label selected value
+	 */
+	const displayLabel = useMemo(() => {
+		if (multiple) return "";
+		if (selectedList.length === 0) return "";
+		return String(selectedList[0]?.[labelField] ?? "");
+	}, [multiple, selectedList, labelField]);
+
 	const handleOpenMenu = () => {
 		if (disabled || readOnly) return;
 		setMenuOpen(true);
@@ -152,21 +161,11 @@ export default function SelectList<T extends object>(props: SelectListProps<T>) 
 		onSelect?.(null);
 	};
 
-	/**
-	 * label selected value
-	 */
-	const displayLabel = useMemo(() => {
-		if (multiple) return "";
-		if (selectedList.length === 0) return "";
-		return String(selectedList[0]?.[labelField] ?? "");
-	}, [multiple, selectedList, labelField]);
-
 	return (
 		<div className="w-full flex flex-col justify-center items-start p-4" style={{ width }}>
 			<div ref={containerRef} className="relative w-full">
 				<button
 					type="button"
-					//type="button"
 					className={clsx(
 						"w-full flex flex-wrap items-center gap-1 border rounded-lg transition-all ease-in-out duration-300 p-2",
 						sizeClasses[size],
