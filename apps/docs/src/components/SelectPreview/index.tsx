@@ -1,6 +1,6 @@
 "use client";
 
-import SelectList from "@repo/ui/Select2";
+import SelectList from "@repo/ui/Select";
 import { BadgeCheck } from "lucide-react";
 import { useState } from "react";
 export default function Page() {
