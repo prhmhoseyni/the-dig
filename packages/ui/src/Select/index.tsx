@@ -1,8 +1,9 @@
 "use client";
 import clsx from "clsx";
-import { memo, useEffect, useMemo, useRef, useState, type ReactNode } from "react";
+import { memo, type ReactNode, useEffect, useMemo, useRef, useState } from "react";
 import Chip from "../Chip";
 import Menu from "../Menu";
+
 const sizeClasses: Record<string, string> = {
 	xs: "min-h-8 text-sm px-2",
 	sm: "min-h-10 text-sm px-3",
