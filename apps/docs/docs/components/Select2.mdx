@@ -1,0 +1,532 @@
+---
+sidebar_position: 1
+---
+
+# Select2
+
+## Preview
+
+import Select from "@repo/ui/Select2";
+import Menu from "@repo/ui/Menu";
+import SelectPreview from "../../src/components/SelectPreview2";
+import Container from "./Container";
+
+## StartAdornment
+
+<Container>
+  <SelectPreview />
+</Container>
+
+```tsx
+import { BadgeCheck } from "lucide-react";
+import { useState } from "react";
+export default function Page() {
+  const options = [
+    { id: "1", label: "تهران" },
+    { id: "2", label: "اصفهان" },
+    { id: "3", label: "شیراز" },
+    { id: "5", label: "مشهد" },
+    { id: "6", label: "اهواز" },
+    { id: "7", label: "خراسان رضوی" },
+    { id: "8", label: "تبریز" },
+    { id: "9", label: "خراسان شمالی" },
+    { id: "10", label: "سمنان" },
+    { id: "11", label: "زنجان" },
+    { id: "12", label: "کرمان" }
+    ];
+    const [singleValue, setSingleValue] = useState<any | null>("9");
+    return (
+      <Select
+        options={options}
+        onSelect={(val) => {setSingleValue(val)}}
+        startAdornment={<BadgeCheck size={18} />}
+        />	
+    );
+}
+```
+
+## Single Select
+
+<Container>
+
+  <Select
+    options={[
+		{ id: "1", label: "تهران" },
+		{ id: "2", label: "اصفهان" },
+		{ id: "3", label: "شیراز" },
+		{ id: "5", label: "مشهد" },
+		{ id: "6", label: "اهواز" },
+		{ id: "7", label: "خراسان رضوی" },
+		{ id: "8", label: "تبریز" },
+		{ id: "9", label: "خراسان شمالی" },
+		{ id: "10", label: "سمنان" },
+		{ id: "11", label: "زنجان" },
+		{ id: "12", label: "کرمان" },
+	  ]}
+    onSelect={(opt) => {}}
+  />
+</Container>
+
+```tsx
+import { useRef, useState } from "react";
+import Select from "@repo/ui/Select2";
+
+export default function Page() {
+  const [selectedValue, setSelectedValue] = useState();
+  return (
+    <div className="min-h-screen flex items-center justify-center bg-gray-50">
+       <Select
+           options={[
+            { id: "1", label: "تهران" },
+            { id: "2", label: "اصفهان" },
+            { id: "3", label: "شیراز" },
+            { id: "5", label: "مشهد" },
+            { id: "6", label: "اهواز" },
+            { id: "7", label: "خراسان رضوی" },
+            { id: "8", label: "تبریز" },
+            { id: "9", label: "خراسان شمالی" },
+            { id: "10", label: "سمنان" },
+            { id: "11", label: "زنجان" },
+            { id: "12", label: "کرمان" }
+          ]}
+           onSelect={(val) => setSelectedValue(val)}
+        />
+    </div>
+  );
+}
+```
+
+## Mulitple Select
+
+<Container>
+
+      <Select
+         options={[
+          { id: "1", label: "تهران" },
+          { id: "2", label: "اصفهان" },
+          { id: "3", label: "شیراز" },
+          { id: "5", label: "مشهد" },
+          { id: "6", label: "اهواز" },
+          { id: "7", label: "خراسان رضوی" },
+          { id: "8", label: "تبریز" },
+          { id: "9", label: "خراسان شمالی" },
+          { id: "10", label: "سمنان" },
+          { id: "11", label: "زنجان" },
+          { id: "12", label: "کرمان" }
+        ]}
+         onSelect={(option) => {}}
+         multiple={true}
+    
+       />
+
+</Container>
+
+```tsx 
+import {(useRef, useState)} from "react";
+import Select from "@repo/ui/Select2";
+
+export default function Page() {
+  const [selectedValue, setSelectedValue] = useState();
+  return (
+    <div className="min-h-screen flex items-center justify-center bg-gray-50">
+       <Select
+          options={[
+            { id: "1", label: "تهران" },
+            { id: "2", label: "اصفهان" },
+            { id: "3", label: "شیراز" },
+            { id: "5", label: "مشهد" },
+            { id: "6", label: "اهواز" },
+            { id: "7", label: "خراسان رضوی" },
+            { id: "8", label: "تبریز" },
+            { id: "9", label: "خراسان شمالی" },
+            { id: "10", label: "سمنان" },
+            { id: "11", label: "زنجان" },
+            { id: "12", label: "کرمان" }
+          ]}
+          onSelect={(val) => setSelectedValue(val)}
+          multiple={true}
+        />
+    </div>
+  );
+}
+```
+
+## Size
+
+<Container>
+  <Select
+    options={[
+      { id: "1", label: "تهران" },
+      { id: "2", label: "اصفهان" },
+      { id: "3", label: "شیراز" },
+      { id: "5", label: "مشهد" },
+      { id: "6", label: "اهواز" },
+      { id: "7", label: "خراسان رضوی" },
+      { id: "8", label: "تبریز" },
+      { id: "9", label: "خراسان شمالی" },
+      { id: "10", label: "سمنان" },
+      { id: "11", label: "زنجان" },
+      { id: "12", label: "کرمان" }
+      ]}
+    onSelect={(opt) => {}}
+    size="lg"
+  />
+  <Select
+    options={[
+      { id: "1", label: "تهران" },
+      { id: "2", label: "اصفهان" },
+      { id: "3", label: "شیراز" },
+      { id: "5", label: "مشهد" },
+      { id: "6", label: "اهواز" },
+      { id: "7", label: "خراسان رضوی" },
+      { id: "8", label: "تبریز" },
+      { id: "9", label: "خراسان شمالی" },
+      { id: "10", label: "سمنان" },
+      { id: "11", label: "زنجان" },
+      { id: "12", label: "کرمان" }
+      ]}
+    size="xs"
+  />
+</Container>
+```tsx 
+import {(useRef, useState)} from "react";
+import Select from "@repo/ui/Select2";
+
+export default function Page() {
+  const [selectedValue, setSelectedValue] = useState();
+  return (
+    <div className="min-h-screen flex items-center justify-center bg-gray-50">
+       <Select
+        options={[
+          { id: "1", label: "تهران" },
+          { id: "2", label: "اصفهان" },
+          { id: "3", label: "شیراز" },
+          { id: "5", label: "مشهد" },
+          { id: "6", label: "اهواز" },
+          { id: "7", label: "خراسان رضوی" },
+          { id: "8", label: "تبریز" },
+          { id: "9", label: "خراسان شمالی" },
+          { id: "10", label: "سمنان" },
+          { id: "11", label: "زنجان" },
+          { id: "12", label: "کرمان" }
+        ]}
+        onSelect={(val) => setSelectedValue(val)}
+        size="xs"
+      />
+    </div>
+  );
+}
+```
+## Has Error
+<Container>
+
+  <Select
+         options={[
+            { id: "1", label: "تهران" },
+            { id: "2", label: "اصفهان" },
+            { id: "3", label: "شیراز" },
+            { id: "5", label: "مشهد" },
+            { id: "6", label: "اهواز" },
+            { id: "7", label: "خراسان رضوی" },
+            { id: "8", label: "تبریز" },
+            { id: "9", label: "خراسان شمالی" },
+            { id: "10", label: "سمنان" },
+            { id: "11", label: "زنجان" },
+            { id: "12", label: "کرمان" }
+          ]}
+         onSelect={() => {}}
+         hasError = {true}
+       />
+</Container>
+```tsx 
+import {(useRef, useState)} from "react";
+import Select from "@repo/ui/Select2";
+
+export default function Page() {
+  const [selectedValue, setSelectedValue] = useState();
+  return (
+    <div className="min-h-screen flex items-center justify-center bg-gray-50">
+       <Select
+          options={[
+            { id: "1", label: "تهران" },
+            { id: "2", label: "اصفهان" },
+            { id: "3", label: "شیراز" },
+            { id: "5", label: "مشهد" },
+            { id: "6", label: "اهواز" },
+            { id: "7", label: "خراسان رضوی" },
+            { id: "8", label: "تبریز" },
+            { id: "9", label: "خراسان شمالی" },
+            { id: "10", label: "سمنان" },
+            { id: "11", label: "زنجان" },
+            { id: "12", label: "کرمان" }
+          ]}
+          onSelect={(val) => setSelectedValue(val)}
+          hasError={true}
+        />
+    </div>
+  );
+}
+```
+
+## Default value
+
+<Container>
+  <Select
+    options={[
+      { id: "1", label: "تهران" },
+      { id: "2", label: "اصفهان" },
+      { id: "3", label: "شیراز" },
+      { id: "5", label: "مشهد" },
+      { id: "6", label: "اهواز" },
+      { id: "7", label: "خراسان رضوی" },
+      { id: "8", label: "تبریز" },
+      { id: "9", label: "خراسان شمالی" },
+      { id: "10", label: "سمنان" },
+      { id: "11", label: "زنجان" },
+      { id: "12", label: "کرمان" }
+      ]}
+    defaultValue={["3" , "5"]}
+    multiple
+    onSelect={(option) => {}}
+  />
+  <Select
+    options={[
+      { id: "1", label: "تهران" },
+      { id: "2", label: "اصفهان" },
+      { id: "3", label: "شیراز" },
+      { id: "5", label: "مشهد" },
+      { id: "6", label: "اهواز" },
+      { id: "7", label: "خراسان رضوی" },
+      { id: "8", label: "تبریز" },
+      { id: "9", label: "خراسان شمالی" },
+      { id: "10", label: "سمنان" },
+      { id: "11", label: "زنجان" },
+      { id: "12", label: "کرمان" }
+    ]}
+    defaultValue={"5"}
+    onSelect={(option) => {}}
+  />
+</Container>
+
+```tsx
+import { useRef, useState } from "react";
+import Select from "@repo/ui/Select2";
+
+export default function Page() {
+  const options = [
+    { id: "1", label: "تهران" },
+    { id: "2", label: "اصفهان" },
+    { id: "3", label: "شیراز" },
+    { id: "5", label: "مشهد" },
+    { id: "6", label: "اهواز" },
+    { id: "7", label: "خراسان رضوی" },
+    { id: "8", label: "تبریز" },
+    { id: "9", label: "خراسان شمالی" },
+    { id: "10", label: "سمنان" },
+    { id: "11", label: "زنجان" },
+    { id: "12", label: "کرمان" }
+    ];
+    const [singleValue, setSingleValue] = useState<any | null>("5"); // { id: 5, label: "مشهد" }
+    const [multiValue, setMultiValue] = useState<any[]>([{ id: 3, label: "شیراز" },{ id: 5, label: "مشهد" }]); // ["3" , "5"]
+    return (
+      <>
+        <SelectList
+          options={options}
+          defaultValue={singleValue}
+          onSelect={(val) => {setSingleValue(val)}}
+        />
+        <SelectList
+          options={options}
+          multiple={true}
+          defaultValue={multiValue}
+          onSelect={(val) => setMultiValue(Array.isArray(val) ? val : [])}
+        />
+      </>
+    );
+  }
+```
+
+## ReadOnly
+
+<Container>
+ <Select
+         options={[
+              { id: "1", label: "خراسان رضوی"},
+              { id: "2", label: "تهران"},
+              { id: "3", label: "خراسان شمالی"},
+              { id: "4", label: "کردستان"},
+              { id: "5", label: "خراسان جنوبی"},
+              { id: "6", label: "کرمان"},
+              { id: "7", label: "خوزستان"},
+              { id: "8", label: "همدان"},
+              { id: "9", label: "کرمانشاه"}
+              ]}
+    readOnly={true}
+    onSelect={(option) => {}}
+       />
+
+</Container>
+
+```tsx
+import { useRef, useState } from "react";
+import Select from "@repo/ui/Select2";
+
+export default function Page() {
+  return (
+    <div className="min-h-screen flex items-center justify-center bg-gray-50">
+       <Select
+          options={[
+            { id: "1", label: "تهران" },
+            { id: "2", label: "اصفهان" },
+            { id: "3", label: "شیراز" },
+            { id: "5", label: "مشهد" },
+            { id: "6", label: "اهواز" },
+            { id: "7", label: "خراسان رضوی" },
+            { id: "8", label: "تبریز" },
+            { id: "9", label: "خراسان شمالی" },
+            { id: "10", label: "سمنان" },
+            { id: "11", label: "زنجان" },
+            { id: "12", label: "کرمان" }
+          ]}
+          idField="code"
+          labelField="name"
+          readOnly={true}
+          onSelect={(e) => {}}
+        />
+    </div>
+  );
+}
+```
+
+## Disabled
+
+<Container>
+ <Select
+         options={[
+            { id: "1", label: "تهران" },
+            { id: "2", label: "اصفهان" },
+            { id: "3", label: "شیراز" },
+            { id: "5", label: "مشهد" },
+            { id: "6", label: "اهواز" },
+            { id: "7", label: "خراسان رضوی" },
+            { id: "8", label: "تبریز" },
+            { id: "9", label: "خراسان شمالی" },
+            { id: "10", label: "سمنان" },
+            { id: "11", label: "زنجان" },
+            { id: "12", label: "کرمان" }
+          ]}
+
+    onSelect={(option) => {
+    }}
+    disabled={true}
+       />
+
+</Container>
+
+```tsx
+import { useRef, useState } from "react";
+import Select from "@repo/ui/Select2";
+
+export default function Page() {
+  return (
+    <div className="min-h-screen flex items-center justify-center bg-gray-50">
+       <Select
+          options={[
+            { id: "1", label: "تهران" },
+            { id: "2", label: "اصفهان" },
+            { id: "3", label: "شیراز" },
+            { id: "5", label: "مشهد" },
+            { id: "6", label: "اهواز" },
+            { id: "7", label: "خراسان رضوی" },
+            { id: "8", label: "تبریز" },
+            { id: "9", label: "خراسان شمالی" },
+            { id: "10", label: "سمنان" },
+            { id: "11", label: "زنجان" },
+            { id: "12", label: "کرمان" }
+          ]}
+          idField="code"
+          labelField="name"
+          onSelect={(e) => {}}
+        />
+    </div>
+  );
+}
+```
+
+## Variant
+
+<Container>
+  <Select
+    options={[
+      { id: "1", label: "تهران" },
+      { id: "2", label: "اصفهان" },
+      { id: "3", label: "شیراز" },
+      { id: "5", label: "مشهد" },
+      { id: "6", label: "اهواز" },
+      { id: "7", label: "خراسان رضوی" },
+      { id: "8", label: "تبریز" },
+      { id: "9", label: "خراسان شمالی" },
+      { id: "10", label: "سمنان" },
+      { id: "11", label: "زنجان" },
+      { id: "12", label: "کرمان" }
+    ]}
+    onSelect={(option) => {}}
+    variant="secondary"
+  />
+</Container>
+
+```tsx 
+import {(useRef, useState)} from "react";
+import Select from "@repo/ui/Select2";
+
+export default function Page() {
+  const [selectedValue, setSelectedValue] = useState();
+  return (
+    <div className="min-h-screen flex items-center justify-center bg-gray-50">
+       <Select
+          options={[
+            { id: "1", label: "تهران" },
+            { id: "2", label: "اصفهان" },
+            { id: "3", label: "شیراز" },
+            { id: "5", label: "مشهد" },
+            { id: "6", label: "اهواز" },
+            { id: "7", label: "خراسان رضوی" },
+            { id: "8", label: "تبریز" },
+            { id: "9", label: "خراسان شمالی" },
+            { id: "10", label: "سمنان" },
+            { id: "11", label: "زنجان" },
+            { id: "12", label: "کرمان" }
+          ]}
+          onSelect={(val) => setSelectedValue(val)}
+          variant="secondary"
+      />
+    </div>
+  );
+}
+```
+
+## Installation
+
+```bash
+npx the-dig@latest add Select,Menu,CircularProgress,Chip
+```
+
+## Props
+
+### `Select`
+
+| Prop                                                                | Type                                                                              | Default                                                                                                   |
+| ------------------------------------------------------------------- | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- |
+| `options` <sup className="text-red-600 text-caption2">\*</sup>      | `Array`                                                                           | -                                                                                                         |
+| `defaultValue`                                                      |  `object` \| `Array<object>` \| `string` \| `Array<string>`                                                                           | -                                                                                                       |
+| `onSelect`                                                          | `function`                                                                        | -                                                                                                         |
+| `idField`                                                           | ` string`                                                                         | id                                                                                                        |
+| `labelField`                                                        | ` string`                                                                         | label                                                                                                     |
+| `hasError`                                                          | `boolean`                                                                         | false                                                                                                     |
+| `readOnly`                                                          | `boolean`                                                                         | false                                                                                                     |
+| `disabled`                                                          | `boolean`                                                                         | false                                                                                                     |
+| `placeholder`                                                          | `string`                                                                         | انتخاب کنید                                                                                                     |
+| `size`                                                              | `"xs"` \| `"sm"` \| `"md"` \| `"lg"`                                              | md                                                                                                        |
+| `width`                                                             | `string`                                                                          | 100%                                                                                                      |
+| `variant`                                                           | `"primary"` \| `"secondary"` \|                                                   | primary                                                                                                   |
+| `maxDropdownHeight`                                                 | `number`                                                                          | 200                                                                                                       |
