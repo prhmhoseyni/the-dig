@@ -1,9 +1,9 @@
 "use client";
 
-import Autocomplete from "@repo/ui/Autocomplete"; // مسیر صحیح به فایل خودت
+import Autocomplete from "@repo/ui/Autocomplete";
 import { BadgeCheck } from "lucide-react";
+
 interface Place {
-	// ساختار آبجکت مکانی برگشتی از Geoapify
 	place_id: string;
 	name: string;
 	formatted: string;
