@@ -23,9 +23,6 @@ async function fetchBook(query: string): Promise<Place[]> {
 	const data = await resp.json();
 	return data?.docs;
 }
-
-// سپس استفاده در صفحه:
-
 export default function Page() {
 	return (
 		<Autocomplete
