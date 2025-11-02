@@ -13,18 +13,19 @@ export interface TextareaProps extends DetailedHTMLProps<TextareaHTMLAttributes<
 	variant?: TextareaVariant;
 	hasError?: boolean;
 	startAdornment?: ReactNode;
+	rows?: number;
 	inputWrapperProps?: DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>;
 }
 
 export default function Textarea(props: TextareaProps) {
-	const { variant = "primary", hasError = false, startAdornment, className = "", inputWrapperProps, ...rest } = props;
+	const { variant = "primary", hasError = false, startAdornment, className = "", rows = 2, inputWrapperProps, ...rest } = props;
 	const { className: wrapperClassName, ...restWrapper } = inputWrapperProps ?? {};
 
 	return (
 		<div className={clsx("w-full relative", wrapperClassName)} {...restWrapper}>
 			<textarea
 				className={clsx(
-					"w-full resize-none min-h-20 text-label2 text-prose-primary border border-gray-400 outline-0 p-3 rounded-lg placeholder:text-prose-hint transition-all ease-in-out duration-300",
+					"w-full resize-none text-label2 text-prose-primary border border-gray-400 outline-0 p-3 rounded-lg placeholder:text-prose-hint transition-all ease-in-out duration-300",
 					"disabled:cursor-not-allowed disabled:opacity-40",
 					"focus:border-brand focus:shadow-focus-brand",
 					{ "bg-background-secondary": variant === "primary" },
@@ -33,6 +34,7 @@ export default function Textarea(props: TextareaProps) {
 					{ "!ps-9": startAdornment },
 					className,
 				)}
+				rows={rows}
 				{...rest}
 			/>
 

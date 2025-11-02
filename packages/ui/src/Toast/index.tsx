@@ -14,14 +14,15 @@ export default function Toast(props: Props) {
 	const { title, description, actions, className = "" } = props;
 
 	return (
-		<div className={clsx("flex flex-row justify-between items-start gap-3", className)}>
-			<Info stroke="var(--color-background-primary)" fill="var(--color-info)" width={24} height={24} />
-
+		<div className={clsx("flex flex-row justify-between items-start gap-3 text-right", className)}>
 			<div className="flex flex-row flex-wrap flex-1 items-center gap-3">
-				<p className="text-subtitle3 text-prose-primary">{title}</p>
+				<div className="flex start-2 w-full">
+					<p className="text-subtitle3 text-prose-primary text-right w-full">{title}</p>
+					<Info className="ml-2" stroke="var(--color-background-primary)" fill="var(--color-info)" width={24} height={24} />
+				</div>
 
-				<div className="flex-1 min-w-fit flex flex-row flex-wrap gap-3 justify-between items-center">
-					<p className="text-paragraph4 text-prose-secondary">{description}</p>
+				<div className="flex-1 min-w-fit flex flex-row flex-wrap gap-3 justify-between items-center w-full">
+					<p className="text-paragraph4 text-prose-secondary w-full">{description}</p>
 
 					{actions}
 				</div>

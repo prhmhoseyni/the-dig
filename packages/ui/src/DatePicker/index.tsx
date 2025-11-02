@@ -4,7 +4,15 @@ import { toEnglishDigits } from "msk-utils";
 import type { RefObject } from "react";
 import TextField, { type TextFieldProps } from "../TextField";
 import "./datepicker.css";
-
+type JalaliDate = {
+	year: number;
+	month: number;
+	day: number;
+};
+type DisabledRange = {
+	start: JalaliDate;
+	end: JalaliDate;
+};
 function convertTimestamp2DayValue(value: number) {
 	return {
 		day: Number(toEnglishDigits(new Date(value).toLocaleDateString("fa", { day: "numeric" }))),
@@ -21,12 +29,37 @@ function convertDayValue2Timestamp(value: DayValue) {
 	return new Date(convertedDateFromSolarToGregorian).getTime();
 }
 
+const generateDisabledRange = (start: JalaliDate, end: JalaliDate): JalaliDate[] => {
+	const days: JalaliDate[] = [];
+	const current = { ...start };
+
+	while (
+		current.year < end.year ||
+		(current.year === end.year && (current.month < end.month || (current.month === end.month && current.day <= end.day)))
+	) {
+		days.push({ ...current });
+
+		current.day++;
+		if (current.day > 31) {
+			current.day = 1;
+			current.month++;
+		}
+		if (current.month > 12) {
+			current.month = 1;
+			current.year++;
+		}
+	}
+	return days;
+};
+
 export interface DatePickerProps {
 	value: number | null;
 	onChange: (value: number | null) => void;
 	locale?: "fa" | "en";
 	minDate?: number;
 	maxDate?: number;
+	disableDays?: Array<JalaliDate>;
+	disabledRange?: DisabledRange;
 	inputProps?: TextFieldProps;
 }
 
@@ -58,6 +91,13 @@ export default function DatePicker(props: DatePickerProps) {
 			renderInput={render}
 			maximumDate={props.maxDate ? convertTimestamp2DayValue(props.maxDate) : undefined}
 			minimumDate={props.minDate ? convertTimestamp2DayValue(props.minDate) : undefined}
+			disabledDays={
+				props.disableDays
+					? props.disableDays
+					: props.disabledRange
+						? generateDisabledRange(props.disabledRange?.start, props.disabledRange?.end)
+						: undefined
+			}
 			colorPrimary="rgb(var(--dig-brand))"
 			onChange={(_val) => {
 				if (_val) props.onChange(convertDayValue2Timestamp(_val));

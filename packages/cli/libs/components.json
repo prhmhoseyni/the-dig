@@ -3,6 +3,10 @@
 		"dependencies": null,
 		"src": "https://pubgi.sandpod.ir/pod/frontobm/the-dig/-/tree/main/packages/ui/src/Alert"
 	},
+	"Autocomplete": {
+		"dependencies": null,
+		"src": "https://pubgi.sandpod.ir/pod/frontobm/the-dig/-/tree/main/packages/ui/src/Autocomplete"
+	},
 	"Avatar": {
 		"dependencies": null,
 		"src": "https://pubgi.sandpod.ir/pod/frontobm/the-dig/-/tree/main/packages/ui/src/Avatar"

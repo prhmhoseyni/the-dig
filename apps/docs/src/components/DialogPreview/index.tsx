@@ -15,9 +15,7 @@ export default function BottomSheetPreview() {
 			<Dialog open={open} onClose={() => setOpen(false)}>
 				<Dialog.Header className="flex justify-between items-center">
 					عنوان تست نمونه
-					<IconButton color="gray" variant="tinted" onClick={() => setOpen(false)}>
-						<X size={14} />
-					</IconButton>
+					<X onClick={() => setOpen(false)} className="absolute end-6 cursor-pointer" size={18} />
 				</Dialog.Header>
 
 				<Dialog.Body>
@@ -30,7 +28,7 @@ export default function BottomSheetPreview() {
 				</Dialog.Body>
 
 				<Dialog.Footer className="flex items-center justify-end gap-4">
-					<Button color="danger" variant="tinted" onClick={() => setOpen(false)} className="!min-w-28">
+					<Button variant="tinted" color="gray" onClick={() => setOpen(false)} className="!min-w-28">
 						انصراف
 					</Button>
 					<Button color="brand" variant="contained" onClick={() => setOpen(false)} className="!min-w-28">
