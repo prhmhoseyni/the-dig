@@ -4,24 +4,24 @@ import { Children, Fragment, type PropsWithChildren, type ReactNode } from "reac
  * @name Breadcrumbs component
  */
 export interface BreadcrumbsProps extends PropsWithChildren {
-	separator?: ReactNode;
+  separator?: ReactNode;
 }
 
 export default function Breadcrumbs(props: BreadcrumbsProps) {
-	const { children, separator } = props;
+  const { children, separator } = props;
 
-	const childrenCount = Children.count(children);
+  const childrenCount = Children.count(children);
 
-	return (
-		<nav className="flex items-center text-label3 gap-2">
-			{Children.toArray(
-				Children.map(children, (child, index) => (
-					<Fragment>
-						{child}
-						{!(index === childrenCount - 1) && <span className="text-gray-500">{separator ?? "/"}</span>}
-					</Fragment>
-				)),
-			)}
-		</nav>
-	);
+  return (
+    <nav className="flex items-center text-label3 gap-2">
+      {Children.toArray(
+        Children.map(children, (child, index) => (
+          <Fragment>
+            {child}
+            {!(index === childrenCount - 1) && <span className="text-gray-500">{separator ?? "/"}</span>}
+          </Fragment>
+        )),
+      )}
+    </nav>
+  );
 }
