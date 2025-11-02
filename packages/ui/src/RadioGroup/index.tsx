@@ -8,7 +8,7 @@ import styles from "./index.module.css";
 export type RadioGroupProps = DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>;
 
 export default function RadioGroup(props: RadioGroupProps) {
-	const { className = "", ...rest } = props;
+  const { className = "", ...rest } = props;
 
-	return <input type="radio" className={clsx(styles.radio, className)} {...rest} />;
+  return <input type="radio" className={clsx(styles.radio, className)} {...rest} />;
 }

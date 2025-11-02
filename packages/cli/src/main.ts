@@ -17,9 +17,9 @@ program.command("config").description("Configure the project for the-dig").actio
 program.command("add").description("Add components").argument("<components-name>", "Name of the components to add").action(add);
 
 program
-	.command("update")
-	.description("Update components")
-	.argument("<components-name>", "Name of the components to update")
-	.action(update);
+  .command("update")
+  .description("Update components")
+  .argument("<components-name>", "Name of the components to update")
+  .action(update);
 
 program.parse();

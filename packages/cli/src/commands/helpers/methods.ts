@@ -11,24 +11,24 @@ import type { ComponentsData, TheDigConfig } from "./types";
  * @returns A Promise that resolves with the TheDigConfig, or rejects if the file is not found or invalid.
  */
 export async function getTheDigConfig(): Promise<TheDigConfig> {
-	const configFileName = ".thedigrc.json";
-	const configFilePath = path.join(process.cwd(), configFileName);
-	const spinner = ora(`Reading ${configFileName}...`).start();
+  const configFileName = ".thedigrc.json";
+  const configFilePath = path.join(process.cwd(), configFileName);
+  const spinner = ora(`Reading ${configFileName}...`).start();
 
-	try {
-		if (!fs.existsSync(configFilePath)) {
-			spinner.fail(`${configFileName} not found.`);
-			throw new Error(`Configuration file "${configFileName}" not found. Please run "the-dig init" first.`);
-		}
+  try {
+    if (!fs.existsSync(configFilePath)) {
+      spinner.fail(`${configFileName} not found.`);
+      throw new Error(`Configuration file "${configFileName}" not found. Please run "the-dig init" first.`);
+    }
 
-		const config = (await fs.readJson(configFilePath)) as TheDigConfig;
-		spinner.succeed(`${configFileName} loaded successfully.`);
-		return config;
-	} catch (error) {
-		spinner.fail(`Failed to read ${configFileName}.`);
-		console.error((error as Error).message);
-		process.exit(1);
-	}
+    const config = (await fs.readJson(configFilePath)) as TheDigConfig;
+    spinner.succeed(`${configFileName} loaded successfully.`);
+    return config;
+  } catch (error) {
+    spinner.fail(`Failed to read ${configFileName}.`);
+    console.error((error as Error).message);
+    process.exit(1);
+  }
 }
 
 /**
@@ -38,27 +38,27 @@ export async function getTheDigConfig(): Promise<TheDigConfig> {
  * @returns A Promise that resolves when dependencies are installed, or rejects on error.
  */
 export function installDependencies(dependencies: string[] | null): Promise<void> {
-	return new Promise((resolve, reject) => {
-		if (!dependencies || dependencies.length === 0) {
-			console.log("No dependencies to install.");
-			resolve();
-			return;
-		}
+  return new Promise((resolve, reject) => {
+    if (!dependencies || dependencies.length === 0) {
+      console.log("No dependencies to install.");
+      resolve();
+      return;
+    }
 
-		const command = `npm install ${dependencies.join(" ")}`;
-		const spinner = ora(`Installing dependencies: ${dependencies.join(", ")}`).start();
+    const command = `npm install ${dependencies.join(" ")}`;
+    const spinner = ora(`Installing dependencies: ${dependencies.join(", ")}`).start();
 
-		exec(command, (error, _stdout, stderr) => {
-			if (error) {
-				spinner.fail("Failed to install dependencies.");
-				console.error(stderr);
-				reject(error);
-				return;
-			}
-			spinner.succeed("Dependencies installed successfully.");
-			resolve();
-		});
-	});
+    exec(command, (error, _stdout, stderr) => {
+      if (error) {
+        spinner.fail("Failed to install dependencies.");
+        console.error(stderr);
+        reject(error);
+        return;
+      }
+      spinner.succeed("Dependencies installed successfully.");
+      resolve();
+    });
+  });
 }
 
 /**
@@ -67,24 +67,24 @@ export function installDependencies(dependencies: string[] | null): Promise<void
  * @returns A Promise that resolves with the ComponentsData, or rejects on error.
  */
 export async function getComponentData(): Promise<ComponentsData> {
-	const registryURL = "https://pubgi.sandpod.ir/pod/frontobm/the-dig/-/raw/main/packages/cli/libs/components.json";
-	const spinner = ora(`Loading component registry from ${registryURL}...`).start();
+  const registryURL = "https://pubgi.sandpod.ir/pod/frontobm/the-dig/-/raw/main/packages/cli/libs/components.json";
+  const spinner = ora(`Loading component registry from ${registryURL}...`).start();
 
-	try {
-		const response = await fetch(registryURL);
+  try {
+    const response = await fetch(registryURL);
 
-		if (!response.ok) {
-			throw new Error(`Failed to fetch component registry: ${response.statusText} (${response.status})`);
-		}
+    if (!response.ok) {
+      throw new Error(`Failed to fetch component registry: ${response.statusText} (${response.status})`);
+    }
 
-		const componentData = (await response.json()) as ComponentsData;
-		spinner.succeed("Component registry loaded successfully.");
-		return componentData;
-	} catch (error) {
-		spinner.fail("Failed to load component registry.");
-		console.error((error as Error).message);
-		process.exit(1);
-	}
+    const componentData = (await response.json()) as ComponentsData;
+    spinner.succeed("Component registry loaded successfully.");
+    return componentData;
+  } catch (error) {
+    spinner.fail("Failed to load component registry.");
+    console.error((error as Error).message);
+    process.exit(1);
+  }
 }
 
 /**
@@ -95,47 +95,47 @@ export async function getComponentData(): Promise<ComponentsData> {
  * @returns A Promise that resolves when the component is fetched, or rejects on error.
  */
 export async function fetchComponentFromRepository(srcUrl: string, destination: string): Promise<void> {
-	const spinner = ora(`Fetching component from ${srcUrl}...`).start();
-	try {
-		const url = new URL(srcUrl);
-		const host = url.host;
-		const parts = url.pathname.split("/").filter(Boolean);
+  const spinner = ora(`Fetching component from ${srcUrl}...`).start();
+  try {
+    const url = new URL(srcUrl);
+    const host = url.host;
+    const parts = url.pathname.split("/").filter(Boolean);
 
-		const branch = parts[5];
-		const repoPath = parts.slice(6).join("/");
+    const branch = parts[5];
+    const repoPath = parts.slice(6).join("/");
 
-		const projectId = 95;
+    const projectId = 95;
 
-		const treeRes = await fetch(`https://${host}/api/v4/projects/${projectId}/repository/tree?path=${repoPath}&ref=${branch}`);
-		if (!treeRes.ok) {
-			throw new Error(`Failed to fetch repository tree: ${treeRes.statusText}`);
-		}
-		const files = await treeRes.json();
+    const treeRes = await fetch(`https://${host}/api/v4/projects/${projectId}/repository/tree?path=${repoPath}&ref=${branch}`);
+    if (!treeRes.ok) {
+      throw new Error(`Failed to fetch repository tree: ${treeRes.statusText}`);
+    }
+    const files = await treeRes.json();
 
-		if (!Array.isArray(files)) {
-			throw new Error("The specified path is not a directory.");
-		}
+    if (!Array.isArray(files)) {
+      throw new Error("The specified path is not a directory.");
+    }
 
-		await fs.ensureDir(destination);
+    await fs.ensureDir(destination);
 
-		for (const file of files) {
-			if (file.type === "blob") {
-				const rawRes = await fetch(
-					`https://${host}/api/v4/projects/${projectId}/repository/files/${encodeURIComponent(file.path)}/raw?ref=${branch}`,
-				);
-				if (!rawRes.ok) {
-					spinner.warn(`Could not fetch file: ${file.name}`);
-					continue;
-				}
-				const fileContent = await rawRes.buffer();
-				await fs.writeFile(path.join(destination, file.name), fileContent);
-			}
-		}
+    for (const file of files) {
+      if (file.type === "blob") {
+        const rawRes = await fetch(
+          `https://${host}/api/v4/projects/${projectId}/repository/files/${encodeURIComponent(file.path)}/raw?ref=${branch}`,
+        );
+        if (!rawRes.ok) {
+          spinner.warn(`Could not fetch file: ${file.name}`);
+          continue;
+        }
+        const fileContent = await rawRes.buffer();
+        await fs.writeFile(path.join(destination, file.name), fileContent);
+      }
+    }
 
-		spinner.succeed(`Component successfully fetched and placed in ${destination}.`);
-	} catch (error) {
-		spinner.fail("Failed to fetch component from GitLab.");
-		console.error((error as Error).message);
-		throw error;
-	}
+    spinner.succeed(`Component successfully fetched and placed in ${destination}.`);
+  } catch (error) {
+    spinner.fail("Failed to fetch component from GitLab.");
+    console.error((error as Error).message);
+    throw error;
+  }
 }

@@ -1,30 +1,30 @@
 .switch {
-	grid-template-columns: 0fr 1fr 1fr;
-	transition:
-		color 0.3s,
-		background-color 0.3s,
-		grid-template-columns 0.2s;
+  grid-template-columns: 0fr 1fr 1fr;
+  transition:
+    color 0.3s,
+    background-color 0.3s,
+    grid-template-columns 0.2s;
 }
 
 .switch::before {
-	border-radius: 100%;
-	position: relative;
-	inset-inline-start: 0px;
-	grid-column-start: 2;
-	grid-row-start: 1;
-	aspect-ratio: 1 / 1;
-	height: 100%;
-	background-color: currentColor;
-	translate: 0;
-	content: "";
-	transition:
-		background-color 0.1s,
-		translate 0.2s,
-		inset-inline-start 0.2s;
+  border-radius: 100%;
+  position: relative;
+  inset-inline-start: 0px;
+  grid-column-start: 2;
+  grid-row-start: 1;
+  aspect-ratio: 1 / 1;
+  height: 100%;
+  background-color: currentColor;
+  translate: 0;
+  content: "";
+  transition:
+    background-color 0.1s,
+    translate 0.2s,
+    inset-inline-start 0.2s;
 }
 
 .switch:checked,
 .switch[aria-checked="true"],
 .switch:has(> input:checked) {
-	grid-template-columns: 1fr 1fr 0fr;
+  grid-template-columns: 1fr 1fr 0fr;
 }
