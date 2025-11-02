@@ -18,5 +18,8 @@
 	},
 	"[json]": {
 		"editor.defaultFormatter": "biomejs.biome"
+	},
+	"[mdx]": {
+		"editor.defaultFormatter": "biomejs.biome"
 	}
 }
