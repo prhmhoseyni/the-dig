@@ -50,7 +50,7 @@ export default function Chip(props: ChipProps) {
 	const { color = "brand", className = "", startAdornment: icon, children, ...rest } = props;
 
 	return (
-		<button
+		<span
 			className={clsx(
 				"cursor-pointer h-8 ps-3 pe-2 text-subtitle5 inline-flex items-center justify-center gap-1.5 rounded-full min-w-fit transition-all ease-in-out duration-300",
 				colors[color].tinted,
@@ -71,6 +71,6 @@ export default function Chip(props: ChipProps) {
 					fill={`rgb(var(--dig-${color}))`}
 				/>
 			</svg>
-		</button>
+		</span>
 	);
 }
