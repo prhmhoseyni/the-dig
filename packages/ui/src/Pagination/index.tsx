@@ -30,7 +30,7 @@ export interface PaginationProps {
 
 export default function Pagination(props: PaginationProps) {
 	return (
-		<div className="w-fit flex items-center gap-px border border-gray-300 rounded-lg p-px">
+		<div className="w-fit flex items-center gap-px border border-gray-400 rounded-lg p-px">
 			<PaginationButton onClick={() => props.onChange(1)} disabled={props.page === 1}>
 				<ChevronsRight size={16} />
 			</PaginationButton>

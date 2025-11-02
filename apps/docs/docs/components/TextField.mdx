@@ -35,6 +35,7 @@ npx the-dig@latest add TextField
 | `hasError`          | `boolean`                               | `false`                                                                                                        |
 | `startAdornment`    | `ReactNode`                             | -                                                                                                              |
 | `endAdornment`      | `ReactNode`                             | -                                                                                                              |
+| `size`                                                              | `"xs"` \| `"sm"` \| `"md"` \| `"lg"`                                              | md                                                                                                        |
 | `inputWrapperProps` | `HTMLAttributes<HTMLDivElement>`        | <RedirectLink href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement">Document</RedirectLink>      |
 | Others              | `InputHTMLAttributes<HTMLInputElement>` | <RedirectLink href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement">Document</RedirectLink> |
 
@@ -80,12 +81,12 @@ import { BadgeCheck } from "lucide-react";
 ## End Adornment
 
 <Container>
-  <TextField endAdornment={<BadgeCheck size={18} />} />
+  <TextField endAdornment={<BadgeCheck size={18}  />} size="xs"/>
 </Container>
 
 ```tsx
 import TextField from "@repo/ui/TextField";
 import { BadgeCheck } from "lucide-react";
 
-<TextField endAdornment={<BadgeCheck size={18} />} />;
+<TextField endAdornment={<BadgeCheck size={18} />} size="xs"/>;
 ```

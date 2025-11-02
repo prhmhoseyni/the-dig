@@ -6,16 +6,83 @@ sidebar_position: 1
 
 ## Preview
 
+import Container from "./Container";
 import DatePickerPreview from "../../src/components/DatePickerPreview";
-import RedirectLink from "../../src/components/RedirectLink";
+import DatePickerDisableDays from "../../src/components/DatePickerDisableDays";
+import DatePickerDisableRangeDays from "../../src/components/DatePickerDisableRangeDays";
 
-<DatePickerPreview local="fa" />
+import DatePickerDefalutValue from "../../src/components/DatePickerDefalutValue";
+import DatePickerHasError from "../../src/components/DatePickerHasError";
+import RedirectLink from "../../src/components/RedirectLink";
+import DatePicker from "@repo/ui/DatePicker";
+
+<DatePickerPreview local="fa"/>
 
 ```tsx
 import DatePicker from "@repo/ui/DatePicker";
 
-<DatePicker value={value} onChange={(value) => setValue(value)} />;
+<DatePicker value={value} onChange={(value) => setValue(value)} inputProps={{ size: "md" }}/>;
 ```
+## Has Error
+<DatePickerHasError />
+
+```tsx
+const [value, setValue] = useState<number | null>(null);
+<DatePicker locale="fa" value={value} onChange={(value) => setValue(value)} inputProps={{hasError : true }}/>
+```
+
+## Default Value
+<DatePickerDefalutValue />
+
+```tsx
+const [value, setValue] = useState<number | null>(1758573000000);
+<DatePicker "fa" value={value} onChange={(value) => setValue(value)} inputProps={{hasError : true }}/>
+```
+
+## Disable Days
+
+<DatePickerDisableDays />
+
+
+```tsx
+const [value, setValue] = useState<number | null>(1758573000000);
+<DatePicker
+  locale="fa"
+  value={value}
+  disableDays={[
+    { year: 1404, month: 7, day: 10 },
+    { year: 1404, month: 7, day: 12 },
+    { year: 1404, month: 7, day: 15 },
+    { year: 1404, month: 7, day: 16 },
+    { year: 1404, month: 7, day: 20 }
+  ]}
+  inputProps={{
+    endAdornment: <Calendar size={18} />
+  }}
+  onChange={(value) => setValue(value)}
+/>
+```
+
+## Disable Rage Days
+
+<DatePickerDisableRangeDays />
+
+
+```tsx
+const [value, setValue] = useState<number | null>(1758573000000);
+<DatePicker
+  locale="fa"
+  value={value}
+  disabledRange={{
+    start: { year: 1404, month: 7, day: 10 },
+    end: { year: 1404, month: 8, day: 25 }
+  }}
+  onChange={(value) => setValue(value)}
+/>
+```
+
+
+
 
 ## Installation
 
@@ -30,4 +97,6 @@ npx the-dig@latest add TextField,DatePicker
 | `value` <sup className="text-red-600 text-caption2">\*</sup>    | `number` \| `null`                | -                                                                                                 |
 | `onChange` <sup className="text-red-600 text-caption2">\*</sup> | `(value: number \| null) => void` | -                                                                                                 |
 | `locale`                                                        | `"fa"` \| `"en"`                  | `"fa"`                                                                                            |
+| `disableDays`                                                        | `Array<object>`                  | -                                                                                            |
+| `disabledRange`                                                        | `object`                  | -                                                                                            |
 | `inputProps`                                                    | `TextFieldProps`                  | <RedirectLink href="https://the-dig.vercel.app/docs/components/TextField">Document</RedirectLink> |
