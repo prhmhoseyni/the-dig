@@ -1,5 +1,3 @@
-"use client";
-
 import clsx from "clsx";
 import { CloudUpload } from "lucide-react";
 import { type ChangeEvent, type DragEvent, type InputHTMLAttributes, useState } from "react";

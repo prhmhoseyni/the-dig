@@ -1,5 +1,3 @@
-"use client";
-
 import clsx from "clsx";
 import { X } from "lucide-react";
 import type { DetailedHTMLProps, InputHTMLAttributes, ReactNode } from "react";

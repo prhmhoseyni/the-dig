@@ -1,5 +1,3 @@
-"use client";
-
 import clsx from "clsx";
 import { CircleCheck, CircleX, Info, TriangleAlert, X } from "lucide-react";
 import type { ReactNode } from "react";
