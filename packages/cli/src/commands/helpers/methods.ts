@@ -7,6 +7,65 @@ import type { ComponentsData, TheDigConfig } from "./types";
 
 /**
  * -----------------------------------------------------------------------------------------------------------------
+ * Checks if the project is a Next.js project by looking for 'next' in package.json dependencies.
+ * @returns A Promise that resolves to true if Next.js is detected, false otherwise.
+ */
+export async function isNextJsProject(): Promise<boolean> {
+  const packageJsonPath = path.join(process.cwd(), "package.json");
+  try {
+    if (!fs.existsSync(packageJsonPath)) {
+      return false;
+    }
+    const packageJson = await fs.readJson(packageJsonPath);
+    const allDeps = {
+      ...packageJson.dependencies,
+      ...packageJson.devDependencies,
+    };
+    return "next" in allDeps;
+  } catch {
+    return false;
+  }
+}
+
+/**
+ * -----------------------------------------------------------------------------------------------------------------
+ * Checks if the file content uses React hooks (useEffect, useRef, useState).
+ * @param content The file content to check.
+ * @returns true if any of the hooks are found, false otherwise.
+ */
+export function usesReactHooks(content: string): boolean {
+  const hookPatterns = [/\buseEffect\b/, /\buseRef\b/, /\buseState\b/];
+  return hookPatterns.some((pattern) => pattern.test(content));
+}
+
+/**
+ * -----------------------------------------------------------------------------------------------------------------
+ * Adds "use client" directive at the top of the file if it doesn't already exist.
+ * @param content The original file content.
+ * @returns The file content with "use client" directive at the top.
+ */
+export function addUseClientDirective(content: string): string {
+  // Check if "use client" already exists (handles both single and double quotes, with or without semicolon)
+  if (/^["']use client["']\s*;?\s*(\r?\n|$)/m.test(content)) {
+    return content;
+  }
+  // Add "use client" at the top
+  return '"use client";\n' + content;
+}
+
+/**
+ * -----------------------------------------------------------------------------------------------------------------
+ * Checks if a file is a React component file (tsx, jsx, ts, js).
+ * @param fileName The name of the file to check.
+ * @returns true if the file extension indicates a React component, false otherwise.
+ */
+export function isReactComponentFile(fileName: string): boolean {
+  const ext = path.extname(fileName).toLowerCase();
+  return [".tsx", ".jsx", ".ts", ".js"].includes(ext);
+}
+
+/**
+ * -----------------------------------------------------------------------------------------------------------------
  * Reads the .thedigrc.json configuration file from the project root.
  * @returns A Promise that resolves with the TheDigConfig, or rejects if the file is not found or invalid.
  */
@@ -118,6 +177,9 @@ export async function fetchComponentFromRepository(srcUrl: string, destination: 
 
     await fs.ensureDir(destination);
 
+    // Check if project is Next.js once before processing files
+    const isNextJs = await isNextJsProject();
+
     for (const file of files) {
       if (file.type === "blob") {
         const rawRes = await fetch(
@@ -128,7 +190,20 @@ export async function fetchComponentFromRepository(srcUrl: string, destination: 
           continue;
         }
         const fileContent = await rawRes.buffer();
-        await fs.writeFile(path.join(destination, file.name), fileContent);
+        const filePath = path.join(destination, file.name);
+
+        // If Next.js project and file is a React component, check for hooks and add "use client" if needed
+        if (isNextJs && isReactComponentFile(file.name)) {
+          const content = fileContent.toString("utf-8");
+          if (usesReactHooks(content)) {
+            const updatedContent = addUseClientDirective(content);
+            await fs.writeFile(filePath, updatedContent, "utf-8");
+          } else {
+            await fs.writeFile(filePath, fileContent);
+          }
+        } else {
+          await fs.writeFile(filePath, fileContent);
+        }
       }
     }
 
