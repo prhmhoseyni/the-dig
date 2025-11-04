@@ -1,4 +1,3 @@
-"use client";
 import clsx from "clsx";
 import { memo, type ReactNode, useEffect, useMemo, useRef, useState } from "react";
 import Chip from "../Chip";

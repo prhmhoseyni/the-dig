@@ -1,5 +1,3 @@
-"use client";
-
 import { cloneElement, isValidElement, type ReactElement } from "react";
 import { Tooltip as ReactTooltip } from "react-tooltip";
 import "react-tooltip/dist/react-tooltip.css";
