@@ -1,5 +1,3 @@
-"use client";
-
 import clsx from "clsx";
 import type { PanInfo } from "motion";
 import { AnimatePresence, motion } from "motion/react";
