@@ -1,9 +1,8 @@
-import Dialog from "@repo/ui/Dialog";
-import Button from "@repo/ui/Button";
 import { useState } from "react";
-import Preview from "../Preview";
-import IconButton from "@repo/ui/IconButton";
 import { X } from "lucide-react";
+import Button from "@repo/ui/Button";
+import Dialog from "@repo/ui/Dialog";
+import Preview from "../Preview";
 
 export default function BottomSheetPreview() {
   const [open, setOpen] = useState(false);
