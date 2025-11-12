@@ -7,8 +7,10 @@ sidebar_position: 1
 ## Preview
 
 import Button from "@repo/ui/Button";
-import Container from "./Container";
+import Container from "./RowContainer";
 import RedirectLink from "../../src/components/RedirectLink";
+import { BadgeCheck } from "lucide-react";
+import ButtonLoading from "../../src/components/ButtonLoading";
 
 <Container>
   <Button>کلیک کن</Button>
@@ -20,21 +22,6 @@ import Button from "@repo/ui/Button";
 <Button>کلیک کن</Button>;
 ```
 
-## Installation
-
-```bash
-npx the-dig@latest add Button
-```
-
-## Props
-
-| Prop        | Type                                                                          | Default                                                                                                         |
-| ----------- | ----------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
-| `variant`   | `"contained"` \| `"tinted"` \| `"outlined"`                                   | `"contained"`                                                                                                   |
-| `color`     | `"brand"` \| `"info"` \| `"success"` \| `"warning"` \| `"danger"` \| `"gray"` | `"brand"`                                                                                                       |
-| `size`      | `"xs"` \| `"sm"` \| `"md"` \| `"lg"` \| `"xl"`                                | `"md"`                                                                                                          |
-| `isLoading` | `boolean`                                                                     | `false`                                                                                                         |
-| Others      | `ButtonHTMLAttributes<HTMLButtonElement>` (e.g. `onClick`, `disabled`, etc.)  | <RedirectLink href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLButtonElement">Document</RedirectLink> |
 
 ## Variants and Colors
 
@@ -206,6 +193,84 @@ import Button from "@repo/ui/Button"
 </Button>
 ```
 
+### Icon
+
+<Container>
+  <Button variant="contained" color="brand" startIcon={<BadgeCheck size={18}  />}>
+    کلیک کن
+  </Button>
+  <Button variant="tinted" color="brand" endIcon={<BadgeCheck size={18}  />}>
+    کلیک کن
+  </Button>
+</Container>
+
+```tsx
+import Button from "@repo/ui/Button"
+
+<Button variant="contained" color="brand" startIcon={<BadgeCheck size={18} />}>
+  کلیک کن
+</Button>
+<Button variant="tinted" color="brand" endIcon={<BadgeCheck size={18} />}>
+  کلیک کن
+</Button>
+```
+
+### Loading
+
+<ButtonLoading />
+```tsx
+import Button from "@repo/ui/Button"
+
+<Button variant="contained" isLoading={isLoading} loadingPosition="start" color="brand" startIcon={<BadgeCheck size={18} />}>
+    ثبت
+</Button>
+<Button variant="tinted" color="brand" isLoading={isLoading} loadingPosition="end" endIcon={<BadgeCheck size={18} />}>
+    پرداخت
+</Button>
+<Button variant="contained" color="success" isLoading={isLoading} endIcon={<BadgeCheck size={18} />}>
+    برداشت
+</Button>
+<Button variant="tinted" color="success" isLoading={isLoading} loadingIndicator="در حال دریافت ..." endIcon={<BadgeCheck size={18} />}>
+    انتقال
+</Button>
+<Button variant="outlined" color="success" isLoading={isLoading} loadingPosition="start" startIcon={<BadgeCheck size={18} />}>
+    شارژ
+</Button>
+<Button variant="outlined" color="brand" isLoading={isLoading} loadingPosition="end" endIcon={<BadgeCheck size={18} />}>
+    گزارشات
+</Button>
+<Button Button variant="outlined" color="warning" isLoading={isLoading} endIcon={<BadgeCheck size={18} />}>
+    حذف
+</Button>
+<Button variant="outlined" color="gray" isLoading={isLoading} loadingIndicator="در حال دریافت ..." endIcon={<BadgeCheck size={18} />}>
+    ویرایش
+</Button>
+<Button variant="tinded" color="danger" isLoading={isLoading} loadingPosition="start" isShowAdornmentLoading={isLoading} startIcon={<BadgeCheck size={18} />}>
+    ثبت
+</Button>
+<Button variant="contained" color="danger" isLoading={isLoading} loadingPosition="end" isShowAdornmentLoading={isLoading} endIcon={<BadgeCheck size={18} />}>
+    پرداخت
+</Button>
+<Button variant="contained" color="gray" isLoading={isLoading} endIcon={<BadgeCheck size={18} />}>
+    برداشت
+</Button>
+<Button variant="tinted" color="gray" isLoading={isLoading} loadingIndicator="در حال دریافت ..." endIcon={<BadgeCheck size={18} />}>
+    انتقال
+</Button>
+<Button variant="outlined" color="success" isLoading={isLoading} loadingPosition="start" startIcon={<BadgeCheck size={18} />}>
+    شارژ
+</Button>
+<Button variant="outlined" color="brand" isLoading={isLoading} loadingPosition="end" endIcon={<BadgeCheck size={18} />}>
+    گزارشات
+</Button>
+<Button variant="outlined" color="warning" isLoading={isLoading} endIcon={<BadgeCheck size={18} />}>
+    حذف
+</Button>
+<Button variant="outlined" color="gray" isLoading={isLoading} loadingIndicator="در حال دریافت ..." endIcon={<BadgeCheck size={18} />}>
+    ویرایش
+</Button>
+```
+
 ## Sizes
 
 <Container>
@@ -225,3 +290,28 @@ import Button from "@repo/ui/Button"
 <Button size="lg">کلیک کن</Button>
 <Button size="xl">کلیک کن</Button>
 ```
+
+## Installation
+
+```bash
+npx the-dig@latest add Button,CircularProgress
+```
+
+## Props
+
+| Prop        | Type                                                                          | Default                                                                                                         |
+| ----------- | ----------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
+| `variant`   | `"contained"` \| `"tinted"` \| `"outlined"`                                   | `"contained"`                                                                                                   |
+| `color`     | `"brand"` \| `"info"` \| `"success"` \| `"warning"` \| `"danger"` \| `"gray"` | `"brand"`                                                                                                       |
+| `size`      | `"xs"` \| `"sm"` \| `"md"` \| `"lg"` \| `"xl"`                                | `"md"`                                                                                                          |
+| `isLoading` | `boolean`                                                                     | `false`                                                                                                         |
+| Others      | `ButtonHTMLAttributes<HTMLButtonElement>` (e.g. `onClick`, `disabled`, etc.)  | <RedirectLink href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLButtonElement">Document</RedirectLink> |
+| `startIcon` | `ReactNode`                                                                     | -                                                                                                       |
+| `endIcon` | `ReactNode`                                                                     | -                                                                                                         |
+| `loadingIndicator` | `string`                                                                     | `null`                                                                                                         |
+| `loadingPosition` |  `"start"` \| `"end"`                                                                     | `null`                                                                                                         |
+| `isShowAdornmentLoading` | `boolean`                                                                     | `false`                                                                                                         |
+
+
+
+

@@ -367,6 +367,7 @@
   .aspect-square {
     aspect-ratio: 1 / 1;
   }
+
   .size-\(--cell-size\) {
     width: var(--cell-size);
     height: var(--cell-size);
@@ -579,6 +580,9 @@
     min-width: 3rem;
   }
   .min-w-\[60px\] {
+    min-width: 120px;
+  }
+  .min-w-\[60px\] {
     min-width: 60px;
   }
   .min-w-\[200px\] {
@@ -586,6 +590,9 @@
   }
   .min-w-fit {
     min-width: fit-content;
+  }
+  .width-120 {
+    width: 120px;
   }
   .flex-1 {
     flex: 1;

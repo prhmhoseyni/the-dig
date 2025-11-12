@@ -1,5 +1,6 @@
 import clsx from "clsx";
-import type { ButtonHTMLAttributes, DetailedHTMLProps } from "react";
+import type { ButtonHTMLAttributes, DetailedHTMLProps, ReactNode } from "react";
+import CircularProgress from "../CircularProgress";
 
 const colors = {
   brand: {
@@ -9,7 +10,6 @@ const colors = {
     outlined:
       "bg-transparent text-prose-brand border border-brand hover:border-brand-hover active:border-brand-active active:shadow-focus-brand",
   },
-
   info: {
     contained: "text-prose-inverse bg-info border-0 hover:bg-info-hover active:bg-info-active active:shadow-focus-info",
     tinted:
@@ -17,7 +17,6 @@ const colors = {
     outlined:
       "bg-transparent text-prose-info border border-info hover:border-info-hover active:border-info-active active:shadow-focus-info",
   },
-
   success: {
     contained:
       "text-prose-inverse bg-success border-0 hover:bg-success-hover active:bg-success-active active:shadow-focus-success",
@@ -26,7 +25,6 @@ const colors = {
     outlined:
       "bg-transparent text-prose-success border border-success hover:border-success-hover active:border-success-active active:shadow-focus-success",
   },
-
   warning: {
     contained:
       "text-prose-inverse bg-warning border-0 hover:bg-warning-hover active:bg-warning-active active:shadow-focus-warning",
@@ -35,7 +33,6 @@ const colors = {
     outlined:
       "bg-transparent text-prose-warning border border-warning hover:border-warning-hover active:border-warning-active active:shadow-focus-warning",
   },
-
   danger: {
     contained: "text-prose-inverse bg-danger border-0 hover:bg-danger-hover active:bg-danger-active active:shadow-focus-danger",
     tinted:
@@ -43,7 +40,6 @@ const colors = {
     outlined:
       "bg-transparent text-prose-danger border border-danger hover:border-danger-hover active:border-danger-active active:shadow-focus-danger",
   },
-
   gray: {
     contained: "text-prose-inverse bg-gray border-0 hover:bg-gray-hover active:bg-gray-active active:shadow-focus-gray",
     tinted:
@@ -61,21 +57,20 @@ const sizes = {
   xl: "px-[1rem] h-[3rem] text-subtitle3",
 };
 
-/**
- * :::: types ::::
- */
 export type ButtonVariant = "contained" | "tinted" | "outlined";
 export type ButtonColor = "brand" | "info" | "success" | "warning" | "danger" | "gray";
 export type ButtonSize = "xs" | "sm" | "md" | "lg" | "xl";
 
-/**
- * @name Button component
- */
 export interface ButtonProps extends DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement> {
   variant?: ButtonVariant;
   color?: ButtonColor;
   size?: ButtonSize;
   isLoading?: boolean;
+  startIcon?: ReactNode;
+  endIcon?: ReactNode;
+  loadingIndicator?: string;
+  loadingPosition?: "start" | "end";
+  isShowAdornmentLoading?: boolean;
 }
 
 export default function Button(props: ButtonProps) {
@@ -87,39 +82,64 @@ export default function Button(props: ButtonProps) {
     isLoading = false,
     disabled = false,
     children,
+    startIcon,
+    endIcon,
+    loadingIndicator = null,
+    loadingPosition = null,
+    isShowAdornmentLoading = false,
     ...rest
   } = props;
+
+  const renderContent = () => {
+    if (isLoading) {
+      const loader = loadingIndicator ? <span>{loadingIndicator}</span> : <CircularProgress color="gray" size="xs" />;
+
+      if (loadingPosition === "start") {
+        return (
+          <>
+            {loader}
+            {isShowAdornmentLoading && startIcon && <span className="mr-1 mt-1">{startIcon}</span>}
+            {!loadingIndicator && <span>{children}</span>}
+          </>
+        );
+      }
+
+      if (loadingPosition === "end") {
+        return (
+          <>
+            {!loadingIndicator && <span>{children}</span>}
+            {isShowAdornmentLoading && endIcon && <span className="mr-1 mt-1">{endIcon}</span>}
+            {loader}
+          </>
+        );
+      }
+
+      return loader;
+    }
+
+    return (
+      <>
+        {startIcon && <span className="mr-1 mt-1">{startIcon}</span>}
+        {children}
+        {endIcon && <span className="ml-1 mt-1">{endIcon}</span>}
+      </>
+    );
+  };
+  const loadingStyle = variant === "outlined" ? "border border-gray-600 text-gray-700" : "bg-gray-400 text-gray-700 border-0";
 
   return (
     <button
       className={clsx(
-        "cursor-pointer inline-flex items-center justify-center gap-1 rounded-lg min-w-fit transition-all ease-in-out duration-300",
+        "cursor-pointer inline-flex items-center justify-center gap-1 rounded-lg transition-all ease-in-out duration-300  !min-w-28",
         "disabled:cursor-not-allowed disabled:opacity-40",
-        colors[color][variant],
+        !isLoading ? colors[color][variant] : loadingStyle,
         sizes[size],
         className,
       )}
       disabled={isLoading || disabled}
       {...rest}
     >
-      {isLoading ? (
-        <svg
-          className="size-5 animate-spin text-prose-inverse"
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-        >
-          <title>button</title>
-          <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-          <path
-            className="opacity-75"
-            fill="currentColor"
-            d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-          ></path>
-        </svg>
-      ) : (
-        children
-      )}
+      {renderContent()}
     </button>
   );
 }
