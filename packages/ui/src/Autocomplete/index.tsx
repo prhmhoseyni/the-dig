@@ -39,6 +39,7 @@ export interface AutocompleteProps<T> {
   variant?: SelectVariant;
   startAdornment?: ReactNode;
   inputProps?: DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>;
+  className?: string;
 }
 
 export default function Autocomplete<T extends object>(props: AutocompleteProps<T>) {
@@ -63,6 +64,7 @@ export default function Autocomplete<T extends object>(props: AutocompleteProps<
     variant = "variant",
     startAdornment,
     inputProps = {},
+    className = "",
   } = props;
 
   const disabled = inputProps.disabled ?? false;
@@ -310,6 +312,7 @@ export default function Autocomplete<T extends object>(props: AutocompleteProps<
           className={clsx(
             "flex flex-wrap items-center gap-1 border rounded-lg transition-all ease-in-out duration-300 p-2",
             sizeClasses[size],
+            className,
             {
               // حالت غیرفعال
               "bg-gray-100 text-gray-400 cursor-not-allowed": disabled,

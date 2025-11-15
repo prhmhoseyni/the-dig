@@ -113,10 +113,11 @@ export interface AvatarGroupProps {
   children: ReactNode;
   max: number;
   size?: AvatarSize;
+  className?: string;
 }
 
 export function AvatarGroup(props: AvatarGroupProps) {
-  const { children, max, size = "md" } = props;
+  const { children, max, size = "md", className = "" } = props;
 
   const uuid = useId();
   const avatars = Children.toArray(children);
@@ -126,7 +127,7 @@ export function AvatarGroup(props: AvatarGroupProps) {
   const remainingCount = numAvatars - (max - 1);
 
   return (
-    <div className="flex items-center -space-x-4">
+    <div className={clsx("flex items-center -space-x-4", className)}>
       {visibleAvatars.map((child, index) => {
         if (isValidElement(child)) {
           return cloneElement(child, {

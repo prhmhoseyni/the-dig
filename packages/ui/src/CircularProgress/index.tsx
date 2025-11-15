@@ -29,10 +29,15 @@ export type CircularProgressColor = "brand" | "info" | "success" | "warning" | "
 export interface CircularProgressProps {
   size?: CircularProgressSize;
   color?: CircularProgressColor;
+  className?: string;
 }
 
 export default function CircularProgress(props: CircularProgressProps) {
-  const { size = "md", color = "brand" } = props;
+  const { size = "md", color = "brand", className = "" } = props;
 
-  return <div className={clsx("rounded-full border-3 border-solid", colors[color], sizes[size], styles["animate-spin"])}></div>;
+  return (
+    <div
+      className={clsx("rounded-full border-3 border-solid", className, colors[color], sizes[size], styles["animate-spin"])}
+    ></div>
+  );
 }

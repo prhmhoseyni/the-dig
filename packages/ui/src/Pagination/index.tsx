@@ -26,11 +26,13 @@ export interface PaginationProps {
   total: number;
   page: number;
   onChange: (page: number) => void;
+  className?: string;
 }
 
 export default function Pagination(props: PaginationProps) {
+  const { className = "" } = props;
   return (
-    <div className="w-fit flex items-center gap-px border border-gray-400 rounded-lg p-px">
+    <div className={clsx("w-fit flex items-center gap-px border border-gray-400 rounded-lg p-px", className)}>
       <PaginationButton onClick={() => props.onChange(1)} disabled={props.page === 1}>
         <ChevronsRight size={16} />
       </PaginationButton>

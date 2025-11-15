@@ -29,6 +29,7 @@ export interface SelectListProps<T> {
   readOnly?: boolean;
   placeholder?: string;
   maxDropdownHeight?: number;
+  className?: string;
 }
 
 export default function SelectList<T extends object>(props: SelectListProps<T>) {
@@ -48,6 +49,7 @@ export default function SelectList<T extends object>(props: SelectListProps<T>) 
     readOnly = false,
     placeholder = "انتخاب کنید",
     maxDropdownHeight = 200,
+    className = "",
   } = props;
 
   const [menuOpen, setMenuOpen] = useState(false);
@@ -168,6 +170,7 @@ export default function SelectList<T extends object>(props: SelectListProps<T>) 
           className={clsx(
             "w-full flex flex-wrap items-center gap-1 border rounded-lg transition-all ease-in-out duration-300 p-2",
             sizeClasses[size],
+            className,
             {
               "border-gray-400 bg-gray-100 text-gray-400 cursor-not-allowed": disabled,
               "border-gray-400 bg-gray-50 text-gray-500 cursor-default": readOnly,

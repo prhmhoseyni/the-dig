@@ -69,13 +69,14 @@ export interface BaseDialogProps extends PropsWithChildren {
   onClose: () => void;
   scroll?: "PAPER" | "BODY";
   width?: "xs" | "sm" | "md" | "lg" | "xl" | "false";
+  className?: string;
 }
 
 function BaseDialog(props: BaseDialogProps) {
   const rightKnobRef = useRef<HTMLDivElement>(null);
   const leftKnobRef = useRef<HTMLDivElement>(null);
   const dialogRef = useRef<HTMLDialogElement>(null);
-  const { scroll = "PAPER", width = "sm" } = props;
+  const { scroll = "PAPER", width = "sm", className = "" } = props;
 
   const [isMobile, setIsMobile] = useState<boolean>();
 
@@ -162,6 +163,7 @@ function BaseDialog(props: BaseDialogProps) {
               "border-0 outline-none fixed bottom-0 md:bottom-auto md:p-0 bg-transparent z-[999] mx-auto max-h-dvh md:shadow-2xl rounded-2xl md:max-w-[36rem] w-full",
               scroll === "BODY" && "overflow-y-auto scroll-hidden",
               widthClasses[width],
+              className,
             )}
             drag={isMobile && "y"}
             dragConstraints={{ top: 0 }}
