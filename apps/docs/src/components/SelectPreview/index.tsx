@@ -21,7 +21,7 @@ export default function Page() {
   return (
     <SelectList
       options={options}
-      onSelect={(val) => {
+      onChange={(val) => {
         setSingleValue(val);
       }}
       startAdornment={<BadgeCheck size={18} />}

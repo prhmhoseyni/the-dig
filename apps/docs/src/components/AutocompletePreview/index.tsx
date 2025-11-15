@@ -28,7 +28,7 @@ export default function Page() {
     <Autocomplete
       fetchOptions={fetchBook}
       inputProps={{ placeholder: "جستجو ..." }}
-      onSelect={(book) => {
+      onChange={(book) => {
         console.log("انتخاب شد:", book);
       }}
       idField="cover_i"

@@ -15,7 +15,7 @@ export type DisabledType = { disabled?: boolean };
 
 export interface SelectListProps<T> {
   options: Array<T & DisabledType>;
-  onSelect?: (option: T | T[] | null) => void;
+  onChange?: (option: T | T[] | null) => void;
   defaultValue?: T | T[] | null;
   multiple?: boolean;
   hasError?: boolean;
@@ -34,7 +34,7 @@ export interface SelectListProps<T> {
 export default function SelectList<T extends object>(props: SelectListProps<T>) {
   const {
     options: localOptions,
-    onSelect,
+    onChange,
     defaultValue = null,
     multiple = false,
     hasError = false,
@@ -133,10 +133,10 @@ export default function SelectList<T extends object>(props: SelectListProps<T>) 
       if (selectedIds.has(String(option[idField]))) return;
       const updated = [...selectedList, option];
       setSelectedList(updated);
-      onSelect?.(updated);
+      onChange?.(updated);
     } else {
       setSelectedList([option]);
-      onSelect?.(option);
+      onChange?.(option);
       setMenuOpen(false);
     }
   };
@@ -148,7 +148,7 @@ export default function SelectList<T extends object>(props: SelectListProps<T>) 
     if (disabled || readOnly) return;
     const updated = selectedList.filter((o) => String(o[idField]) !== String(option[idField]));
     setSelectedList(updated);
-    onSelect?.(updated.length ? updated : null);
+    onChange?.(updated.length ? updated : null);
   };
 
   /**
@@ -157,7 +157,7 @@ export default function SelectList<T extends object>(props: SelectListProps<T>) 
   const handleClearAll = () => {
     if (disabled || readOnly) return;
     setSelectedList([]);
-    onSelect?.(null);
+    onChange?.(null);
   };
 
   return (

@@ -22,7 +22,7 @@ export interface AutocompleteProps<T> {
   options?: Array<T & DisabledType>;
   fetchOptions?: (query: string) => Promise<T[]>;
   debounceDelay?: number;
-  onSelect?: (option: T | T[] | null) => void;
+  onChange?: (option: T | T[] | null) => void;
   maxDropdownHeight?: number;
   notFoundText?: string;
   isDropDown?: boolean;
@@ -38,7 +38,7 @@ export interface AutocompleteProps<T> {
   labelField?: keyof T;
   variant?: SelectVariant;
   startAdornment?: ReactNode;
-  inputProps: DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>;
+  inputProps?: DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>;
 }
 
 export default function Autocomplete<T extends object>(props: AutocompleteProps<T>) {
@@ -46,7 +46,7 @@ export default function Autocomplete<T extends object>(props: AutocompleteProps<
     options: localOptions,
     fetchOptions,
     debounceDelay = 500,
-    onSelect,
+    onChange,
     maxDropdownHeight = 200,
     notFoundText = "موردی یافت نشد",
     isDropDown = true,
@@ -233,7 +233,7 @@ export default function Autocomplete<T extends object>(props: AutocompleteProps<
     setMenuOpen(false);
     if (!multiple && !selectedList.length) {
       setInputValue("");
-      onSelect?.(null);
+      onChange?.(null);
     }
   };
 
@@ -243,7 +243,7 @@ export default function Autocomplete<T extends object>(props: AutocompleteProps<
   const handleSelect = (option: T & DisabledType) => {
     const updated = multiple ? [...selectedList, option] : [option];
     setSelectedList(updated);
-    onSelect?.(updated);
+    onChange?.(updated);
 
     if (multiple) {
       if (localOptions) {
@@ -268,7 +268,7 @@ export default function Autocomplete<T extends object>(props: AutocompleteProps<
     setInputValue("");
     const updated = selectedList.filter((o) => String(o[idField]) !== String(option[idField]));
     setSelectedList(updated);
-    onSelect?.(updated.length ? updated : null);
+    onChange?.(updated.length ? updated : null);
 
     if (localOptions) {
       setOptions((opts) => [...opts, option as T & DisabledType]);
@@ -286,7 +286,7 @@ export default function Autocomplete<T extends object>(props: AutocompleteProps<
     setMenuOpen(false);
     setSearchDone(false);
     setLastResults([]);
-    onSelect?.(null);
+    onChange?.(null);
   };
 
   /**
@@ -300,7 +300,7 @@ export default function Autocomplete<T extends object>(props: AutocompleteProps<
     } else {
       setOptions(lastResults);
     }
-    onSelect?.(null);
+    onChange?.(null);
   };
 
   return (

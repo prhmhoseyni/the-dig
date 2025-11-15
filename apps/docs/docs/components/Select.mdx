@@ -38,7 +38,7 @@ export default function Page() {
     return (
       <Select
         options={options}
-        onSelect={(val) => {setSingleValue(val)}}
+        onChange={(val) => {setSingleValue(val)}}
         startAdornment={<BadgeCheck size={18} />}
         />	
     );
@@ -63,7 +63,7 @@ export default function Page() {
 		{ id: "11", label: "زنجان" },
 		{ id: "12", label: "کرمان" },
 	  ]}
-    onSelect={(opt) => {}}
+    onChange={(opt) => {}}
   />
 </Container>
 
@@ -89,7 +89,7 @@ export default function Page() {
             { id: "11", label: "زنجان" },
             { id: "12", label: "کرمان" }
           ]}
-           onSelect={(val) => setSelectedValue(val)}
+           onChange={(val) => setSelectedValue(val)}
         />
     </div>
   );
@@ -114,7 +114,7 @@ export default function Page() {
           { id: "11", label: "زنجان" },
           { id: "12", label: "کرمان" }
         ]}
-         onSelect={(option) => {}}
+         onChange={(option) => {}}
          multiple={true}
     
        />
@@ -143,7 +143,7 @@ export default function Page() {
             { id: "11", label: "زنجان" },
             { id: "12", label: "کرمان" }
           ]}
-          onSelect={(val) => setSelectedValue(val)}
+          onChange={(val) => setSelectedValue(val)}
           multiple={true}
         />
     </div>
@@ -168,7 +168,7 @@ export default function Page() {
       { id: "11", label: "زنجان" },
       { id: "12", label: "کرمان" }
       ]}
-    onSelect={(opt) => {}}
+    onChange={(opt) => {}}
     size="lg"
   />
   <Select
@@ -210,7 +210,7 @@ export default function Page() {
           { id: "11", label: "زنجان" },
           { id: "12", label: "کرمان" }
         ]}
-        onSelect={(val) => setSelectedValue(val)}
+        onChange={(val) => setSelectedValue(val)}
         size="xs"
       />
     </div>
@@ -234,7 +234,7 @@ export default function Page() {
             { id: "11", label: "زنجان" },
             { id: "12", label: "کرمان" }
           ]}
-         onSelect={() => {}}
+         onChange={() => {}}
          hasError = {true}
        />
 </Container>
@@ -260,7 +260,7 @@ export default function Page() {
             { id: "11", label: "زنجان" },
             { id: "12", label: "کرمان" }
           ]}
-          onSelect={(val) => setSelectedValue(val)}
+          onChange={(val) => setSelectedValue(val)}
           hasError={true}
         />
     </div>
@@ -287,7 +287,7 @@ export default function Page() {
       ]}
     defaultValue={["3" , "5"]}
     multiple
-    onSelect={(option) => {}}
+    onChange={(option) => {}}
   />
   <Select
     options={[
@@ -304,7 +304,7 @@ export default function Page() {
       { id: "12", label: "کرمان" }
     ]}
     defaultValue={"5"}
-    onSelect={(option) => {}}
+    onChange={(option) => {}}
   />
 </Container>
 
@@ -333,13 +333,13 @@ export default function Page() {
         <SelectList
           options={options}
           defaultValue={singleValue}
-          onSelect={(val) => {setSingleValue(val)}}
+          onChange={(val) => {setSingleValue(val)}}
         />
         <SelectList
           options={options}
           multiple={true}
           defaultValue={multiValue}
-          onSelect={(val) => setMultiValue(Array.isArray(val) ? val : [])}
+          onChange={(val) => setMultiValue(Array.isArray(val) ? val : [])}
         />
       </>
     );
@@ -362,7 +362,7 @@ export default function Page() {
               { id: "9", label: "کرمانشاه"}
               ]}
     readOnly={true}
-    onSelect={(option) => {}}
+    onChange={(option) => {}}
        />
 
 </Container>
@@ -391,7 +391,7 @@ export default function Page() {
           idField="code"
           labelField="name"
           readOnly={true}
-          onSelect={(e) => {}}
+          onChange={(e) => {}}
         />
     </div>
   );
@@ -416,7 +416,7 @@ export default function Page() {
             { id: "12", label: "کرمان" }
           ]}
 
-    onSelect={(option) => {
+    onChange={(option) => {
     }}
     disabled={true}
        />
@@ -446,7 +446,7 @@ export default function Page() {
           ]}
           idField="code"
           labelField="name"
-          onSelect={(e) => {}}
+          onChange={(e) => {}}
         />
     </div>
   );
@@ -470,7 +470,7 @@ export default function Page() {
       { id: "11", label: "زنجان" },
       { id: "12", label: "کرمان" }
     ]}
-    onSelect={(option) => {}}
+    onChange={(option) => {}}
     variant="secondary"
   />
 </Container>
@@ -497,7 +497,7 @@ export default function Page() {
             { id: "11", label: "زنجان" },
             { id: "12", label: "کرمان" }
           ]}
-          onSelect={(val) => setSelectedValue(val)}
+          onChange={(val) => setSelectedValue(val)}
           variant="secondary"
       />
     </div>
@@ -519,7 +519,7 @@ npx the-dig@latest add Select,Menu,CircularProgress,Chip
 | ------------------------------------------------------------------- | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- |
 | `options` <sup className="text-red-600 text-caption2">\*</sup>      | `Array`                                                                           | -                                                                                                         |
 | `defaultValue`                                                      |  `object` \| `Array<object>` \| `string` \| `Array<string>`                                                                           | -                                                                                                       |
-| `onSelect`                                                          | `function`                                                                        | -                                                                                                         |
+| `onChange`                                                          | `function`                                                                        | -                                                                                                         |
 | `idField`                                                           | ` string`                                                                         | id                                                                                                        |
 | `labelField`                                                        | ` string`                                                                         | label                                                                                                     |
 | `hasError`                                                          | `boolean`                                                                         | false                                                                                                     |
