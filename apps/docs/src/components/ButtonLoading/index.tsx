@@ -6,18 +6,29 @@ import Preview from "../Preview";
 import { BadgeCheck } from "lucide-react";
 export default function ButtonLoading() {
   const [isLoading, setIsLoading] = useState(true);
+  const [isShowAdornment, setIsShowAdornment] = useState(true);
 
   return (
     <Preview>
-      <div className="flex  items-center w-full justify-end">
-        <span className="ml-2 mt-1"> Loading</span>
-        <Switch
-          defaultChecked
-          onChange={(e) => {
-            console.log("change : ", e.target.checked);
-            setIsLoading(e.target.checked);
-          }}
-        />
+      <div className="flex w-full justify-end">
+        <div className="flex  items-center justify-end ml-8">
+          <span className="ml-2 mt-1"> isShowAdornmentLoading</span>
+          <Switch
+            defaultChecked
+            onChange={(e) => {
+              setIsShowAdornment(e.target.checked);
+            }}
+          />
+        </div>
+        <div className="flex  items-center justify-end">
+          <span className="ml-2 mt-1"> Loading</span>
+          <Switch
+            defaultChecked
+            onChange={(e) => {
+              setIsLoading(e.target.checked);
+            }}
+          />
+        </div>
       </div>
       <div className="flex items-center flex-wrap  justify-start gap-4">
         <Button
@@ -106,7 +117,7 @@ export default function ButtonLoading() {
           color="danger"
           isLoading={isLoading}
           loadingPosition="start"
-          isShowAdornmentLoading={isLoading}
+          isShowAdornmentLoading={isShowAdornment}
           startIcon={<BadgeCheck size={18} />}
         >
           ثبت
@@ -117,7 +128,7 @@ export default function ButtonLoading() {
           color="danger"
           isLoading={isLoading}
           loadingPosition="end"
-          isShowAdornmentLoading={isLoading}
+          isShowAdornmentLoading={isShowAdornment}
           endIcon={<BadgeCheck size={18} />}
         >
           پرداخت
