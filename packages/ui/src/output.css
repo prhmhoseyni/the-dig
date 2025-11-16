@@ -1328,8 +1328,17 @@
     transition-timing-function: var(--ease-out);
   }
   .outline-none {
-    --tw-outline-style: none;
-    outline-style: none;
+    --tw-outline-style: none !important;
+    outline-style: none !important;
+    outline: none !important;
+  }
+  .focus\:outline-none {
+    outline-style: none !important;
+    outline: none !important;
+    &:focus {
+      outline: none !important;
+      outline-style: none !important;
+    }
   }
   .select-none {
     -webkit-user-select: none;

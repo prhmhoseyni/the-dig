@@ -372,7 +372,7 @@ export default function Autocomplete<T extends object>(props: AutocompleteProps<
             }}
             placeholder={!multiple || (multiple && !selectedList.length) ? placeholder : undefined}
             className={clsx(
-              "flex-1 min-w-[60px] border-0 outline-none bg-transparent",
+              "flex-1 min-w-[60px] border-0 outline-none bg-transparent focus:outline-none",
               { "bg-background-secondary": variant === "primary" },
               { "bg-background-primary": variant === "secondary" },
               { "mr-5": startAdornment && !selectedList.length },
