@@ -59,9 +59,11 @@ export default function Pagination(props: PaginationProps) {
 
       {![props.total, props.total - 1, props.total - 2].includes(props.page) && <PaginationButton> ... </PaginationButton>}
 
-      <PaginationButton onClick={() => props.onChange(props.total)} active={props.page === props.total}>
-        {toPersianDigits(props.total)}
-      </PaginationButton>
+      {props.total !== 1 && (
+        <PaginationButton onClick={() => props.onChange(props.total)} active={props.page === props.total}>
+          {toPersianDigits(props.total)}
+        </PaginationButton>
+      )}
 
       <PaginationButton onClick={() => props.onChange(props.page + 1)} disabled={props.page === props.total}>
         <ChevronLeft size={16} />
