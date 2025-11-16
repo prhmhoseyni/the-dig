@@ -370,6 +370,7 @@ export default function Autocomplete<T extends object>(props: AutocompleteProps<
               if (!multiple) setSelectedList([]);
               setMenuOpen(true);
             }}
+            style={{ outline: "none !important", outlineStyle: "none !important" }}
             placeholder={!multiple || (multiple && !selectedList.length) ? placeholder : undefined}
             className={clsx(
               "flex-1 min-w-[60px] border-0 outline-none bg-transparent focus:outline-none",

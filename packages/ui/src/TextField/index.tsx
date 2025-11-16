@@ -1,4 +1,5 @@
 import clsx from "clsx";
+import { CircleX } from "lucide-react";
 import type { DetailedHTMLProps, HTMLAttributes, InputHTMLAttributes, ReactNode } from "react";
 
 /**
@@ -16,6 +17,8 @@ export interface TextFieldProps
   startAdornment?: ReactNode;
   endAdornment?: ReactNode;
   size?: "xs" | "sm" | "md" | "lg";
+  isCleanIcon?: boolean;
+  onClean?: () => void;
   inputWrapperProps?: DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>;
 }
 
@@ -33,7 +36,9 @@ export default function TextField(props: TextFieldProps) {
     endAdornment,
     className = "",
     size = "md",
+    isCleanIcon = false,
     inputWrapperProps,
+    onClean,
     ...rest
   } = props;
   const { className: wrapperClassName, ...restWrapper } = inputWrapperProps ?? {};
@@ -59,6 +64,17 @@ export default function TextField(props: TextFieldProps) {
       {startAdornment && <div className="absolute top-1/2 -translate-y-1/2 start-3 flex items-center">{startAdornment}</div>}
 
       {endAdornment && <div className="absolute top-1/2 -translate-y-1/2 end-3 flex items-center">{endAdornment}</div>}
+
+      {isCleanIcon && (
+        <CircleX
+          onClick={onClean}
+          className={clsx(
+            "absolute end-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-600  transition cursor-pointer hover:bg-gray-300 rounded-full",
+            { "end-10": endAdornment },
+          )}
+          size={19}
+        />
+      )}
     </div>
   );
 }
