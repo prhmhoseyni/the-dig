@@ -15,12 +15,13 @@ const sizes = {
   sm: "w-6 h-6",
   md: "w-10 h-10",
   lg: "w-12 h-12",
+  xl: "w-16 h-16",
 };
 
 /**
  * :::: types :::
  */
-export type CircularProgressSize = "xs" | "sm" | "md" | "lg";
+export type CircularProgressSize = "xs" | "sm" | "md" | "lg" | "xl";
 export type CircularProgressColor = "brand" | "info" | "success" | "warning" | "danger" | "gray";
 
 /**

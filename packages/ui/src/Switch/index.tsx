@@ -12,23 +12,25 @@ const colors = {
 };
 
 const sizes = {
+  xs: "w-6 h-4 p-1 rounded-xl",
   sm: "w-8 h-5 p-1 rounded-xl",
   md: "w-10 h-6 p-1 rounded-2xl",
   lg: "w-14 h-8 p-1 rounded-3xl",
+  xl: "w-16 h-10 p-1 rounded-3xl",
 };
 
 /**
  * :::: types ::::
  */
 export type SwitchColor = "brand" | "info" | "success" | "warning" | "danger" | "gray";
-export type SwitchSize = "sm" | "md" | "lg";
+export type SwitchSize = "xs" | "sm" | "md" | "lg" | "xl";
 
 /**
  * @name Switch component
  */
 export interface SwitchProps extends Omit<DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>, "size"> {
   color?: "brand" | "info" | "success" | "warning" | "danger" | "gray";
-  size?: "sm" | "md" | "lg";
+  size?: SwitchSize;
 }
 
 export default function Switch(props: SwitchProps) {

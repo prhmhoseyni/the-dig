@@ -16,7 +16,7 @@ export interface TextFieldProps
   hasError?: boolean;
   startAdornment?: ReactNode;
   endAdornment?: ReactNode;
-  size?: "xs" | "sm" | "md" | "lg";
+  size?: "xs" | "sm" | "md" | "lg" | "xl";
   isCleanIcon?: boolean;
   onClean?: () => void;
   inputWrapperProps?: DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>;
@@ -27,6 +27,7 @@ const sizeClasses: Record<string, string> = {
   sm: "min-h-10 text-sm px-3",
   md: "min-h-12 text-base px-3",
   lg: "min-h-14 text-lg px-4",
+  xl: "min-h-16 text-lg px-4",
 };
 export default function TextField(props: TextFieldProps) {
   const {

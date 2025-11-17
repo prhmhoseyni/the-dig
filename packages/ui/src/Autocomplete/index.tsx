@@ -12,6 +12,7 @@ const sizeClasses: Record<string, string> = {
   sm: "min-h-10 text-sm px-3",
   md: "min-h-12 text-base px-3",
   lg: "min-h-14 text-lg px-4",
+  xl: "min-h-16 text-lg px-4",
 };
 /**
  * :::: types :::
@@ -31,7 +32,7 @@ export interface AutocompleteProps<T> {
   defaultValue?: T | null;
   multiple?: boolean;
   hasError?: boolean;
-  size?: "xs" | "sm" | "md" | "lg";
+  size?: "xs" | "sm" | "md" | "lg" | "xl";
   width?: number | string;
   renderOption?: (option: T, isSelected: boolean) => ReactNode;
   idField?: keyof T;

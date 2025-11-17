@@ -8,8 +8,8 @@ const sizeClasses: Record<string, string> = {
   sm: "min-h-10 text-sm px-3",
   md: "min-h-12 text-base px-3",
   lg: "min-h-14 text-lg px-4",
+  xl: "min-h-16 text-lg px-4",
 };
-
 export type SelectVariant = "primary" | "secondary";
 export type DisabledType = { disabled?: boolean };
 
@@ -19,7 +19,7 @@ export interface SelectListProps<T> {
   defaultValue?: T | T[] | null;
   multiple?: boolean;
   hasError?: boolean;
-  size?: "xs" | "sm" | "md" | "lg";
+  size?: "xs" | "sm" | "md" | "lg" | "xl";
   width?: number | string;
   idField?: keyof T;
   labelField?: keyof T;

@@ -4,7 +4,7 @@ import { Children, cloneElement, isValidElement, type PropsWithChildren, type Re
 /**
  * :::: types :::
  */
-export type SegmentControlSize = "sm" | "md" | "lg";
+export type SegmentControlSize = "xs" | "sm" | "md" | "lg" | "xl";
 
 /**
  * @name SegmentControl component
@@ -51,9 +51,11 @@ SegmentControl.Item = function SegmentControlItem(props: SegmentControlItemProps
   const { value, onChange, selectedValue, size = "md", className = "", children } = props;
 
   const sizes = {
+    xs: "text-subtitle6 px-3 h-6",
     sm: "text-subtitle5 px-3 h-7",
-    md: "text-subtitle5 px-3 h-8",
+    md: "text-subtitle5 px-4 h-8",
     lg: "text-subtitle3 px-5 h-10",
+    xl: "text-subtitle3 px-6 h-12",
   };
 
   return (
