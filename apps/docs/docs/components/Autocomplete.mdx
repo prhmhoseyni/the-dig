@@ -186,7 +186,8 @@ export default function Page() {
       { id: "8", label: "همدان"},
       { id: "9", label: "کرمانشاه"},
     ]}
-    defaultValue={["5", "8"]}
+    defaultValue={     [{ id: "8", label: "همدان"},
+      { id: "9", label: "کرمانشاه"}]}
     multiple
     onChange={(option) => {}}
   />
@@ -202,7 +203,7 @@ export default function Page() {
       { id: "8", label: "همدان"},
       { id: "9", label: "کرمانشاه"},
     ]}
-    defaultValue={"5"}
+    defaultValue={{ id: "9", label: "کرمانشاه"}}
     onChange={(option) => {}}
   />
 </Container>
@@ -226,7 +227,7 @@ export default function Page() {
               { id: "8", label: "همدان"},
               { id: "9", label: "کرمانشاه"}
               ]}
-            defaultValue={[ // multiple -> ["4" , "5"] single -> { id: "5", label: "خراسان جنوبی"} || {"5"}
+            defaultValue={[
               { id: "4", label: "کردستان"},
               { id: "5", label: "خراسان جنوبی"}
               ]}

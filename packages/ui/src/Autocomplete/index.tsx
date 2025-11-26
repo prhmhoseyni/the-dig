@@ -73,12 +73,11 @@ export default function Autocomplete<T extends object>(props: AutocompleteProps<
   const placeholder = inputProps.placeholder ?? "جستجو کنید...";
 
   const [menuOpen, setMenuOpen] = useState(false);
-  const [inputValue, setInputValue] = useState(defaultValue && !multiple ? String(defaultValue[labelField]) : "");
+  const [localDefaultValue, setLocalDefaultValue] = useState(defaultValue ?? null);
+  const [inputValue, setInputValue] = useState("");
   const [options, setOptions] = useState<(T & DisabledType)[]>([]);
   const [loading, setLoading] = useState(false);
-  const [selectedList, setSelectedList] = useState<T[]>(
-    defaultValue ? (multiple ? (Array.isArray(defaultValue) ? defaultValue : [defaultValue]) : [defaultValue]) : [],
-  );
+  const [selectedList, setSelectedList] = useState<T[]>([]);
   const [searchDone, setSearchDone] = useState(false);
 
   const [lastResults, setLastResults] = useState<(T & DisabledType)[]>([]);
@@ -89,60 +88,54 @@ export default function Autocomplete<T extends object>(props: AutocompleteProps<
 
   const selectedIds = useMemo(() => new Set(selectedList.map((o) => String(o[idField]))), [selectedList, idField]);
   const MemoChip = memo(Chip);
+
+  const initialized = useRef(false);
+  const defaultRef = useRef<typeof defaultValue>(defaultValue);
+  const fetchRef = useRef(fetchOptions);
+  const labelFieldRef = useRef(labelField);
+
+  // if there is defaultValue
   useEffect(() => {
-    if (!defaultValue) return;
+    defaultRef.current = defaultValue;
+  }, [defaultValue]);
+  useEffect(() => {
+    fetchRef.current = fetchOptions;
+  }, [fetchOptions]);
+  useEffect(() => {
+    labelFieldRef.current = labelField;
+  }, [labelField]);
 
-    const resolveDefaults = async () => {
-      const findById = async (id: any): Promise<T | null> => {
-        if (localOptions) {
-          return (localOptions.find((opt) => String(opt[idField]) === String(id)) as T) ?? null;
-        } else if (fetchOptions) {
-          try {
-            const res = await fetchOptions(String(id));
-            if (Array.isArray(res)) {
-              return (res.find((opt) => String(opt[idField]) === String(id)) as T) ?? null;
-            }
-          } catch (err) {
-            console.error("fetchOptions defaultValue error:", err);
-          }
-        }
-        return null;
-      };
+  useEffect(() => {
+    if (initialized.current) return;
+    initialized.current = true;
 
-      if (multiple) {
-        let defaults: T[] = [];
-        if (Array.isArray(defaultValue)) {
-          const resolved = await Promise.all(
-            defaultValue.map(async (val: any) => {
-              if (typeof val === "object" && val !== null) return val as T;
-              return await findById(val);
-            }),
-          );
-          defaults = resolved.filter(Boolean) as T[];
-        } else if (typeof defaultValue === "object") {
-          defaults = [defaultValue as T];
-        } else {
-          const obj = await findById(defaultValue);
-          if (obj) defaults = [obj];
-        }
-        setSelectedList(defaults);
+    const dv = defaultRef.current;
+    const fo = fetchRef.current;
+    const lf = labelFieldRef.current;
+
+    if (!dv) return;
+    if (fo) {
+      if (Array.isArray(dv)) {
+        setSelectedList(dv as T[]);
       } else {
-        let def: T | null = null;
-        if (typeof defaultValue === "object") {
-          def = defaultValue as T;
-        } else {
-          def = await findById(defaultValue);
-        }
-        if (def) {
-          setSelectedList([def]);
-          setInputValue(String(def[labelField]));
-        }
+        setSelectedList([dv as T]);
+        setInputValue(String((dv as T)[lf as keyof T] ?? ""));
       }
-    };
+    } else {
+      if (Array.isArray(dv)) {
+        setSelectedList(dv as T[]);
+      } else {
+        setSelectedList([dv as T]);
+        setInputValue(String((dv as T)[lf as keyof T] ?? ""));
+      }
+    }
+  }, []);
 
-    resolveDefaults();
-  }, [defaultValue, multiple, fetchOptions, localOptions, idField, labelField]);
-
+  const cleanLocalDefault = () => {
+    if (localDefaultValue) {
+      setLocalDefaultValue(null);
+    }
+  };
   const localMatches = useMemo(() => {
     if (!localOptions) return [];
     if (!inputValue) return localOptions;
@@ -163,7 +156,11 @@ export default function Autocomplete<T extends object>(props: AutocompleteProps<
   }, [localMatches, localOptions, multiple, selectedIds, idField, menuOpen, selectedList]);
 
   useEffect(() => {
-    if (!fetchOptions) return;
+    if (localDefaultValue) return;
+    if (!fetchOptions) {
+      return;
+    }
+
     if (localOptions && localMatches.length > 0) return;
 
     if (!inputValue || !inputValue.trim()) {
@@ -182,7 +179,6 @@ export default function Autocomplete<T extends object>(props: AutocompleteProps<
       setSearchDone(false);
       return;
     }
-
     const handler = setTimeout(async () => {
       setLoading(true);
       try {
@@ -213,6 +209,7 @@ export default function Autocomplete<T extends object>(props: AutocompleteProps<
     multiple,
     selectedList,
     idField,
+    localDefaultValue,
   ]);
 
   /**
@@ -244,6 +241,7 @@ export default function Autocomplete<T extends object>(props: AutocompleteProps<
    * select item dropdown
    */
   const handleSelect = (option: T & DisabledType) => {
+    cleanLocalDefault();
     const updated = multiple ? [...selectedList, option] : [option];
     setSelectedList(updated);
     onChange?.(updated);
@@ -267,6 +265,7 @@ export default function Autocomplete<T extends object>(props: AutocompleteProps<
    * remove selected item
    */
   const handleRemoveChip = (option: T) => {
+    cleanLocalDefault();
     if (disabled || readOnly) return;
     setInputValue("");
     const updated = selectedList.filter((o) => String(o[idField]) !== String(option[idField]));
@@ -289,6 +288,7 @@ export default function Autocomplete<T extends object>(props: AutocompleteProps<
     setMenuOpen(false);
     setSearchDone(false);
     setLastResults([]);
+    setSelectedList([]);
     onChange?.(null);
   };
 
@@ -296,6 +296,7 @@ export default function Autocomplete<T extends object>(props: AutocompleteProps<
    * remove all selected item
    */
   const handleClearAll = () => {
+    cleanLocalDefault();
     if (disabled || readOnly) return;
     setSelectedList([]);
     if (localOptions) {
@@ -367,6 +368,10 @@ export default function Autocomplete<T extends object>(props: AutocompleteProps<
             readOnly={readOnly}
             onChange={(e) => {
               if (disabled || readOnly) return;
+              if (localDefaultValue) {
+                setLocalDefaultValue(null);
+                setInputValue("");
+              }
               setInputValue(e.target.value);
               if (!multiple) setSelectedList([]);
               setMenuOpen(true);
@@ -387,7 +392,7 @@ export default function Autocomplete<T extends object>(props: AutocompleteProps<
           <X
             onClick={handleClear}
             className={clsx(
-              "absolute end-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-600 p-1 transition cursor-pointer hover:bg-gray-300 rounded-full",
+              "absolute end-3 top-1/2 mt-05  -translate-y-1/2 text-gray-500 hover:text-gray-600 p-1 transition cursor-pointer hover:bg-gray-300 rounded-full",
               { "end-10": isDropDown },
             )}
             size={22}
@@ -413,8 +418,7 @@ export default function Autocomplete<T extends object>(props: AutocompleteProps<
             </svg>
           </div>
         )}
-      </div>
-      <div className={!inputValue && !multiple ? "hidden" : ""}>
+        <div className={!inputValue && !multiple ? "hidden" : ""}></div>
         <Menu anchor={containerRef.current} open={menuOpen} onClose={handleCloseMenu}>
           <div
             dir="rtl"
@@ -438,9 +442,9 @@ export default function Autocomplete<T extends object>(props: AutocompleteProps<
                 return (
                   <Menu.Item
                     id={`autocomplete-item-${id}`}
-                    key={id}
+                    key={`${id}__${option[labelField]}`}
                     dir="rtl"
-                    aria-disabled={isDisabled ? "true" : "false"} //  تبدیل به Booleanish
+                    aria-disabled={isDisabled ? "true" : "false"}
                     tabIndex={isDisabled ? -1 : 0} //  جلوگیری از فوکوس روی آیتم غیرفعال
                     className={clsx("vazirmatn text-base sm:text-sm rounded p-1 mt-1 mb-1", {
                       // حالت غیرفعال
