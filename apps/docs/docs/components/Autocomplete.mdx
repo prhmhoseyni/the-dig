@@ -9,6 +9,7 @@ sidebar_position: 1
 import Autocomplete from "@repo/ui/Autocomplete";
 import Menu from "@repo/ui/Menu";
 import AutocompletePreview from "../../src/components/AutocompletePreview";
+import AutocompleteRefPreview from "../../src/components/AutocompleteRefPreview";
 import RedirectLink from "../../src/components/RedirectLink";
 import Container from "./Container";
 
@@ -490,6 +491,70 @@ export default function Page() {
 }
 ```
 
+## Ref
+
+<Container>
+  <AutocompleteRefPreview />
+</Container>
+
+```tsx
+import { useRef, useState } from "react";
+import Autocomplete from "@repo/ui/Autocomplete";
+
+export default function MultipleSelection() {
+  const tagsRef = useRef<any>(null);
+
+  const handleFocus = () => {
+    tagsRef.current?.focus();
+  };
+  const handleClearAll = () => {
+    tagsRef.current?.clear();
+  };
+  const showSelectedValues = () => {
+    const values = tagsRef.current?.getSelectedValue();
+    console.log("Selected tags:", values);
+    alert(`تگ‌های انتخاب شده: ${JSON.stringify(values, null, 2)}`);
+  };
+
+  return (
+    <div className="w-full">
+      <Autocomplete
+        ref={tagsRef}
+        name="tags"
+        multiple
+        options={[
+          { id: "react", label: "React" },
+          { id: "vue", label: "Vue" },
+          { id: "angular", label: "Angular" },
+          { id: "svelte", label: "Svelte" },
+          { id: "nextjs", label: "Next.js" },
+          { id: "nuxt", label: "Nuxt" },
+        ]}
+        onChange={(tags) => {
+          console.log("Tags changed:", tags);
+        }}
+      />
+
+      <div className="flex gap-2 flex-wrap">
+        <Button variant="contained" color="brand" onClick={handleFocus}>
+          فوکوس
+        </Button>
+
+        <Button variant="contained" color="brand" onClick={handleClearAll}>
+          پاک کردن همه
+        </Button>
+        <Button variant="contained" color="brand" onClick={showSelectedValues}>
+          نمایش مقادیر
+        </Button>
+      </div>
+    </div>
+  );
+}
+```
+
+
+
+
 ## Installation
 
 ```bash
@@ -507,6 +572,7 @@ npx the-dig@latest add Autocomplete,Menu,CircularProgress,Chip
 | `debounceDelay`                                                     | `number`                                                                          | 500                                                                                                       |
 | `value`                                                      |  `object` \| `Array<object>` \| `string` \| `Array<string>`                                                                           | -                                                                                                       |
 | `defaultValue`                                                      |  `object` \| `Array<object>` \| `string` \| `Array<string>`                                                                           | -                                                                                                       |
+| `name`                                                      | `string`                                                                          | -                                                                                            |
 | `onChange`                                                          | `function`                                                                        | -                                                                                                         |
 | `notFoundText`                                                      | `string`                                                                          | موردی یافت نشد                                                                                            |
 | `isDropDown`                                                        | `boolean`                                                                         | true                                                                                                      |
