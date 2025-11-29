@@ -1,7 +1,7 @@
 import clsx from "clsx";
 import { X } from "lucide-react";
+import { memo, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import type { DetailedHTMLProps, InputHTMLAttributes, ReactNode } from "react";
-import { memo, useEffect, useMemo, useRef, useState } from "react";
 
 import Chip from "../Chip";
 import CircularProgress from "../CircularProgress";
@@ -14,6 +14,7 @@ const sizeClasses: Record<string, string> = {
   lg: "min-h-14 text-lg px-4",
   xl: "min-h-16 text-lg px-4",
 };
+
 /**
  * :::: types :::
  */
@@ -29,7 +30,8 @@ export interface AutocompleteProps<T> {
   isDropDown?: boolean;
   searchingText?: string;
   minSearchChars?: number;
-  defaultValue?: T | null;
+  defaultValue?: T | T[] | null;
+  value?: T | T[] | null;
   multiple?: boolean;
   hasError?: boolean;
   size?: "xs" | "sm" | "md" | "lg" | "xl";
@@ -55,6 +57,7 @@ export default function Autocomplete<T extends object>(props: AutocompleteProps<
     searchingText = "در حال جستجو...",
     minSearchChars = 3,
     defaultValue = null,
+    value,
     multiple = false,
     hasError = false,
     size = "md",
@@ -62,86 +65,116 @@ export default function Autocomplete<T extends object>(props: AutocompleteProps<
     renderOption,
     idField = "id" as keyof T,
     labelField = "label" as keyof T,
-    variant = "variant",
+    variant = "primary",
     startAdornment,
     inputProps = {},
     className = "",
   } = props;
+
+  // حالت کنترل شده یا غیرکنترل شده
+  const isControlled = value !== undefined;
 
   const disabled = inputProps.disabled ?? false;
   const readOnly = inputProps.readOnly ?? false;
   const placeholder = inputProps.placeholder ?? "جستجو کنید...";
 
   const [menuOpen, setMenuOpen] = useState(false);
-  const [localDefaultValue, setLocalDefaultValue] = useState(defaultValue ?? null);
   const [inputValue, setInputValue] = useState("");
   const [options, setOptions] = useState<(T & DisabledType)[]>([]);
   const [loading, setLoading] = useState(false);
   const [selectedList, setSelectedList] = useState<T[]>([]);
   const [searchDone, setSearchDone] = useState(false);
+  const [hasUserInteracted, setHasUserInteracted] = useState(false);
 
   const [lastResults, setLastResults] = useState<(T & DisabledType)[]>([]);
 
   const isSelectingRef = useRef(false);
   const containerRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
+  const searchTimeoutRef = useRef<number | null>(null);
 
   const selectedIds = useMemo(() => new Set(selectedList.map((o) => String(o[idField]))), [selectedList, idField]);
   const MemoChip = memo(Chip);
 
+  // مقداردهی اولیه
   const initialized = useRef(false);
-  const defaultRef = useRef<typeof defaultValue>(defaultValue);
-  const fetchRef = useRef(fetchOptions);
-  const labelFieldRef = useRef(labelField);
-
-  // if there is defaultValue
-  useEffect(() => {
-    defaultRef.current = defaultValue;
-  }, [defaultValue]);
-  useEffect(() => {
-    fetchRef.current = fetchOptions;
-  }, [fetchOptions]);
-  useEffect(() => {
-    labelFieldRef.current = labelField;
-  }, [labelField]);
 
   useEffect(() => {
     if (initialized.current) return;
+
+    // مقداردهی اولیه برای حالت غیرکنترل شده
+    if (!isControlled && defaultValue) {
+      const initialValue = Array.isArray(defaultValue) ? defaultValue : [defaultValue];
+      setSelectedList(initialValue);
+
+      if (!multiple && defaultValue) {
+        const singleValue = Array.isArray(defaultValue) ? defaultValue[0] : defaultValue;
+        setInputValue(String((singleValue as T)[labelField] ?? ""));
+      }
+    }
+
+    // مقداردهی اولیه برای حالت کنترل شده
+    if (isControlled && value) {
+      const controlledValue = Array.isArray(value) ? value : [value];
+      setSelectedList(controlledValue);
+
+      if (!multiple && value) {
+        const singleValue = Array.isArray(value) ? value[0] : value;
+        setInputValue(String((singleValue as T)[labelField] ?? ""));
+      }
+    }
+
     initialized.current = true;
+  }, [isControlled, defaultValue, value, multiple, labelField]);
 
-    const dv = defaultRef.current;
-    const fo = fetchRef.current;
-    const lf = labelFieldRef.current;
+  // سینک کردن مقدار value خارجی با state داخلی برای حالت کنترل شده
+  useEffect(() => {
+    if (!isControlled) return;
 
-    if (!dv) return;
-    if (fo) {
-      if (Array.isArray(dv)) {
-        setSelectedList(dv as T[]);
-      } else {
-        setSelectedList([dv as T]);
-        setInputValue(String((dv as T)[lf as keyof T] ?? ""));
+    if (value === null || value === undefined) {
+      setSelectedList([]);
+      if (!multiple) {
+        setInputValue("");
       }
     } else {
-      if (Array.isArray(dv)) {
-        setSelectedList(dv as T[]);
-      } else {
-        setSelectedList([dv as T]);
-        setInputValue(String((dv as T)[lf as keyof T] ?? ""));
+      const newValue = Array.isArray(value) ? value : [value];
+      setSelectedList(newValue);
+
+      if (!multiple && value) {
+        const singleValue = Array.isArray(value) ? value[0] : value;
+        setInputValue(String((singleValue as T)[labelField] ?? ""));
       }
     }
-  }, []);
+  }, [value, isControlled, multiple, labelField]);
 
-  const cleanLocalDefault = () => {
-    if (localDefaultValue) {
-      setLocalDefaultValue(null);
-    }
-  };
   const localMatches = useMemo(() => {
     if (!localOptions) return [];
     if (!inputValue) return localOptions;
     const q = inputValue.toLowerCase();
     return localOptions.filter((opt) => String(opt[labelField]).toLowerCase().includes(q));
   }, [localOptions, inputValue, labelField]);
+
+  // استفاده از useCallback برای fetchOptions - بدون وابستگی به selectedList
+  const performSearch = useCallback(
+    async (query: string) => {
+      if (!fetchOptions) return;
+
+      setLoading(true);
+      try {
+        const res = await fetchOptions(query);
+        setOptions((res ?? []) as (T & DisabledType)[]);
+        setLastResults((res ?? []) as (T & DisabledType)[]);
+        setSearchDone(true);
+      } catch (err) {
+        console.error("Autocomplete fetch error:", err);
+        setOptions([]);
+        setSearchDone(true);
+      } finally {
+        setLoading(false);
+      }
+    },
+    [fetchOptions], // فقط وابستگی به fetchOptions
+  );
 
   useEffect(() => {
     if (!localOptions) return;
@@ -155,9 +188,12 @@ export default function Autocomplete<T extends object>(props: AutocompleteProps<
     }
   }, [localMatches, localOptions, multiple, selectedIds, idField, menuOpen, selectedList]);
 
+  // منطق سرچ برای fetchOptions
   useEffect(() => {
-    if (localDefaultValue) return;
-    if (!fetchOptions) {
+    if (!fetchOptions) return;
+
+    // اگر کاربر با کامپوننت تعامل نداشته (مثلاً فقط مقدار پیشفرض دارد)، سرچ نکن
+    if (!hasUserInteracted) {
       return;
     }
 
@@ -179,44 +215,32 @@ export default function Autocomplete<T extends object>(props: AutocompleteProps<
       setSearchDone(false);
       return;
     }
-    const handler = setTimeout(async () => {
-      setLoading(true);
-      try {
-        let res = await fetchOptions(inputValue);
-        // تغییر اصلی: حذف آیتم‌های انتخاب‌شده وقتی multiple=true
-        if (multiple && Array.isArray(res)) {
-          res = res.filter((r) => !selectedList.some((sel) => String(sel[idField]) === String(r[idField])));
-        }
-        setOptions((res ?? []) as (T & DisabledType)[]);
-        setSearchDone(true);
-      } catch (err) {
-        console.error("Autocomplete fetch error:", err);
-        setOptions([]);
-        setSearchDone(true);
-      } finally {
-        setLoading(false);
-      }
+
+    // پاک کردن تایماوت قبلی
+    if (searchTimeoutRef.current) {
+      window.clearTimeout(searchTimeoutRef.current);
+    }
+
+    searchTimeoutRef.current = window.setTimeout(() => {
+      performSearch(inputValue);
     }, debounceDelay);
 
-    return () => clearTimeout(handler);
-  }, [
-    inputValue,
-    fetchOptions,
-    debounceDelay,
-    minSearchChars,
-    localOptions,
-    localMatches.length,
-    multiple,
-    selectedList,
-    idField,
-    localDefaultValue,
-  ]);
+    return () => {
+      if (searchTimeoutRef.current) {
+        window.clearTimeout(searchTimeoutRef.current);
+      }
+    };
+  }, [inputValue, fetchOptions, debounceDelay, minSearchChars, localOptions, localMatches, hasUserInteracted, performSearch]);
 
   /**
    * focus input
    */
   const handleFocus = () => {
     if (!disabled && !readOnly) {
+      if (!selectedList.length || inputValue.trim() === "") {
+        setHasUserInteracted(true);
+      }
+
       if ((options && options.length > 0) || (fetchOptions && options.length > 0)) {
         if (fetchOptions && lastResults.length > 0 && options.length === 0) {
           setOptions(lastResults.filter((opt) => !selectedList.some((sel) => String(sel[idField]) === String(opt[idField]))));
@@ -231,9 +255,16 @@ export default function Autocomplete<T extends object>(props: AutocompleteProps<
    */
   const handleCloseMenu = () => {
     setMenuOpen(false);
-    if (!multiple && !selectedList.length) {
+    if (!multiple && selectedList.length === 0) {
       setInputValue("");
-      onChange?.(null);
+      if (!isControlled) {
+        onChange?.(null);
+      }
+    } else if (!multiple && selectedList.length > 0) {
+      const selected = selectedList[0];
+      if (selected?.[labelField]) {
+        setInputValue(String(selected[labelField]));
+      }
     }
   };
 
@@ -241,17 +272,21 @@ export default function Autocomplete<T extends object>(props: AutocompleteProps<
    * select item dropdown
    */
   const handleSelect = (option: T & DisabledType) => {
-    cleanLocalDefault();
     const updated = multiple ? [...selectedList, option] : [option];
-    setSelectedList(updated);
-    onChange?.(updated);
+
+    if (!isControlled) {
+      setSelectedList(updated);
+    }
+
+    onChange?.(multiple ? updated : option);
 
     if (multiple) {
       if (localOptions) {
+        // برای localOptions، آیتم انتخاب شده را از لیست حذف کن
         setOptions((opts) => opts.filter((o) => String(o[idField]) !== String(option[idField])));
       } else {
-        const newOpts = lastResults.filter((opt) => !updated.some((sel) => String(sel[idField]) === String(opt[idField])));
-        setOptions(newOpts);
+        // برای fetchOptions، لیست را فیلتر نکن و فقط منو را ببند
+        setMenuOpen(false);
       }
       setInputValue("");
     } else {
@@ -265,18 +300,21 @@ export default function Autocomplete<T extends object>(props: AutocompleteProps<
    * remove selected item
    */
   const handleRemoveChip = (option: T) => {
-    cleanLocalDefault();
     if (disabled || readOnly) return;
+
     setInputValue("");
     const updated = selectedList.filter((o) => String(o[idField]) !== String(option[idField]));
-    setSelectedList(updated);
-    onChange?.(updated.length ? updated : null);
+
+    if (!isControlled) {
+      setSelectedList(updated);
+    }
+
+    onChange?.(updated.length ? (multiple ? updated : updated[0] || null) : null);
 
     if (localOptions) {
       setOptions((opts) => [...opts, option as T & DisabledType]);
-    } else {
-      setOptions(lastResults.filter((opt) => !updated.some((sel) => String(sel[idField]) === String(opt[idField]))));
     }
+    // برای fetchOptions، کاری نکن چون در سرچ بعدی فیلتر خواهد شد
   };
 
   /**
@@ -284,27 +322,54 @@ export default function Autocomplete<T extends object>(props: AutocompleteProps<
    */
   const handleClear = () => {
     if (disabled || readOnly) return;
+
     setInputValue("");
     setMenuOpen(false);
     setSearchDone(false);
     setLastResults([]);
-    setSelectedList([]);
-    onChange?.(null);
+    setHasUserInteracted(true);
+
+    if (!multiple) {
+      setSelectedList([]);
+      onChange?.(null);
+    }
   };
 
   /**
    * remove all selected item
    */
   const handleClearAll = () => {
-    cleanLocalDefault();
     if (disabled || readOnly) return;
-    setSelectedList([]);
+
+    if (!isControlled) {
+      setSelectedList([]);
+    }
+    setInputValue("");
+    setHasUserInteracted(true);
+
     if (localOptions) {
       setOptions(localOptions as (T & DisabledType)[]);
     } else {
       setOptions(lastResults);
     }
+
     onChange?.(null);
+  };
+
+  /**
+   * handle input change
+   */
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (disabled || readOnly) return;
+
+    const newValue = e.target.value;
+    setInputValue(newValue);
+    setHasUserInteracted(true);
+
+    if (!multiple && !isControlled) {
+      setSelectedList([]);
+    }
+    setMenuOpen(true);
   };
 
   return (
@@ -319,10 +384,10 @@ export default function Autocomplete<T extends object>(props: AutocompleteProps<
               // حالت غیرفعال
               "bg-gray-100 text-gray-400 cursor-not-allowed": disabled,
 
-              //  حالت فقط خواندنی
+              // حالت فقط خواندنی
               "bg-gray-50 text-gray-500 cursor-default": readOnly,
 
-              //  حالت عادی
+              // حالت عادی
               "text-prose-primary border-gray-400 focus-within:border-brand focus-within:shadow-focus-brand":
                 !hasError && !disabled && !readOnly,
 
@@ -364,18 +429,8 @@ export default function Autocomplete<T extends object>(props: AutocompleteProps<
             autoComplete="off"
             value={inputValue}
             onFocus={handleFocus}
-            //disabled={disabled}
             readOnly={readOnly}
-            onChange={(e) => {
-              if (disabled || readOnly) return;
-              if (localDefaultValue) {
-                setLocalDefaultValue(null);
-                setInputValue("");
-              }
-              setInputValue(e.target.value);
-              if (!multiple) setSelectedList([]);
-              setMenuOpen(true);
-            }}
+            onChange={handleInputChange}
             style={{ outline: "none !important", outlineStyle: "none !important" }}
             placeholder={!multiple || (multiple && !selectedList.length) ? placeholder : undefined}
             className={clsx(
@@ -445,7 +500,7 @@ export default function Autocomplete<T extends object>(props: AutocompleteProps<
                     key={`${id}__${option[labelField]}`}
                     dir="rtl"
                     aria-disabled={isDisabled ? "true" : "false"}
-                    tabIndex={isDisabled ? -1 : 0} //  جلوگیری از فوکوس روی آیتم غیرفعال
+                    tabIndex={isDisabled ? -1 : 0}
                     className={clsx("vazirmatn text-base sm:text-sm rounded p-1 mt-1 mb-1", {
                       // حالت غیرفعال
                       "!text-gray-500 !bg-gray-200 !cursor-not-allowed opacity-60": isDisabled,
@@ -459,7 +514,7 @@ export default function Autocomplete<T extends object>(props: AutocompleteProps<
                     onClick={(e) => {
                       e.preventDefault();
                       e.stopPropagation();
-                      if (isDisabled) return; //  جلوگیری از کلیک روی آیتم غیرفعال
+                      if (isDisabled) return;
                       handleSelect(option);
                     }}
                   >
