@@ -9,6 +9,7 @@ sidebar_position: 1
 import Select from "@repo/ui/Select";
 import Menu from "@repo/ui/Menu";
 import SelectPreview from "../../src/components/SelectPreview";
+import SelectRefPreview from "../../src/components/SelectRefPreview";
 import Container from "./Container";
 
 ## StartAdornment
@@ -505,6 +506,77 @@ export default function Page() {
 }
 ```
 
+## Ref
+
+<Container>
+  <SelectRefPreview  />
+</Container>
+
+```tsx 
+import {(useRef, useState)} from "react";
+import Select from "@repo/ui/Select";
+
+interface User {
+  id: number;
+  name: string;
+  email: string;
+  role: string;
+}
+
+function RefControlExample() {
+  const userSelectRef = useRef<SelectListRef<User>>(null);
+  const [selectedUserInfo, setSelectedUserInfo] = useState<string>("");
+
+  const users: User[] = [
+    { id: 1, name: "علی محمدی", email: "ali@example.com", role: "مدیر" },
+    { id: 2, name: "رضا احمدی", email: "reza@example.com", role: "کاربر" },
+    { id: 3, name: "سارا کریمی", email: "sara@example.com", role: "نویسنده" },
+    { id: 4, name: "مریم حسینی", email: "maryam@example.com", role: "مشتری" },
+    { id: 5, name: "امیر جعفری", email: "amir@example.com", role: "مشتری" },
+  ];
+
+  // فوکوس روی SelectList
+  const handleFocus = () => {
+    userSelectRef.current?.focus();
+  };
+
+  // حذف انتخاب‌ها
+  const handleClearSelection = () => {
+    if (userSelectRef.current) {
+      const currentValue = userSelectRef.current.getValue();
+
+      if (currentValue && (Array.isArray(currentValue) ? currentValue.length > 0 : true)) {
+        userSelectRef.current.clearValue();
+        setSelectedUserInfo("");
+      } else {
+      }
+    }
+  };
+
+  return (
+    <div className="w-full">
+      <SelectList
+        ref={userSelectRef}
+        options={users}
+        placeholder="یک کاربر انتخاب کنید..."
+        labelField="name"
+        onChange={(value) => {}}
+      />
+
+      <div className="flex gap-2 flex-wrap mr-4">
+        <Button variant="contained" color="brand" onClick={handleFocus}>
+          فوکوس
+        </Button>
+
+        <Button variant="contained" color="brand" onClick={handleClearSelection}>
+          حذف
+        </Button>
+      </div>
+    </div>
+  );
+}
+```
+
 ## Installation
 
 ```bash
@@ -518,7 +590,9 @@ npx the-dig@latest add Select,Menu,CircularProgress,Chip
 | Prop                                                                | Type                                                                              | Default                                                                                                   |
 | ------------------------------------------------------------------- | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- |
 | `options` <sup className="text-red-600 text-caption2">\*</sup>      | `Array`                                                                           | -                                                                                                         |
-| `defaultValue`                                                      |  `object` \| `Array<object>` \| `string` \| `Array<string>`                                                                           | -                                                                                                       |
+| `defaultValue`                                                      |  `object` \| `Array<object>`                                                                          | -                                                                                                       |
+| `value`                                                      |  `object` \| `Array<object>`                                                                          | -                                                                                                       |
+| `name`                                                           | ` string`                                                                         | -                                                                                                        |
 | `onChange`                                                          | `function`                                                                        | -                                                                                                         |
 | `idField`                                                           | ` string`                                                                         | id                                                                                                        |
 | `labelField`                                                        | ` string`                                                                         | label                                                                                                     |

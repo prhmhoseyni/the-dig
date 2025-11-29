@@ -17,13 +17,16 @@ export default function Page() {
     { id: 11, label: "زنجان" },
     { id: 12, label: "کرمان" },
   ];
-  const [, setSingleValue] = useState<any | null>();
+  const [singleValue, setSingleValue] = useState<any | null>({ id: 10, label: "سمنان" });
   return (
     <SelectList
       options={options}
       onChange={(val) => {
         setSingleValue(val);
       }}
+      //value={singleValue}
+      defaultValue={{ id: 5, label: "مشهد" }}
+      //multiple
       startAdornment={<BadgeCheck size={18} />}
     />
   );

@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import { memo, type ReactNode, useEffect, useMemo, useRef, useState } from "react";
+import { memo, type ReactNode, useEffect, useMemo, useRef, useState, forwardRef, useImperativeHandle, type Ref } from "react";
 import Chip from "../Chip";
 import Menu from "../Menu";
 
@@ -16,6 +16,7 @@ export type DisabledType = { disabled?: boolean };
 export interface SelectListProps<T> {
   options: Array<T & DisabledType>;
   onChange?: (option: T | T[] | null) => void;
+  value?: T | T[] | null;
   defaultValue?: T | T[] | null;
   multiple?: boolean;
   hasError?: boolean;
@@ -30,12 +31,24 @@ export interface SelectListProps<T> {
   placeholder?: string;
   maxDropdownHeight?: number;
   className?: string;
+  name?: string;
 }
 
-export default function SelectList<T extends object>(props: SelectListProps<T>) {
+export interface SelectListRef<T = any> {
+  getValue: () => any;
+  setValue: (value: T | T[] | null) => void;
+  clearValue: () => void;
+  focus: () => void;
+  blur: () => void;
+  openMenu: () => void;
+  closeMenu: () => void;
+}
+
+function SelectListInner<T extends object>(props: SelectListProps<T>, ref: Ref<SelectListRef<T>>) {
   const {
     options: localOptions,
     onChange,
+    value,
     defaultValue = null,
     multiple = false,
     hasError = false,
@@ -50,57 +63,69 @@ export default function SelectList<T extends object>(props: SelectListProps<T>) 
     placeholder = "انتخاب کنید",
     maxDropdownHeight = 200,
     className = "",
+    name,
   } = props;
 
   const [menuOpen, setMenuOpen] = useState(false);
   const [selectedList, setSelectedList] = useState<T[]>([]);
+  const [isControlled] = useState(value !== undefined);
+  const [isInitialized, setIsInitialized] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
+  const buttonRef = useRef<HTMLButtonElement>(null);
   const MemoChip = memo(Chip);
 
-  useEffect(() => {
-    if (!defaultValue) return;
+  // تبدیل مقدار به آرایه از آیتم‌ها
+  const valueToItems = (val: T | T[] | null): T[] => {
+    if (!val) return [];
 
     if (multiple) {
-      // حالت گروهی
-      const values: T[] = Array.isArray(defaultValue)
-        ? defaultValue
-            .map((v) => {
-              if (typeof v === "string") {
-                return localOptions.find((a) => String(a[idField]) === v);
-              }
-              return v;
-            })
-            .filter((v): v is T => !!v)
-        : typeof defaultValue === "string"
-          ? (() => {
-              const found = localOptions.find((a) => String(a[idField]) === defaultValue);
-              return found ? [found] : [];
-            })()
-          : [defaultValue];
-
-      setSelectedList(values);
+      const values = Array.isArray(val) ? val : [val];
+      return values
+        .map((v) => {
+          if (typeof v === "string") {
+            return localOptions.find((a) => String(a[idField]) === v);
+          }
+          return v;
+        })
+        .filter((v): v is T => !!v);
     } else {
-      // حالت تکی
       let value: T | undefined;
 
-      if (typeof defaultValue === "string") {
-        value = localOptions.find((a) => String(a[idField]) === defaultValue);
-      } else if (Array.isArray(defaultValue)) {
-        const first = defaultValue[0];
+      if (typeof val === "string") {
+        value = localOptions.find((a) => String(a[idField]) === val);
+      } else if (Array.isArray(val)) {
+        const first = val[0];
         if (typeof first === "string") {
           value = localOptions.find((a) => String(a[idField]) === first);
         } else {
           value = first;
         }
       } else {
-        value = defaultValue as T;
+        value = val as T;
       }
 
-      if (value) {
-        setSelectedList([value]);
-      }
+      return value ? [value] : [];
     }
-  }, [defaultValue, multiple, idField, localOptions]);
+  };
+
+  // مقداردهی اولیه بر اساس defaultValue (حالت غیرکنترل شده) - فقط یکبار اجرا شود
+  useEffect(() => {
+    if (isControlled || isInitialized) return;
+
+    if (defaultValue) {
+      const items = valueToItems(defaultValue);
+      setSelectedList(items);
+    }
+    setIsInitialized(true);
+  }, [defaultValue, isControlled, isInitialized, idField, localOptions, multiple]);
+
+  // سینک با value (حالت کنترل شده)
+  useEffect(() => {
+    if (!isControlled) return;
+
+    const items = valueToItems(value || null);
+    setSelectedList(items);
+  }, [value, isControlled, idField, localOptions, multiple]);
 
   const selectedIds = useMemo(() => new Set(selectedList.map((o) => String(o[idField]))), [selectedList, idField]);
 
@@ -125,20 +150,76 @@ export default function SelectList<T extends object>(props: SelectListProps<T>) 
     setMenuOpen(false);
   };
 
+  // ایجاد ref برای دسترسی از خارج
+  useImperativeHandle(ref, () => ({
+    getValue: () => {
+      if (multiple) {
+        return selectedList.length > 0 ? selectedList : null;
+      }
+      return selectedList.length > 0 ? selectedList[0] : null;
+    },
+    setValue: (newValue: T | T[] | null) => {
+      if (isControlled) {
+        return;
+      }
+      const items = valueToItems(newValue);
+      setSelectedList(items);
+      onChange?.(multiple ? items : items[0] || null);
+    },
+    clearValue: () => {
+      if (isControlled) {
+        return;
+      }
+      setSelectedList([]);
+      onChange?.(null);
+    },
+    focus: () => {
+      buttonRef.current?.focus();
+      // باز کردن منو وقتی فوکوس می‌کنیم
+      handleOpenMenu();
+    },
+    blur: () => {
+      buttonRef.current?.blur();
+      // بستن منو وقتی بلور می‌کنیم
+      handleCloseMenu();
+    },
+    openMenu: () => {
+      handleOpenMenu();
+    },
+    closeMenu: () => {
+      handleCloseMenu();
+    },
+  }));
+
   /**
    * select items drop down
    */
   const handleSelect = (option: T & DisabledType) => {
     if (disabled || readOnly) return;
     if (option.disabled) return;
+
+    let updated: T[];
+
     if (multiple) {
       if (selectedIds.has(String(option[idField]))) return;
-      const updated = [...selectedList, option];
-      setSelectedList(updated);
-      onChange?.(updated);
+      updated = [...selectedList, option];
     } else {
-      setSelectedList([option]);
-      onChange?.(option);
+      updated = [option];
+    }
+
+    // حالت کنترل شده
+    if (isControlled) {
+      onChange?.(multiple ? updated : option);
+      if (!multiple) {
+        setMenuOpen(false);
+      }
+      return;
+    }
+
+    // حالت غیرکنترل شده
+    setSelectedList(updated);
+    onChange?.(multiple ? updated : option);
+    if (!multiple) {
       setMenuOpen(false);
     }
   };
@@ -148,7 +229,16 @@ export default function SelectList<T extends object>(props: SelectListProps<T>) 
    */
   const handleRemoveChip = (option: T) => {
     if (disabled || readOnly) return;
+
     const updated = selectedList.filter((o) => String(o[idField]) !== String(option[idField]));
+
+    // حالت کنترل شده
+    if (isControlled) {
+      onChange?.(updated.length ? updated : null);
+      return;
+    }
+
+    // حالت غیرکنترل شده
     setSelectedList(updated);
     onChange?.(updated.length ? updated : null);
   };
@@ -158,14 +248,47 @@ export default function SelectList<T extends object>(props: SelectListProps<T>) 
    */
   const handleClearAll = () => {
     if (disabled || readOnly) return;
+
+    // حالت کنترل شده
+    if (isControlled) {
+      onChange?.(null);
+      return;
+    }
+
+    // حالت غیرکنترل شده
     setSelectedList([]);
     onChange?.(null);
   };
 
+  /**
+   * hidden input and set name
+   */
+  const getHiddenInputValue = (): string => {
+    if (multiple) {
+      return selectedList
+        .map((item) => {
+          const fieldValue = item[idField];
+          return fieldValue !== undefined && fieldValue !== null ? String(fieldValue) : "";
+        })
+        .filter(Boolean)
+        .join(",");
+    } else {
+      if (selectedList.length === 0 || !selectedList[0]) {
+        return "";
+      }
+      const fieldValue = selectedList[0][idField];
+      return fieldValue !== undefined && fieldValue !== null ? String(fieldValue) : "";
+    }
+  };
+
   return (
     <div className="w-full flex flex-col justify-center items-start p-4" style={{ width }}>
+      {/* فیلد مخفی برای فرم‌ها */}
+      {name && <input type="hidden" name={name} value={getHiddenInputValue()} />}
+
       <div ref={containerRef} className="relative w-full">
         <button
+          ref={buttonRef}
           type="button"
           className={clsx(
             "w-full flex flex-wrap items-center gap-1 border rounded-lg transition-all ease-in-out duration-300 p-2",
@@ -183,9 +306,13 @@ export default function SelectList<T extends object>(props: SelectListProps<T>) 
             },
           )}
           onKeyDown={(e) => {
-            e.key === "Enter" || e.key === " " ? handleOpenMenu() : null;
+            if (e.key === "Enter" || e.key === " ") {
+              e.preventDefault();
+              handleOpenMenu();
+            }
           }}
           onClick={handleOpenMenu}
+          disabled={disabled}
         >
           {startAdornment && (
             <div className="absolute top-1/2 -translate-y-1/2 start-3 flex items-center">{startAdornment}</div>
@@ -265,7 +392,7 @@ export default function SelectList<T extends object>(props: SelectListProps<T>) 
                 onClick={(e) => {
                   e.preventDefault();
                   e.stopPropagation();
-                  if (isDisabled || isSelected) return;
+                  if (isDisabled || (isSelected && multiple)) return;
                   handleSelect(option);
                 }}
               >
@@ -278,3 +405,10 @@ export default function SelectList<T extends object>(props: SelectListProps<T>) 
     </div>
   );
 }
+
+// استفاده از forwardRef برای پشتیبانی از ref
+const SelectList = forwardRef(SelectListInner) as <T extends object>(
+  props: SelectListProps<T> & { ref?: Ref<SelectListRef<T>> },
+) => React.ReactElement;
+
+export default SelectList;
