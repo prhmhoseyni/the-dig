@@ -343,7 +343,6 @@ const Autocomplete = forwardRef<AutocompleteRef, AutocompleteProps<any>>(
       if (localOptions) {
         setOptions((opts) => [...opts, option as T & DisabledType]);
       }
-      // برای fetchOptions، کاری نکن چون در سرچ بعدی فیلتر خواهد شد
     };
 
     /**

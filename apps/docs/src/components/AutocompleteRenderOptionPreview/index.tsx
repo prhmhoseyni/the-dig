@@ -50,7 +50,6 @@ export default function UserAutocomplete() {
       labelField="name"
       idField="id"
       onChange={(user) => console.log("Selected user:", user)}
-      multiple
     />
   );
 }
