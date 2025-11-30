@@ -533,13 +533,13 @@ const Autocomplete = forwardRef<AutocompleteRef, AutocompleteProps<any>>(
                       tabIndex={isDisabled ? -1 : 0}
                       className={clsx("vazirmatn text-base sm:text-sm rounded p-1 mt-1 mb-1", {
                         // حالت غیرفعال
-                        "!text-gray-500 !bg-gray-200 !cursor-not-allowed opacity-60": isDisabled,
+                        "!text-gray-500 !bg-gray-200 !cursor-not-allowed opacity-60": isDisabled && !renderOption,
 
                         // حالت hover و کلیک‌پذیر
                         "cursor-pointer hover:bg-gray-100": !isDisabled,
 
                         // حالت انتخاب‌شده
-                        "bg-gray-200": isSelected,
+                        "bg-gray-200": isSelected && !renderOption,
                       })}
                       onClick={(e) => {
                         e.preventDefault();

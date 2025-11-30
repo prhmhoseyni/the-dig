@@ -32,6 +32,7 @@ export interface SelectListProps<T> {
   maxDropdownHeight?: number;
   className?: string;
   name?: string;
+  renderOption?: (option: T, isSelected: boolean) => ReactNode;
 }
 
 export interface SelectListRef<T = any> {
@@ -64,6 +65,7 @@ function SelectListInner<T extends object>(props: SelectListProps<T>, ref: Ref<S
     maxDropdownHeight = 200,
     className = "",
     name,
+    renderOption,
   } = props;
 
   const [menuOpen, setMenuOpen] = useState(false);
@@ -384,11 +386,14 @@ function SelectListInner<T extends object>(props: SelectListProps<T>, ref: Ref<S
                 dir="rtl"
                 aria-disabled={isDisabled ? "true" : "false"}
                 tabIndex={isDisabled ? -1 : 0}
-                className={clsx("vazirmatn text-base sm:text-sm rounded p-1 mt-1 mb-1", {
-                  "!text-gray-500 !bg-gray-200 !cursor-not-allowed opacity-60": isDisabled,
-                  "cursor-pointer hover:bg-gray-100": !isDisabled,
-                  "bg-gray-200": isSelected,
-                })}
+                className={clsx(
+                  "vazirmatn text-base sm:text-sm rounded p-1 mt-1 mb-1",
+                  {
+                    "!text-gray-500 !bg-gray-200 !cursor-not-allowed opacity-60": isDisabled,
+                    "cursor-pointer hover:bg-gray-100": !isDisabled,
+                    "bg-gray-200": isSelected && !renderOption,
+                  }
+                )}
                 onClick={(e) => {
                   e.preventDefault();
                   e.stopPropagation();
@@ -396,7 +401,11 @@ function SelectListInner<T extends object>(props: SelectListProps<T>, ref: Ref<S
                   handleSelect(option);
                 }}
               >
-                {String(option[labelField])}
+                {renderOption  ? (
+                  renderOption(option, isSelected)
+                ) : (
+                  String(option[labelField])
+                )}
               </Menu.Item>
             );
           })}
