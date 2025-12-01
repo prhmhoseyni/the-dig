@@ -21,6 +21,8 @@ const sizeClasses: Record<string, string> = {
 export type SelectVariant = "primary" | "secondary";
 export type DisabledType = { disabled?: boolean };
 export interface AutocompleteProps<T> {
+  /** شناسه منحصر به فرد کامپوننت */
+  id?: string;
   options?: Array<T & DisabledType>;
   fetchOptions?: (query: string) => Promise<T[]>;
   debounceDelay?: number;
@@ -56,6 +58,7 @@ export interface AutocompleteRef {
 const Autocomplete = forwardRef<AutocompleteRef, AutocompleteProps<any>>(
   <T extends object>(props: AutocompleteProps<T>, ref: React.ForwardedRef<AutocompleteRef>) => {
     const {
+      id :componentId,
       options: localOptions,
       fetchOptions,
       debounceDelay = 500,
@@ -401,7 +404,7 @@ const Autocomplete = forwardRef<AutocompleteRef, AutocompleteProps<any>>(
     };
 
     return (
-      <div className="w-full flex flex-col justify-center items-start p-4" style={{ width: width }}>
+      <div id={componentId} className="w-full flex flex-col justify-center items-start p-4" style={{ width: width }}>
         <div ref={containerRef} className="relative w-full" style={{ position: "relative" }}>
           <div
             className={clsx(
@@ -451,7 +454,7 @@ const Autocomplete = forwardRef<AutocompleteRef, AutocompleteProps<any>>(
             </div>
 
             <input
-              id="autocomplete-input"
+              id={`${componentId}-input`} // استفاده از id برای input
               ref={inputRef}
               type="text"
               autoComplete="off"
@@ -519,14 +522,14 @@ const Autocomplete = forwardRef<AutocompleteRef, AutocompleteProps<any>>(
                 </Menu.Item>
               ) : options.length > 0 ? (
                 options.map((option) => {
-                  const id = String(option[idField]);
-                  const isSelected = !multiple && selectedIds.has(id);
+                  const optionId = String(option[idField]);
+                  const isSelected = !multiple && selectedIds.has(optionId);
                   const isDisabled = !multiple && isSelected;
 
                   return (
                     <Menu.Item
-                      id={`autocomplete-item-${id}`}
-                      key={`${id}__${option[labelField]}`}
+                      id={`${componentId}-item-${optionId}`} // استفاده از id برای آیتم‌های منو
+                      key={`${optionId}__${option[labelField]}`}
                       dir="rtl"
                       aria-disabled={isDisabled ? "true" : "false"}
                       tabIndex={isDisabled ? -1 : 0}

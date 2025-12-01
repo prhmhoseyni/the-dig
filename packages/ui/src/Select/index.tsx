@@ -33,6 +33,7 @@ export interface SelectListProps<T> {
   className?: string;
   name?: string;
   renderOption?: (option: T, isSelected: boolean) => ReactNode;
+  id?: string; // اضافه شدن prop id
 }
 
 export interface SelectListRef<T = any> {
@@ -66,6 +67,7 @@ function SelectListInner<T extends object>(props: SelectListProps<T>, ref: Ref<S
     className = "",
     name,
     renderOption,
+    id: componentId, // اضافه شدن prop id
   } = props;
 
   const [menuOpen, setMenuOpen] = useState(false);
@@ -292,6 +294,7 @@ function SelectListInner<T extends object>(props: SelectListProps<T>, ref: Ref<S
         <button
           ref={buttonRef}
           type="button"
+          id={componentId} // استفاده از prop id
           className={clsx(
             "w-full flex flex-wrap items-center gap-1 border rounded-lg transition-all ease-in-out duration-300 p-2",
             sizeClasses[size],
