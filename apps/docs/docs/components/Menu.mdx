@@ -28,15 +28,15 @@ const anchor = useRef<HTMLButtonElement>(null);
 </Button>
 
 <Menu anchor={anchorRef.current} open={menuOpen} onClose={handleCloseMenu}>
-  <Menu.Item>
+  <Menu.Item className="vazirmatn">
     <Checkbox />
     گزینه اول
   </Menu.Item>
-  <Menu.Item>
+  <Menu.Item className="vazirmatn">
     <Checkbox />
     گزینه دوم
   </Menu.Item>
-  <Menu.Item>
+  <Menu.Item className="vazirmatn">
     <Checkbox />
     گزینه سوم
   </Menu.Item>
@@ -58,4 +58,5 @@ npx the-dig@latest add Menu
 | `anchor` <sup className="text-red-600 text-caption2">\*</sup>  | `HTMLElement \| null` | -       |
 | `open` <sup className="text-red-600 text-caption2">\*</sup>    | `boolean`             | -       |
 | `onClose` <sup className="text-red-600 text-caption2">\*</sup> | `VoidFunction`        | -       |
+| `className`                                                | `string`                             | -           |
 | `children`                                                     | `ReactNode`           | -       |

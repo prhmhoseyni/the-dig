@@ -30,12 +30,13 @@ export interface BaseBottomSheetProps extends PropsWithChildren {
   title: string;
   open: boolean;
   onClose: VoidFunction;
+  className?: string;
 }
 
 function BaseBottomSheet(props: BaseBottomSheetProps) {
   const rightKnobRef = useRef<HTMLDivElement>(null);
   const leftKnobRef = useRef<HTMLDivElement>(null);
-
+  const { className = "" } = props;
   const [isMobile, setIsMobile] = useState<boolean>();
 
   useEffect(() => {
@@ -91,6 +92,7 @@ function BaseBottomSheet(props: BaseBottomSheetProps) {
             open={props.open}
             className={clsx(
               "border-0 p-0 fixed bottom-0 md:bottom-auto md:p-0 bg-transparent z-[999] mx-auto max-h-dvh md:shadow-2xl rounded-2xl md:max-w-[36rem] w-full",
+              className,
             )}
             drag={isMobile && "y"}
             dragConstraints={{ top: 0 }}

@@ -76,9 +76,13 @@ export default function DatePicker(props: DatePickerProps) {
               month: "long",
               year: "numeric",
             })
-          : undefined
+          : props.value === null
+            ? ""
+            : undefined
       }
       {...props.inputProps}
+      isCleanIcon={!!props.value}
+      onClean={() => props.onChange(null)}
     />
   );
 

@@ -1,3 +1,4 @@
+import clsx from "clsx";
 import { cloneElement, isValidElement, type ReactElement } from "react";
 import { Tooltip as ReactTooltip } from "react-tooltip";
 import "react-tooltip/dist/react-tooltip.css";
@@ -27,10 +28,11 @@ export interface TooltipProps {
   content: string;
   place?: TooltipPlace;
   children: ReactElement;
+  className?: string;
 }
 
 export default function Tooltip(props: TooltipProps) {
-  const { children, id, content, place = "top" } = props;
+  const { children, id, content, place = "top", className = "" } = props;
 
   if (!isValidElement(children)) {
     return children;
@@ -52,7 +54,7 @@ export default function Tooltip(props: TooltipProps) {
       <ReactTooltip
         id={id}
         style={{ direction: "rtl" }}
-        className="!bg-gray-700 !rounded-lg !text-prose-inverse !text-subtitle5 !shadow-2xl"
+        className={clsx("!bg-gray-700 !rounded-lg !text-prose-inverse !text-subtitle5 !shadow-2xl", className)}
       />
     </>
   );
