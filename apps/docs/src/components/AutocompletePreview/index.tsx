@@ -3,15 +3,7 @@
 import Autocomplete from "@repo/ui/Autocomplete";
 import { BadgeCheck } from "lucide-react";
 
-interface Place {
-  place_id: string;
-  name: string;
-  formatted: string;
-  lat: number;
-  lon: number;
-}
-
-async function fetchBook(query: string): Promise<Place[]> {
+async function fetchBook(query: string): Promise<[]> {
   console.log(query);
   const url = `https://openlibrary.org/search.json?q=${query}`;
 
@@ -28,7 +20,7 @@ export default function Page() {
     <Autocomplete
       fetchOptions={fetchBook}
       inputProps={{ placeholder: "جستجو ..." }}
-      onSelect={(book) => {
+      onChange={(book) => {
         console.log("انتخاب شد:", book);
       }}
       idField="cover_i"

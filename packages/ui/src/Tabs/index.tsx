@@ -46,11 +46,13 @@ function TabsItem(props: TabItemProps) {
 interface BaseTabsProps extends PropsWithChildren {
   value: number;
   onChange: (newValue: number) => void;
+  className?: string;
 }
 
 function BaseTabs(props: BaseTabsProps) {
+  const { className = "" } = props;
   return (
-    <div className="flex items-center">
+    <div className={clsx("flex items-center", className)}>
       {Children.map(props.children, (child, index) => {
         if (isValidElement<TabItemProps>(child) && child.type === TabsItem) {
           const active = index === props.value;

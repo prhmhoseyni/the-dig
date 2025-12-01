@@ -57,6 +57,7 @@ const online = {
 };
 
 const sizes = {
+  xl: "min-w-20 w-20 min-h-20 h-16 text-subtitle1",
   lg: "min-w-16 w-16 min-h-16 h-16 text-subtitle1",
   md: "min-w-11 w-11 min-h-11 h-11 text-subtitle2",
   sm: "min-w-8 w-8 min-h-8 h-8 text-subtitle5",
@@ -66,7 +67,7 @@ const sizes = {
 /**
  * :::: types ::::
  */
-export type AvatarSize = "xs" | "sm" | "md" | "lg";
+export type AvatarSize = "xs" | "sm" | "md" | "lg" | "xl";
 export type AvatarStatus = "online" | "offline";
 
 /**
@@ -113,10 +114,11 @@ export interface AvatarGroupProps {
   children: ReactNode;
   max: number;
   size?: AvatarSize;
+  className?: string;
 }
 
 export function AvatarGroup(props: AvatarGroupProps) {
-  const { children, max, size = "md" } = props;
+  const { children, max, size = "md", className = "" } = props;
 
   const uuid = useId();
   const avatars = Children.toArray(children);
@@ -126,7 +128,7 @@ export function AvatarGroup(props: AvatarGroupProps) {
   const remainingCount = numAvatars - (max - 1);
 
   return (
-    <div className="flex items-center -space-x-4">
+    <div className={clsx("flex items-center -space-x-4", className)}>
       {visibleAvatars.map((child, index) => {
         if (isValidElement(child)) {
           return cloneElement(child, {

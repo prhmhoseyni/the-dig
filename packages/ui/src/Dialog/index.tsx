@@ -3,6 +3,15 @@ import type { PanInfo } from "motion";
 import { AnimatePresence, motion } from "motion/react";
 import { type MemoExoticComponent, memo, type PropsWithChildren, type ReactNode, useEffect, useRef, useState } from "react";
 
+const widthClasses: Record<string, string> = {
+  xs: "w-xs",
+  sm: "w-sm",
+  md: "w-md",
+  lg: "w-lg",
+  xl: "w-xl",
+  false: "w-none",
+};
+
 /**
  * @name DialogHeader component
  */
@@ -23,11 +32,21 @@ function DialogHeader(props: DialogHeaderProps) {
  */
 export interface DialogBodyProps extends PropsWithChildren {
   className?: string;
+  scroll?: "PAPER" | "BODY";
 }
 
 function DialogBody(props: DialogBodyProps) {
+  const { scroll = "PAPER" } = props;
   return (
-    <div className={clsx("bg-background-secondary p-5 max-h-80 w-full overflow-auto", props.className)}>{props.children}</div>
+    <div
+      className={clsx(
+        "bg-background-secondary p-5 w-full text-justify",
+        { "overflow-auto max-h-80vdh": scroll === "PAPER" },
+        props.className,
+      )}
+    >
+      {props.children}
+    </div>
   );
 }
 
@@ -48,25 +67,57 @@ function DialogFooter(props: DialogFooterProps) {
 export interface BaseDialogProps extends PropsWithChildren {
   open: boolean;
   onClose: () => void;
+  scroll?: "PAPER" | "BODY";
+  width?: "xs" | "sm" | "md" | "lg" | "xl" | "false";
+  className?: string;
 }
 
 function BaseDialog(props: BaseDialogProps) {
   const rightKnobRef = useRef<HTMLDivElement>(null);
   const leftKnobRef = useRef<HTMLDivElement>(null);
+  const dialogRef = useRef<HTMLDialogElement>(null);
+  const { scroll = "PAPER", width = "sm", className = "" } = props;
 
   const [isMobile, setIsMobile] = useState<boolean>();
 
   useEffect(() => {
     const handleResize = () => setIsMobile(window.innerWidth < 768);
-
     handleResize();
-
     window.addEventListener("resize", handleResize);
-
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
+
+  // control body overflow and dialog scroll behaviour
+  useEffect(() => {
+    const dialog = dialogRef.current;
+    if (!dialog) return;
+
+    if (props.open) {
+      document.body.style.overflow = "hidden";
+
+      if (scroll === "BODY") {
+        dialog.style.overflowY = "auto";
+        dialog.style.maxHeight = "90vh";
+      }
+    } else {
+      setTimeout(() => {
+        document.body.style.overflow = "";
+        dialog.style.overflowY = "";
+        dialog.style.maxHeight = "";
+        dialog.style.margin = "";
+      }, 100);
+    }
+
+    // cleanup in case component unmounts
+    return () => {
+      document.body.style.overflow = "";
+      if (dialog) {
+        dialog.style.overflowY = "";
+        dialog.style.maxHeight = "";
+        dialog.style.margin = "";
+      }
+    };
+  }, [scroll, props.open]);
 
   const onDrag = (_event: MouseEvent | TouchEvent | PointerEvent, info: PanInfo) => {
     if (rightKnobRef.current && leftKnobRef.current) {
@@ -94,7 +145,7 @@ function BaseDialog(props: BaseDialogProps) {
   return (
     <AnimatePresence>
       {props.open && (
-        <div className="fixed inset-0 w-dvw h-dvh flex justify-center items-center z-50">
+        <div className="fixed inset-0 w-dvw h-dvh flex justify-center items-center z-201">
           <motion.div
             className={clsx(
               "w-full h-full inset-0 bg-black-48 z-[60] flex flex-col justify-end md:flex-row md:items-center md:justify-center",
@@ -106,9 +157,13 @@ function BaseDialog(props: BaseDialogProps) {
           />
 
           <motion.dialog
+            ref={dialogRef}
             open={props.open}
             className={clsx(
               "border-0 outline-none fixed bottom-0 md:bottom-auto md:p-0 bg-transparent z-[999] mx-auto max-h-dvh md:shadow-2xl rounded-2xl md:max-w-[36rem] w-full",
+              scroll === "BODY" && "overflow-y-auto scroll-hidden",
+              widthClasses[width],
+              className,
             )}
             drag={isMobile && "y"}
             dragConstraints={{ top: 0 }}

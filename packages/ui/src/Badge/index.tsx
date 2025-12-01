@@ -45,6 +45,7 @@ export type BadgeVariant = "contained" | "tinted";
 export interface BadgeProps extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
   variant?: BadgeVariant;
   color?: BadgeColor;
+  className?: string;
 }
 
 export default function Badge(props: BadgeProps) {

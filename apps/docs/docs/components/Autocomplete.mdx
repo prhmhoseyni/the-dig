@@ -9,6 +9,8 @@ sidebar_position: 1
 import Autocomplete from "@repo/ui/Autocomplete";
 import Menu from "@repo/ui/Menu";
 import AutocompletePreview from "../../src/components/AutocompletePreview";
+import AutocompleteRefPreview from "../../src/components/AutocompleteRefPreview";
+import AutocompleteRenderOptionPreview from "../../src/components/AutocompleteRenderOptionPreview";
 import RedirectLink from "../../src/components/RedirectLink";
 import Container from "./Container";
 
@@ -34,7 +36,7 @@ export default function Page() {
       fetchOptions={fetchBook}
       idField="cover_i"
       labelField="title"
-      onSelect={(e) => {}}
+      onChange={(e) => {}}
       startAdornment={<BadgeCheck size={18} />}
     />
   );
@@ -53,7 +55,7 @@ export default function Page() {
     isDropDown={true}
     idField="code"
     labelField="name"
-    onSelect={(opt) => {}}
+    onChange={(opt) => {}}
        />
 </Container>
 
@@ -73,7 +75,7 @@ export default function Page() {
            isDropDown={true}
            idField="code"
            labelField="name"
-           onSelect={(e) => {}}
+           onChange={(e) => {}}
            />
     </div>
   );
@@ -92,7 +94,7 @@ export default function Page() {
     isDropDown={true}
     idField="code"
     labelField="name"
-    onSelect={(opt) => {}}
+    onChange={(opt) => {}}
     size="lg"
   />
   <Autocomplete
@@ -104,7 +106,7 @@ export default function Page() {
     isDropDown={true}
     idField="code"
     labelField="name"
-    onSelect={(opt) => {}}
+    onChange={(opt) => {}}
     size="xs"
   />
 </Container>
@@ -123,7 +125,7 @@ export default function Page() {
            idField="code"
            labelField="name"
            size="xs"
-           onSelect={(e) => {}}
+           onChange={(e) => {}}
            />
     </div>
   );
@@ -144,7 +146,7 @@ export default function Page() {
               { id: "8", label: "همدان"},
               { id: "9", label: "کرمانشاه"}
               ]}
-         onSelect={() => {}}
+         onChange={() => {}}
          isDropDown={true}
          hasError = {true}
        />
@@ -164,7 +166,7 @@ export default function Page() {
            hasError={true}
            idField="code"
            labelField="name"
-           onSelect={(e) => {}}
+           onChange={(e) => {}}
            />
     </div>
   );
@@ -186,9 +188,10 @@ export default function Page() {
       { id: "8", label: "همدان"},
       { id: "9", label: "کرمانشاه"},
     ]}
-    defaultValue={["5", "8"]}
+    defaultValue={     [{ id: "8", label: "همدان"},
+      { id: "9", label: "کرمانشاه"}]}
     multiple
-    onSelect={(option) => {}}
+    onChange={(option) => {}}
   />
   <Autocomplete
     options={[
@@ -202,8 +205,8 @@ export default function Page() {
       { id: "8", label: "همدان"},
       { id: "9", label: "کرمانشاه"},
     ]}
-    defaultValue={"5"}
-    onSelect={(option) => {}}
+    defaultValue={{ id: "9", label: "کرمانشاه"}}
+    onChange={(option) => {}}
   />
 </Container>
 
@@ -226,12 +229,12 @@ export default function Page() {
               { id: "8", label: "همدان"},
               { id: "9", label: "کرمانشاه"}
               ]}
-            defaultValue={[ // multiple -> ["4" , "5"] single -> { id: "5", label: "خراسان جنوبی"} || {"5"}
+            defaultValue={[
               { id: "4", label: "کردستان"},
               { id: "5", label: "خراسان جنوبی"}
               ]}
             isDropDown={true}
-            onSelect={(e) => {}}
+            onChange={(e) => {}}
             />
     </div>
   );
@@ -254,7 +257,7 @@ export default function Page() {
               { id: "9", label: "کرمانشاه"}
               ]}
 
-    onSelect={(option) => {
+    onChange={(option) => {
 
     }}
      inputProps={{
@@ -285,7 +288,7 @@ export default function Page() {
               readOnly : true,
               placeholder:"جستجو کنید",
             }}
-          onSelect={(e) => {}}
+          onChange={(e) => {}}
           />
     </div>
   );
@@ -308,7 +311,7 @@ export default function Page() {
               { id: "9", label: "کرمانشاه"}
               ]}
 
-    onSelect={(option) => {
+    onChange={(option) => {
     }}
     disabled={true}
     inputProps= {
@@ -340,7 +343,7 @@ export default function Page() {
               disabled : true,
               placeholder:"جستجو کنید",
             }}
-          onSelect={(e) => {}}
+          onChange={(e) => {}}
           />
     </div>
   );
@@ -363,7 +366,7 @@ export default function Page() {
               { id: "8", label: "همدان"},
               { id: "9", label: "کرمانشاه"}
               ]}
-         onSelect={(option) => {}}
+         onChange={(option) => {}}
          multiple={true}
     
        />
@@ -387,7 +390,7 @@ export default function Page() {
           idField="code"
           labelField="name"
           multiple={false}
-          onSelect={(e) => {}}
+          onChange={(e) => {}}
           />
     </div>
   );
@@ -410,7 +413,7 @@ export default function Page() {
               { id: "8", label: "همدان"},
               { id: "9", label: "کرمانشاه"}
               ]}
-    onSelect={(option) => {}}
+    onChange={(option) => {}}
     multiple={true}
     isDropDown={false}
        />
@@ -434,7 +437,7 @@ export default function Page() {
           idField="code"
           labelField="name"
           multiple={false}
-          onSelect={(e) => {}}
+          onChange={(e) => {}}
           />
     </div>
   );
@@ -456,7 +459,7 @@ export default function Page() {
       { id: "8", label: "همدان"},
       { id: "9", label: "کرمانشاه"},
     ]}
-    onSelect={(option) => {}}
+    onChange={(option) => {}}
     variant="secondary"
   />
 </Container>
@@ -481,13 +484,139 @@ export default function Page() {
               { id: "9", label: "کرمانشاه" }
               ]}
             isDropDown={true}
-            onSelect={(e) => {}}
+            onChange={(e) => {}}
             variant="secondary"
             />
     </div>
   );
 }
 ```
+
+## RenderOption
+
+<Container>
+  <AutocompleteRenderOptionPreview />
+</Container>
+
+```tsx
+import { useRef, useState } from "react";
+import Autocomplete from "@repo/ui/Autocomplete";
+
+interface User {
+  id: number;
+  name: string;
+  email: string;
+  role: string;
+  avatar?: string;
+}
+
+export default function UserAutocomplete() {
+  const users: User[] = [
+    { id: 1, name: "علیرضا محمدی", email: "ali@example.com", role: "مدیر" },
+    { id: 2, name: "فاطمه کریمی", email: "fatemeh@example.com", role: "کاربر" },
+    { id: 3, name: "محمد حسینی", email: "mohammad@example.com", role: "نویسنده" },
+  ];
+
+  const renderUserOption = (user: User, isSelected: boolean) => (
+    <div className="flex items-center gap-3 p-2">
+      
+      <div className="flex-1">
+        <div className="font-medium text-gray-800">{user.name}</div>
+        <div className="text-sm text-gray-500">{user.email}</div>
+      </div>
+      <div className={`px-2 py-1 rounded-full text-xs ${
+        user.role === "مدیر" ? "bg-red-100 text-red-800" :
+        user.role === "نویسنده" ? "bg-blue-100 text-blue-800" :
+        "bg-gray-100 text-gray-800"
+      }`}>
+        {user.role}
+      </div>
+      {isSelected && (
+        <div className="text-green-500 text-lg">✓</div>
+      )}
+    </div>
+  );
+
+  return (
+    <Autocomplete
+      options={users}
+      renderOption={renderUserOption}
+      labelField="name"
+      idField="id"
+      onChange={(user) => console.log("Selected user:", user)}
+    />
+  );
+}
+```
+
+
+
+
+
+
+## Ref
+
+<Container>
+  <AutocompleteRefPreview />
+</Container>
+
+```tsx
+import { useRef, useState } from "react";
+import Autocomplete from "@repo/ui/Autocomplete";
+
+export default function MultipleSelection() {
+  const tagsRef = useRef<any>(null);
+
+  const handleFocus = () => {
+    tagsRef.current?.focus();
+  };
+  const handleClearAll = () => {
+    tagsRef.current?.clear();
+  };
+  const showSelectedValues = () => {
+    const values = tagsRef.current?.getSelectedValue();
+    console.log("Selected tags:", values);
+    alert(`تگ‌های انتخاب شده: ${JSON.stringify(values, null, 2)}`);
+  };
+
+  return (
+    <div className="w-full">
+      <Autocomplete
+        ref={tagsRef}
+        name="tags"
+        multiple
+        options={[
+          { id: "react", label: "React" },
+          { id: "vue", label: "Vue" },
+          { id: "angular", label: "Angular" },
+          { id: "svelte", label: "Svelte" },
+          { id: "nextjs", label: "Next.js" },
+          { id: "nuxt", label: "Nuxt" },
+        ]}
+        onChange={(tags) => {
+          console.log("Tags changed:", tags);
+        }}
+      />
+
+      <div className="flex gap-2 flex-wrap">
+        <Button variant="contained" color="brand" onClick={handleFocus}>
+          فوکوس
+        </Button>
+
+        <Button variant="contained" color="brand" onClick={handleClearAll}>
+          پاک کردن همه
+        </Button>
+        <Button variant="contained" color="brand" onClick={showSelectedValues}>
+          نمایش مقادیر
+        </Button>
+      </div>
+    </div>
+  );
+}
+```
+
+
+
 
 ## Installation
 
@@ -504,17 +633,21 @@ npx the-dig@latest add Autocomplete,Menu,CircularProgress,Chip
 | `options` <sup className="text-red-600 text-caption2">\*</sup>      | `Array`                                                                           | -                                                                                                         |
 | `fetchOptions` <sup className="text-red-600 text-caption2">\*</sup> | `promise`                                                                         | -                                                                                                         |
 | `debounceDelay`                                                     | `number`                                                                          | 500                                                                                                       |
+| `value`                                                      |  `object` \| `Array<object>` \| `string` \| `Array<string>`                                                                           | -                                                                                                       |
 | `defaultValue`                                                      |  `object` \| `Array<object>` \| `string` \| `Array<string>`                                                                           | -                                                                                                       |
-| `onSelect`                                                          | `function`                                                                        | -                                                                                                         |
+| `name`                                                      | `string`                                                                          | -                                                                                            |
+| `onChange`                                                          | `function`                                                                        | -                                                                                                         |
 | `notFoundText`                                                      | `string`                                                                          | موردی یافت نشد                                                                                            |
 | `isDropDown`                                                        | `boolean`                                                                         | true                                                                                                      |
 | `searchingText`                                                     | `string`                                                                          | در حال جستجو...                                                                                           |
+| `className`                                                     | `string`                                                                          | -|
 | `idField`                                                           | ` string`                                                                         | id                                                                                                        |
 | `labelField`                                                        | ` string`                                                                         | label                                                                                                     |
 | `minSearchChars`                                                    | `number`                                                                          | 3                                                                                                         |
 | `hasError`                                                          | `boolean`                                                                         | false                                                                                                     |
-| `size`                                                              | `"xs"` \| `"sm"` \| `"md"` \| `"lg"`                                              | md                                                                                                        |
+| `size`                                                              | `"xs"` \| `"sm"` \| `"md"` \| `"lg"`\| `"xl"`                                              | md                                                                                                        |
 | `width`                                                             | `string`                                                                          | 100%                                                                                                      |
 | `variant`                                                           | `"primary"` \| `"secondary"` \|                                                   | primary                                                                                                   |
 | `maxDropdownHeight`                                                 | `number`                                                                          | 200                                                                                                       |
+| `renderOption`                                                             | `ReactNode`                                                                          | -                                                                                                      |
 | `inputProps`                                                        | `HTMLAttributes<HTMLInputElement>` (`placeholder`, `disabled`, `readOnly` , etc.) | <RedirectLink href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement">Document</RedirectLink> |

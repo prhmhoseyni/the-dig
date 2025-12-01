@@ -1,15 +1,22 @@
+import clsx from "clsx";
 import type { PropsWithChildren } from "react";
 
 export interface SnackbarProps extends PropsWithChildren {
   showMoreHref?: string;
   onClose?: VoidFunction;
+  className?: string;
 }
 
 export default function Snackbar(props: SnackbarProps) {
-  const { showMoreHref, onClose, children } = props;
+  const { showMoreHref, onClose, children, className = "" } = props;
 
   return (
-    <div className="w-fit flex items-center justify-between bg-black-80 text-prose-inverse text-label3 rounded-full">
+    <div
+      className={clsx(
+        "w-fit flex items-center justify-between bg-black-80 text-prose-inverse text-label3 rounded-full",
+        className,
+      )}
+    >
       {onClose && (
         <>
           <button

@@ -119,11 +119,12 @@ export interface ModalProps {
   description?: string;
   onAdmit: () => Promise<void>;
   onDeny: () => void;
+  className?: string;
 }
 
 export default function Modal(props: ModalProps) {
   const [isLoading, setIsLoading] = useState(false);
-
+  const { className = "" } = props;
   return (
     <AnimatePresence>
       {props.open && (
@@ -141,6 +142,7 @@ export default function Modal(props: ModalProps) {
             open={props.open}
             className={clsx(
               "border-0 fixed bottom-4 md:bottom-auto bg-background-primary p-4 z-[70] mx-auto max-h-dvh md:shadow-2xl rounded-2xl md:max-w-[36rem] w-[calc(100%-2rem)]",
+              className,
             )}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}

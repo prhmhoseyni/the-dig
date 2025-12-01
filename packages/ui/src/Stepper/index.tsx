@@ -9,13 +9,14 @@ export interface StepperProps {
   vertical?: boolean;
   step: number;
   onChange?: (step: number) => void;
+  className?: string;
 }
 
 export default function Stepper(props: StepperProps) {
-  const { steps, step, vertical, onChange } = props;
+  const { steps, step, vertical, onChange, className = "" } = props;
 
   return (
-    <div className={clsx("flex", vertical ? "flex-col" : "flex-row")}>
+    <div className={clsx("flex", className, vertical ? "flex-col" : "flex-row")}>
       {steps.map((item, index) => (
         <button
           type="button"
