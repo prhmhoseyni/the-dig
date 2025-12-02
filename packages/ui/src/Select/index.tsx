@@ -1,5 +1,16 @@
 import clsx from "clsx";
-import { memo, type ReactNode, useEffect, useMemo, useRef, useState, forwardRef, useImperativeHandle, type Ref } from "react";
+import {
+  memo,
+  type ReactNode,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+  forwardRef,
+  useImperativeHandle,
+  type Ref,
+  useCallback,
+} from "react";
 import Chip from "../Chip";
 import Menu from "../Menu";
 
@@ -78,39 +89,42 @@ function SelectListInner<T extends object>(props: SelectListProps<T>, ref: Ref<S
   const buttonRef = useRef<HTMLButtonElement>(null);
   const MemoChip = memo(Chip);
 
-  // تبدیل مقدار به آرایه از آیتم‌ها
-  const valueToItems = (val: T | T[] | null): T[] => {
-    if (!val) return [];
+  // تبدیل مقدار به آرایه از آیتم‌ها با استفاده از useCallback
+  const valueToItems = useCallback(
+    (val: T | T[] | null): T[] => {
+      if (!val) return [];
 
-    if (multiple) {
-      const values = Array.isArray(val) ? val : [val];
-      return values
-        .map((v) => {
-          if (typeof v === "string") {
-            return localOptions.find((a) => String(a[idField]) === v);
-          }
-          return v;
-        })
-        .filter((v): v is T => !!v);
-    } else {
-      let value: T | undefined;
-
-      if (typeof val === "string") {
-        value = localOptions.find((a) => String(a[idField]) === val);
-      } else if (Array.isArray(val)) {
-        const first = val[0];
-        if (typeof first === "string") {
-          value = localOptions.find((a) => String(a[idField]) === first);
-        } else {
-          value = first;
-        }
+      if (multiple) {
+        const values = Array.isArray(val) ? val : [val];
+        return values
+          .map((v) => {
+            if (typeof v === "string") {
+              return localOptions.find((a) => String(a[idField]) === v);
+            }
+            return v;
+          })
+          .filter((v): v is T => !!v);
       } else {
-        value = val as T;
-      }
+        let value: T | undefined;
 
-      return value ? [value] : [];
-    }
-  };
+        if (typeof val === "string") {
+          value = localOptions.find((a) => String(a[idField]) === val);
+        } else if (Array.isArray(val)) {
+          const first = val[0];
+          if (typeof first === "string") {
+            value = localOptions.find((a) => String(a[idField]) === first);
+          } else {
+            value = first;
+          }
+        } else {
+          value = val as T;
+        }
+
+        return value ? [value] : [];
+      }
+    },
+    [localOptions, idField, multiple],
+  );
 
   // مقداردهی اولیه بر اساس defaultValue (حالت غیرکنترل شده) - فقط یکبار اجرا شود
   useEffect(() => {
@@ -121,7 +135,7 @@ function SelectListInner<T extends object>(props: SelectListProps<T>, ref: Ref<S
       setSelectedList(items);
     }
     setIsInitialized(true);
-  }, [defaultValue, isControlled, isInitialized, idField, localOptions, multiple]);
+  }, [defaultValue, isControlled, isInitialized, valueToItems]);
 
   // سینک با value (حالت کنترل شده)
   useEffect(() => {
@@ -129,7 +143,7 @@ function SelectListInner<T extends object>(props: SelectListProps<T>, ref: Ref<S
 
     const items = valueToItems(value || null);
     setSelectedList(items);
-  }, [value, isControlled, idField, localOptions, multiple]);
+  }, [value, isControlled, valueToItems]);
 
   const selectedIds = useMemo(() => new Set(selectedList.map((o) => String(o[idField]))), [selectedList, idField]);
 
@@ -389,14 +403,11 @@ function SelectListInner<T extends object>(props: SelectListProps<T>, ref: Ref<S
                 dir="rtl"
                 aria-disabled={isDisabled ? "true" : "false"}
                 tabIndex={isDisabled ? -1 : 0}
-                className={clsx(
-                  "vazirmatn text-base sm:text-sm rounded p-1 mt-1 mb-1",
-                  {
-                    "!text-gray-500 !bg-gray-200 !cursor-not-allowed opacity-60": isDisabled,
-                    "cursor-pointer hover:bg-gray-100": !isDisabled,
-                    "bg-gray-200": isSelected && !renderOption,
-                  }
-                )}
+                className={clsx("vazirmatn text-base sm:text-sm rounded p-1 mt-1 mb-1", {
+                  "!text-gray-500 !bg-gray-200 !cursor-not-allowed opacity-60": isDisabled && !renderOption,
+                  "cursor-pointer hover:bg-gray-100": !isDisabled,
+                  "bg-gray-200": isSelected && !renderOption,
+                })}
                 onClick={(e) => {
                   e.preventDefault();
                   e.stopPropagation();
@@ -404,11 +415,7 @@ function SelectListInner<T extends object>(props: SelectListProps<T>, ref: Ref<S
                   handleSelect(option);
                 }}
               >
-                {renderOption  ? (
-                  renderOption(option, isSelected)
-                ) : (
-                  String(option[labelField])
-                )}
+                {renderOption ? renderOption(option, isSelected) : String(option[labelField])}
               </Menu.Item>
             );
           })}

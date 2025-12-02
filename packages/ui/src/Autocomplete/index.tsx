@@ -58,7 +58,7 @@ export interface AutocompleteRef {
 const Autocomplete = forwardRef<AutocompleteRef, AutocompleteProps<any>>(
   <T extends object>(props: AutocompleteProps<T>, ref: React.ForwardedRef<AutocompleteRef>) => {
     const {
-      id :componentId,
+      id: componentId,
       options: localOptions,
       fetchOptions,
       debounceDelay = 500,
@@ -404,7 +404,7 @@ const Autocomplete = forwardRef<AutocompleteRef, AutocompleteProps<any>>(
     };
 
     return (
-      <div id={componentId} className="w-full flex flex-col justify-center items-start p-4" style={{ width: width }}>
+      <div id={componentId} className="w-full flex flex-col justify-center items-start" style={{ width: width }}>
         <div ref={containerRef} className="relative w-full" style={{ position: "relative" }}>
           <div
             className={clsx(
