@@ -1,5 +1,16 @@
 import clsx from "clsx";
-import { memo, type ReactNode, useEffect, useMemo, useRef, useState, forwardRef, useImperativeHandle, type Ref } from "react";
+import {
+  memo,
+  type ReactNode,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+  forwardRef,
+  useImperativeHandle,
+  type Ref,
+  useCallback,
+} from "react";
 import Chip from "../Chip";
 import Menu from "../Menu";
 
@@ -13,11 +24,13 @@ const sizeClasses: Record<string, string> = {
 export type SelectVariant = "primary" | "secondary";
 export type DisabledType = { disabled?: boolean };
 
+type SelectValue<T> = T | T[] | string | number | boolean | (string | number | boolean)[] | null;
+
 export interface SelectListProps<T> {
   options: Array<T & DisabledType>;
   onChange?: (option: T | T[] | null) => void;
-  value?: T | T[] | null;
-  defaultValue?: T | T[] | null;
+  value?: SelectValue<T>;
+  defaultValue?: SelectValue<T>;
   multiple?: boolean;
   hasError?: boolean;
   size?: "xs" | "sm" | "md" | "lg" | "xl";
@@ -33,11 +46,12 @@ export interface SelectListProps<T> {
   className?: string;
   name?: string;
   renderOption?: (option: T, isSelected: boolean) => ReactNode;
+  id?: string;
 }
 
 export interface SelectListRef<T = any> {
   getValue: () => any;
-  setValue: (value: T | T[] | null) => void;
+  setValue: (value: SelectValue<T>) => void;
   clearValue: () => void;
   focus: () => void;
   blur: () => void;
@@ -66,6 +80,7 @@ function SelectListInner<T extends object>(props: SelectListProps<T>, ref: Ref<S
     className = "",
     name,
     renderOption,
+    id: componentId,
   } = props;
 
   const [menuOpen, setMenuOpen] = useState(false);
@@ -76,58 +91,72 @@ function SelectListInner<T extends object>(props: SelectListProps<T>, ref: Ref<S
   const buttonRef = useRef<HTMLButtonElement>(null);
   const MemoChip = memo(Chip);
 
-  // تبدیل مقدار به آرایه از آیتم‌ها
-  const valueToItems = (val: T | T[] | null): T[] => {
-    if (!val) return [];
+  // تابع کمکی برای تبدیل مقدار به آیتم‌ها
+  const convertToItems = useCallback(
+    (val: SelectValue<T>): T[] => {
+      if (!val && val !== false) return []; // false مجاز است
 
-    if (multiple) {
-      const values = Array.isArray(val) ? val : [val];
-      return values
-        .map((v) => {
-          if (typeof v === "string") {
-            return localOptions.find((a) => String(a[idField]) === v);
+      if (multiple) {
+        // حالت multiple
+        const values = Array.isArray(val) ? val : [val];
+        const items: T[] = [];
+
+        values.forEach((v) => {
+          if (typeof v === "string" || typeof v === "number" || typeof v === "boolean") {
+            // جستجو بر اساس idField
+            const found = localOptions.find((option) => String(option[idField]) === String(v));
+            if (found) items.push(found);
+          } else if (typeof v === "object" && v !== null) {
+            // اگر آبجکت بود، مستقیماً اضافه کن
+            items.push(v as T);
           }
-          return v;
-        })
-        .filter((v): v is T => !!v);
-    } else {
-      let value: T | undefined;
+        });
 
-      if (typeof val === "string") {
-        value = localOptions.find((a) => String(a[idField]) === val);
-      } else if (Array.isArray(val)) {
-        const first = val[0];
-        if (typeof first === "string") {
-          value = localOptions.find((a) => String(a[idField]) === first);
-        } else {
-          value = first;
-        }
+        return items;
       } else {
-        value = val as T;
+        // حالت single
+        if (typeof val === "string" || typeof val === "number" || typeof val === "boolean") {
+          // جستجو بر اساس idField
+          const found = localOptions.find((option) => String(option[idField]) === String(val));
+          return found ? [found] : [];
+        } else if (Array.isArray(val)) {
+          // اگر آرایه بود، اولین آیتم را بررسی کن
+          if (val.length === 0) return [];
+          const first = val[0];
+          if (typeof first === "string" || typeof first === "number" || typeof first === "boolean") {
+            const found = localOptions.find((option) => String(option[idField]) === String(first));
+            return found ? [found] : [];
+          } else {
+            return [first as T];
+          }
+        } else if (val && typeof val === "object") {
+          // اگر آبجکت بود
+          return [val as T];
+        }
+        return [];
       }
+    },
+    [localOptions, idField, multiple],
+  );
 
-      return value ? [value] : [];
-    }
-  };
-
-  // مقداردهی اولیه بر اساس defaultValue (حالت غیرکنترل شده) - فقط یکبار اجرا شود
+  // مقداردهی اولیه بر اساس defaultValue (حالت غیرکنترل شده)
   useEffect(() => {
     if (isControlled || isInitialized) return;
 
-    if (defaultValue) {
-      const items = valueToItems(defaultValue);
+    if (defaultValue !== null && defaultValue !== undefined) {
+      const items = convertToItems(defaultValue);
       setSelectedList(items);
     }
     setIsInitialized(true);
-  }, [defaultValue, isControlled, isInitialized, idField, localOptions, multiple]);
+  }, [defaultValue, isControlled, isInitialized, convertToItems]);
 
   // سینک با value (حالت کنترل شده)
   useEffect(() => {
     if (!isControlled) return;
 
-    const items = valueToItems(value || null);
+    const items = convertToItems(value || null);
     setSelectedList(items);
-  }, [value, isControlled, idField, localOptions, multiple]);
+  }, [value, isControlled, convertToItems]);
 
   const selectedIds = useMemo(() => new Set(selectedList.map((o) => String(o[idField]))), [selectedList, idField]);
 
@@ -160,11 +189,11 @@ function SelectListInner<T extends object>(props: SelectListProps<T>, ref: Ref<S
       }
       return selectedList.length > 0 ? selectedList[0] : null;
     },
-    setValue: (newValue: T | T[] | null) => {
+    setValue: (newValue: SelectValue<T>) => {
       if (isControlled) {
         return;
       }
-      const items = valueToItems(newValue);
+      const items = convertToItems(newValue);
       setSelectedList(items);
       onChange?.(multiple ? items : items[0] || null);
     },
@@ -284,7 +313,7 @@ function SelectListInner<T extends object>(props: SelectListProps<T>, ref: Ref<S
   };
 
   return (
-    <div className="w-full flex flex-col justify-center items-start p-4" style={{ width }}>
+    <div className="w-full flex flex-col justify-center items-start" style={{ width }}>
       {/* فیلد مخفی برای فرم‌ها */}
       {name && <input type="hidden" name={name} value={getHiddenInputValue()} />}
 
@@ -292,6 +321,7 @@ function SelectListInner<T extends object>(props: SelectListProps<T>, ref: Ref<S
         <button
           ref={buttonRef}
           type="button"
+          id={componentId}
           className={clsx(
             "w-full flex flex-wrap items-center gap-1 border rounded-lg transition-all ease-in-out duration-300 p-2",
             sizeClasses[size],
@@ -386,14 +416,11 @@ function SelectListInner<T extends object>(props: SelectListProps<T>, ref: Ref<S
                 dir="rtl"
                 aria-disabled={isDisabled ? "true" : "false"}
                 tabIndex={isDisabled ? -1 : 0}
-                className={clsx(
-                  "vazirmatn text-base sm:text-sm rounded p-1 mt-1 mb-1",
-                  {
-                    "!text-gray-500 !bg-gray-200 !cursor-not-allowed opacity-60": isDisabled,
-                    "cursor-pointer hover:bg-gray-100": !isDisabled,
-                    "bg-gray-200": isSelected && !renderOption,
-                  }
-                )}
+                className={clsx("vazirmatn text-base sm:text-sm rounded p-1 mt-1 mb-1", {
+                  "!text-gray-500 !bg-gray-200 !cursor-not-allowed opacity-60": isDisabled && !renderOption,
+                  "cursor-pointer hover:bg-gray-100": !isDisabled,
+                  "bg-gray-200": isSelected && !renderOption,
+                })}
                 onClick={(e) => {
                   e.preventDefault();
                   e.stopPropagation();
@@ -401,11 +428,7 @@ function SelectListInner<T extends object>(props: SelectListProps<T>, ref: Ref<S
                   handleSelect(option);
                 }}
               >
-                {renderOption  ? (
-                  renderOption(option, isSelected)
-                ) : (
-                  String(option[labelField])
-                )}
+                {renderOption ? renderOption(option, isSelected) : String(option[labelField])}
               </Menu.Item>
             );
           })}

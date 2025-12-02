@@ -11,31 +11,32 @@ type FeatureItem = {
 
 const FeatureList: FeatureItem[] = [
   {
-    title: "Easy to Use",
-    Svg: require("@site/static/img/undraw_docusaurus_mountain.svg").default,
+    title: "Fast, Simple, No Fuss",
+    Svg: require("@site/static/img/fast_speed.svg").default,
     description: (
       <>
-        Docusaurus was designed from the ground up to be easily installed and used to get your website up and running quickly.
+        Dig is built to get you from design to code in the shortest time possible. No extra setup. No complexity. Just copy,
+        paste, and build.
       </>
     ),
   },
   {
     title: "Focus on What Matters",
-    Svg: require("@site/static/img/undraw_docusaurus_tree.svg").default,
+    Svg: require("@site/static/img/focus.svg").default,
     description: (
       <>
-        Docusaurus lets you focus on your docs, and we&apos;ll do the chores. Go ahead and move your docs into the{" "}
-        <code>docs</code> directory.
+        Stop wasting time hunting down the right component or checking style consistency. Dig helps you focus on logic, UX, and
+        building value not syncing design and code.
       </>
     ),
   },
   {
     title: "Powered by React",
-    Svg: require("@site/static/img/undraw_docusaurus_react.svg").default,
+    Svg: require("@site/static/img/react.svg").default,
     description: (
       <>
-        Extend or customize your website layout by reusing React. Docusaurus can be extended while reusing the same header and
-        footer.
+        DigCode is built with clean, scalable React components ready to use or extend. You can plug it into your app, customize
+        as needed, and keep building without breaking flow.
       </>
     ),
   },
@@ -48,8 +49,10 @@ function Feature({ title, Svg, description }: FeatureItem) {
         <Svg className={styles.featureSvg} role="img" />
       </div>
       <div className="text--center padding-horiz--md">
-        <Heading as="h3">{title}</Heading>
-        <p>{description}</p>
+        <Heading as="h2" className="mt-4 opacity-75">
+          {title}
+        </Heading>
+        <p className="opacity-75">{description}</p>
       </div>
     </div>
   );
