@@ -24,11 +24,13 @@ const sizeClasses: Record<string, string> = {
 export type SelectVariant = "primary" | "secondary";
 export type DisabledType = { disabled?: boolean };
 
+type SelectValue<T> = T | T[] | string | number | boolean | (string | number | boolean)[] | null;
+
 export interface SelectListProps<T> {
   options: Array<T & DisabledType>;
   onChange?: (option: T | T[] | null) => void;
-  value?: T | T[] | string | number | (string | number)[] | null;
-  defaultValue?: T | T[] | string | number | (string | number)[] | null;
+  value?: SelectValue<T>;
+  defaultValue?: SelectValue<T>;
   multiple?: boolean;
   hasError?: boolean;
   size?: "xs" | "sm" | "md" | "lg" | "xl";
@@ -49,7 +51,7 @@ export interface SelectListProps<T> {
 
 export interface SelectListRef<T = any> {
   getValue: () => any;
-  setValue: (value: T | T[] | string | number | (string | number)[] | null) => void;
+  setValue: (value: SelectValue<T>) => void;
   clearValue: () => void;
   focus: () => void;
   blur: () => void;
@@ -91,8 +93,8 @@ function SelectListInner<T extends object>(props: SelectListProps<T>, ref: Ref<S
 
   // تابع کمکی برای تبدیل مقدار به آیتم‌ها
   const convertToItems = useCallback(
-    (val: T | T[] | string | number | (string | number)[] | null): T[] => {
-      if (!val) return [];
+    (val: SelectValue<T>): T[] => {
+      if (!val && val !== false) return []; // false مجاز است
 
       if (multiple) {
         // حالت multiple
@@ -100,7 +102,7 @@ function SelectListInner<T extends object>(props: SelectListProps<T>, ref: Ref<S
         const items: T[] = [];
 
         values.forEach((v) => {
-          if (typeof v === "string" || typeof v === "number") {
+          if (typeof v === "string" || typeof v === "number" || typeof v === "boolean") {
             // جستجو بر اساس idField
             const found = localOptions.find((option) => String(option[idField]) === String(v));
             if (found) items.push(found);
@@ -113,7 +115,7 @@ function SelectListInner<T extends object>(props: SelectListProps<T>, ref: Ref<S
         return items;
       } else {
         // حالت single
-        if (typeof val === "string" || typeof val === "number") {
+        if (typeof val === "string" || typeof val === "number" || typeof val === "boolean") {
           // جستجو بر اساس idField
           const found = localOptions.find((option) => String(option[idField]) === String(val));
           return found ? [found] : [];
@@ -121,7 +123,7 @@ function SelectListInner<T extends object>(props: SelectListProps<T>, ref: Ref<S
           // اگر آرایه بود، اولین آیتم را بررسی کن
           if (val.length === 0) return [];
           const first = val[0];
-          if (typeof first === "string" || typeof first === "number") {
+          if (typeof first === "string" || typeof first === "number" || typeof first === "boolean") {
             const found = localOptions.find((option) => String(option[idField]) === String(first));
             return found ? [found] : [];
           } else {
@@ -187,7 +189,7 @@ function SelectListInner<T extends object>(props: SelectListProps<T>, ref: Ref<S
       }
       return selectedList.length > 0 ? selectedList[0] : null;
     },
-    setValue: (newValue: T | T[] | string | number | (string | number)[] | null) => {
+    setValue: (newValue: SelectValue<T>) => {
       if (isControlled) {
         return;
       }
@@ -392,13 +394,7 @@ function SelectListInner<T extends object>(props: SelectListProps<T>, ref: Ref<S
       </div>
 
       {/* منو */}
-      <Menu
-        anchor={containerRef.current}
-        open={menuOpen}
-        onClose={handleCloseMenu}
-        anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
-        transformOrigin={{ vertical: "top", horizontal: "right" }}
-      >
+      <Menu anchor={containerRef.current} open={menuOpen} onClose={handleCloseMenu}>
         <div
           dir="rtl"
           className="overflow-y-auto"
