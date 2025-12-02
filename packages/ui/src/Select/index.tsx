@@ -27,8 +27,8 @@ export type DisabledType = { disabled?: boolean };
 export interface SelectListProps<T> {
   options: Array<T & DisabledType>;
   onChange?: (option: T | T[] | null) => void;
-  value?: T | T[] | null;
-  defaultValue?: T | T[] | null;
+  value?: T | T[] | string | number | (string | number)[] | null;
+  defaultValue?: T | T[] | string | number | (string | number)[] | null;
   multiple?: boolean;
   hasError?: boolean;
   size?: "xs" | "sm" | "md" | "lg" | "xl";
@@ -44,12 +44,12 @@ export interface SelectListProps<T> {
   className?: string;
   name?: string;
   renderOption?: (option: T, isSelected: boolean) => ReactNode;
-  id?: string; // اضافه شدن prop id
+  id?: string;
 }
 
 export interface SelectListRef<T = any> {
   getValue: () => any;
-  setValue: (value: T | T[] | null) => void;
+  setValue: (value: T | T[] | string | number | (string | number)[] | null) => void;
   clearValue: () => void;
   focus: () => void;
   blur: () => void;
@@ -78,7 +78,7 @@ function SelectListInner<T extends object>(props: SelectListProps<T>, ref: Ref<S
     className = "",
     name,
     renderOption,
-    id: componentId, // اضافه شدن prop id
+    id: componentId,
   } = props;
 
   const [menuOpen, setMenuOpen] = useState(false);
@@ -89,61 +89,72 @@ function SelectListInner<T extends object>(props: SelectListProps<T>, ref: Ref<S
   const buttonRef = useRef<HTMLButtonElement>(null);
   const MemoChip = memo(Chip);
 
-  // تبدیل مقدار به آرایه از آیتم‌ها با استفاده از useCallback
-  const valueToItems = useCallback(
-    (val: T | T[] | null): T[] => {
+  // تابع کمکی برای تبدیل مقدار به آیتم‌ها
+  const convertToItems = useCallback(
+    (val: T | T[] | string | number | (string | number)[] | null): T[] => {
       if (!val) return [];
 
       if (multiple) {
+        // حالت multiple
         const values = Array.isArray(val) ? val : [val];
-        return values
-          .map((v) => {
-            if (typeof v === "string") {
-              return localOptions.find((a) => String(a[idField]) === v);
-            }
-            return v;
-          })
-          .filter((v): v is T => !!v);
-      } else {
-        let value: T | undefined;
+        const items: T[] = [];
 
-        if (typeof val === "string") {
-          value = localOptions.find((a) => String(a[idField]) === val);
-        } else if (Array.isArray(val)) {
-          const first = val[0];
-          if (typeof first === "string") {
-            value = localOptions.find((a) => String(a[idField]) === first);
-          } else {
-            value = first;
+        values.forEach((v) => {
+          if (typeof v === "string" || typeof v === "number") {
+            // جستجو بر اساس idField
+            const found = localOptions.find((option) => String(option[idField]) === String(v));
+            if (found) items.push(found);
+          } else if (typeof v === "object" && v !== null) {
+            // اگر آبجکت بود، مستقیماً اضافه کن
+            items.push(v as T);
           }
-        } else {
-          value = val as T;
-        }
+        });
 
-        return value ? [value] : [];
+        return items;
+      } else {
+        // حالت single
+        if (typeof val === "string" || typeof val === "number") {
+          // جستجو بر اساس idField
+          const found = localOptions.find((option) => String(option[idField]) === String(val));
+          return found ? [found] : [];
+        } else if (Array.isArray(val)) {
+          // اگر آرایه بود، اولین آیتم را بررسی کن
+          if (val.length === 0) return [];
+          const first = val[0];
+          if (typeof first === "string" || typeof first === "number") {
+            const found = localOptions.find((option) => String(option[idField]) === String(first));
+            return found ? [found] : [];
+          } else {
+            return [first as T];
+          }
+        } else if (val && typeof val === "object") {
+          // اگر آبجکت بود
+          return [val as T];
+        }
+        return [];
       }
     },
     [localOptions, idField, multiple],
   );
 
-  // مقداردهی اولیه بر اساس defaultValue (حالت غیرکنترل شده) - فقط یکبار اجرا شود
+  // مقداردهی اولیه بر اساس defaultValue (حالت غیرکنترل شده)
   useEffect(() => {
     if (isControlled || isInitialized) return;
 
-    if (defaultValue) {
-      const items = valueToItems(defaultValue);
+    if (defaultValue !== null && defaultValue !== undefined) {
+      const items = convertToItems(defaultValue);
       setSelectedList(items);
     }
     setIsInitialized(true);
-  }, [defaultValue, isControlled, isInitialized, valueToItems]);
+  }, [defaultValue, isControlled, isInitialized, convertToItems]);
 
   // سینک با value (حالت کنترل شده)
   useEffect(() => {
     if (!isControlled) return;
 
-    const items = valueToItems(value || null);
+    const items = convertToItems(value || null);
     setSelectedList(items);
-  }, [value, isControlled, valueToItems]);
+  }, [value, isControlled, convertToItems]);
 
   const selectedIds = useMemo(() => new Set(selectedList.map((o) => String(o[idField]))), [selectedList, idField]);
 
@@ -176,11 +187,11 @@ function SelectListInner<T extends object>(props: SelectListProps<T>, ref: Ref<S
       }
       return selectedList.length > 0 ? selectedList[0] : null;
     },
-    setValue: (newValue: T | T[] | null) => {
+    setValue: (newValue: T | T[] | string | number | (string | number)[] | null) => {
       if (isControlled) {
         return;
       }
-      const items = valueToItems(newValue);
+      const items = convertToItems(newValue);
       setSelectedList(items);
       onChange?.(multiple ? items : items[0] || null);
     },
@@ -300,7 +311,7 @@ function SelectListInner<T extends object>(props: SelectListProps<T>, ref: Ref<S
   };
 
   return (
-    <div className="w-full flex flex-col justify-center items-start p-4" style={{ width }}>
+    <div className="w-full flex flex-col justify-center items-start" style={{ width }}>
       {/* فیلد مخفی برای فرم‌ها */}
       {name && <input type="hidden" name={name} value={getHiddenInputValue()} />}
 
@@ -308,7 +319,7 @@ function SelectListInner<T extends object>(props: SelectListProps<T>, ref: Ref<S
         <button
           ref={buttonRef}
           type="button"
-          id={componentId} // استفاده از prop id
+          id={componentId}
           className={clsx(
             "w-full flex flex-wrap items-center gap-1 border rounded-lg transition-all ease-in-out duration-300 p-2",
             sizeClasses[size],
@@ -381,7 +392,13 @@ function SelectListInner<T extends object>(props: SelectListProps<T>, ref: Ref<S
       </div>
 
       {/* منو */}
-      <Menu anchor={containerRef.current} open={menuOpen} onClose={handleCloseMenu}>
+      <Menu
+        anchor={containerRef.current}
+        open={menuOpen}
+        onClose={handleCloseMenu}
+        anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
+        transformOrigin={{ vertical: "top", horizontal: "right" }}
+      >
         <div
           dir="rtl"
           className="overflow-y-auto"
