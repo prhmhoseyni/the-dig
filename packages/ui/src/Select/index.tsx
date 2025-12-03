@@ -398,7 +398,7 @@ function SelectListInner<T extends object>(props: SelectListProps<T>, ref: Ref<S
       <Menu anchor={containerRef.current} open={menuOpen} onClose={handleCloseMenu}>
         <div
           dir="rtl"
-          className="overflow-y-auto"
+          className="overflow-y-auto p-2"
           style={{
             width: containerRef.current?.offsetWidth ? containerRef.current.offsetWidth - 10 : "100%",
             maxHeight: `${maxDropdownHeight}px`,
