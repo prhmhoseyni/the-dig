@@ -61,9 +61,11 @@ export interface DatePickerProps {
   disableDays?: Array<JalaliDate>;
   disabledRange?: DisabledRange;
   inputProps?: TextFieldProps;
+  hasCleanIcon?: boolean;
 }
 
 export default function DatePicker(props: DatePickerProps) {
+  const { hasCleanIcon = true } = props;
   const render = ({ ref }: { ref: RefObject<HTMLElement> }) => (
     <TextField
       dir={props.locale === "en" ? "ltr" : "rtl"}
@@ -81,7 +83,7 @@ export default function DatePicker(props: DatePickerProps) {
             : undefined
       }
       {...props.inputProps}
-      isCleanIcon={!props.inputProps?.disabled && !!props.value}
+      isCleanIcon={!props.inputProps?.disabled && !!props.value && hasCleanIcon}
       onClean={() => props.onChange(null)}
     />
   );
