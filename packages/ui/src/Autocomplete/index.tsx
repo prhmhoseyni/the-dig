@@ -1,4 +1,5 @@
 import clsx from "clsx";
+import styles from "./index.module.css";
 import { X } from "lucide-react";
 import { forwardRef, memo, useCallback, useEffect, useMemo, useRef, useState, useImperativeHandle } from "react";
 import type { DetailedHTMLProps, InputHTMLAttributes, ReactNode } from "react";
@@ -516,7 +517,8 @@ const Autocomplete = forwardRef<AutocompleteRef, AutocompleteProps<any>>(
             </div>
 
             <input
-              id={`${componentId}-input`} // استفاده از id برای input
+              {...inputProps}
+              id={`${componentId || "textbox"}-input`} // استفاده از id برای input
               ref={inputRef}
               type="text"
               autoComplete="off"
@@ -524,16 +526,15 @@ const Autocomplete = forwardRef<AutocompleteRef, AutocompleteProps<any>>(
               onFocus={handleFocus}
               readOnly={readOnly}
               onChange={handleInputChange}
-              style={{ outline: "none !important", outlineStyle: "none !important" }}
               placeholder={!multiple || (multiple && !selectedList.length) ? placeholder : undefined}
               className={clsx(
                 "flex-1 min-w-[60px] border-0 outline-none bg-transparent focus:outline-none",
+                styles["input-style"],
                 { "bg-background-secondary": variant === "primary" },
                 { "bg-background-primary": variant === "secondary" },
                 { "mr-5": startAdornment && !selectedList.length },
               )}
               name={name} // اضافه شدن name برای فرم‌ها
-              {...inputProps}
             />
           </div>
 
@@ -595,16 +596,14 @@ const Autocomplete = forwardRef<AutocompleteRef, AutocompleteProps<any>>(
                       dir="rtl"
                       aria-disabled={isDisabled ? "true" : "false"}
                       tabIndex={isDisabled ? -1 : 0}
-                      className={clsx("vazirmatn text-base sm:text-sm rounded p-1 mt-1 mb-1", {
-                        // حالت غیرفعال
-                        "!text-gray-500 !bg-gray-200 !cursor-not-allowed opacity-60": isDisabled && !renderOption,
-
-                        // حالت hover و کلیک‌پذیر
-                        "cursor-pointer hover:bg-gray-100": !isDisabled,
-
-                        // حالت انتخاب‌شده
-                        "bg-gray-200": isSelected && !renderOption,
-                      })}
+                      className={clsx(
+                        "vazirmatn text-base sm:text-sm rounded p-1",
+                        styles["select-item"],
+                        isDisabled && !renderOption && styles["cursor-not-allowed"],
+                        isDisabled && !renderOption && styles["gray-color"],
+                        !isDisabled && "cursor-pointer hover:bg-gray-100",
+                        isSelected && !renderOption && styles["bg-gray-200"],
+                      )}
                       onClick={(e) => {
                         e.preventDefault();
                         e.stopPropagation();
