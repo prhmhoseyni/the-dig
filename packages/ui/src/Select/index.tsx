@@ -13,6 +13,7 @@ import {
 } from "react";
 import Chip from "../Chip";
 import Menu from "../Menu";
+import styles from "./index.module.css";
 
 const sizeClasses: Record<string, string> = {
   xs: "min-h-8 text-sm px-2",
@@ -416,11 +417,14 @@ function SelectListInner<T extends object>(props: SelectListProps<T>, ref: Ref<S
                 dir="rtl"
                 aria-disabled={isDisabled ? "true" : "false"}
                 tabIndex={isDisabled ? -1 : 0}
-                className={clsx("vazirmatn text-base sm:text-sm rounded p-1 mt-1 mb-1", {
-                  "!text-gray-500 !bg-gray-200 !cursor-not-allowed opacity-60": isDisabled && !renderOption,
-                  "cursor-pointer hover:bg-gray-100": !isDisabled,
-                  "bg-gray-200": isSelected && !renderOption,
-                })}
+                className={clsx(
+                  "vazirmatn text-base sm:text-sm rounded p-1",
+                  styles["select-item"],
+                  isDisabled && !renderOption && styles["cursor-not-allowed"],
+                  isDisabled && !renderOption && styles["gray-color"],
+                  !isDisabled && "cursor-pointer hover:bg-gray-100",
+                  isSelected && !renderOption && styles["bg-gray-200"],
+                )}
                 onClick={(e) => {
                   e.preventDefault();
                   e.stopPropagation();

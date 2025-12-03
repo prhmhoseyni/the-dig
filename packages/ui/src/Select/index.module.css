@@ -1,0 +1,17 @@
+.select-item {
+  margin-bottom: 0.25rem;
+  margin-top: 0.25rem;
+}
+
+.cursor-not-allowed {
+  cursor: not-allowed !important;
+}
+
+.gray-color {
+  color: #b4b4b9 !important;
+  background-color: #f4f4f5 !important;
+  opacity: 60%;
+}
+.bg-gray-200 {
+  background-color: #f4f4f5;
+}

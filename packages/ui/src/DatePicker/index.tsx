@@ -81,7 +81,7 @@ export default function DatePicker(props: DatePickerProps) {
             : undefined
       }
       {...props.inputProps}
-      isCleanIcon={!!props.value}
+      isCleanIcon={!props.inputProps?.disabled && !!props.value}
       onClean={() => props.onChange(null)}
     />
   );
