@@ -8,6 +8,11 @@
   text-align: center;
   position: relative;
   overflow: hidden;
+  background-image: url("@site/static/img/banner_bg.svg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center 25%;
+  height: 500px;
 }
 
 @media screen and (max-width: 996px) {
@@ -20,4 +25,14 @@
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.colorw {
+  color: white;
+  font-size: 2rem;
+}
+
+.fontCustom {
+  font-size: 1.6rem;
+  color: #bababa;
 }

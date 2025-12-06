@@ -1,4 +1,5 @@
 import clsx from "clsx";
+import styles from "./index.module.css";
 import { X } from "lucide-react";
 import { forwardRef, memo, useCallback, useEffect, useMemo, useRef, useState, useImperativeHandle } from "react";
 import type { DetailedHTMLProps, InputHTMLAttributes, ReactNode } from "react";
@@ -20,7 +21,12 @@ const sizeClasses: Record<string, string> = {
  */
 export type SelectVariant = "primary" | "secondary";
 export type DisabledType = { disabled?: boolean };
+
+type AutocompleteValue<T> = T | T[] | string | number | boolean | (string | number | boolean)[] | null;
+
 export interface AutocompleteProps<T> {
+  /** شناسه منحصر به فرد کامپوننت */
+  id?: string;
   options?: Array<T & DisabledType>;
   fetchOptions?: (query: string) => Promise<T[]>;
   debounceDelay?: number;
@@ -30,8 +36,8 @@ export interface AutocompleteProps<T> {
   isDropDown?: boolean;
   searchingText?: string;
   minSearchChars?: number;
-  defaultValue?: T | T[] | null;
-  value?: T | T[] | null;
+  defaultValue?: AutocompleteValue<T>;
+  value?: AutocompleteValue<T>;
   multiple?: boolean;
   hasError?: boolean;
   size?: "xs" | "sm" | "md" | "lg" | "xl";
@@ -56,6 +62,7 @@ export interface AutocompleteRef {
 const Autocomplete = forwardRef<AutocompleteRef, AutocompleteProps<any>>(
   <T extends object>(props: AutocompleteProps<T>, ref: React.ForwardedRef<AutocompleteRef>) => {
     const {
+      id: componentId,
       options: localOptions,
       fetchOptions,
       debounceDelay = 500,
@@ -106,6 +113,74 @@ const Autocomplete = forwardRef<AutocompleteRef, AutocompleteProps<any>>(
     const selectedIds = useMemo(() => new Set(selectedList.map((o) => String(o[idField]))), [selectedList, idField]);
     const MemoChip = memo(Chip);
 
+    // تابع کمکی برای تبدیل مقدار به آیتم‌ها (فقط برای حالت محلی)
+    const convertToItems = useCallback(
+      (val: AutocompleteValue<T>): T[] => {
+        if (!val && val !== false) return []; // false مجاز است
+
+        // اگر fetchOptions فعال است، فقط آبجکت قبول کند
+        if (fetchOptions) {
+          if (!val) return [];
+          if (Array.isArray(val)) {
+            return val.filter((v): v is T => typeof v === "object" && v !== null);
+          } else if (typeof val === "object" && val !== null) {
+            return [val as T];
+          }
+          return [];
+        }
+
+        // حالت محلی: پشتیبانی از string, number, boolean
+        if (multiple) {
+          // حالت multiple
+          const values = Array.isArray(val) ? val : [val];
+          const items: T[] = [];
+
+          values.forEach((v) => {
+            if (typeof v === "string" || typeof v === "number" || typeof v === "boolean") {
+              // جستجو بر اساس idField در options محلی
+              if (localOptions) {
+                const found = localOptions.find((option) => String(option[idField]) === String(v));
+                if (found) items.push(found);
+              }
+            } else if (typeof v === "object" && v !== null) {
+              // اگر آبجکت بود، مستقیماً اضافه کن
+              items.push(v as T);
+            }
+          });
+
+          return items;
+        } else {
+          // حالت single
+          if (typeof val === "string" || typeof val === "number" || typeof val === "boolean") {
+            // جستجو بر اساس idField در options محلی
+            if (localOptions) {
+              const found = localOptions.find((option) => String(option[idField]) === String(val));
+              return found ? [found] : [];
+            }
+            return [];
+          } else if (Array.isArray(val)) {
+            // اگر آرایه بود، اولین آیتم را بررسی کن
+            if (val.length === 0) return [];
+            const first = val[0];
+            if (typeof first === "string" || typeof first === "number" || typeof first === "boolean") {
+              if (localOptions) {
+                const found = localOptions.find((option) => String(option[idField]) === String(first));
+                return found ? [found] : [];
+              }
+              return [];
+            } else {
+              return [first as T];
+            }
+          } else if (val && typeof val === "object") {
+            // اگر آبجکت بود
+            return [val as T];
+          }
+          return [];
+        }
+      },
+      [localOptions, idField, multiple, fetchOptions],
+    );
+
     // مقداردهی اولیه
     const initialized = useRef(false);
 
@@ -131,30 +206,21 @@ const Autocomplete = forwardRef<AutocompleteRef, AutocompleteProps<any>>(
     useEffect(() => {
       if (initialized.current) return;
 
-      // مقداردهی اولیه برای حالت غیرکنترل شده
-      if (!isControlled && defaultValue) {
-        const initialValue = Array.isArray(defaultValue) ? defaultValue : [defaultValue];
-        setSelectedList(initialValue);
+      // مقداردهی اولیه برای هر دو حالت
+      const initialValue = defaultValue || value;
 
-        if (!multiple && defaultValue) {
-          const singleValue = Array.isArray(defaultValue) ? defaultValue[0] : defaultValue;
-          setInputValue(String((singleValue as T)[labelField] ?? ""));
-        }
-      }
+      if (initialValue !== null && initialValue !== undefined) {
+        const items = convertToItems(initialValue);
+        setSelectedList(items);
 
-      // مقداردهی اولیه برای حالت کنترل شده
-      if (isControlled && value) {
-        const controlledValue = Array.isArray(value) ? value : [value];
-        setSelectedList(controlledValue);
-
-        if (!multiple && value) {
-          const singleValue = Array.isArray(value) ? value[0] : value;
-          setInputValue(String((singleValue as T)[labelField] ?? ""));
+        if (!multiple && items.length > 0) {
+          const firstItem = items[0];
+          setInputValue(String((firstItem as T)[labelField] ?? ""));
         }
       }
 
       initialized.current = true;
-    }, [isControlled, defaultValue, value, multiple, labelField]);
+    }, [defaultValue, value, multiple, labelField, convertToItems]);
 
     // سینک کردن مقدار value خارجی با state داخلی برای حالت کنترل شده
     useEffect(() => {
@@ -166,15 +232,15 @@ const Autocomplete = forwardRef<AutocompleteRef, AutocompleteProps<any>>(
           setInputValue("");
         }
       } else {
-        const newValue = Array.isArray(value) ? value : [value];
-        setSelectedList(newValue);
+        const items = convertToItems(value);
+        setSelectedList(items);
 
-        if (!multiple && value) {
-          const singleValue = Array.isArray(value) ? value[0] : value;
-          setInputValue(String((singleValue as T)[labelField] ?? ""));
+        if (!multiple && items.length > 0) {
+          const firstItem = items[0];
+          setInputValue(String((firstItem as T)[labelField] ?? ""));
         }
       }
-    }, [value, isControlled, multiple, labelField]);
+    }, [value, isControlled, multiple, labelField, convertToItems]);
 
     const localMatches = useMemo(() => {
       if (!localOptions) return [];
@@ -401,7 +467,7 @@ const Autocomplete = forwardRef<AutocompleteRef, AutocompleteProps<any>>(
     };
 
     return (
-      <div className="w-full flex flex-col justify-center items-start p-4" style={{ width: width }}>
+      <div id={componentId} className="w-full flex flex-col justify-center items-start" style={{ width: width }}>
         <div ref={containerRef} className="relative w-full" style={{ position: "relative" }}>
           <div
             className={clsx(
@@ -451,7 +517,8 @@ const Autocomplete = forwardRef<AutocompleteRef, AutocompleteProps<any>>(
             </div>
 
             <input
-              id="autocomplete-input"
+              {...inputProps}
+              id={`${componentId || "textbox"}-input`} // استفاده از id برای input
               ref={inputRef}
               type="text"
               autoComplete="off"
@@ -459,16 +526,15 @@ const Autocomplete = forwardRef<AutocompleteRef, AutocompleteProps<any>>(
               onFocus={handleFocus}
               readOnly={readOnly}
               onChange={handleInputChange}
-              style={{ outline: "none !important", outlineStyle: "none !important" }}
               placeholder={!multiple || (multiple && !selectedList.length) ? placeholder : undefined}
               className={clsx(
                 "flex-1 min-w-[60px] border-0 outline-none bg-transparent focus:outline-none",
+                styles["input-style"],
                 { "bg-background-secondary": variant === "primary" },
                 { "bg-background-primary": variant === "secondary" },
                 { "mr-5": startAdornment && !selectedList.length },
               )}
               name={name} // اضافه شدن name برای فرم‌ها
-              {...inputProps}
             />
           </div>
 
@@ -506,7 +572,7 @@ const Autocomplete = forwardRef<AutocompleteRef, AutocompleteProps<any>>(
           <Menu anchor={containerRef.current} open={menuOpen} onClose={handleCloseMenu}>
             <div
               dir="rtl"
-              className="overflow-y-auto"
+              className="overflow-y-auto p-2"
               style={{
                 width: containerRef.current?.offsetWidth ? containerRef.current.offsetWidth - 10 : "100%",
                 maxHeight: `${maxDropdownHeight}px`,
@@ -519,27 +585,25 @@ const Autocomplete = forwardRef<AutocompleteRef, AutocompleteProps<any>>(
                 </Menu.Item>
               ) : options.length > 0 ? (
                 options.map((option) => {
-                  const id = String(option[idField]);
-                  const isSelected = !multiple && selectedIds.has(id);
+                  const optionId = String(option[idField]);
+                  const isSelected = !multiple && selectedIds.has(optionId);
                   const isDisabled = !multiple && isSelected;
 
                   return (
                     <Menu.Item
-                      id={`autocomplete-item-${id}`}
-                      key={`${id}__${option[labelField]}`}
+                      id={`${componentId}-item-${optionId}`} // استفاده از id برای آیتم‌های منو
+                      key={`${optionId}__${option[labelField]}`}
                       dir="rtl"
                       aria-disabled={isDisabled ? "true" : "false"}
                       tabIndex={isDisabled ? -1 : 0}
-                      className={clsx("vazirmatn text-base sm:text-sm rounded p-1 mt-1 mb-1", {
-                        // حالت غیرفعال
-                        "!text-gray-500 !bg-gray-200 !cursor-not-allowed opacity-60": isDisabled && !renderOption,
-
-                        // حالت hover و کلیک‌پذیر
-                        "cursor-pointer hover:bg-gray-100": !isDisabled,
-
-                        // حالت انتخاب‌شده
-                        "bg-gray-200": isSelected && !renderOption,
-                      })}
+                      className={clsx(
+                        "vazirmatn text-base sm:text-sm rounded p-1",
+                        styles["select-item"],
+                        isDisabled && !renderOption && styles["cursor-not-allowed"],
+                        isDisabled && !renderOption && styles["gray-color"],
+                        !isDisabled && "cursor-pointer hover:bg-gray-100",
+                        isSelected && !renderOption && styles["bg-gray-200"],
+                      )}
                       onClick={(e) => {
                         e.preventDefault();
                         e.stopPropagation();
