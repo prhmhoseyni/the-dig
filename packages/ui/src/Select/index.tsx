@@ -15,6 +15,7 @@ import Chip from "../Chip";
 import Menu from "../Menu";
 import styles from "./index.module.css";
 
+export type ChipColor = "brand" | "info" | "success" | "warning" | "danger" | "gray";
 const sizeClasses: Record<string, string> = {
   xs: "min-h-8 text-sm px-2",
   sm: "min-h-10 text-sm px-3",
@@ -48,6 +49,9 @@ export interface SelectListProps<T> {
   name?: string;
   renderOption?: (option: T, isSelected: boolean) => ReactNode;
   id?: string;
+  truncateChips?: boolean; // اضافه کردن prop جدید برای کنترل truncate در Chip ها
+  maxChipLength?: number; // حداکثر طول متن در Chip ها
+  chipColor?: ChipColor;
 }
 
 export interface SelectListRef<T = any> {
@@ -59,6 +63,12 @@ export interface SelectListRef<T = any> {
   openMenu: () => void;
   closeMenu: () => void;
 }
+
+// تابع کمکی برای truncate کردن متن
+export const truncateText = (text: string, maxLength: number = 30): string => {
+  if (text.length <= maxLength) return text;
+  return `${text.substring(0, maxLength - 3)}...`;
+};
 
 function SelectListInner<T extends object>(props: SelectListProps<T>, ref: Ref<SelectListRef<T>>) {
   const {
@@ -82,6 +92,9 @@ function SelectListInner<T extends object>(props: SelectListProps<T>, ref: Ref<S
     name,
     renderOption,
     id: componentId,
+    truncateChips = true, // مقدار پیش‌فرض
+    maxChipLength = 30, // مقدار پیش‌فرض برای Chip ها
+    chipColor = "brand",
   } = props;
 
   const [menuOpen, setMenuOpen] = useState(false);
@@ -167,7 +180,9 @@ function SelectListInner<T extends object>(props: SelectListProps<T>, ref: Ref<S
   const displayLabel = useMemo(() => {
     if (multiple) return "";
     if (selectedList.length === 0) return "";
-    return String(selectedList[0]?.[labelField] ?? "");
+    const fullLabel = String(selectedList[0]?.[labelField] ?? "");
+    // نمایش متن کامل اما با overflow hidden
+    return fullLabel;
   }, [multiple, selectedList, labelField]);
 
   const handleOpenMenu = () => {
@@ -314,7 +329,7 @@ function SelectListInner<T extends object>(props: SelectListProps<T>, ref: Ref<S
   };
 
   return (
-    <div className="w-full flex flex-col justify-center items-start" style={{ width }}>
+    <div className="w-full flex flex-col justify-center items-start relative" style={{ width }}>
       {/* فیلد مخفی برای فرم‌ها */}
       {name && <input type="hidden" name={name} value={getHiddenInputValue()} />}
 
@@ -346,18 +361,31 @@ function SelectListInner<T extends object>(props: SelectListProps<T>, ref: Ref<S
           }}
           onClick={handleOpenMenu}
           disabled={disabled}
+          // اضافه کردن title برای نمایش متن کامل در hover
+          title={multiple ? "" : selectedList[0] ? String(selectedList[0]?.[labelField] ?? "") : ""}
         >
           {startAdornment && (
             <div className="absolute top-1/2 -translate-y-1/2 start-3 flex items-center">{startAdornment}</div>
           )}
 
-          <div className={clsx("flex flex-wrap items-center gap-1", { "mr-6": startAdornment })}>
+          <div
+            className={clsx(
+              "flex flex-wrap items-center gap-1 w-full min-w-0 overflow-hidden", // اضافه کردن min-w-0 برای جلوگیری از overflow
+              { "mr-6": startAdornment },
+            )}
+          >
             {multiple &&
               selectedList.map(
                 (opt) =>
                   opt[labelField] && (
-                    <MemoChip key={String(opt[idField])} onClick={() => handleRemoveChip(opt)} className="mr-1 mt-1">
-                      {String(opt[labelField])}
+                    <MemoChip
+                      color={chipColor}
+                      key={String(opt[idField])}
+                      onClick={() => handleRemoveChip(opt)}
+                      className={clsx("mr-1 mt-1 max-w-full", styles["memo-ellips "])}
+                      title={String(opt[labelField])} // نمایش متن کامل در hover
+                    >
+                      {truncateChips ? truncateText(String(opt[labelField]), maxChipLength) : String(opt[labelField])}
                     </MemoChip>
                   ),
               )}
@@ -370,16 +398,27 @@ function SelectListInner<T extends object>(props: SelectListProps<T>, ref: Ref<S
 
             {((multiple && !selectedList.length) || !multiple) && (
               <span
-                className={clsx("truncate text-gray-700 text-sm", {
-                  "text-gray-400": !displayLabel,
-                })}
+                className={clsx(
+                  "text-gray-700 text-sm block w-full text-start overflow-hidden",
+                  {
+                    "text-gray-400": !displayLabel,
+                  },
+                  styles["selected-text"],
+                  startAdornment ? styles["width-startAdornment"] : styles["width-not-startAdornment"],
+                )}
+                title={displayLabel || placeholder} // نمایش متن کامل در hover
               >
                 {displayLabel || placeholder}
               </span>
             )}
           </div>
 
-          <div className="absolute top-1/2 -translate-y-1/2 end-3 flex items-center pointer-events-none">
+          <div
+            className={clsx(
+              "absolute top-1/2 -translate-y-1/2 end-3 flex items-center pointer-events-none",
+              selectedList.length > 2 && styles["left-0"],
+            )}
+          >
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none">
               <title>dropdown</title>
               <path
@@ -398,17 +437,18 @@ function SelectListInner<T extends object>(props: SelectListProps<T>, ref: Ref<S
       <Menu anchor={containerRef.current} open={menuOpen} onClose={handleCloseMenu}>
         <div
           dir="rtl"
-          className="overflow-y-auto p-2"
+          className={clsx("overflow-y-auto p-2", styles["overflow-auto"])}
           style={{
             width: containerRef.current?.offsetWidth ? containerRef.current.offsetWidth - 10 : "100%",
             maxHeight: `${maxDropdownHeight}px`,
-            right: 0,
+            left: 0,
           }}
         >
           {localOptions.map((option) => {
             const id = String(option[idField]);
             const isSelected = selectedIds.has(id);
             const isDisabled = option.disabled;
+            const label = String(option[labelField]);
 
             return (
               <Menu.Item
@@ -418,7 +458,7 @@ function SelectListInner<T extends object>(props: SelectListProps<T>, ref: Ref<S
                 aria-disabled={isDisabled ? "true" : "false"}
                 tabIndex={isDisabled ? -1 : 0}
                 className={clsx(
-                  "vazirmatn text-base sm:text-sm rounded p-1",
+                  "vazirmatn text-base sm:text-sm rounded p-1 w-full",
                   styles["select-item"],
                   isDisabled && !renderOption && styles["cursor-not-allowed"],
                   isDisabled && !renderOption && styles["gray-color"],
@@ -431,8 +471,16 @@ function SelectListInner<T extends object>(props: SelectListProps<T>, ref: Ref<S
                   if (isDisabled || (isSelected && multiple)) return;
                   handleSelect(option);
                 }}
+                // اضافه کردن title برای نمایش متن کامل در hover
+                title={label}
               >
-                {renderOption ? renderOption(option, isSelected) : String(option[labelField])}
+                <div className={clsx("flex items-center w-full min-w-0", styles["overflow-hidden"])}>
+                  {renderOption ? (
+                    renderOption(option, isSelected)
+                  ) : (
+                    <span className={clsx("block w-full text-start truncate", styles["text-ellips"])}>{label}</span>
+                  )}
+                </div>
               </Menu.Item>
             );
           })}

@@ -15,3 +15,43 @@
 .bg-gray-200 {
   background-color: #f4f4f5;
 }
+.memo-ellips {
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.selected-text {
+  display: block;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.width-startAdornment {
+  width: 90%;
+}
+.width-not-startAdornment {
+  width: 92%;
+}
+
+.overflow-auto {
+  right: "auto";
+  max-width: 100%;
+}
+.overflow-hidden {
+  overflow: "hidden";
+  width: "100%",;
+}
+.text-ellips {
+  text-overflow: "ellipsis";
+  white-space: "nowrap";
+  overflow: "hidden";
+  width: "100%";
+  max-width: "100%";
+}
+.left-0 {
+  left: 0;
+}

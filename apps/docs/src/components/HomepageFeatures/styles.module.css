@@ -9,3 +9,9 @@
   height: 100px;
   width: 150px;
 }
+
+.sm-style {
+  @media (width <= 48rem) {
+    margin-top: 2rem;
+  }
+}
