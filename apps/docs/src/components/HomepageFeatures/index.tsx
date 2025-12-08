@@ -7,6 +7,7 @@ type FeatureItem = {
   title: string;
   Svg: React.ComponentType<React.ComponentProps<"svg">>;
   description: ReactNode;
+  hasStyle?: boolean;
 };
 
 const FeatureList: FeatureItem[] = [
@@ -42,10 +43,10 @@ const FeatureList: FeatureItem[] = [
   },
 ];
 
-function Feature({ title, Svg, description }: FeatureItem) {
+function Feature({ title, Svg, description, hasStyle }: FeatureItem) {
   return (
     <div className={clsx("col col--4 flex flex-col items-center")}>
-      <div className="text--center">
+      <div className={clsx("text--center", { [styles["sm-style"]]: hasStyle })}>
         <Svg className={styles.featureSvg} role="img" />
       </div>
       <div className="text--center padding-horiz--md">
@@ -63,8 +64,8 @@ export default function HomepageFeatures(): ReactNode {
     <section className={styles.features}>
       <div className="container">
         <div className="row">
-          {FeatureList.map((props) => (
-            <Feature key={props.title} {...props} />
+          {FeatureList.map((props, index) => (
+            <Feature key={props.title} {...props} hasStyle={index !== 0} />
           ))}
         </div>
       </div>

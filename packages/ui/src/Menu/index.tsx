@@ -103,7 +103,7 @@ const Menu: MenuComponent = ({ anchor, open, onClose, children }) => {
     <button
       ref={menuRef}
       type="button"
-      className="border-0 outline-none absolute bg-white rounded-lg shadow-lg py-1 z-50 min-w-[200px]"
+      className="border-0 outline-none absolute bg-white rounded-lg shadow-lg py-1 z-50"
       style={{ top: position.top, left: position.left }}
       role="menu"
       onClick={(e) => {
