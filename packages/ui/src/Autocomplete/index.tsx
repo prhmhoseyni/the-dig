@@ -63,12 +63,6 @@ export interface AutocompleteRef {
   getSelectedValue: () => any;
 }
 
-// تابع کمکی برای truncate کردن متن
-const truncateText = (text: string, maxLength: number = 30): string => {
-  if (text.length <= maxLength) return text;
-  return `${text.substring(0, maxLength - 3)}...`;
-};
-
 const Autocomplete = forwardRef<AutocompleteRef, AutocompleteProps<any>>(
   <T extends object>(props: AutocompleteProps<T>, ref: React.ForwardedRef<AutocompleteRef>) => {
     const {
@@ -465,6 +459,14 @@ const Autocomplete = forwardRef<AutocompleteRef, AutocompleteProps<any>>(
         setSelectedList([]);
       }
       setMenuOpen(true);
+    };
+
+    /**
+     * text ellips
+     */
+    const truncateText = (text: string, maxLength: number = 30): string => {
+      if (text.length <= maxLength) return text;
+      return `${text.substring(0, maxLength - 3)}...`;
     };
 
     return (

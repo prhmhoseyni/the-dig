@@ -64,12 +64,6 @@ export interface SelectListRef<T = any> {
   closeMenu: () => void;
 }
 
-// تابع کمکی برای truncate کردن متن
-export const truncateText = (text: string, maxLength: number = 30): string => {
-  if (text.length <= maxLength) return text;
-  return `${text.substring(0, maxLength - 3)}...`;
-};
-
 function SelectListInner<T extends object>(props: SelectListProps<T>, ref: Ref<SelectListRef<T>>) {
   const {
     options: localOptions,
@@ -326,6 +320,14 @@ function SelectListInner<T extends object>(props: SelectListProps<T>, ref: Ref<S
       const fieldValue = selectedList[0][idField];
       return fieldValue !== undefined && fieldValue !== null ? String(fieldValue) : "";
     }
+  };
+
+  /**
+   * text ellips
+   */
+  const truncateText = (text: string, maxLength: number = 30): string => {
+    if (text.length <= maxLength) return text;
+    return `${text.substring(0, maxLength - 3)}...`;
   };
 
   return (
