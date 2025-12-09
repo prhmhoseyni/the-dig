@@ -21,3 +21,82 @@
   width: 100%;
   height: 100%;
 }
+
+.memo-ellips {
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.selected-text {
+  display: block;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  min-width: 0;
+}
+
+.chip-item {
+  position: relative;
+  z-index: 1;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.menu-item {
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.input-style {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.clear-icon {
+  z-index: 2;
+  margin-top: 0.125rem;
+}
+
+.dropdown-icon {
+  z-index: 10;
+}
+
+.select-item {
+  display: flex;
+  align-items: center;
+  min-width: 0;
+}
+
+.cursor-not-allowed {
+  cursor: not-allowed !important;
+}
+
+.gray-color {
+  color: #9ca3af !important;
+}
+
+.bg-gray-200 {
+  background-color: #f3f4f6 !important;
+}
+
+.text-ellips {
+  text-overflow: ellipsis !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  width: 100% !important;
+  max-width: 100% !important;
+}
+
+.left-0 {
+  left: 0;
+}

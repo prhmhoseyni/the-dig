@@ -21,6 +21,7 @@ const sizeClasses: Record<string, string> = {
  */
 export type SelectVariant = "primary" | "secondary";
 export type DisabledType = { disabled?: boolean };
+export type ChipColor = "brand" | "info" | "success" | "warning" | "danger" | "gray";
 
 type AutocompleteValue<T> = T | T[] | string | number | boolean | (string | number | boolean)[] | null;
 
@@ -50,6 +51,9 @@ export interface AutocompleteProps<T> {
   inputProps?: DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>;
   className?: string;
   name?: string;
+  truncateChips?: boolean;
+  maxChipLength?: number;
+  chipColor?: ChipColor;
 }
 
 export interface AutocompleteRef {
@@ -58,6 +62,12 @@ export interface AutocompleteRef {
   clear: () => void;
   getSelectedValue: () => any;
 }
+
+// تابع کمکی برای truncate کردن متن
+const truncateText = (text: string, maxLength: number = 30): string => {
+  if (text.length <= maxLength) return text;
+  return `${text.substring(0, maxLength - 3)}...`;
+};
 
 const Autocomplete = forwardRef<AutocompleteRef, AutocompleteProps<any>>(
   <T extends object>(props: AutocompleteProps<T>, ref: React.ForwardedRef<AutocompleteRef>) => {
@@ -86,6 +96,9 @@ const Autocomplete = forwardRef<AutocompleteRef, AutocompleteProps<any>>(
       inputProps = {},
       className = "",
       name,
+      truncateChips = true,
+      maxChipLength = 20,
+      chipColor = "brand",
     } = props;
 
     // حالت کنترل شده یا غیرکنترل شده
@@ -116,7 +129,7 @@ const Autocomplete = forwardRef<AutocompleteRef, AutocompleteProps<any>>(
     // تابع کمکی برای تبدیل مقدار به آیتم‌ها (فقط برای حالت محلی)
     const convertToItems = useCallback(
       (val: AutocompleteValue<T>): T[] => {
-        if (!val && val !== false) return []; // false مجاز است
+        if (!val && val !== false) return [];
 
         // اگر fetchOptions فعال است، فقط آبجکت قبول کند
         if (fetchOptions) {
@@ -131,35 +144,29 @@ const Autocomplete = forwardRef<AutocompleteRef, AutocompleteProps<any>>(
 
         // حالت محلی: پشتیبانی از string, number, boolean
         if (multiple) {
-          // حالت multiple
           const values = Array.isArray(val) ? val : [val];
           const items: T[] = [];
 
           values.forEach((v) => {
             if (typeof v === "string" || typeof v === "number" || typeof v === "boolean") {
-              // جستجو بر اساس idField در options محلی
               if (localOptions) {
                 const found = localOptions.find((option) => String(option[idField]) === String(v));
                 if (found) items.push(found);
               }
             } else if (typeof v === "object" && v !== null) {
-              // اگر آبجکت بود، مستقیماً اضافه کن
               items.push(v as T);
             }
           });
 
           return items;
         } else {
-          // حالت single
           if (typeof val === "string" || typeof val === "number" || typeof val === "boolean") {
-            // جستجو بر اساس idField در options محلی
             if (localOptions) {
               const found = localOptions.find((option) => String(option[idField]) === String(val));
               return found ? [found] : [];
             }
             return [];
           } else if (Array.isArray(val)) {
-            // اگر آرایه بود، اولین آیتم را بررسی کن
             if (val.length === 0) return [];
             const first = val[0];
             if (typeof first === "string" || typeof first === "number" || typeof first === "boolean") {
@@ -172,7 +179,6 @@ const Autocomplete = forwardRef<AutocompleteRef, AutocompleteProps<any>>(
               return [first as T];
             }
           } else if (val && typeof val === "object") {
-            // اگر آبجکت بود
             return [val as T];
           }
           return [];
@@ -206,7 +212,6 @@ const Autocomplete = forwardRef<AutocompleteRef, AutocompleteProps<any>>(
     useEffect(() => {
       if (initialized.current) return;
 
-      // مقداردهی اولیه برای هر دو حالت
       const initialValue = defaultValue || value;
 
       if (initialValue !== null && initialValue !== undefined) {
@@ -268,7 +273,7 @@ const Autocomplete = forwardRef<AutocompleteRef, AutocompleteProps<any>>(
           setLoading(false);
         }
       },
-      [fetchOptions], // فقط وابستگی به fetchOptions
+      [fetchOptions],
     );
 
     useEffect(() => {
@@ -287,7 +292,6 @@ const Autocomplete = forwardRef<AutocompleteRef, AutocompleteProps<any>>(
     useEffect(() => {
       if (!fetchOptions) return;
 
-      // اگر کاربر با کامپوننت تعامل نداشته (مثلاً فقط مقدار پیشفرض دارد)، سرچ نکن
       if (!hasUserInteracted) {
         return;
       }
@@ -311,7 +315,6 @@ const Autocomplete = forwardRef<AutocompleteRef, AutocompleteProps<any>>(
         return;
       }
 
-      // پاک کردن تایماوت قبلی
       if (searchTimeoutRef.current) {
         window.clearTimeout(searchTimeoutRef.current);
       }
@@ -377,10 +380,8 @@ const Autocomplete = forwardRef<AutocompleteRef, AutocompleteProps<any>>(
 
       if (multiple) {
         if (localOptions) {
-          // برای localOptions، آیتم انتخاب شده را از لیست حذف کن
           setOptions((opts) => opts.filter((o) => String(o[idField]) !== String(option[idField])));
         } else {
-          // برای fetchOptions، لیست را فیلتر نکن و فقط منو را ببند
           setMenuOpen(false);
         }
         setInputValue("");
@@ -475,17 +476,10 @@ const Autocomplete = forwardRef<AutocompleteRef, AutocompleteProps<any>>(
               sizeClasses[size],
               className,
               {
-                // حالت غیرفعال
                 "bg-gray-100 text-gray-400 cursor-not-allowed": disabled,
-
-                // حالت فقط خواندنی
                 "bg-gray-50 text-gray-500 cursor-default": readOnly,
-
-                // حالت عادی
                 "text-prose-primary border-gray-400 focus-within:border-brand focus-within:shadow-focus-brand":
                   !hasError && !disabled && !readOnly,
-
-                // حالت ارور (box-shadow فقط موقع فوکوس)
                 "!border-danger focus-within:!border-danger focus-within:!shadow-focus-danger":
                   hasError && !disabled && !readOnly,
                 "bg-background-secondary": variant === "primary",
@@ -497,14 +491,24 @@ const Autocomplete = forwardRef<AutocompleteRef, AutocompleteProps<any>>(
               <div className="absolute top-1/2 -translate-y-1/2 start-3 flex items-center">{startAdornment}</div>
             )}
 
-            <div className={selectedList.length && startAdornment ? "mr-5" : ""}>
+            <div
+              className={clsx("flex flex-wrap items-center gap-1 w-full min-w-0 overflow-hidden", {
+                "mr-5": startAdornment && selectedList.length > 0,
+              })}
+            >
               {multiple &&
                 selectedList.length > 0 &&
                 selectedList.map(
                   (opt) =>
                     opt[labelField] && (
-                      <MemoChip key={String(opt[idField])} onClick={() => handleRemoveChip(opt)} className="mr-1 mt-1">
-                        {String(opt[labelField])}
+                      <MemoChip
+                        color={chipColor}
+                        key={String(opt[idField])}
+                        onClick={() => handleRemoveChip(opt)}
+                        className={clsx("mr-1 mt-1", styles["chip-item"], styles["memo-ellips"])}
+                        title={String(opt[labelField])}
+                      >
+                        {truncateChips ? truncateText(String(opt[labelField]), maxChipLength) : String(opt[labelField])}
                       </MemoChip>
                     ),
                 )}
@@ -518,7 +522,7 @@ const Autocomplete = forwardRef<AutocompleteRef, AutocompleteProps<any>>(
 
             <input
               {...inputProps}
-              id={`${componentId || "textbox"}-input`} // استفاده از id برای input
+              id={`${componentId || "textbox"}-input`}
               ref={inputRef}
               type="text"
               autoComplete="off"
@@ -532,9 +536,14 @@ const Autocomplete = forwardRef<AutocompleteRef, AutocompleteProps<any>>(
                 styles["input-style"],
                 { "bg-background-secondary": variant === "primary" },
                 { "bg-background-primary": variant === "secondary" },
-                { "mr-5": startAdornment && !selectedList.length },
+                { "mr-5": startAdornment },
+                // اضافه کردن کلاس برای truncate متن در حالت single
+                !multiple && selectedList.length > 0 && styles["selected-text"],
               )}
-              name={name} // اضافه شدن name برای فرم‌ها
+              name={name}
+              style={{
+                maxWidth: !multiple && selectedList.length > 0 && startAdornment ? "70%" : "80%",
+              }}
             />
           </div>
 
@@ -542,8 +551,9 @@ const Autocomplete = forwardRef<AutocompleteRef, AutocompleteProps<any>>(
             <X
               onClick={handleClear}
               className={clsx(
-                "absolute end-3 top-1/2 mt-05  -translate-y-1/2 text-gray-500 hover:text-gray-600 p-1 transition cursor-pointer hover:bg-gray-300 rounded-full",
+                "absolute end-3 top-1/2   -translate-y-1/2 text-gray-500 hover:text-gray-600 p-1 transition cursor-pointer hover:bg-gray-300 rounded-full",
                 { "end-10": isDropDown },
+                styles["clear-icon"], // اضافه کردن کلاس برای z-index
               )}
               size={22}
             />
@@ -555,7 +565,13 @@ const Autocomplete = forwardRef<AutocompleteRef, AutocompleteProps<any>>(
             </div>
           )}
           {isDropDown && (
-            <div className="absolute top-1/2 -translate-y-1/2 end-3 flex items-center pointer-events-none">
+            <div
+              className={clsx(
+                "absolute top-1/2 -translate-y-1/2 end-3 flex items-center pointer-events-none",
+                styles["dropdown-icon"],
+                selectedList.length > 2 && styles["left-0"],
+              )}
+            >
               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none">
                 <title>x</title>
                 <path
@@ -568,19 +584,19 @@ const Autocomplete = forwardRef<AutocompleteRef, AutocompleteProps<any>>(
               </svg>
             </div>
           )}
-          <div className={!inputValue && !multiple ? "hidden" : ""}></div>
+
           <Menu anchor={containerRef.current} open={menuOpen} onClose={handleCloseMenu}>
             <div
               dir="rtl"
-              className="overflow-y-auto p-2"
+              className={clsx("overflow-y-auto p-2")}
               style={{
                 width: containerRef.current?.offsetWidth ? containerRef.current.offsetWidth - 10 : "100%",
                 maxHeight: `${maxDropdownHeight}px`,
-                right: 0,
+                left: 0,
               }}
             >
               {loading ? (
-                <Menu.Item dir="rtl" className="vazirmatn text-gray-500">
+                <Menu.Item dir="rtl" className={clsx("vazirmatn text-gray-500", styles["menu-item"])}>
                   {searchingText}
                 </Menu.Item>
               ) : options.length > 0 ? (
@@ -591,13 +607,13 @@ const Autocomplete = forwardRef<AutocompleteRef, AutocompleteProps<any>>(
 
                   return (
                     <Menu.Item
-                      id={`${componentId}-item-${optionId}`} // استفاده از id برای آیتم‌های منو
+                      id={`${componentId}-item-${optionId}`}
                       key={`${optionId}__${option[labelField]}`}
                       dir="rtl"
                       aria-disabled={isDisabled ? "true" : "false"}
                       tabIndex={isDisabled ? -1 : 0}
                       className={clsx(
-                        "vazirmatn text-base sm:text-sm rounded p-1",
+                        "vazirmatn text-base sm:text-sm rounded p-1 w-full",
                         styles["select-item"],
                         isDisabled && !renderOption && styles["cursor-not-allowed"],
                         isDisabled && !renderOption && styles["gray-color"],
@@ -610,13 +626,22 @@ const Autocomplete = forwardRef<AutocompleteRef, AutocompleteProps<any>>(
                         if (isDisabled) return;
                         handleSelect(option);
                       }}
+                      title={String(option[labelField])} // اضافه کردن title برای نمایش متن کامل
                     >
-                      {renderOption ? renderOption(option as T, Boolean(isSelected)) : String(option[labelField])}
+                      <div className={clsx("flex items-center w-full min-w-0", styles["memo-ellips"])}>
+                        {renderOption ? (
+                          renderOption(option as T, Boolean(isSelected))
+                        ) : (
+                          <span className={clsx("block w-full text-start", styles["text-ellips"])}>
+                            {String(option[labelField])}
+                          </span>
+                        )}
+                      </div>
                     </Menu.Item>
                   );
                 })
               ) : searchDone || (!!localOptions && inputValue) ? (
-                <Menu.Item dir="rtl" className="vazirmatn text-gray-500">
+                <Menu.Item dir="rtl" className={clsx("vazirmatn text-gray-500", styles["menu-item"])}>
                   {notFoundText}
                 </Menu.Item>
               ) : null}
