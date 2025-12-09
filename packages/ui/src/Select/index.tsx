@@ -93,7 +93,7 @@ function SelectListInner<T extends object>(props: SelectListProps<T>, ref: Ref<S
     renderOption,
     id: componentId,
     truncateChips = true, // مقدار پیش‌فرض
-    maxChipLength = 30, // مقدار پیش‌فرض برای Chip ها
+    maxChipLength = 20, // مقدار پیش‌فرض برای Chip ها
     chipColor = "brand",
   } = props;
 
@@ -382,8 +382,8 @@ function SelectListInner<T extends object>(props: SelectListProps<T>, ref: Ref<S
                       color={chipColor}
                       key={String(opt[idField])}
                       onClick={() => handleRemoveChip(opt)}
-                      className={clsx("mr-1 mt-1 max-w-full", styles["memo-ellips "])}
-                      title={String(opt[labelField])} // نمایش متن کامل در hover
+                      className={clsx("mr-1 mt-1 max-w-full", styles["memo-ellips"])}
+                      title={String(opt[labelField])}
                     >
                       {truncateChips ? truncateText(String(opt[labelField]), maxChipLength) : String(opt[labelField])}
                     </MemoChip>
@@ -406,7 +406,7 @@ function SelectListInner<T extends object>(props: SelectListProps<T>, ref: Ref<S
                   styles["selected-text"],
                   startAdornment ? styles["width-startAdornment"] : styles["width-not-startAdornment"],
                 )}
-                title={displayLabel || placeholder} // نمایش متن کامل در hover
+                title={displayLabel || placeholder}
               >
                 {displayLabel || placeholder}
               </span>
