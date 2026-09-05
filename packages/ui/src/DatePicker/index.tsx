@@ -1,6 +1,5 @@
 import ReactModernDatePicker, { type DayValue } from "@hassanmojab/react-modern-calendar-datepicker";
 import moment from "jalali-moment";
-import { toEnglishDigits } from "msk-utils";
 import type { RefObject } from "react";
 import TextField, { type TextFieldProps } from "../TextField";
 import "./datepicker.css";
@@ -15,9 +14,9 @@ type DisabledRange = {
 };
 function convertTimestamp2DayValue(value: number) {
   return {
-    day: Number(toEnglishDigits(new Date(value).toLocaleDateString("fa", { day: "numeric" }))),
-    month: Number(toEnglishDigits(new Date(value).toLocaleDateString("fa", { month: "numeric" }))),
-    year: Number(toEnglishDigits(new Date(value).toLocaleDateString("fa", { year: "numeric" }))),
+    day: Number(new Date(value).toLocaleDateString("fa", { day: "numeric" })),
+    month: Number(new Date(value).toLocaleDateString("fa", { month: "numeric" })),
+    year: Number(new Date(value).toLocaleDateString("fa", { year: "numeric" })),
   };
 }
 

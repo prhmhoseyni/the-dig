@@ -1,6 +1,5 @@
 import clsx from "clsx";
 import { ChevronLeft, ChevronRight, ChevronsLeft, ChevronsRight } from "lucide-react";
-import { toPersianDigits } from "msk-utils";
 import type { ButtonHTMLAttributes, DetailedHTMLProps } from "react";
 
 interface PaginationButtonProps extends DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement> {
@@ -42,26 +41,26 @@ export default function Pagination(props: PaginationProps) {
       </PaginationButton>
 
       <PaginationButton onClick={() => props.onChange(1)} active={props.page === 1}>
-        {toPersianDigits(1)}
+        1
       </PaginationButton>
 
       {![1, 2, 3].includes(props.page) && <PaginationButton> ... </PaginationButton>}
 
       {![1, 2].includes(props.page) && (
-        <PaginationButton onClick={() => props.onChange(props.page - 1)}>{toPersianDigits(props.page - 1)}</PaginationButton>
+        <PaginationButton onClick={() => props.onChange(props.page - 1)}>{props.page - 1}</PaginationButton>
       )}
 
-      {![1, props.total].includes(props.page) && <PaginationButton active>{toPersianDigits(props.page)}</PaginationButton>}
+      {![1, props.total].includes(props.page) && <PaginationButton active>{props.page}</PaginationButton>}
 
       {![props.total, props.total - 1].includes(props.page) && (
-        <PaginationButton onClick={() => props.onChange(props.page + 1)}>{toPersianDigits(props.page + 1)}</PaginationButton>
+        <PaginationButton onClick={() => props.onChange(props.page + 1)}>{props.page + 1}</PaginationButton>
       )}
 
       {![props.total, props.total - 1, props.total - 2].includes(props.page) && <PaginationButton> ... </PaginationButton>}
 
       {props.total !== 1 && (
         <PaginationButton onClick={() => props.onChange(props.total)} active={props.page === props.total}>
-          {toPersianDigits(props.total)}
+          {props.total}
         </PaginationButton>
       )}
 
