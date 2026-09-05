@@ -1,6 +1,6 @@
-const fs = require("fs");
+const fs = require("node:fs");
 const fsp = fs.promises;
-const path = require("path");
+const path = require("node:path");
 
 const REL_SPEC_REGEX = /(['"])(\.\.?(?:\/[^'"]*?))\1/g; // '...relative...' or "...relative..."
 
@@ -19,18 +19,18 @@ async function walk(dir) {
           // resolve the referenced path relative to current file
           const resolvedBase = path.resolve(path.dirname(full), spec);
           // 1) prefer spec + .js
-          if (fs.existsSync(resolvedBase + ".js")) {
+          if (fs.existsSync(`${resolvedBase}.js`)) {
             changed = true;
-            return quote + spec + ".js" + quote;
+            return `${quote + spec}.js${quote}`;
           }
           // 2) else if directory/index.js exists, use /index.js
           if (fs.existsSync(path.join(resolvedBase, "index.js"))) {
             changed = true;
-            return quote + spec + "/index.js" + quote;
+            return `${quote + spec}/index.js${quote}`;
           }
           // 3) leave unchanged (maybe it's a package import or already correct)
           return match;
-        } catch (err) {
+        } catch (_err) {
           return match;
         }
       });

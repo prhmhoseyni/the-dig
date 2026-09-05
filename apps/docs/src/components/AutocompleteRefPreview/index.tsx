@@ -11,7 +11,7 @@ export default function MultipleSelection() {
     tagsRef.current?.focus();
   };
 
-  const handleBlur = () => {
+  const _handleBlur = () => {
     tagsRef.current?.blur();
   };
 

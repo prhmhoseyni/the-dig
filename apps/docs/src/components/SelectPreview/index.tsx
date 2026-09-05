@@ -17,7 +17,7 @@ export default function Page() {
     { id: 11, label: "زنجان" },
     { id: 12, label: "کرمان" },
   ];
-  const [singleValue, setSingleValue] = useState<any | null>({ id: 10, label: "سمنان" });
+  const [_singleValue, setSingleValue] = useState<any | null>({ id: 10, label: "سمنان" });
   return (
     <SelectList
       options={options}
