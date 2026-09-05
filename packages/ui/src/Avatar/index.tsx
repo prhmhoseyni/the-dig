@@ -1,7 +1,20 @@
 import clsx from "clsx";
-import { Children, cloneElement, isValidElement, type PropsWithChildren, type ReactNode, useId } from "react";
+import { Children, cloneElement, isValidElement, type JSX, type PropsWithChildren, type ReactNode, useId } from "react";
 
-const online = {
+const online: Record<AvatarSize, JSX.Element> = {
+  xl: (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="14"
+      height="14"
+      viewBox="0 0 14 14"
+      fill="none"
+      className="absolute inset-x-0 bottom-0"
+    >
+      <title>online</title>
+      <circle cx="7" cy="7" r="6" fill="#43A824" stroke="rgb(var(--dig-background-secondary))" strokeWidth="2" />
+    </svg>
+  ),
   lg: (
     <svg
       xmlns="http://www.w3.org/2000/svg"

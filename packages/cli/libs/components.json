@@ -44,7 +44,7 @@
     "src": "https://pubgi.sandpod.ir/pod/frontobm/the-dig/-/tree/main/packages/ui/src/CircularProgress"
   },
   "DatePicker": {
-    "dependencies": ["@hassanmojab/react-modern-calendar-datepicker", "jalali-moment", "msk-utils"],
+    "dependencies": ["@hassanmojab/react-modern-calendar-datepicker", "jalali-moment"],
     "src": "https://pubgi.sandpod.ir/pod/frontobm/the-dig/-/tree/main/packages/ui/src/DatePicker"
   },
   "Dialog": {
@@ -80,7 +80,7 @@
     "src": "https://pubgi.sandpod.ir/pod/frontobm/the-dig/-/tree/main/packages/ui/src/Navigation"
   },
   "Pagination": {
-    "dependencies": ["msk-utils"],
+    "dependencies": null,
     "src": "https://pubgi.sandpod.ir/pod/frontobm/the-dig/-/tree/main/packages/ui/src/Pagination"
   },
   "RadioGroup": {
