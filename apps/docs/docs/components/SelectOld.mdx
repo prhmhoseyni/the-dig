@@ -1,0 +1,25 @@
+---
+sidebar_position: 1
+---
+
+# SelectOld
+
+`SelectOld` is the legacy native-select wrapper. Prefer [`Select`](./Select) for new code.
+
+## Installation
+
+```bash
+npx the-dig@latest add SelectOld
+```
+
+## Props
+
+| Prop | Type | Default |
+| --- | --- | --- |
+| `variant` | `"primary"` \| `"secondary"` | `"primary"` |
+| `hasError` | `boolean` | `false` |
+| `startAdornment` | `ReactNode` | - |
+| `inputWrapperProps` | `HTMLAttributes<HTMLDivElement>` | - |
+| Others | `SelectHTMLAttributes<HTMLSelectElement>` | Native defaults |
+
+Options are supplied as native `<option>` children. Use a visible label and associate error text with the select for accessibility.
