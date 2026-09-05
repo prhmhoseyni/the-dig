@@ -299,6 +299,8 @@ npx the-dig@latest add Button,CircularProgress
 
 ## Props
 
+`Button` forwards native button props. Set `type="button"` when using it inside a form unless it should submit. During loading it is disabled and replaces its content with a spinner or `loadingIndicator`; `loadingPosition` controls whether children remain visible.
+
 | Prop        | Type                                                                          | Default                                                                                                         |
 | ----------- | ----------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
 | `variant`   | `"contained"` \| `"tinted"` \| `"outlined"`                                   | `"contained"`                                                                                                   |
