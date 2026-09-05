@@ -41,7 +41,9 @@ const [range, setRange] = useState([30, 70]);
 npx the-dig@latest add Slider
 ```
 
-## props
+## Props
+
+All `rc-slider` props are forwarded. A single slider uses `number`; `range` uses `number[]`. This wrapper replaces `handleRender` with an always-visible rounded percentage label, so custom handle rendering is not currently supported.
 
 | Prop                                                                | Type                                                                              | Default                                                                                                   |
 | ------------------------------------------------------------------- | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- |
