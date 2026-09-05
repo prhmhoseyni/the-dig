@@ -4,7 +4,7 @@ sidebar_position: 1
 
 # BottomSheet
 
-# Preview
+## Preview
 
 import BottomSheetPreview from "../../src/components/BottomSheetPreview";
 
@@ -39,6 +39,8 @@ npx the-dig@latest add BottomSheet
 ```
 
 ## Props
+
+`BottomSheet` is controlled by `open`; backdrop clicks and downward mobile drags call `onClose`. Compose the content with `BottomSheet.Body`, which accepts `children` and `className`. The component changes from a bottom sheet below 768px to a centered dialog on larger screens.
 
 | Prop                                                           | Type           | Default |
 | -------------------------------------------------------------- | -------------- | ------- |
