@@ -42,3 +42,6 @@ yarn-error.log*
 .vscode/*
 !.vscode/settings.json
 .idea
+
+# codex
+.codex
