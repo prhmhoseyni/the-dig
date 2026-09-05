@@ -13,7 +13,7 @@ interface User {
 
 function RefControlExample() {
   const userSelectRef = useRef<SelectListRef<User>>(null);
-  const [selectedUserInfo, setSelectedUserInfo] = useState<string>("");
+  const [_selectedUserInfo, setSelectedUserInfo] = useState<string>("");
 
   const users: User[] = [
     { id: 1, name: "علی محمدی", email: "ali@example.com", role: "مدیر" },
@@ -54,7 +54,7 @@ function RefControlExample() {
         options={users}
         placeholder="یک کاربر انتخاب کنید..."
         labelField="name"
-        onChange={(value) => {}}
+        onChange={(_value) => {}}
         multiple
       />
 

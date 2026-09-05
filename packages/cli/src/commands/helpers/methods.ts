@@ -50,7 +50,7 @@ export function addUseClientDirective(content: string): string {
     return content;
   }
   // Add "use client" at the top
-  return '"use client";\n' + content;
+  return `"use client";\n${content}`;
 }
 
 /**
