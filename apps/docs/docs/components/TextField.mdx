@@ -29,6 +29,8 @@ npx the-dig@latest add TextField
 
 ## Props
 
+`size` replaces the native input `size` attribute. `isCleanIcon` only shows the clean affordance; controlled consumers should clear their value in `onClean`. `hasError` is visual, so associate an external error message with `aria-describedby`.
+
 | Prop                | Type                                    | Default                                                                                                        |
 | ------------------- | --------------------------------------- | -------------------------------------------------------------------------------------------------------------- |
 | `variant`           | `"primary"` \| `"secondary"`            | `"primary"`                                                                                                    |
