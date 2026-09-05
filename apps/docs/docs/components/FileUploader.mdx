@@ -1,0 +1,40 @@
+---
+sidebar_position: 1
+---
+
+# FileUploader
+
+`FileUploader` provides a file input/drop target and reports dropped files to the parent.
+
+## Preview
+
+```tsx
+import FileUploader from "@repo/ui/FileUploader";
+
+<FileUploader
+  id="attachments"
+  accept="image/*,.pdf"
+  multiple
+  onDropFiles={(files) => uploadFiles(files)}
+  aria-label="Upload attachments"
+/>;
+```
+
+## Installation
+
+```bash
+npx the-dig@latest add FileUploader
+```
+
+## Props
+
+| Prop | Type | Required | Default |
+| --- | --- | --- | --- |
+| `id` | `string` | Yes | - |
+| `onDropFiles` | `(files: FileList) => void` | No | - |
+| `hasError` | `boolean` | No | `false` |
+| Others | `InputHTMLAttributes<HTMLInputElement>` | No | Native input defaults |
+
+`onDropFiles` receives a `FileList` from the drop interaction. Native `onChange` remains available through the forwarded input props. Use `accept`, `multiple`, `disabled`, `name`, and `required` to constrain selection and form behavior.
+
+Always provide a visible or programmatic label, keyboard access to the file picker, and external error text associated with the input when `hasError` is true.
