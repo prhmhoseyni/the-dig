@@ -1,12 +1,11 @@
 import clsx from "clsx";
-import styles from "./index.module.css";
 import { X } from "lucide-react";
-import { forwardRef, memo, useCallback, useEffect, useMemo, useRef, useState, useImperativeHandle } from "react";
 import type { DetailedHTMLProps, InputHTMLAttributes, ReactNode } from "react";
-
+import { forwardRef, memo, useCallback, useEffect, useImperativeHandle, useMemo, useRef, useState } from "react";
 import Chip from "../Chip";
 import CircularProgress from "../CircularProgress";
 import Menu from "../Menu";
+import styles from "./index.module.css";
 
 const sizeClasses: Record<string, string> = {
   xs: "min-h-8 text-sm px-2",

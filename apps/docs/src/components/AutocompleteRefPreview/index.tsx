@@ -1,8 +1,9 @@
 "use client";
 
-import Autocomplete, { AutocompleteRef } from "@repo/ui/Autocomplete";
-import { useRef } from "react";
+import Autocomplete from "@repo/ui/Autocomplete";
 import Button from "@repo/ui/Button";
+import { useRef } from "react";
+
 export default function MultipleSelection() {
   const tagsRef = useRef<any>(null);
 
