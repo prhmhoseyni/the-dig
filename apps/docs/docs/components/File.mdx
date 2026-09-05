@@ -1,0 +1,43 @@
+---
+sidebar_position: 1
+---
+
+# File
+
+`File` displays one file’s upload progress and lifecycle actions. The parent owns the upload state.
+
+## Preview
+
+```tsx
+import File from "@repo/ui/File";
+
+<File
+  file={file}
+  status="uploading"
+  percent={42}
+  onUpload={startUpload}
+  onCancel={cancelUpload}
+  onPause={pauseUpload}
+  onRemove={removeFile}
+/>;
+```
+
+## Installation
+
+```bash
+npx the-dig@latest add File
+```
+
+## Props
+
+| Prop | Type | Required | Description |
+| --- | --- | --- | --- |
+| `file` | `File` | Yes | File being uploaded. |
+| `status` | `"uploading"` \| `"paused"` \| `"completed"` \| `"cancelled"` | Yes | Current upload lifecycle state. |
+| `percent` | `number` | Yes | Upload progress, normally from 0 to 100. |
+| `onUpload` | `() => void` | Yes | Starts or resumes uploading. |
+| `onCancel` | `() => void` | Yes | Cancels the upload. |
+| `onPause` | `() => void` | Yes | Pauses the upload. |
+| `onRemove` | `() => void` | No | Removes the file from the list. |
+
+Provide accessible names for any action controls and expose progress through an appropriate live/progress announcement in the surrounding UI.
