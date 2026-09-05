@@ -1,4 +1,5 @@
 import path from "node:path";
+import fs from "fs-extra";
 import { fetchComponentFromRepository, getComponentData, getTheDigConfig, installDependencies } from "./helpers/methods";
 
 export async function update(componentNamesStr: string) {
@@ -69,7 +70,12 @@ export async function update(componentNamesStr: string) {
     const rootDir = process.cwd();
     const fetchPromises = validComponents.map((component) => {
       const destination = path.join(rootDir, componentsAlias, component.name);
-      return fetchComponentFromRepository(component.src, destination);
+      return (async () => {
+        // An update is a full refresh: remove files that no longer exist upstream
+        // before fetching the current component contents.
+        await fs.emptyDir(destination);
+        await fetchComponentFromRepository(component.src, destination);
+      })();
     });
 
     await Promise.all(fetchPromises);
