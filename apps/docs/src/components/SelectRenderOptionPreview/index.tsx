@@ -11,7 +11,7 @@ interface User {
 
 export default function UserSelectExample() {
   const users: User[] = [
-    { id: 1, name: "کاربر شماره 1", email: "test1@example.com", role: "مدیر"},
+    { id: 1, name: "کاربر شماره 1", email: "test1@example.com", role: "مدیر" },
     { id: 2, name: "کاربر شماره 2", email: "test2@example.com", role: "کاربر" },
     { id: 3, name: "کاربر شماره 3", email: "test3@example.com", role: "نویسنده" },
     { id: 4, name: "کاربر شماره 4", email: "test4@example.com", role: "مشتری" },
@@ -27,32 +27,26 @@ export default function UserSelectExample() {
           <div className="font-medium">{user.name}</div>
           <div className="text-sm text-gray-500">{user.email}</div>
         </div>
-        {isSelected && (
-        <div className="text-green-500 text-lg">✓</div>
-      )}
+        {isSelected && <div className="text-green-500 text-lg">✓</div>}
       </div>
-      
-      <div className={`px-2 py-1 rounded text-xs ${
-        user.role === "مدیر" ? "bg-red-100 text-red-800" :
-        user.role === "نویسنده" ? "bg-blue-100 text-blue-800" :
-        "bg-gray-100 text-gray-800"
-      }`}>
+
+      <div
+        className={`px-2 py-1 rounded text-xs ${
+          user.role === "مدیر"
+            ? "bg-red-100 text-red-800"
+            : user.role === "نویسنده"
+              ? "bg-blue-100 text-blue-800"
+              : "bg-gray-100 text-gray-800"
+        }`}
+      >
         {user.role}
       </div>
-      
     </div>
   );
 
-
-
   return (
     <div className="w-full">
-      <SelectList
-        options={users}
-        renderOption={renderUserOption}
-        placeholder="کاربر را انتخاب کنید..."
-        labelField="name"
-      />
+      <SelectList options={users} renderOption={renderUserOption} placeholder="کاربر را انتخاب کنید..." labelField="name" />
     </div>
   );
 }

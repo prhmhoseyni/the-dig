@@ -1,9 +1,9 @@
-import { useState } from "react";
-
 import Button from "@repo/ui/Button";
 import Switch from "@repo/ui/Switch";
-import Preview from "../Preview";
 import { BadgeCheck } from "lucide-react";
+import { useState } from "react";
+import Preview from "../Preview";
+
 export default function ButtonLoading() {
   const [isLoading, setIsLoading] = useState(true);
   const [isShowAdornment, setIsShowAdornment] = useState(true);

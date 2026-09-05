@@ -27,19 +27,20 @@ export default function UserAutocomplete() {
           <div className="font-medium">{user.name}</div>
           <div className="text-sm text-gray-500">{user.email}</div>
         </div>
-        {isSelected && (
-        <div className="text-green-500 text-lg">✓</div>
-      )}
+        {isSelected && <div className="text-green-500 text-lg">✓</div>}
       </div>
-      
-      <div className={`px-2 py-1 rounded text-xs ${
-        user.role === "مدیر" ? "bg-red-100 text-red-800" :
-        user.role === "نویسنده" ? "bg-blue-100 text-blue-800" :
-        "bg-gray-100 text-gray-800"
-      }`}>
+
+      <div
+        className={`px-2 py-1 rounded text-xs ${
+          user.role === "مدیر"
+            ? "bg-red-100 text-red-800"
+            : user.role === "نویسنده"
+              ? "bg-blue-100 text-blue-800"
+              : "bg-gray-100 text-gray-800"
+        }`}
+      >
         {user.role}
       </div>
-      
     </div>
   );
 
