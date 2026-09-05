@@ -46,6 +46,24 @@ import { X } from "lucide-react";
 </Dialog>
 ```
 
+## Installation
+
+```bash
+npx the-dig@latest add Dialog
+```
+
+## Props
+
+`Dialog` is controlled through `open` and `onClose`. Compose content with `Dialog.Header`, `Dialog.Body`, and `Dialog.Footer`; `Dialog.Body` accepts `scroll="PAPER" | "BODY"`. Add an accessible title/description and verify keyboard dismissal and focus restoration in the consuming application.
+
+| Prop                                                           | Type           | Default |
+| -------------------------------------------------------------- | -------------- | ------- |
+| `open` <sup className="text-red-600 text-caption2">\*</sup>    | `"boolean"`    |         |
+| `onClose` <sup className="text-red-600 text-caption2">\*</sup> | `VoidFunction` |         |
+| `width`                                                              | `"xs"` \| `"sm"` \| `"md"` \| `"lg"`  \| `"xl"` \| `"false"`| "sm"|
+| `scroll`                                                        | `"PAPER"` \| `"BODY"` | "PAPER" |
+| `className`                                                | `string`                             | -           |
+
 ## Dialog Width
 <DialogSize />
 
@@ -112,23 +130,3 @@ import { X } from "lucide-react";
   </Dialog.Footer>
 </Dialog>
 ```
-
-
-
-## Installation
-
-```bash
-npx the-dig@latest add Dialog
-```
-
-## Props
-
-`Dialog` is controlled through `open` and `onClose`. Compose content with `Dialog.Header`, `Dialog.Body`, and `Dialog.Footer`; `Dialog.Body` accepts `scroll="PAPER" | "BODY"`. Add an accessible title/description and verify keyboard dismissal and focus restoration in the consuming application.
-
-| Prop                                                           | Type           | Default |
-| -------------------------------------------------------------- | -------------- | ------- |
-| `open` <sup className="text-red-600 text-caption2">\*</sup>    | `"boolean"`    |         |
-| `onClose` <sup className="text-red-600 text-caption2">\*</sup> | `VoidFunction` |         |
-| `width`                                                              | `"xs"` \| `"sm"` \| `"md"` \| `"lg"`  \| `"xl"` \| `"false"`| "sm"|
-| `scroll`                                                        | `"PAPER"` \| `"BODY"` | "PAPER" |
-| `className`                                                | `string`                             | -           |

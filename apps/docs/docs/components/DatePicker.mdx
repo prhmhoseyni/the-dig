@@ -23,6 +23,26 @@ import DatePicker from "@repo/ui/DatePicker";
 
 <DatePicker value={value} onChange={(value) => setValue(value)} inputProps={{ size: "md" }}/>;
 ```
+
+## Installation
+
+`value`, `minDate`, and `maxDate` are numeric date values; document the timestamp unit used by the consuming application. `hasCleanIcon` defaults to `true`, while `inputProps` accepts the full `TextFieldProps` API.
+
+```bash
+npx the-dig@latest add TextField,DatePicker
+```
+
+## Props
+
+| Prop                                                            | Type                              | Default                                                                                           |
+| --------------------------------------------------------------- | --------------------------------- | ------------------------------------------------------------------------------------------------- |
+| `value` <sup className="text-red-600 text-caption2">\*</sup>    | `number` \| `null`                | -                                                                                                 |
+| `onChange` <sup className="text-red-600 text-caption2">\*</sup> | `(value: number \| null) => void` | -                                                                                                 |
+| `locale`                                                        | `"fa"` \| `"en"`                  | `"fa"`                                                                                            |
+| `disableDays`                                                        | `Array<object>`                  | -                                                                                            |
+| `disabledRange`                                                        | `object`                  | -                                                                                            |
+| `inputProps`                                                    | `TextFieldProps`                  | <RedirectLink href="https://the-dig.vercel.app/docs/components/TextField">Document</RedirectLink> |
+
 ## Has Error
 <DatePickerHasError />
 
@@ -80,25 +100,3 @@ const [value, setValue] = useState<number | null>(1758573000000);
   onChange={(value) => setValue(value)}
 />
 ```
-
-
-
-
-## Installation
-
-`value`, `minDate`, and `maxDate` are numeric date values; document the timestamp unit used by the consuming application. `hasCleanIcon` defaults to `true`, while `inputProps` accepts the full `TextFieldProps` API.
-
-```bash
-npx the-dig@latest add TextField,DatePicker
-```
-
-## Props
-
-| Prop                                                            | Type                              | Default                                                                                           |
-| --------------------------------------------------------------- | --------------------------------- | ------------------------------------------------------------------------------------------------- |
-| `value` <sup className="text-red-600 text-caption2">\*</sup>    | `number` \| `null`                | -                                                                                                 |
-| `onChange` <sup className="text-red-600 text-caption2">\*</sup> | `(value: number \| null) => void` | -                                                                                                 |
-| `locale`                                                        | `"fa"` \| `"en"`                  | `"fa"`                                                                                            |
-| `disableDays`                                                        | `Array<object>`                  | -                                                                                            |
-| `disabledRange`                                                        | `object`                  | -                                                                                            |
-| `inputProps`                                                    | `TextFieldProps`                  | <RedirectLink href="https://the-dig.vercel.app/docs/components/TextField">Document</RedirectLink> |

@@ -13,6 +13,42 @@ import SelectRefPreview from "../../src/components/SelectRefPreview";
 import SelectRenderOptionPreview from "../../src/components/SelectRenderOptionPreview";
 import Container from "./Container";
 
+## Installation
+
+```bash
+npx the-dig@latest add Select,Menu,CircularProgress,Chip
+```
+
+## Props
+
+`Select` supports controlled and uncontrolled values, single or `multiple` selection, and local disabled options. The imperative ref exposes `getValue`, `setValue`, `clearValue`, `focus`, `blur`, `openMenu`, and `closeMenu`. `renderOption` receives `(option, isSelected)`.
+
+### `Select`
+
+| Prop                                                                | Type                                                                              | Default                                                                                                   |
+| ------------------------------------------------------------------- | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- |
+| `options` <sup className="text-red-600 text-caption2">\*</sup>      | `Array`                                                                           | -                                                                                                         |
+| `defaultValue`                                                      |  `object` \| `Array<object>`                                                                          | -                                                                                                       |
+| `value`                                                      |  `object` \| `Array<object>`                                                                          | -                                                                                                       |
+| `name`                                                           | ` string`                                                                         | -                                                                                                        |
+| `onChange`                                                          | `function`                                                                        | -                                                                                                         |
+| `idField`                                                           | ` string`                                                                         | id                                                                                                        |
+| `labelField`                                                        | ` string`                                                                         | label                                                                                                     |
+| `hasError`                                                          | `boolean`                                                                         | false                                                                                                     |
+| `readOnly`                                                          | `boolean`                                                                         | false                                                                                                     |
+| `disabled`                                                          | `boolean`                                                                         | false                                                                                                     |
+| `placeholder`                                                          | `string`                                                                         | انتخاب کنید                                                                                                     |
+| `size`                                                              | `"xs"` \| `"sm"` \| `"md"` \| `"lg"`\| `"xl"`                                              | md                                                                                                        |
+| `width`                                                             | `string`                                                                          | 100%                                                                                                      |
+| `variant`                                                           | `"primary"` \| `"secondary"` \|                                                   | primary                                                                                                   |
+| `maxDropdownHeight`                                                 | `number`                                                                          | 200                                                                                                       |
+| `renderOption`                                                             | `ReactNode`                                                                          | -                                                                                                      |
+| `id`                                                     | `string`                                                                          | -                                                                                         |
+| `className`| `string`| -|
+| `chipColor`          | `"brand"` \| `"info"` \| `"success"` \| `"warning"` \| `"danger"` \| `"gray"` | `"brand"`                                                                                                       | "brand"
+| `truncateChips`                                                          | `boolean`                                                                         | true                                                                                                     | true
+| `maxChipLength`                                                          | `number`                                                                         | 20                                                                                                     |
+
 ## StartAdornment
 
 <Container>
@@ -219,6 +255,7 @@ export default function Page() {
   );
 }
 ```
+
 ## Has Error
 <Container>
 
@@ -571,9 +608,6 @@ export default function UserSelectExample() {
 }
 ```
 
-
-
-
 ## Ref
 
 <Container>
@@ -654,39 +688,3 @@ function RefControlExample() {
   );
 }
 ```
-
-## Installation
-
-```bash
-npx the-dig@latest add Select,Menu,CircularProgress,Chip
-```
-
-## Props
-
-`Select` supports controlled and uncontrolled values, single or `multiple` selection, and local disabled options. The imperative ref exposes `getValue`, `setValue`, `clearValue`, `focus`, `blur`, `openMenu`, and `closeMenu`. `renderOption` receives `(option, isSelected)`.
-
-### `Select`
-
-| Prop                                                                | Type                                                                              | Default                                                                                                   |
-| ------------------------------------------------------------------- | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- |
-| `options` <sup className="text-red-600 text-caption2">\*</sup>      | `Array`                                                                           | -                                                                                                         |
-| `defaultValue`                                                      |  `object` \| `Array<object>`                                                                          | -                                                                                                       |
-| `value`                                                      |  `object` \| `Array<object>`                                                                          | -                                                                                                       |
-| `name`                                                           | ` string`                                                                         | -                                                                                                        |
-| `onChange`                                                          | `function`                                                                        | -                                                                                                         |
-| `idField`                                                           | ` string`                                                                         | id                                                                                                        |
-| `labelField`                                                        | ` string`                                                                         | label                                                                                                     |
-| `hasError`                                                          | `boolean`                                                                         | false                                                                                                     |
-| `readOnly`                                                          | `boolean`                                                                         | false                                                                                                     |
-| `disabled`                                                          | `boolean`                                                                         | false                                                                                                     |
-| `placeholder`                                                          | `string`                                                                         | انتخاب کنید                                                                                                     |
-| `size`                                                              | `"xs"` \| `"sm"` \| `"md"` \| `"lg"`\| `"xl"`                                              | md                                                                                                        |
-| `width`                                                             | `string`                                                                          | 100%                                                                                                      |
-| `variant`                                                           | `"primary"` \| `"secondary"` \|                                                   | primary                                                                                                   |
-| `maxDropdownHeight`                                                 | `number`                                                                          | 200                                                                                                       |
-| `renderOption`                                                             | `ReactNode`                                                                          | -                                                                                                      |
-| `id`                                                     | `string`                                                                          | -                                                                                         |
-| `className`| `string`| -|
-| `chipColor`          | `"brand"` \| `"info"` \| `"success"` \| `"warning"` \| `"danger"` \| `"gray"` | `"brand"`                                                                                                       | "brand"
-| `truncateChips`                                                          | `boolean`                                                                         | true                                                                                                     | true
-| `maxChipLength`                                                          | `number`                                                                         | 20                                                                                                     |

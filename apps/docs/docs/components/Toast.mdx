@@ -4,34 +4,6 @@ sidebar_position: 1
 
 # Toast
 
-## Sonner
-
-import RedirectLink from "../../src/components/RedirectLink";
-
-<RedirectLink href="https://sonner.emilkowal.ski">Document</RedirectLink>
-
-### Installation
-
-```bash
-npm install sonner
-```
-
-### Setup
-
-```tsx
-import { Toaster } from "sonner";
-
-<Toaster />;
-```
-
-### Usage
-
-```tsx
-import { toast } from "sonner";
-
-toast("Event has been created.");
-```
-
 ## Usage
 
 import Toast from "@repo/ui/Toast";
@@ -118,3 +90,31 @@ npx the-dig@latest add Toast
 | `actions` <sup className="text-red-600 text-caption2">\*</sup>     | `ReactNode`    | -       |
 | `className`                                                        | `string`       | -       |
 | `onClose`                                                          | `VoidFunction` | -       |
+
+## Sonner
+
+import RedirectLink from "../../src/components/RedirectLink";
+
+<RedirectLink href="https://sonner.emilkowal.ski">Document</RedirectLink>
+
+### Installation
+
+```bash
+npm install sonner
+```
+
+### Setup
+
+```tsx
+import { Toaster } from "sonner";
+
+<Toaster />;
+```
+
+### Usage
+
+```tsx
+import { toast } from "sonner";
+
+toast("Event has been created.");
+```
