@@ -31,6 +31,8 @@ npx the-dig@latest add Tooltip
 
 ## Props
 
+`id`, `content`, and a single `ReactElement` child are required. Placement defaults to `top` and `positionStrategy` to `fixed`; the `id` must be unique. Ensure the child forwards refs and trigger props so keyboard focus can display the tooltip.
+
 | Prop                                                           | Type                                                                                                                                                                                       | Default |
 | -------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------- |
 | `id` <sup className="text-red-600 text-caption2">\*</sup>      | `string`                                                                                                                                                                                   | -       |
